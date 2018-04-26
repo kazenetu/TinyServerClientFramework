@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataTransferObjects", "DataTransferObjects\DataTransferObjects.csproj", "{D601C97C-40A6-45D7-8D50-52F79F75221E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI\WebAPI\WebAPI.csproj", "{D3E677AC-03FB-4D1F-A4A4-BD46F2F50184}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPIFramework", "WebAPI\WebAPIFramework\WebAPIFramework.csproj", "{15624788-393C-4CFE-BEA3-047286075C60}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D601C97C-40A6-45D7-8D50-52F79F75221E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D601C97C-40A6-45D7-8D50-52F79F75221E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D601C97C-40A6-45D7-8D50-52F79F75221E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D601C97C-40A6-45D7-8D50-52F79F75221E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3E677AC-03FB-4D1F-A4A4-BD46F2F50184}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3E677AC-03FB-4D1F-A4A4-BD46F2F50184}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3E677AC-03FB-4D1F-A4A4-BD46F2F50184}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3E677AC-03FB-4D1F-A4A4-BD46F2F50184}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15624788-393C-4CFE-BEA3-047286075C60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15624788-393C-4CFE-BEA3-047286075C60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15624788-393C-4CFE-BEA3-047286075C60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15624788-393C-4CFE-BEA3-047286075C60}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {611AEBE7-D456-4CE5-A231-21FEC8FD6BF3}
+	EndGlobalSection
+EndGlobal
