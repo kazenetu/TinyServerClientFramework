@@ -1,0 +1,2 @@
+# TinyServerClientFramework
+WindowsクライアントとWebAPIサーバーの簡易フレームワーク
