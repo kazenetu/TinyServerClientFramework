@@ -188,7 +188,7 @@ namespace Commons.DB
     /// </summary>
     /// <param name="connectionString">接続文字列</param>
     /// <returns>コネクションインスタンス</returns>
-    private SqliteConnection getConnection(string connectionString)
+    protected virtual SqliteConnection getConnection(string connectionString)
     {
       var resourcePath = AppContext.BaseDirectory;
       resourcePath = String.Format("Data Source={0}", Path.Combine(resourcePath, connectionString));

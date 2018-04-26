@@ -55,7 +55,7 @@ namespace WebAPIFramework.BaseClasses
       db.Rollback();
     }
 
-    public T Cast<T>() where T : IRepositoryBase
+    public virtual T Cast<T>() where T : IRepositoryBase
     {
       return (T)Activator.CreateInstance(typeof(T), db);
     }

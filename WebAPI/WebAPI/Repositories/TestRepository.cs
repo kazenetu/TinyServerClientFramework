@@ -22,7 +22,7 @@ namespace WebAPI.Repositories
     /// <param name="userID">ユーザー名</param>
     /// <param name="password">パスワード</param>
     /// <returns></returns>
-    public string Login(string userID, string password)
+    public virtual string Login(string userID, string password)
     {
       var sql = new StringBuilder();
       sql.AppendLine("select");
