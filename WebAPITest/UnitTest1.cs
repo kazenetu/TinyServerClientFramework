@@ -16,8 +16,8 @@ namespace XUnitTestProject1
     [Fact]
     public void Test1()
     {
-      var mock = new Mock<TestRepository>(null);
-      mock.Setup(c => c.Cast<TestRepository>()).Returns(mock.Object);
+      var mock = new Mock<SampleRepository>(null);
+      mock.Setup(c => c.Cast<SampleRepository>()).Returns(mock.Object);
       mock.Setup(c => c.Login(It.IsAny<string>(), It.IsAny<string>())).Returns("");
       var controller = new ValuesController(mock.Object as IRepositoryBase);
       var result = controller.Get();
@@ -32,7 +32,7 @@ namespace XUnitTestProject1
     public void Test2()
     {
       // インメモリSQLiteでRepositoryインスタンスを作成
-      var controller = new ValuesController(new TestRepository(getDB()));
+      var controller = new ValuesController(new SampleRepository(getDB()));
       var result = controller.Get();
 
       Assert.Equal(result, new string[] { "テストユーザー" });

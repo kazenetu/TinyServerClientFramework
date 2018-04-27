@@ -17,7 +17,7 @@ namespace WebAPI.Controllers
     [HttpGet]
     public IEnumerable<string> Get()
     {
-      var tansaction = new TestTransaction(repository);
+      var tansaction = new SampleTransaction(repository);
       return new string[] { tansaction.Test() };
     }
 

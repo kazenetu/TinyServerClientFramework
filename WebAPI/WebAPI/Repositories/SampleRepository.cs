@@ -4,9 +4,9 @@ using WebAPIFramework.BaseClasses;
 
 namespace WebAPI.Repositories
 {
-  public class TestRepository: RepositoryBase
+  public class SampleRepository : RepositoryBase
   {
-    public TestRepository(IDatabase db) : base(db)
+    public SampleRepository(IDatabase db) : base(db)
     {
     }
 

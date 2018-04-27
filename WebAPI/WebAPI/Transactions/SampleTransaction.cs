@@ -4,9 +4,9 @@ using WebAPIFramework.Interfaces;
 
 namespace WebAPI.Transactions
 {
-  public class TestTransaction : TransactionBase
+  public class SampleTransaction : TransactionBase
   {
-    public TestTransaction(IRepositoryBase repository) : base(repository)
+    public SampleTransaction(IRepositoryBase repository) : base(repository)
     {
     }
 
@@ -19,7 +19,7 @@ namespace WebAPI.Transactions
       var result = string.Empty;
 
       // Repositoryのインスタンスを取得
-      var testRepository = repository.Cast<TestRepository>();
+      var testRepository = repository.Cast<SampleRepository>();
 
       // ログイン用SQLを発行
       var loginResult = testRepository.Login("test", "test");
