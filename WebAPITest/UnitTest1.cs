@@ -16,9 +16,7 @@ namespace XUnitTestProject1
             var mock = new Mock<TestRepository>(null);
             mock.Setup(c => c.Cast<TestRepository>()).Returns(mock.Object);
             mock.Setup(c => c.Login(It.IsAny<string>(), It.IsAny<string>())).Returns("");
-            //mock.Setup(c => c.GetType().GetMethod("Login").Invoke(c,new object[] { It.IsAny<string>(), It.IsAny<string>() })).Returns("aaaa");
             var controller = new ValuesController(mock.Object as IRepositoryBase);
-            //var controller = new ValuesController(GetDummyRepository());
             var result = controller.Get();
 
             Assert.Equal(result,new string[] { "" });
