@@ -10,6 +10,9 @@ namespace XUnitTestProject1
 {
   public class UnitTest1
   {
+    /// <summary>
+    /// Repositoryのモック差し替えてのテスト
+    /// </summary>
     [Fact]
     public void Test1()
     {
@@ -22,19 +25,29 @@ namespace XUnitTestProject1
       Assert.Equal(result, new string[] { "" });
     }
 
+    /// <summary>
+    /// インメモリのSQLiteを使用してのログインテスト
+    /// </summary>
     [Fact]
     public void Test2()
     {
+      // インメモリSQLiteでRepositoryインスタンスを作成
       var controller = new ValuesController(new TestRepository(getDB()));
       var result = controller.Get();
 
       Assert.Equal(result, new string[] { "テストユーザー" });
     }
 
+    /// <summary>
+    /// インメモリSQLiteインスタンスの取得
+    /// </summary>
+    /// <returns></returns>
     private IDatabase getDB()
     {
+      // インメモリSQLiteインスタンス生成
       var db = new TestSQLiteDB(@":memory:");
 
+      // テーブル作成
       var createTable =
           @"create table MT_USER (
                   USER_ID NVARCHAR
@@ -51,6 +64,7 @@ namespace XUnitTestProject1
 
       db.ExecuteNonQuery(createTable);
 
+      // テストデータ登録
       var testData = @"insert into MT_USER(USER_ID,USER_NAME,PASSWORD,DEL_FLAG,ENTRY_USER,ENTRY_DATE,MOD_USER,MOD_DATE,MOD_VERSION) values ('test','テストユーザー','Z5SMGm/kEGTiZP8tHwuWSwYWFguMP7/qJOnLNL1u4is=','0','','2018/01/21 17:32:00',null,null,1);";
       db.ExecuteNonQuery(testData);
 
