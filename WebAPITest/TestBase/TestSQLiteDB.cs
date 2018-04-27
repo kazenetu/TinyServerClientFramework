@@ -6,15 +6,15 @@ using System.Text;
 
 namespace XUnitTestProject1.TestBase
 {
-    public class TestSQLiteDB : SQLiteDB
+  public class TestSQLiteDB : SQLiteDB
+  {
+    public TestSQLiteDB(string connectionString) : base(connectionString)
     {
-        public TestSQLiteDB(string connectionString) : base(connectionString)
-        {
-        }
-
-        protected override SqliteConnection getConnection(string connectionString)
-        {
-            return new SqliteConnection($"Data Source={connectionString}");
-        }
     }
+
+    protected override SqliteConnection getConnection(string connectionString)
+    {
+      return new SqliteConnection($"Data Source={connectionString}");
+    }
+  }
 }
