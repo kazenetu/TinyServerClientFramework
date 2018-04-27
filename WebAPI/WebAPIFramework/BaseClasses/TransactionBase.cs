@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using WebAPIFramework.Interfaces;
+﻿using WebAPIFramework.Interfaces;
 
 namespace WebAPIFramework.BaseClasses
 {

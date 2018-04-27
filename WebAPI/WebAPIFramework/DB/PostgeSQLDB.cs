@@ -1,9 +1,7 @@
-using System;
+using Commons.Interfaces;
+using Npgsql;
 using System.Collections.Generic;
 using System.Data;
-using Commons.Interfaces;
-using NpgsqlTypes;
-using Npgsql;
 
 namespace Commons.DB
 {

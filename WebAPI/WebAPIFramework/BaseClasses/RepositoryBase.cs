@@ -3,8 +3,6 @@ using Commons.DB;
 using Commons.Interfaces;
 using Microsoft.Extensions.Options;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using WebAPIFramework.Interfaces;
 
 namespace WebAPIFramework.BaseClasses
