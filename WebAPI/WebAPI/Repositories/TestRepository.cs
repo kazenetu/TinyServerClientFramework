@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Commons.Interfaces;
 using System.Text;
-using System.Threading.Tasks;
-using Commons.ConfigModel;
-using Commons.Interfaces;
-using Microsoft.Extensions.Options;
 using WebAPIFramework.BaseClasses;
 
 namespace WebAPI.Repositories
