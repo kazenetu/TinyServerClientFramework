@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using WebAPIFramework.Interfaces;
 
 namespace WebAPIFramework.BaseClasses
@@ -14,12 +15,19 @@ namespace WebAPIFramework.BaseClasses
     protected IRepositoryBase repository = null;
 
     /// <summary>
+    /// ロガーインスタンス
+    /// </summary>
+    protected readonly ILogger logger;
+
+    /// <summary>
     /// コンストラクタ
     /// </summary>
     /// <param name="repository">DIで取得するRepositoryBase用インターフェース</param>
-    public ControllerWithRepositoryBase(IRepositoryBase repository)
+    /// <param name="logger">ロガーインスタンス</param>
+    public ControllerWithRepositoryBase(IRepositoryBase repository, ILogger logger)
     {
       this.repository = repository;
+      this.logger = logger;
     }
   }
 }

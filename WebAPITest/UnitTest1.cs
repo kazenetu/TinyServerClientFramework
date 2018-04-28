@@ -1,5 +1,10 @@
 using Commons.Interfaces;
+using DataTransferObjects.Request;
+using DataTransferObjects.Response;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Moq;
+using System.Collections.Generic;
 using WebAPI.Controllers;
 using WebAPI.Repositories;
 using WebAPIFramework.Interfaces;
@@ -11,31 +16,74 @@ namespace XUnitTestProject1
   public class UnitTest1
   {
     /// <summary>
+    /// ログインスタンス
+    /// </summary>
+    private ILogger<ValuesController> logger = new LoggerFactory().AddConsole().CreateLogger<ValuesController>();
+
+    /// <summary>
+    /// リクエスト作成メソッド
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="password"></param>
+    /// <returns></returns>
+    public static IEnumerable<object[]> MakeLoginRequest(string id,string password)
+    {
+      var result = new List<object[]>();
+
+      result.Add(new object[] { new LoginRequest() { ID = id, Password = password } });
+
+      return result;
+    }
+
+    /// <summary>
     /// Repositoryのモック差し替えてのテスト
     /// </summary>
-    [Fact]
-    public void Test1()
+    [Theory]
+    [MemberData(nameof(MakeLoginRequest),"test","test")]
+    public void Test1(LoginRequest request)
     {
+
       var mock = new Mock<SampleRepository>(null);
       mock.Setup(c => c.Cast<SampleRepository>()).Returns(mock.Object);
-      mock.Setup(c => c.Login(It.IsAny<string>(), It.IsAny<string>())).Returns("");
-      var controller = new ValuesController(mock.Object as IRepositoryBase);
-      var result = controller.Get();
+      mock.Setup(c => c.Login(It.IsAny<LoginRequest>())).Returns("テストユーザー");
+      var controller = new ValuesController(mock.Object as IRepositoryBase, logger);
 
-      Assert.Equal(result, new string[] { "" });
+      // コントローラーメソッド実行
+      var result = controller.Get(request);
+
+      // Responseの結果がJsonResult
+      Assert.True(result is JsonResult, "Not JsonResult");
+
+      // 結果オブジェクトを取得
+      var responseObject = ((JsonResult)result).Value as LoginResponse;
+
+      // 結果確認
+      Assert.NotNull(responseObject);
     }
 
     /// <summary>
     /// インメモリのSQLiteを使用してのログインテスト
     /// </summary>
-    [Fact]
-    public void Test2()
+    [Theory]
+    [MemberData(nameof(MakeLoginRequest), "test", "test")]
+    public void Test2(LoginRequest request)
     {
       // インメモリSQLiteでRepositoryインスタンスを作成
-      var controller = new ValuesController(new SampleRepository(getDB()));
-      var result = controller.Get();
+      var controller = new ValuesController(new SampleRepository(getDB()), logger);
 
-      Assert.Equal(result, new string[] { "テストユーザー" });
+      // コントローラーメソッド実行
+      var result = controller.Get(request);
+
+      // Responseの結果がJsonResult
+      Assert.True(result is JsonResult, "Not JsonResult");
+
+      // 結果オブジェクトを取得
+      var responseObject = ((JsonResult)result).Value as LoginResponse;
+
+      Assert.NotNull(responseObject);
+
+      // 結果確認
+      Assert.Equal("テストユーザー", responseObject.ResponseData.Name);
     }
 
     /// <summary>

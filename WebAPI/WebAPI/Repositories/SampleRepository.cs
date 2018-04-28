@@ -1,4 +1,5 @@
 ﻿using Commons.Interfaces;
+using DataTransferObjects.Request;
 using System.Text;
 using WebAPIFramework.BaseClasses;
 
@@ -16,7 +17,7 @@ namespace WebAPI.Repositories
     /// <param name="userID">ユーザー名</param>
     /// <param name="password">パスワード</param>
     /// <returns></returns>
-    public virtual string Login(string userID, string password)
+    public virtual string Login(LoginRequest request)
     {
       var sql = new StringBuilder();
       sql.AppendLine("select");
@@ -29,8 +30,8 @@ namespace WebAPI.Repositories
 
       // Param設定
       db.ClearParam();
-      db.AddParam("@USER_ID", userID);
-      //db.AddParam("@PASSWORD", password);
+      db.AddParam("@USER_ID", request.ID);
+      //db.AddParam("@PASSWORD", request.Password);
 
       var result = db.Fill(sql.ToString());
       if (result.Rows.Count > 0)

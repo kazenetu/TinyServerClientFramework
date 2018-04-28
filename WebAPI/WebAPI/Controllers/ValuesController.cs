@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+﻿using DataTransferObjects.Request;
+using DataTransferObjects.Response;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using WebAPI.Transactions;
 using WebAPIFramework.BaseClasses;
 using WebAPIFramework.Interfaces;
@@ -9,16 +11,38 @@ namespace WebAPI.Controllers
   [Route("api/[controller]")]
   public class ValuesController : ControllerWithRepositoryBase
   {
-    public ValuesController(IRepositoryBase repository) : base(repository)
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    /// <param name="repository">DIで取得するRepositoryBase用インターフェース</param>
+    /// <param name="logger">ロガーインスタンス</param>
+    public ValuesController(IRepositoryBase repository, ILogger<ValuesController> logger) : base(repository, logger)
     {
     }
 
     // GET api/values
     [HttpGet]
-    public IEnumerable<string> Get()
+    public IActionResult Get(LoginRequest request)
     {
-      var tansaction = new SampleTransaction(repository);
-      return new string[] { tansaction.Test() };
+      // 入力チェック
+      if (!request.Validate())
+      {
+        logger.LogError("Pram[{0}]が未設定", request.ValidateNGPropertyName);
+        return BadRequest();
+      }
+
+      var status = LoginResponse.Results.OK;
+      var message = string.Empty;
+
+      var tansaction = new SampleTransaction(repository, request);
+      var resultParam = tansaction.Test();
+      if (string.IsNullOrEmpty(resultParam.Name))
+      {
+        status = LoginResponse.Results.NG;
+        message = "ログイン不可";
+      }
+
+      return Json(new LoginResponse(status, message, resultParam));
     }
 
     // GET api/values/5
