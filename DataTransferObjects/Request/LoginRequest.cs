@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using DataTransferObjects.Request.BaseClasses;
+using System.ComponentModel.DataAnnotations;
 
 namespace DataTransferObjects.Request
 {

@@ -1,4 +1,6 @@
-﻿namespace DataTransferObjects.Response
+﻿using DataTransferObjects.Response.BaseClasses;
+
+namespace DataTransferObjects.Response
 {
   public class LoginResponse : BaseResponse<LoginResponse.LoginResponseParam>
   {

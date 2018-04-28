@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DataTransferObjects.Response
+namespace DataTransferObjects.Response.BaseClasses
 {
   /// <summary>
   /// Responseのスーパークラス
