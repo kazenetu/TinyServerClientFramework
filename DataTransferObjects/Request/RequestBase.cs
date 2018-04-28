@@ -33,7 +33,7 @@ namespace DataTransferObjects.Request
         }
       }
 
-      return false;
+      return true;
     }
   }
 }
