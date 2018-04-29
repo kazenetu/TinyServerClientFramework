@@ -9,6 +9,20 @@ namespace WebAPIFramework.BaseClasses
   /// </summary>
   public class ControllerWithRepositoryBase : Controller
   {
+    #region クラス定数
+    /// <summary>
+    /// セッション用クッキー名
+    /// </summary>
+    public static readonly string SessionCookieName = "sid";
+    #endregion
+
+    #region インスタンス定数
+    /// <summary>
+    /// セッションキー：ユーザーID
+    /// </summary>
+    protected readonly string SessionKeyUserID = "userID";
+    #endregion
+
     /// <summary>
     /// DIで取得するRepositoryBase用インターフェース
     /// </summary>
