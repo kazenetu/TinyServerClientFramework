@@ -8,10 +8,20 @@ namespace DataTransferObjects.Request.BaseClasses
   /// </summary>  
   public class RequestBase
   {
-    // 入力チェックNGとなったプロパティ名
+    #region インスタンスプロパティ
+
+    /// <summary>
+    /// 入力チェックNGとなったプロパティ名
+    /// </summary>
     public string ValidateNGPropertyName { get; protected set; } = string.Empty;
 
+    /// <summary>
+    /// 共通パラメータ：ユーザーID
+    /// </summary>
     public string userID { set; get; }
+    #endregion
+
+    #region メソッド
 
     /// <summary>
     /// 必須入力チェック
@@ -34,5 +44,6 @@ namespace DataTransferObjects.Request.BaseClasses
 
       return true;
     }
+    #endregion
   }
 }
