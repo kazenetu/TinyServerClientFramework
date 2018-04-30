@@ -11,6 +11,8 @@ namespace DataTransferObjects.Request.BaseClasses
     // 入力チェックNGとなったプロパティ名
     public string ValidateNGPropertyName { get; protected set; } = string.Empty;
 
+    public string userID { set; get; }
+
     /// <summary>
     /// 必須入力チェック
     /// </summary>
