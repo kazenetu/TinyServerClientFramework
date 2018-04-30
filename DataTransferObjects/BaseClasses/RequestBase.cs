@@ -31,7 +31,7 @@ namespace DataTransferObjects.Request.BaseClasses
     public virtual bool Validate()
     {
       // 必須プロパティのチェックを行う
-      var properties = this.GetType().GetProperties().Where(property => property.GetCustomAttributes(typeof(RequiredAttribute),false) != null);
+      var properties = this.GetType().GetProperties().Where(property => property.CustomAttributes.Any(attr=> attr.AttributeType == typeof(RequiredAttribute)));
       foreach (var property in properties)
       {
         // nullの場合はチェックNG
