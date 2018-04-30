@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebAPIFramework.Interfaces;
 
@@ -23,6 +24,8 @@ namespace WebAPIFramework.BaseClasses
     protected readonly string SessionKeyUserID = "userID";
     #endregion
 
+    #region インスタンスフィールド
+
     /// <summary>
     /// DIで取得するRepositoryBase用インターフェース
     /// </summary>
@@ -32,6 +35,8 @@ namespace WebAPIFramework.BaseClasses
     /// ロガーインスタンス
     /// </summary>
     protected readonly ILogger logger;
+    
+    #endregion
 
     /// <summary>
     /// コンストラクタ
