@@ -35,9 +35,26 @@ namespace WebAPIFramework.BaseClasses
     /// ロガーインスタンス
     /// </summary>
     protected readonly ILogger logger;
-    
+
     #endregion
 
+    #region プロパティ
+
+    /// <summary>
+    /// セッション
+    /// </summary>
+    protected ISession session
+    {
+      get
+      {
+        return HttpContext.Session;
+      }
+    }
+    #endregion
+
+    #region メソッド
+
+    #region コンストラクタ
     /// <summary>
     /// コンストラクタ
     /// </summary>
@@ -48,5 +65,51 @@ namespace WebAPIFramework.BaseClasses
       this.repository = repository;
       this.logger = logger;
     }
+    #endregion
+
+    /// <summary>
+    /// セッションキーの文字列を取得
+    /// </summary>
+    /// <param name="sessionKey">セッションキー</param>
+    /// <returns>キーがある場合は対応する文字列、ない場合はnull</returns>
+    protected string getSessionString(string sessionKey)
+    {
+      string result = session.GetString(sessionKey);
+
+      return result;
+    }
+
+    /// <summary>
+    /// ログインチェック
+    /// </summary>
+    /// <param name="requestUserID">入力されたユーザーID</param>
+    /// <returns>ログイン結果</returns>
+    protected bool isLogin(string requestUserID)
+    {
+      var sessionUserID = getSessionString(SessionKeyUserID);
+
+      if (sessionUserID == requestUserID)
+      {
+        return true;
+      }
+
+#if DEBUG
+      return true;
+#else
+      return false;
+#endif
+    }
+
+    /// <summary>
+    /// セッションのリフレッシュ
+    /// </summary>
+    protected void refreshSession()
+    {
+      // セッション破棄
+      session.Clear();
+    }
+
+
+    #endregion
   }
 }
