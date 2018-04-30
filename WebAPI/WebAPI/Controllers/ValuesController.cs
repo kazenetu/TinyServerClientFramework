@@ -45,6 +45,35 @@ namespace WebAPI.Controllers
       return Json(new LoginResponse(status, message, resultParam));
     }
 
+    /// <summary>
+    /// POSTでのログインチェック
+    /// </summary>
+    /// <param name="param"></param>
+    /// <returns></returns>
+    [HttpPost("login")]
+    public IActionResult Login([FromBody]LoginRequest request)
+    {
+      // 入力チェック
+      if (!request.Validate())
+      {
+        logger.LogError("Pram[{0}]が未設定", request.ValidateNGPropertyName);
+        return BadRequest();
+      }
+
+      var status = LoginResponse.Results.OK;
+      var message = string.Empty;
+
+      var tansaction = new SampleTransaction(repository, request);
+      var resultParam = tansaction.Test();
+      if (string.IsNullOrEmpty(resultParam.Name))
+      {
+        status = LoginResponse.Results.NG;
+        message = "ログイン不可";
+      }
+
+      return Json(new LoginResponse(status, message, resultParam));
+    }
+
     // GET api/values/5
     [HttpGet("{id}")]
     public string Get(int id)
