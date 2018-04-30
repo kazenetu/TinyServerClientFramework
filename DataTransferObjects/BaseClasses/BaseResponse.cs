@@ -5,7 +5,7 @@ namespace DataTransferObjects.Response.BaseClasses
   /// <summary>
   /// Responseのスーパークラス
   /// </summary>
-  public class BaseResponse<T> where T : class
+  public class ResponseBase<T> where T : class
   {
     /// <summary>
     /// ステータス列挙型
@@ -50,7 +50,7 @@ namespace DataTransferObjects.Response.BaseClasses
     /// </summary>
     /// <param name="result">結果</param>
     /// <param name="errorMessage">エラーメッセージ</param>
-    public BaseResponse(Results result, string errorMessage)
+    public ResponseBase(Results result, string errorMessage)
     {
       this.result = result;
       this.ErrorMessage = errorMessage;
@@ -63,7 +63,7 @@ namespace DataTransferObjects.Response.BaseClasses
     /// <param name="result">結果</param>
     /// <param name="errorMessage">エラーメッセージ</param>
     /// <param name="responseData">データ</param>
-    public BaseResponse(Results result, string errorMessage, T responseData)
+    public ResponseBase(Results result, string errorMessage, T responseData)
     {
       this.result = result;
       this.ErrorMessage = errorMessage;
@@ -73,7 +73,7 @@ namespace DataTransferObjects.Response.BaseClasses
     /// <summary>
     /// Windowsアプリ用コンストラクタ
     /// </summary>
-    public BaseResponse()
+    public ResponseBase()
     {
     }
   }

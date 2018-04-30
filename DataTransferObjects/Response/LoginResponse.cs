@@ -2,7 +2,7 @@
 
 namespace DataTransferObjects.Response
 {
-  public class LoginResponse : BaseResponse<LoginResponse.LoginResponseParam>
+  public class LoginResponse : ResponseBase<LoginResponse.LoginResponseParam>
   {
     public LoginResponse()
     {
