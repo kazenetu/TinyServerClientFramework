@@ -28,7 +28,7 @@
         }
 
         function postEvent() {
-            var csrfToken = getCookie("CSRF-TOKEN");
+            var csrfToken = getCookie("XSRF-TOKEN");
 
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
@@ -42,7 +42,7 @@
             };
             xhttp.open('POST', '/api/values/Login', true);
             xhttp.setRequestHeader("Content-type", "application/json");
-            xhttp.setRequestHeader("X-CSRF-TOKEN", csrfToken);
+            xhttp.setRequestHeader("X-XSRF-TOKEN", csrfToken);
             xhttp.send(JSON.stringify({ "id": "test", "password": "test" }));
         }
     </script>

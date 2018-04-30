@@ -51,6 +51,7 @@ namespace WebAPI.Controllers
     /// <param name="param"></param>
     /// <returns></returns>
     [HttpPost("login")]
+    [AutoValidateAntiforgeryToken]
     public IActionResult Login([FromBody]LoginRequest request)
     {
       // 入力チェック
