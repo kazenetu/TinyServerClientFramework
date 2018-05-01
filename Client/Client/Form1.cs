@@ -61,11 +61,24 @@ namespace Client
       try
       {
         var param = new LoginRequest() { ID = "test", Password = "test" };
+        var uri = webAPIUrl.Text;
 
-        var result = HttpConnectLib.Get<LoginResponse>(string.Format("{0}values?id={1}&password={2}", getWebApiRootAddress(true), param.ID,param.Password));
+        HttpConnectLib.StubWebAPIDelegate stub = null;
+
+#if STUB
+        stub = (url, data) =>
+        {
+          var response = data as LoginResponse;
+          response.ResponseData = new LoginResponse.LoginResponseParam() { Name = "ダミー" };
+          return response;
+        };
+#endif
+
+        var result = HttpConnectLib.Get<LoginResponse>(string.Format("{0}api/values?id={1}&password={2}", uri, param.ID, param.Password), stub);
+
         MessageBox.Show($"結果:{result.Result.ToString()}{Environment.NewLine}" +
-                        $"message:{result.ErrorMessage}{Environment.NewLine}" +
-                        $"data:name:{result.ResponseData.Name}");
+                    $"message:{result.ErrorMessage}{Environment.NewLine}" +
+                    $"data:name:{result.ResponseData.Name}");
       }
       catch (Exception ex)
       {
