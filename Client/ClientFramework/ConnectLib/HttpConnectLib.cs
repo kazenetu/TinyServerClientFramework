@@ -12,13 +12,22 @@ namespace ClientFramework.ConnectLib
 
     private static CookieContainer cookies = new CookieContainer();
 
+    public delegate object StubWebAPIDelegate(string url,object request);
+
     /// <summary>
     /// Getメソッド
     /// </summary>
     /// <param name="url">クエリ付きURL</param>
+    /// <param name="stubDelegate">スタブ処理用デリゲート</param>
     /// <returns>レスポンス</returns>
-    public static T Get<T>(string url)
+    public static T Get<T>(string url, StubWebAPIDelegate stubDelegate = null) where T:new()
     {
+      if (stubDelegate != null)
+      {
+        var responseData = (new T()) as object;
+        return (T)stubDelegate(url, responseData);
+      }
+
       string result = string.Empty;
       HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
       HttpWebResponse res = null;
@@ -58,12 +67,14 @@ namespace ClientFramework.ConnectLib
     /// <returns>レスポンス</returns>
     public static void GetToken(string url)
     {
+#if !STUB
       var req = (HttpWebRequest)WebRequest.Create(url);
 
       // レスポンスの取得と読み込み
       var res = (HttpWebResponse)req.GetResponse();
 
       updateCookie(url, res.Headers);
+#endif
     }
 
     /// <summary>
@@ -71,9 +82,16 @@ namespace ClientFramework.ConnectLib
     /// </summary>
     /// <param name="url">URL</param>
     /// <param name="param">パラメータ</param>
+    /// <param name="stubDelegate">スタブ処理用デリゲート</param>
     /// <returns>レスポンス</returns>
-    public static T Post<T>(string url, object param)
+    public static T Post<T>(string url, object param, StubWebAPIDelegate stubDelegate = null) where T : new()
     {
+      if (stubDelegate != null)
+      {
+        var responseData = (new T()) as object;
+        return (T)stubDelegate(url, responseData);
+      }
+
       string result = string.Empty;
       HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
       Stream paramStream = null;
@@ -158,9 +176,9 @@ namespace ClientFramework.ConnectLib
       var baseUri = new Uri(url);
 
       // HACK マルチテナント対応
-      if (baseUri.AbsoluteUri.Length > 1)
+      if (baseUri.PathAndQuery.Length > 1)
       {
-        baseUri = new Uri(baseUri.AbsoluteUri.Replace(baseUri.AbsolutePath, string.Empty));
+        baseUri = new Uri(baseUri.OriginalString.Replace(baseUri.PathAndQuery, string.Empty));
       }
 
       var targetCookies = cookies.GetCookies(baseUri);
