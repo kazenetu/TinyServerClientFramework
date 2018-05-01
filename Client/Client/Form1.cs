@@ -86,5 +86,44 @@ namespace Client
       }
     }
 
+    private void webAPIPost_Click(object sender, EventArgs e)
+    {
+      try
+      {
+        // WebAPIのルートURLを取得
+        var uri = webAPIUrl.Text;
+
+        // GetTokenメソッド発行
+        HttpConnectLib.GetToken(string.Format("{0}", uri));
+
+        HttpConnectLib.StubWebAPIDelegate stub = null;
+
+#if STUB
+        stub = (url, data) =>
+        {
+          var response = data as LoginResponse;
+          response.ErrorMessage = "テストメッセージ";
+          response.ResponseData = new LoginResponse.LoginResponseParam() { Name = "POSTダミー" };
+          return response;
+        };
+#endif
+
+        // ログインWebAPI発行
+        var param = new LoginRequest() { ID = "test", Password = "test" };
+        var results = HttpConnectLib.Post<LoginResponse>(string.Format("{0}api/values/login", uri), param, stub);
+
+        // 結果を表示
+        var sb = new System.Text.StringBuilder();
+        sb.AppendLine($"result = {results.Result}");
+        sb.AppendLine($"message = {results.ErrorMessage}");
+        sb.AppendLine($"data = {results.ResponseData?.Name}");
+        MessageBox.Show(sb.ToString());
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show(ex.Message);
+      }
+
+    }
   }
 }

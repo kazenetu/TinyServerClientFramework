@@ -69,6 +69,7 @@
       this.webAPIPost.TabIndex = 2;
       this.webAPIPost.Text = "Postメソッド";
       this.webAPIPost.UseVisualStyleBackColor = true;
+      this.webAPIPost.Click += new System.EventHandler(this.webAPIPost_Click);
       // 
       // Form1
       // 
