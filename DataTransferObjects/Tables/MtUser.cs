@@ -1,65 +1,81 @@
-﻿using System;
+﻿using DataTransferObjects.BaseClasses;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Reflection;
 
 namespace DataTransferObjects.Tables
 {
   /// <summary>
   /// ユーザーマスタ―
   /// </summary>
-  public class MtUser
+  public class MtUser: TableBase
   {
+    /// <summary>
+    /// DBカラム名とプロパティのコレクション取得
+    /// </summary>
+    /// <returns>DBカラム名とプロパティのコレクション</returns>
+    public override Dictionary<string, PropertyInfo> GetDBComlunProperyColection()
+    {
+      var result= new Dictionary<string, PropertyInfo>();
+
+      var classType = this.GetType();
+      result.Add("USER_ID", classType.GetProperty("UserID"));
+      result.Add("USER_NAME", classType.GetProperty("UserName"));
+      result.Add("PASSWORD", classType.GetProperty("Password"));
+      result.Add("DEL_FLAG", classType.GetProperty("DelFlag"));
+      result.Add("ENTRY_USER", classType.GetProperty("EntryUser"));
+      result.Add("ENTRY_DATE", classType.GetProperty("EntryDate"));
+      result.Add("MOD_USER", classType.GetProperty("ModUser"));
+      result.Add("MOD_DATE", classType.GetProperty("ModDate"));
+      result.Add("MOD_VERSION", classType.GetProperty("ModVersion"));
+
+      return result;
+    }
+
     /// <summary>
     /// ユーザーID
     /// </summary>
-    [Column("USER_ID")]
     public string UserId { set; get; }
 
     /// <summary>
     /// ユーザー名
     /// </summary>
-    [Column("USER_NAME")]
     public string UserName { set; get; }
 
     /// <summary>
     /// パスワード
     /// </summary>
-    [Column("PASSWORD")]
     public string Password { set; get; }
 
     /// <summary>
     /// 削除フラグ
     /// </summary>
-    [Column("DEL_FLAG")]
     public bool DelFlag { set; get; }
 
     /// <summary>
     /// 登録ユーザー
     /// </summary>
-    [Column("ENTRY_USER")]
     public string EntryUser{ set; get; }
 
     /// <summary>
     /// 登録日時
     /// </summary>
-    [Column("ENTRY_DATE")]
     public DateTime EntryDate { set; get; }
 
     /// <summary>
     /// 更新ユーザー
     /// </summary>
-    [Column("MOD_USER")]
     public string ModUser { set; get; }
 
     /// <summary>
     /// 更新日時
     /// </summary>
-    [Column("MOD_DATE")]
     public DateTime ModDate { set; get; }
 
     /// <summary>
     /// 更新バージョン
     /// </summary>
-    [Column("MOD_VERSION")]
     public int ModVersion { set; get; }
   }
 }
