@@ -64,6 +64,17 @@ namespace WebAPIFramework.DB
     }
 
     /// <summary>
+    /// SELECTした行の一部だけを取り出すSQLの文字列を返す
+    /// </summary>
+    /// <param name="limit">取り出す行数</param>
+    /// <param name="offset">スキップ行</param>
+    /// <returns></returns>
+    public string GetLimitSQL(long limit, long offset = 0)
+    {
+      return $" offset {offset} rows fetch next {limit} rows only ";
+    }
+
+    /// <summary>
     /// パラメータを追加
     /// </summary>
     /// <param name="key">キー</param>

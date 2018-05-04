@@ -15,6 +15,14 @@ namespace WebAPIFramework.Interfaces
     DatabaseTypes DBType { get; }
 
     /// <summary>
+    /// SELECTした行の一部だけを取り出すSQLの文字列を返す
+    /// </summary>
+    /// <param name="limit">取り出す行数</param>
+    /// <param name="offset">スキップ行</param>
+    /// <returns></returns>
+    string GetLimitSQL(long limit, long offset);
+
+    /// <summary>
     /// パラメータを追加
     /// </summary>
     /// <param name="key">キー</param>
