@@ -46,3 +46,9 @@
     , constraint MT_USER_PKC primary key (USER_ID)
   ) ;
   ```
+
+# テストデータ
+- testユーザー
+  ```
+  insert into MT_USER(USER_ID,USER_NAME,PASSWORD,DEL_FLAG,ENTRY_USER,ENTRY_DATE,MOD_USER,MOD_DATE,MOD_VERSION) values ('test','テストユーザー','Z5SMGm/kEGTiZP8tHwuWSwYWFguMP7/qJOnLNL1u4is=','0','','2018/01/21 17:32:00',null,null,1);
+  ```
