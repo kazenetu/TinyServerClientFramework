@@ -9,6 +9,15 @@ namespace Commons.DB
   public class DatabaseFactory
   {
     /// <summary>
+    /// 接続DB種別
+    /// </summary>
+    public enum DatabaseTypes
+    {
+      sqlite,
+      postgres
+    }
+
+    /// <summary>
     /// DBインスタンス取得
     /// </summary>
     /// <returns>IDatabasインスタンス</returns>
@@ -19,10 +28,10 @@ namespace Commons.DB
       // DB種類で作成するインスタンスを変える
       switch (config.Type.ToLower())
       {
-        case "sqlite":
+        case nameof(DatabaseTypes.sqlite):
           result = new SQLiteDB(config.connectionString);
           break;
-        case "postgres":
+        case nameof(DatabaseTypes.postgres):
           result = new PostgreSQLDB(config.connectionString);
           break;
         default:
