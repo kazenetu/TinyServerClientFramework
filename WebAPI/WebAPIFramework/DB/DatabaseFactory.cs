@@ -1,5 +1,6 @@
 using Commons.ConfigModel;
 using Commons.Interfaces;
+using WebAPIFramework.DB;
 
 namespace Commons.DB
 {
@@ -14,7 +15,8 @@ namespace Commons.DB
     public enum DatabaseTypes
     {
       sqlite,
-      postgres
+      postgres,
+      sqlserver
     }
 
     /// <summary>
@@ -33,6 +35,9 @@ namespace Commons.DB
           break;
         case nameof(DatabaseTypes.postgres):
           result = new PostgreSQLDB(config.connectionString);
+          break;
+        case nameof(DatabaseTypes.sqlserver):
+          result = new SQLServerDB(config.connectionString);
           break;
         default:
           result = new SQLiteDB(config.connectionString);
