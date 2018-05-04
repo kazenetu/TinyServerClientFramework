@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using static Commons.DB.DatabaseFactory;
 
 namespace Commons.Interfaces
 {
@@ -8,6 +9,11 @@ namespace Commons.Interfaces
   /// </summary>
   public interface IDatabase : IDisposable
   {
+    /// <summary>
+    /// DB種類
+    /// </summary>
+    DatabaseTypes DBType { get; }
+
     /// <summary>
     /// パラメータを追加
     /// </summary>

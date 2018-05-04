@@ -4,6 +4,7 @@ using System.Data;
 using System.IO;
 using Commons.Interfaces;
 using Microsoft.Data.Sqlite;
+using static Commons.DB.DatabaseFactory;
 
 namespace Commons.DB
 {
@@ -34,6 +35,20 @@ namespace Commons.DB
     /// </summary>
     private bool isTran = false;
 
+    #endregion
+
+    #region プロパティ
+
+    /// <summary>
+    /// DB種類
+    /// </summary>
+    public DatabaseTypes DBType
+    {
+      get
+      {
+        return DatabaseTypes.sqlite;
+      }
+    }
     #endregion
 
     #region パブリックメソッド

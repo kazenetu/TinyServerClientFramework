@@ -2,6 +2,7 @@ using Commons.Interfaces;
 using Npgsql;
 using System.Collections.Generic;
 using System.Data;
+using static Commons.DB.DatabaseFactory;
 
 namespace Commons.DB
 {
@@ -32,6 +33,20 @@ namespace Commons.DB
     /// </summary>
     private bool isTran = false;
 
+    #endregion
+
+    #region プロパティ
+
+    /// <summary>
+    /// DB種類
+    /// </summary>
+    public DatabaseTypes DBType
+    {
+      get
+      {
+        return DatabaseTypes.postgres;
+      }
+    }
     #endregion
 
     #region パブリックメソッド
