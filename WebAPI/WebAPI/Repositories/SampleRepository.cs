@@ -54,7 +54,14 @@ namespace WebAPI.Repositories
 
       var sql = new StringBuilder();
       sql.AppendLine("select");
-      sql.AppendLine("  * ");
+      sql.AppendLine("  USER_ID");
+      sql.AppendLine("  , USER_NAME");
+      sql.AppendLine("  , DEL_FLAG");
+      sql.AppendLine("  , ENTRY_USER");
+      sql.AppendLine("  , ENTRY_DATE");
+      sql.AppendLine("  , MOD_USER");
+      sql.AppendLine("  , MOD_DATE");
+      sql.AppendLine("  , MOD_VERSION");
       sql.AppendLine("from");
       sql.AppendLine("  MT_USER");
       sql.AppendLine(db.GetLimitSQL(25, 0));
