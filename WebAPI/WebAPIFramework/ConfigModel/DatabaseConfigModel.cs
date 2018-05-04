@@ -1,4 +1,4 @@
-namespace Commons.ConfigModel
+namespace WebAPIFramework.ConfigModel
 {
   /// <summary>
   /// 設定ファイル：DB

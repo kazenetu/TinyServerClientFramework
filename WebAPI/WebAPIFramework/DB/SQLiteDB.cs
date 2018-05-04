@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using Commons.Interfaces;
 using Microsoft.Data.Sqlite;
-using static Commons.DB.DatabaseFactory;
+using WebAPIFramework.Interfaces;
+using static WebAPIFramework.DB.DatabaseFactory;
 
-namespace Commons.DB
+namespace WebAPIFramework.DB
 {
   /// <summary>
   /// SQLiteラッパークラス

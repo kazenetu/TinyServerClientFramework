@@ -1,4 +1,3 @@
-using Commons.Interfaces;
 using DataTransferObjects.Request;
 using DataTransferObjects.Response;
 using Microsoft.AspNetCore.Mvc;

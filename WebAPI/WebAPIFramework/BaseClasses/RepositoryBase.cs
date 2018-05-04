@@ -1,8 +1,7 @@
-﻿using Commons.ConfigModel;
-using Commons.DB;
-using Commons.Interfaces;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using System;
+using WebAPIFramework.ConfigModel;
+using WebAPIFramework.DB;
 using WebAPIFramework.Interfaces;
 
 namespace WebAPIFramework.BaseClasses

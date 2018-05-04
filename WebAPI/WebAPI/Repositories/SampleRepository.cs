@@ -1,7 +1,7 @@
-﻿using Commons.Interfaces;
-using DataTransferObjects.Request;
+﻿using DataTransferObjects.Request;
 using System.Text;
 using WebAPIFramework.BaseClasses;
+using WebAPIFramework.Interfaces;
 
 namespace WebAPI.Repositories
 {

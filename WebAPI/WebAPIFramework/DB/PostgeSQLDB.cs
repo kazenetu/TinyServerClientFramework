@@ -1,10 +1,10 @@
-using Commons.Interfaces;
 using Npgsql;
 using System.Collections.Generic;
 using System.Data;
-using static Commons.DB.DatabaseFactory;
+using WebAPIFramework.Interfaces;
+using static WebAPIFramework.DB.DatabaseFactory;
 
-namespace Commons.DB
+namespace WebAPIFramework.DB
 {
   /// <summary>
   /// PostgreSQLラッパークラス

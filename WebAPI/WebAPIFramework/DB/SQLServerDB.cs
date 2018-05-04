@@ -1,9 +1,8 @@
-﻿using Commons.DB;
-using Commons.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using static Commons.DB.DatabaseFactory;
+using WebAPIFramework.Interfaces;
+using static WebAPIFramework.DB.DatabaseFactory;
 
 namespace WebAPIFramework.DB
 {

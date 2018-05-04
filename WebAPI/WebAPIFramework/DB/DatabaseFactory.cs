@@ -1,8 +1,7 @@
-using Commons.ConfigModel;
-using Commons.Interfaces;
-using WebAPIFramework.DB;
+using WebAPIFramework.ConfigModel;
+using WebAPIFramework.Interfaces;
 
-namespace Commons.DB
+namespace WebAPIFramework.DB
 {
   /// <summary>
   /// DBインスタンス生成クラス
