@@ -9,4 +9,8 @@
     <PackageReference Include="Microsoft.Data.SQLite" Version="2.0.1" />
     <PackageReference Include="Npgsql" Version="3.2.5" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\DataTransferObjects\DataTransferObjects.csproj" />
+  </ItemGroup>
 </Project>
