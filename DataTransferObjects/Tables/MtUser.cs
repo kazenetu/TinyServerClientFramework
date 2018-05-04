@@ -20,7 +20,7 @@ namespace DataTransferObjects.Tables
       var result= new Dictionary<string, PropertyInfo>();
 
       var classType = this.GetType();
-      result.Add("USER_ID", classType.GetProperty("UserID"));
+      result.Add("USER_ID", classType.GetProperty("UserId"));
       result.Add("USER_NAME", classType.GetProperty("UserName"));
       result.Add("PASSWORD", classType.GetProperty("Password"));
       result.Add("DEL_FLAG", classType.GetProperty("DelFlag"));
