@@ -1,4 +1,6 @@
 ﻿using DataTransferObjects.Request;
+using DataTransferObjects.Tables;
+using System.Collections.Generic;
 using System.Text;
 using WebAPIFramework.BaseClasses;
 using WebAPIFramework.Interfaces;
@@ -41,5 +43,28 @@ namespace WebAPI.Repositories
 
       return null;
     }
+
+    /// <summary>
+    /// 全ユーザーを取得
+    /// </summary>
+    /// <returns></returns>
+    public virtual List<MtUser> GetAllUsers()
+    {
+      var result = new List<MtUser>();
+
+      var sql = new StringBuilder();
+      sql.AppendLine("select");
+      sql.AppendLine("  * ");
+      sql.AppendLine("from");
+      sql.AppendLine("  MT_USER");
+      sql.AppendLine(db.GetLimitSQL(25, 0));
+
+      // Param設定
+      db.ClearParam();
+
+      // 結果をリストで返す
+      return fill<MtUser>(db.Fill(sql.ToString()));
+    }
+
   }
 }

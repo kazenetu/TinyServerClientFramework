@@ -75,6 +75,19 @@ namespace WebAPI.Controllers
       return Json(new LoginResponse(status, message, resultParam));
     }
 
+
+    [HttpGet("alluser")]
+    public IActionResult GetAllUser()
+    {
+      var status = UsersResponse.Results.OK;
+      var message = string.Empty;
+
+      var tansaction = new SampleTransaction(repository, null);
+      var resultParam = tansaction.GetAllUsers();
+
+      return Json(new UsersResponse(status, message, resultParam));
+    }
+
     // GET api/values/5
     [HttpGet("{id}")]
     public string Get(int id)

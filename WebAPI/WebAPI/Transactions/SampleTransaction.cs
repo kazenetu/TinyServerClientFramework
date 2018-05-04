@@ -36,5 +36,22 @@ namespace WebAPI.Transactions
 
       return result;
     }
+
+    /// <summary>
+    /// 全ユーザー取得
+    /// </summary>
+    /// <returns></returns>
+    public UsersResponse.UsersResponsePram GetAllUsers()
+    {
+      var result = new UsersResponse.UsersResponsePram();
+
+      // Repositoryのインスタンスを取得
+      var testRepository = repository.Cast<SampleRepository>();
+
+      // SQLを発行・戻り値に格納
+      result.userList = testRepository.GetAllUsers();
+
+      return result;
+    }
   }
 }
