@@ -1,5 +1,9 @@
-﻿using Microsoft.Extensions.Options;
+﻿using DataTransferObjects.BaseClasses;
+using Microsoft.Extensions.Options;
 using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Reflection;
 using WebAPIFramework.ConfigModel;
 using WebAPIFramework.DB;
 using WebAPIFramework.Interfaces;
@@ -76,6 +80,66 @@ namespace WebAPIFramework.BaseClasses
     {
       // インスタンスを作成して返す
       return (T)Activator.CreateInstance(typeof(T), db);
+    }
+
+    /// <summary>
+    /// DB結果をテーブルDTOのリストで返す
+    /// </summary>
+    /// <typeparam name="T">テーブルDTO</typeparam>
+    /// <param name="dbResult">DB結果</param>
+    /// <returns>テーブルDTOのリスト</returns>
+    protected List<T> fill<T>(DataTable dbResult) where T : TableBase, new()
+    {
+      var result = new List<T>();
+
+      var instance = new T();
+      var dbColmunnProperties = instance.GetDBComlunProperyColection();
+      var dbColumns = dbResult.Columns;
+
+      foreach (DataRow row in dbResult.Rows)
+      {
+        instance = new T();
+        foreach (DataColumn col in dbColumns)
+        {
+          if (dbColmunnProperties.ContainsKey(col.ColumnName))
+          {
+            var dbColmunnProperty = dbColmunnProperties[col.ColumnName];
+            dbColmunnProperty.SetValue(instance, getColumnData(dbColmunnProperty, row[col.ColumnName]));
+          }
+        }
+        result.Add(instance);
+      }
+
+      object getColumnData(PropertyInfo pi, object dbValue)
+      {
+        if (dbValue == DBNull.Value)
+        {
+          return null;
+        }
+
+        if (pi.PropertyType == typeof(string))
+        {
+          return dbValue;
+        }
+
+        if (pi.PropertyType == typeof(bool))
+        {
+          bool boolResult = false;
+          if (bool.TryParse(dbResult.ToString(), out boolResult))
+          {
+            return boolResult;
+          }
+          if (dbResult.ToString() == "1")
+          {
+            return true;
+          }
+          return false;
+        }
+
+        return Convert.ChangeType(dbValue, pi.PropertyType);
+      }
+
+      return result;
     }
   }
 }
