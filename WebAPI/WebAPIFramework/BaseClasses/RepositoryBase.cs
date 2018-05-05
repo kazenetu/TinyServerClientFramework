@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using WebAPIFramework.ConfigModel;
 using WebAPIFramework.DB;
 using WebAPIFramework.Interfaces;
@@ -87,8 +88,9 @@ namespace WebAPIFramework.BaseClasses
     /// </summary>
     /// <typeparam name="T">テーブルDTO</typeparam>
     /// <param name="dbResult">DB結果</param>
+    /// <param name="callerMethodName">呼び出したメソッド名</param>
     /// <returns>テーブルDTOのリスト</returns>
-    protected List<T> fill<T>(DataTable dbResult) where T : TableBase, new()
+    protected List<T> fill<T>(DataTable dbResult, [CallerMemberName] string callerMethodName = "") where T : TableBase, new()
     {
       var result = new List<T>();
 
@@ -106,29 +108,41 @@ namespace WebAPIFramework.BaseClasses
             var dbColmunnProperty = dbColmunnProperties[col.ColumnName];
             dbColmunnProperty.SetValue(instance, getColumnData(dbColmunnProperty, row[col.ColumnName]));
           }
+          else
+          {
+            // クラスインスタンスに該当するプロパティがない場合は専用メソッドを呼び出す
+            fillOhter(callerMethodName, col.ColumnName, row[col.ColumnName], instance);
+          }
         }
         result.Add(instance);
       }
 
+      // DBセルデータからプロパティデータとして取得
       object getColumnData(PropertyInfo pi, object dbValue)
       {
+        // DBNullの場合はnullを返す
         if (dbValue == DBNull.Value)
         {
           return null;
         }
 
+        // プロパティTypeがstringの場合はそのまま返す
         if (pi.PropertyType == typeof(string))
         {
           return dbValue;
         }
 
+        // プロパティTypeがboolの場合
         if (pi.PropertyType == typeof(bool))
         {
+          // パースを試みる("True"や"False")
           bool boolResult = false;
           if (bool.TryParse(dbResult.ToString(), out boolResult))
           {
             return boolResult;
           }
+
+          // 0・1の場合は値を判定する
           if (dbResult.ToString() == "1")
           {
             return true;
@@ -136,10 +150,23 @@ namespace WebAPIFramework.BaseClasses
           return false;
         }
 
+        // それ以外(日付や日時など)の場合はキャストを試みる
         return Convert.ChangeType(dbValue, pi.PropertyType);
       }
 
       return result;
+    }
+
+    /// <summary>
+    /// インスタンスのプロパティに該当しないデータの処理
+    /// </summary>
+    /// <typeparam name="T">テーブルDTO</typeparam>
+    /// <param name="callerMethodName">fillメソッドを呼び出したメソッド名</param>
+    /// <param name="columnName">カラム名</param>
+    /// <param name="columnValue">カラムの値</param>
+    /// <param name="instance">クラスインスタンス</param>
+    protected virtual void fillOhter<T>(string methodName, string columnName, object columnValue, T instance)
+    {
     }
   }
 }
