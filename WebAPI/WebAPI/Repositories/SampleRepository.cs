@@ -54,7 +54,7 @@ namespace WebAPI.Repositories
 
       var sql = new StringBuilder();
       sql.AppendLine("select");
-      sql.AppendLine("  USER_ID");
+      sql.AppendLine("  USER_ID id");
       sql.AppendLine("  , USER_NAME");
       sql.AppendLine("  , DEL_FLAG");
       sql.AppendLine("  , ENTRY_USER");
@@ -72,6 +72,36 @@ namespace WebAPI.Repositories
       // 結果をリストで返す
       return fill<MtUser>(db.Fill(sql.ToString()));
     }
+
+    /// <summary>
+    /// インスタンスのプロパティに該当しないデータの処理
+    /// </summary>
+    /// <typeparam name="T">テーブルDTO</typeparam>
+    /// <param name="callerMethodName">fillメソッドを呼び出したメソッド名</param>
+    /// <param name="columnName">カラム名</param>
+    /// <param name="columnValue">カラムの値</param>
+    /// <param name="instance">クラスインスタンス</param>
+    protected override void fillOhter<T>(string methodName, string columnName, object columnValue, T instance)
+    {
+      switch (methodName)
+      {
+        case nameof(GetAllUsers):
+          var mtUserDto = instance as MtUser;
+          if (mtUserDto == null)
+          {
+            return;
+          }
+
+          switch (columnName)
+          {
+            case "id":
+              mtUserDto.UserId = columnValue.ToString();
+              break;
+          }
+          break;
+      }
+    }
+
 
   }
 }
