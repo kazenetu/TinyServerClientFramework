@@ -22,7 +22,7 @@ namespace ClientFramework.BaseClasses
     /// <param name="webAPIUrl">クエリ付きWebAPIURL</param>
     /// <param name="stubDelegate">スタブ処理用デリゲート</param>
     /// <returns>レスポンス</returns>
-    public Response Get<Response>(string webAPIUrl, StubWebAPIDelegate stubDelegate = null) where Response : new()
+    protected Response get<Response>(string webAPIUrl, StubWebAPIDelegate stubDelegate = null) where Response : new()
     {
       return HttpConnectLib.Get<Response>($"{getWebApiRootAddress(true)}{webAPIUrl}", stubDelegate);
     }
@@ -35,7 +35,7 @@ namespace ClientFramework.BaseClasses
     /// <param name="param">パラメータ</param>
     /// <param name="stubDelegate">スタブ処理用デリゲート</param>
     /// <returns>レスポンス</returns>
-    public Response Post<Response>(string webAPIUrl, object param, StubWebAPIDelegate stubDelegate = null) where Response : new()
+    protected Response post<Response>(string webAPIUrl, object param, StubWebAPIDelegate stubDelegate = null) where Response : new()
     {
       // 一回もトークンを取得していない場合は取得する
       if (!existToken)
