@@ -162,7 +162,6 @@ namespace ClientFramework.ConnectLib
       foreach (Cookie cookie in tempCookies.GetCookies(baseUri))
       {
         cookies.Add(baseUri, cookie);
-        System.Diagnostics.Debug.WriteLine($"{cookie.Name} : {cookie.Value}");
       }
     }
 
