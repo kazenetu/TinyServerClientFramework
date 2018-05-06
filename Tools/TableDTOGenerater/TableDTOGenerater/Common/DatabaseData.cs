@@ -115,29 +115,43 @@ namespace TableDTOGenerater.Common
       {
         var originalTableName = row["tname"].ToString();
         var tableName = snakeCase2CamelCase(originalTableName);
-        result.Add(tableName);
-        result.AddRange(GetColumn(originalTableName, db));
+
+        var tableData = new TableData() {TableName=tableName,TableOriginalName=originalTableName };
+        tableData.Columns = GetColumn(originalTableName, db);
+
+        result.Add(tableData.ToString());
       }
 
       return result;
     }
 
-    public List<string> GetColumn(string tableName,IDatabase db)
+    /// <summary>
+    /// テーブル検索してカラム情報リストを取得する
+    /// </summary>
+    /// <param name="tableName"></param>
+    /// <param name="db"></param>
+    /// <returns></returns>
+    public List<TableColumnData> GetColumn(string tableName,IDatabase db)
     {
-      var result = new List<string>();
+      var result = new List<TableColumnData>();
 
       var sql = $"select * from {tableName};";
       var dbResult = db.Fill(sql);
       foreach(DataColumn column in dbResult.Columns)
       {
         var columnName = snakeCase2CamelCase(column.ColumnName);
-        var dataType = column.DataType.ToString();
-        result.Add($" >{columnName}:{dataType}");
+        var dataType = column.DataType;
+        result.Add(new TableColumnData() { ColumnName = columnName, ColumnOriginalName = column.ColumnName, ColumnType = dataType });
       }
 
       return result;
     }
 
+    /// <summary>
+    /// スネークケースをアッパーキャメルケースに変換
+    /// </summary>
+    /// <param name="srcSnakeCase">スネークケースの文字列</param>
+    /// <returns>アッパーキャメルケース文字列</returns>
     private string snakeCase2CamelCase(string srcSnakeCase)
     {
       if (srcSnakeCase.Length <= 0) return string.Empty;
@@ -169,6 +183,84 @@ namespace TableDTOGenerater.Common
     public static DatabaseData GetInstance()
     {
       return instance;
+    }
+
+    /// <summary>
+    /// テーブル情報
+    /// </summary>
+    public class TableData
+    {
+      /// <summary>
+      /// クラス名用テーブル名
+      /// </summary>
+      /// <remarks>アッパーキャメルケース</remarks>
+      public string TableName { set; get; }
+
+      /// <summary>
+      /// DB用テーブル名
+      /// </summary>
+      /// <remarks>スネークケース</remarks>
+      public string TableOriginalName { set; get; }
+
+      /// <summary>
+      /// カラム情報リスト
+      /// </summary>
+      public List<TableColumnData> Columns { set; get; } = null;
+
+      /// <summary>
+      /// 詳細情報出力
+      /// </summary>
+      /// <returns></returns>
+      public override string ToString()
+      {
+        var sb = new StringBuilder();
+
+        // テーブル情報出力
+        sb.AppendLine($"{TableName}[{TableOriginalName}]");
+
+        // カラム情報出力
+        if(Columns != null)
+        {
+          foreach (var column in Columns)
+          {
+            sb.AppendLine(column.ToString());
+          }
+        }
+
+        return sb.ToString();
+      }
+    }
+
+    /// <summary>
+    /// テーブルカラム
+    /// </summary>
+    public class TableColumnData
+    {
+      /// <summary>
+      /// クラス名用カラム名
+      /// </summary>
+      /// <remarks>アッパーキャメルケース</remarks>
+      public string ColumnName { set; get; }
+
+      /// <summary>
+      /// DB用カラム名
+      /// </summary>
+      /// <remarks>スネークケース</remarks>
+      public string ColumnOriginalName { set; get; }
+
+      /// <summary>
+      /// クラス用Type
+      /// </summary>
+      public Type ColumnType { set; get; }
+
+      /// <summary>
+      /// 詳細情報出力
+      /// </summary>
+      /// <returns></returns>
+      public override string ToString()
+      {
+        return $" > {ColumnName}[{ColumnOriginalName}] : {ColumnType.Name}";
+      }
     }
   }
 }
