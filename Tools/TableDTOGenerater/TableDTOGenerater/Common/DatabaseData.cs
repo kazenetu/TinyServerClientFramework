@@ -19,6 +19,8 @@ namespace TableDTOGenerater.Common
 
     private Dictionary<string, string> dbInfos =new Dictionary<string, string>();
 
+    IDatabase db = null;
+
     /// <summary>
     /// コンストラクタ
     /// </summary>
@@ -71,6 +73,12 @@ namespace TableDTOGenerater.Common
     {
       var result = new List<string>();
 
+      if(db != null)
+      {
+        db.Dispose();
+      }
+      db = null;
+
       // DB名が未設定の場合は終了
       if (!dbInfos.ContainsKey(dbName))
       {
@@ -78,7 +86,6 @@ namespace TableDTOGenerater.Common
       }
 
       var config = dbInfos[dbName];
-      IDatabase db = null;
       var sql = string.Empty;
 
       switch (dbName.ToLower())
@@ -106,7 +113,50 @@ namespace TableDTOGenerater.Common
       var dbResult = db.Fill(sql);
       foreach(DataRow row in dbResult.Rows)
       {
-        result.Add(row["tname"].ToString());
+        var originalTableName = row["tname"].ToString();
+        var tableName = snakeCase2CamelCase(originalTableName);
+        result.Add(tableName);
+        result.AddRange(GetColumn(originalTableName, db));
+      }
+
+      return result;
+    }
+
+    public List<string> GetColumn(string tableName,IDatabase db)
+    {
+      var result = new List<string>();
+
+      var sql = $"select * from {tableName};";
+      var dbResult = db.Fill(sql);
+      foreach(DataColumn column in dbResult.Columns)
+      {
+        var columnName = snakeCase2CamelCase(column.ColumnName);
+        var dataType = column.DataType.ToString();
+        result.Add($" >{columnName}:{dataType}");
+      }
+
+      return result;
+    }
+
+    private string snakeCase2CamelCase(string srcSnakeCase)
+    {
+      if (srcSnakeCase.Length <= 0) return string.Empty;
+
+      string[] words = srcSnakeCase.Split('_');
+
+      string result = string.Empty;
+      for (int i = 0; i < words.Length; i++)
+      {
+        var word = words[i];
+        if (i == 0 || i > 0)
+        {
+          word = word[0].ToString().ToUpper() + word.Substring(1).ToLower();
+        }
+        else
+        {
+          word = word.ToLower();
+        }
+        result += word;
       }
 
       return result;
