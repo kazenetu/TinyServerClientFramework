@@ -243,7 +243,8 @@ namespace WebAPIFramework.DB
 
       for (var i = 0; i < reader.FieldCount; i++)
       {
-        result.Columns.Add(new DataColumn(reader.GetName(i)));
+        var dataType = reader.GetFieldType(i);
+        result.Columns.Add(new DataColumn(reader.GetName(i), dataType));
       }
 
       return result;
