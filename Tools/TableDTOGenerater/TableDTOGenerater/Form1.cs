@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 using System.Windows.Forms;
 using TableDTOGenerater.Common;
-using static WebAPIFramework.DB.DatabaseFactory;
 
 namespace TableDTOGenerater
 {

@@ -1,7 +1,6 @@
 using Npgsql;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
 using WebAPIFramework.Interfaces;
 using static WebAPIFramework.DB.DatabaseFactory;
 
