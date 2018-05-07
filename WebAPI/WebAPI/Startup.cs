@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.IO;
+using System.Reflection;
+using System.Text;
 using WebAPIFramework.BaseClasses;
 using WebAPIFramework.ConfigModel;
 using WebAPIFramework.Interfaces;
@@ -46,7 +49,25 @@ namespace WebAPI
         options.Cookie.Name = ControllerWithRepositoryBase.SessionCookieName;
       });
 
+#if DEBUG
       services.AddMvc();
+
+      // SwaggerGenサービスの登録
+      services.AddSwaggerGen(c =>
+      {
+        c.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info { Title = "My API", Version = "v1" });
+
+        // XMLコメントを反映
+        var xmlFile = $"{Assembly.GetEntryAssembly().GetName().Name}.xml";
+        var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+        c.IncludeXmlComments(xmlPath);
+      });
+#else
+        // トークンキーを発行
+        services.AddMvc(options =>
+            options.Filters.Add(new Microsoft.AspNetCore.Mvc.AutoValidateAntiforgeryTokenAttribute()));
+#endif
+
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -83,6 +104,28 @@ namespace WebAPI
       app.UseStaticFiles();
 
       app.UseMvc();
+
+#if DEBUG
+      // Swaggerミドルウェアの登録
+      app.UseSwagger();
+      // SwaggerUIミドルウェアの登録
+      app.UseSwaggerUI(c =>
+      {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+
+        c.IndexStream = () =>
+        {
+          using (var readStream = new StreamReader($"{AppContext.BaseDirectory}swaggerIndex.html"))
+          {
+            var html = readStream.ReadToEnd();
+
+            return new MemoryStream(Encoding.UTF8.GetBytes(html));
+          }
+        };
+
+      });
+#endif
+
+    }
     }
   }
-}
