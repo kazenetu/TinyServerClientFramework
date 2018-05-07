@@ -88,6 +88,24 @@ namespace WebAPI.Controllers
       return Json(new UsersResponse(status, message, resultParam));
     }
 
+    [HttpGet("adduser")]
+    public IActionResult AddUser()
+    {
+      var status = UsersResponse.Results.OK;
+      var message = string.Empty;
+
+      var transaction = new SampleTransaction(repository, null);
+      var resultParam = transaction.AddUser();
+      if (resultParam.userList == null)
+      {
+        status = UsersResponse.Results.NG;
+        message = "追加失敗";
+        resultParam = null;
+      }
+
+      return Json(new UsersResponse(status, message, resultParam));
+    }
+
     // GET api/values/5
     [HttpGet("{id}")]
     public string Get(int id)
