@@ -16,8 +16,7 @@ namespace WebAPI.Repositories
     /// <summary>
     /// ログイン
     /// </summary>
-    /// <param name="userID">ユーザー名</param>
-    /// <param name="password">パスワード</param>
+    /// <param name="request">ログイン情報</param>
     /// <returns></returns>
     public virtual string Login(LoginRequest request)
     {
