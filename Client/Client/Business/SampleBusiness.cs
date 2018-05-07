@@ -23,7 +23,7 @@ namespace Client.Business
       {
         var response = data as LoginResponse;
         response.ErrorMessage = "テストメッセージ";
-        response.ResponseData = new LoginResponse.LoginResponseParam() { Name = "POSTダミー" };
+        response.ResponseData = new LoginResponse.LoginResponseParam() { Name = "GETダミー" };
         return response;
       };
 #endif
