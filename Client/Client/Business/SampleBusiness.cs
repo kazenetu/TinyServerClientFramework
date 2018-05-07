@@ -28,7 +28,7 @@ namespace Client.Business
       };
 #endif
 
-      return get<LoginResponse>(webAPIUrl);
+      return get<LoginResponse>(webAPIUrl, stub);
     }
 
     public LoginResponse PostSample(LoginRequest request)
