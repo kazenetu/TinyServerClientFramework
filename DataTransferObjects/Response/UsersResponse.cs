@@ -20,7 +20,7 @@ namespace DataTransferObjects.Response
 
     public class UsersResponsePram
     {
-      public List<MtUser> userList { set; get; }
+      public List<MtUser> userList { set; get; } = null;
     }
   }
 }
