@@ -1,5 +1,7 @@
 ﻿using DataTransferObjects.Request;
 using DataTransferObjects.Response;
+using DataTransferObjects.Tables;
+using System;
 using WebAPI.Repositories;
 using WebAPIFramework.BaseClasses;
 using WebAPIFramework.Interfaces;
@@ -50,6 +52,43 @@ namespace WebAPI.Transactions
 
       // SQLを発行・戻り値に格納
       result.userList = testRepository.GetAllUsers();
+
+      return result;
+    }
+
+    /// <summary>
+    /// ユーザー追加
+    /// </summary>
+    /// <returns>追加したユーザーを含めた全ユーザー</returns>
+    /// <remarks>追加ユーザーは暫定の内容</remarks>
+    public UsersResponse.UsersResponsePram AddUser()
+    {
+      var result = new UsersResponse.UsersResponsePram();
+
+      // トランザクション設定
+      repository.BeginTransaction();
+
+      // ユーザーRepositoryのインスタンスを取得
+      var user = new MtUser();
+      user.UserId = $"u{DateTime.Now.ToLongTimeString()}";
+      user.UserName = $"test{DateTime.Now.ToLongTimeString()}";
+      user.Password = "test";
+      user.EntryUser = "test";
+      var userRepository = repository.Cast<UserRepository>();
+      if (userRepository.AddUser(user))
+      {
+        // TestRepositoryのインスタンスを取得
+        var testRepository = repository.Cast<SampleRepository>();
+
+        // SQLを発行・戻り値に格納
+        result.userList = testRepository.GetAllUsers();
+
+        repository.Commit();
+      }
+      else
+      {
+        repository.Rollback();
+      }
 
       return result;
     }
