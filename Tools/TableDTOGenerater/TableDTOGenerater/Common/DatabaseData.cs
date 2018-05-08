@@ -251,6 +251,11 @@ namespace TableDTOGenerater.Common
       public string TableOriginalName { set; get; }
 
       /// <summary>
+      /// DB用論理テーブル名
+      /// </summary>
+      public string TableLogicalName { set; get; }
+
+      /// <summary>
       /// カラム情報リスト
       /// </summary>
       public List<TableColumnData> Columns { set; get; } = null;
@@ -264,10 +269,10 @@ namespace TableDTOGenerater.Common
         var sb = new StringBuilder();
 
         // テーブル情報出力
-        sb.AppendLine($"{TableName}[{TableOriginalName}]");
+        sb.AppendLine($"{TableName}[{TableOriginalName}] : {TableLogicalName}");
 
         // カラム情報出力
-        if(Columns != null)
+        if (Columns != null)
         {
           foreach (var column in Columns)
           {
@@ -297,6 +302,11 @@ namespace TableDTOGenerater.Common
       public string ColumnOriginalName { set; get; }
 
       /// <summary>
+      /// DB用論理カラム名
+      /// </summary>
+      public string ColumnLogicalName { set; get; }
+
+      /// <summary>
       /// クラス用Type
       /// </summary>
       public Type ColumnType { set; get; }
@@ -307,8 +317,9 @@ namespace TableDTOGenerater.Common
       /// <returns></returns>
       public override string ToString()
       {
-        return $" > {ColumnName}[{ColumnOriginalName}] : {ColumnType.Name}";
+        return $" > {ColumnName}[{ColumnOriginalName}] : {ColumnType.Name} : {ColumnLogicalName}";
       }
     }
+
   }
 }
