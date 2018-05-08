@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using WebAPIFramework.DB;
 using WebAPIFramework.Interfaces;
@@ -38,6 +40,53 @@ namespace TableDTOGenerater.Common
       get
       {
         return dbInfos.Keys.ToList();
+      }
+    }
+
+    /// <summary>
+    /// DBごとの接続文字列を保存
+    /// </summary>
+    /// <param name="basePath">実行ファイルのパス</param>
+    public void SaveDatabaseConnectionStrings(string basePath)
+    {
+      var sw = new DataContractJsonSerializer(typeof(Dictionary<string, string>));
+
+      var path = Path.Combine(basePath, "names.txt");
+      using (var tw = new StreamWriter(path, false))
+      {
+        using (var ms = new MemoryStream()) // 書き込み用のストリームを用意し、
+        {
+          // シリアライザーのWriteObjectメソッドにストリームと対象オブジェクトを渡す
+          sw.WriteObject(ms, dbInfos);
+
+          var output = Encoding.UTF8.GetString(ms.ToArray()); // 既定ではUTF-8で出力
+
+          tw.Write(output);
+        }
+      }
+    }
+
+    /// <summary>
+    /// DBごとの接続文字列の読み込み
+    /// </summary>
+    /// <param name="basePath">実行ファイルのパス</param>
+    public void LoadDatabaseConnectionStrings(string basePath)
+    {
+      var path = Path.Combine(basePath, "names.txt");
+      if (!File.Exists(path))
+      {
+        return;
+      }
+      using (var tr = new StreamReader(path, false))
+      {
+        dbInfos.Clear();
+
+        var sw = new DataContractJsonSerializer(typeof(Dictionary<string, string>));
+        using (var ms = new MemoryStream(Encoding.UTF8.GetBytes(tr.ReadToEnd()), false))
+        {
+          // シリアライザーのReadObjectメソッドに読み取りストリームを渡す
+          dbInfos = sw.ReadObject(ms) as Dictionary<string, string>;
+        }
       }
     }
 
