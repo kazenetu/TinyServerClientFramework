@@ -456,7 +456,7 @@ namespace TableDTOGenerater.Common
       public Type ColumnType { set; get; }
 
       /// <summary>
-      /// カラムTypeを設定
+      /// カラムType名を返す
       /// </summary>
       /// <returns></returns>
       public string GetColumnTypeName()
