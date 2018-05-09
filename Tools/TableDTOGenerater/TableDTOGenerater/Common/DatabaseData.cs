@@ -461,6 +461,21 @@ namespace TableDTOGenerater.Common
       /// <returns></returns>
       public string GetColumnTypeName()
       {
+        switch (ColumnType.Name)
+        {
+          case nameof(String):
+            return "string";
+          case nameof(Int32):
+            return "int";
+          case nameof(Int64):
+            return "long";
+          case nameof(Double):
+            return "double";
+          case nameof(Decimal):
+            return "decimal";
+          case nameof(Single):
+            return "float";
+        }
         return ColumnType.Name;
       }
 
