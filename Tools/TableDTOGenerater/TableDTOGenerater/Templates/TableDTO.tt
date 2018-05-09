@@ -1,0 +1,51 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#= "using DataTransferObjects.BaseClasses;" #>
+<#= "using System;" #>
+<#= "using System.Collections.Generic;" #>
+<#= "using System.Reflection;" #>
+
+namespace DataTransferObjects.Tables
+{
+  /// <summary>
+  /// <#= Table.TableLogicalName #>
+  /// </summary>
+  public class <#= Table.TableName #> : TableBase
+  {
+    /// <summary>
+    /// DBカラム名とプロパティのコレクション取得
+    /// </summary>
+    /// <returns>DBカラム名とプロパティのコレクション</returns>
+    public override Dictionary<string, PropertyInfo> GetDBComlunProperyColection()
+    {
+      var result= new Dictionary<string, PropertyInfo>();
+
+      var classType = this.GetType();
+<# 
+foreach(var column in Table.Columns)
+{
+#>
+      result.Add("<#= column.ColumnOriginalName.ToUpper() #>", classType.GetProperty("<#= column.ColumnName #>"));
+<# 
+}
+#>
+      return result;
+    }
+
+<# 
+foreach(var column in Table.Columns)
+{
+#>
+    /// <summary>
+    /// <#= column.ColumnLogicalName #>
+    /// </summary>
+    public <#= column.GetColumnTypeName() #> <#= column.ColumnName #> { set; get; }
+
+<# 
+}
+#>
+  }
+}
