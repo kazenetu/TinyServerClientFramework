@@ -38,7 +38,9 @@ namespace TableDTOGenerater
       var sb = new StringBuilder();
       foreach(var item in dbDataInstance.GetTables(databaseCombo.Text))
       {
-        sb.AppendLine(item);
+        var template = new Templates.TableDTO();
+        template.Table = item;
+        sb.AppendLine(template.TransformText());
       }
 
       textBox1.Text = sb.ToString();

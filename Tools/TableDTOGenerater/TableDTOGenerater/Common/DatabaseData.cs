@@ -122,9 +122,9 @@ namespace TableDTOGenerater.Common
     /// </summary>
     /// <param name="dbName">DB名</param>
     /// <returns>取得結果</returns>
-    public List<string> GetTables(string dbName)
+    public List<TableData> GetTables(string dbName)
     {
-      var result = new List<string>();
+      var result = new List<TableData>();
 
       if (db != null)
       {
@@ -179,7 +179,7 @@ namespace TableDTOGenerater.Common
         // カラム情報を取得
         tableData.Columns = GetColumn(originalTableName, dbName);
 
-        result.Add(tableData.ToString());
+        result.Add(tableData);
       }
 
       return result;
@@ -454,6 +454,15 @@ namespace TableDTOGenerater.Common
       /// クラス用Type
       /// </summary>
       public Type ColumnType { set; get; }
+
+      /// <summary>
+      /// カラムTypeを設定
+      /// </summary>
+      /// <returns></returns>
+      public string GetColumnTypeName()
+      {
+        return ColumnType.Name;
+      }
 
       /// <summary>
       /// 詳細情報出力
