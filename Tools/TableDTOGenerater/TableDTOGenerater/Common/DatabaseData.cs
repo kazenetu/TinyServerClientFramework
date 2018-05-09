@@ -475,6 +475,8 @@ namespace TableDTOGenerater.Common
             return "decimal";
           case nameof(Single):
             return "float";
+          case nameof(Boolean):
+            return "bool";
         }
         return ColumnType.Name;
       }
