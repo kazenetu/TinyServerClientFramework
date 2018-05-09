@@ -20,7 +20,11 @@ namespace WebAPI.Controllers
     {
     }
 
-    // GET api/values
+    /// <summary>
+    /// ログインチェック(GET版)
+    /// </summary>
+    /// <param name="request">ログイン情報</param>
+    /// <returns>ログイン結果</returns>
     [HttpGet]
     public IActionResult Get(LoginRequest request)
     {
@@ -46,10 +50,10 @@ namespace WebAPI.Controllers
     }
 
     /// <summary>
-    /// POSTでのログインチェック
+    /// ログインチェック(POST版)
     /// </summary>
-    /// <param name="param"></param>
-    /// <returns></returns>
+    /// <param name="request">ログイン情報</param>
+    /// <returns>ログイン結果</returns>
     [HttpPost("login")]
     [AutoValidateAntiforgeryToken]
     public IActionResult Login([FromBody]LoginRequest request)
@@ -75,7 +79,11 @@ namespace WebAPI.Controllers
       return Json(new LoginResponse(status, message, resultParam));
     }
 
-
+    /// <summary>
+    /// 全ユーザー情報取得
+    /// </summary>
+    /// <returns>全ユーザー情報</returns>
+    /// <remarks>暫定版のため入力情報なし</remarks>
     [HttpGet("alluser")]
     public IActionResult GetAllUser()
     {
@@ -88,6 +96,11 @@ namespace WebAPI.Controllers
       return Json(new UsersResponse(status, message, resultParam));
     }
 
+    /// <summary>
+    /// ユーザー追加
+    /// </summary>
+    /// <returns>追加したユーザーも含めた全ユーザー情報</returns>
+    /// <remarks>暫定版のため入力情報なし</remarks>
     [HttpGet("adduser")]
     public IActionResult AddUser()
     {
