@@ -4,7 +4,7 @@ using WebAPIFramework.Interfaces;
 namespace WebAPIFramework.BaseClasses
 {
   /// <summary>
-  /// Transactioのスーパークラス
+  /// Transactionのスーパークラス
   /// </summary>
   public class TransactionBase
   {
