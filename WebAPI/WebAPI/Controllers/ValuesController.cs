@@ -38,7 +38,7 @@ namespace WebAPI.Controllers
       var status = LoginResponse.Results.OK;
       var message = string.Empty;
 
-      var transaction = new SampleTransaction(repository);
+      var transaction = new SampleTransaction(repository, logger);
       var resultParam = transaction.Test(request);
       if (string.IsNullOrEmpty(resultParam.Name))
       {
@@ -68,7 +68,7 @@ namespace WebAPI.Controllers
       var status = LoginResponse.Results.OK;
       var message = string.Empty;
 
-      var transaction = new SampleTransaction(repository);
+      var transaction = new SampleTransaction(repository, logger);
       var resultParam = transaction.Test(request);
       if (string.IsNullOrEmpty(resultParam.Name))
       {
@@ -90,7 +90,7 @@ namespace WebAPI.Controllers
       var status = UsersResponse.Results.OK;
       var message = string.Empty;
 
-      var transaction = new SampleTransaction(repository);
+      var transaction = new SampleTransaction(repository, logger);
       var resultParam = transaction.GetAllUsers();
 
       return Json(new UsersResponse(status, message, resultParam));
@@ -107,7 +107,7 @@ namespace WebAPI.Controllers
       var status = UsersResponse.Results.OK;
       var message = string.Empty;
 
-      var transaction = new SampleTransaction(repository);
+      var transaction = new SampleTransaction(repository, logger);
       var resultParam = transaction.AddUser();
       if (resultParam.userList == null)
       {

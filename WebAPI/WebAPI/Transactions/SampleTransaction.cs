@@ -1,6 +1,7 @@
 ﻿using DataTransferObjects.Request;
 using DataTransferObjects.Response;
 using DataTransferObjects.Tables;
+using Microsoft.Extensions.Logging;
 using System;
 using WebAPI.Repositories;
 using WebAPIFramework.BaseClasses;
@@ -10,7 +11,7 @@ namespace WebAPI.Transactions
 {
   public class SampleTransaction : TransactionBase
   {
-    public SampleTransaction(IRepositoryBase repository) : base(repository)
+    public SampleTransaction(IRepositoryBase repository, ILogger logger) : base(repository, logger)
     {
     }
 
