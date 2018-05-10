@@ -10,18 +10,15 @@ namespace WebAPI.Transactions
 {
   public class SampleTransaction : TransactionBase
   {
-    private LoginRequest request = null;
-
-    public SampleTransaction(IRepositoryBase repository, LoginRequest request) : base(repository)
+    public SampleTransaction(IRepositoryBase repository) : base(repository)
     {
-      this.request = request;
     }
 
     /// <summary>
     /// サンプルメソッド
     /// </summary>
     /// <returns></returns>
-    public LoginResponse.LoginResponseParam Test()
+    public LoginResponse.LoginResponseParam Test(LoginRequest request)
     {
       var result = new LoginResponse.LoginResponseParam();
 
