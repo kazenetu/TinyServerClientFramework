@@ -66,25 +66,33 @@ namespace WebAPI.Transactions
       // トランザクション設定
       repository.BeginTransaction();
 
-      // ユーザーRepositoryのインスタンスを取得
-      var user = new MtUser();
-      user.UserId = $"u{DateTime.Now.ToLongTimeString()}";
-      user.UserName = $"test{DateTime.Now.ToLongTimeString()}";
-      user.Password = "test";
-      user.EntryUser = "test";
-      var userRepository = repository.Cast<UserRepository>();
-      if (userRepository.AddUser(user))
+      try
       {
-        // TestRepositoryのインスタンスを取得
-        var testRepository = repository.Cast<SampleRepository>();
+        // ユーザーRepositoryのインスタンスを取得
+        var user = new MtUser();
+        user.UserId = $"u{DateTime.Now.ToLongTimeString()}";
+        user.UserName = $"test{DateTime.Now.ToLongTimeString()}";
+        user.Password = "test";
+        user.EntryUser = "test";
+        var userRepository = repository.Cast<UserRepository>();
+        if (userRepository.AddUser(user))
+        {
+          // TestRepositoryのインスタンスを取得
+          var testRepository = repository.Cast<SampleRepository>();
 
-        // SQLを発行・戻り値に格納
-        result.userList = testRepository.GetAllUsers();
+          // SQLを発行・戻り値に格納
+          result.userList = testRepository.GetAllUsers();
 
-        repository.Commit();
+          repository.Commit();
+        }
+        else
+        {
+          repository.Rollback();
+        }
       }
-      else
+      catch (Exception ex)
       {
+        logger.LogError($"{nameof(SampleTransaction)}.{nameof(AddUser)}:\"{ex.Message}\"");
         repository.Rollback();
       }
 
