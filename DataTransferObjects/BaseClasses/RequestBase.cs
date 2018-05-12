@@ -16,9 +16,9 @@ namespace DataTransferObjects.Request.BaseClasses
     public string ValidateNGPropertyName { get; protected set; } = string.Empty;
 
     /// <summary>
-    /// 共通パラメータ：ユーザーID
+    /// 共通パラメータ：ログインユーザーID
     /// </summary>
-    public string userID { set; get; }
+    public string LoginUserID { set; get; }
     #endregion
 
     #region メソッド
