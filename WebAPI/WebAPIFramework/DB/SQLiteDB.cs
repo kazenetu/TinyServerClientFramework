@@ -83,13 +83,15 @@ namespace WebAPIFramework.DB
     /// <param name="value">値</param>
     public void AddParam(string key, object value)
     {
-      if(value is DateTime)
+      switch (value)
       {
-        this.param.Add(key, ((DateTime)value).ToString("yyyy-MM-dd HH:mm:ss"));
-        return;
+        case DateTime dt:
+          this.param.Add(key, dt.ToString("yyyy-MM-dd HH:mm:ss"));
+          break;
+        case object obj:
+          this.param.Add(key, obj);
+          break;
       }
-
-      this.param.Add(key, value);
     }
 
     /// <summary>
