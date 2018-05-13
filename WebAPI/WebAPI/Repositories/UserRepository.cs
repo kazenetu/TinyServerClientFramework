@@ -27,6 +27,7 @@ namespace WebAPI.Repositories
       sql.AppendLine("  , PASSWORD");
       sql.AppendLine("  , DEL_FLAG");
       sql.AppendLine("  , ENTRY_USER");
+      sql.AppendLine("  , ENTRY_DATE");
       sql.AppendLine(") ");
       sql.AppendLine("VALUES ( ");
       sql.AppendLine("  @USER_ID");
@@ -34,6 +35,7 @@ namespace WebAPI.Repositories
       sql.AppendLine("  , @PASSWORD");
       sql.AppendLine("  , '0'");
       sql.AppendLine("  , @ENTRY_USER");
+      sql.AppendLine("  , @ENTRY_DATE");
       sql.AppendLine(")");
 
       // Param設定
@@ -42,6 +44,7 @@ namespace WebAPI.Repositories
       db.AddParam("@USER_NAME", request.UserName);
       db.AddParam("@PASSWORD", request.Password);
       db.AddParam("@ENTRY_USER", request.EntryUser);
+      db.AddParam("@ENTRY_DATE", request.EntryDate);
 
       // SQL発行
       var result = db.ExecuteNonQuery(sql.ToString());
