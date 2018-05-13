@@ -1,4 +1,5 @@
 ﻿using DataTransferObjects.Request.BaseClasses;
+using System.ComponentModel.DataAnnotations;
 
 namespace DataTransferObjects.Request
 {
@@ -10,16 +11,19 @@ namespace DataTransferObjects.Request
     /// <summary>
     /// ユーザーID
     /// </summary>
+    [Required]
     public string UserId { set; get; }
 
     /// <summary>
     /// ユーザー名
     /// </summary>
+    [Required]
     public string UserName { set; get; }
 
     /// <summary>
     /// パスワード
     /// </summary>
+    [Required]
     public string Password { set; get; }
   }
 }
