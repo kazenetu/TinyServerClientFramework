@@ -1,8 +1,10 @@
 ﻿using DataTransferObjects.Request;
 using DataTransferObjects.Response;
 using DataTransferObjects.Tables;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Text;
 using WebAPI.Repositories;
 using WebAPIFramework.BaseClasses;
 using WebAPIFramework.Interfaces;
@@ -57,9 +59,10 @@ namespace WebAPI.Transactions
     /// <summary>
     /// ユーザー追加
     /// </summary>
+    /// <param name="request">追加ユーザー情報</param>
+    /// <param name="entryDate">追加日時</param>
     /// <returns>追加したユーザーを含めた全ユーザー</returns>
-    /// <remarks>追加ユーザーは暫定の内容</remarks>
-    public UsersResponse.UsersResponsePram AddUser()
+    public UsersResponse.UsersResponsePram AddUser(AddUserRequest request,DateTime entryDate)
     {
       var result = new UsersResponse.UsersResponsePram();
 
@@ -70,10 +73,11 @@ namespace WebAPI.Transactions
       {
         // ユーザーRepositoryのインスタンスを取得
         var user = new MtUser();
-        user.UserId = $"u{DateTime.Now.ToLongTimeString()}";
-        user.UserName = $"test{DateTime.Now.ToLongTimeString()}";
-        user.Password = "test";
-        user.EntryUser = "test";
+        user.UserId = request.UserId;
+        user.UserName = request.UserName;
+        user.Password = createPasswordHash(request.UserId, request.Password, entryDate);
+        user.EntryUser = request.LoginUserID;
+        user.EntryDate = entryDate;
         var userRepository = repository.Cast<UserRepository>();
         if (userRepository.AddUser(user))
         {
@@ -98,5 +102,23 @@ namespace WebAPI.Transactions
 
       return result;
     }
+
+    protected string createPasswordHash(string userId, string password, DateTime createDate)
+    {
+      byte[] salt = new byte[128 / 8];
+      var saltSrc = createDate.ToString("yyyyMMddhhmmsss") + userId;
+      salt = Encoding.UTF8.GetBytes(saltSrc);
+
+      // derive a 256-bit subkey (use HMACSHA1 with 10,000 iterations)
+      string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+          password: password,
+          salt: salt,
+          prf: KeyDerivationPrf.HMACSHA1,
+          iterationCount: 10000,
+          numBytesRequested: 256 / 8));
+
+      return hashed;
+    }
+
   }
 }

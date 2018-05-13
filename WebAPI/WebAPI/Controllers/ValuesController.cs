@@ -2,6 +2,7 @@
 using DataTransferObjects.Response;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using WebAPI.Transactions;
 using WebAPIFramework.BaseClasses;
 using WebAPIFramework.Interfaces;
@@ -99,16 +100,16 @@ namespace WebAPI.Controllers
     /// <summary>
     /// ユーザー追加
     /// </summary>
+    /// <param name="request">追加ユーザー情報</param>
     /// <returns>追加したユーザーも含めた全ユーザー情報</returns>
-    /// <remarks>暫定版のため入力情報なし</remarks>
     [HttpGet("adduser")]
-    public IActionResult AddUser()
+    public IActionResult AddUser(AddUserRequest request)
     {
       var status = UsersResponse.Results.OK;
       var message = string.Empty;
 
       var transaction = new SampleTransaction(repository, logger);
-      var resultParam = transaction.AddUser();
+      var resultParam = transaction.AddUser(request,DateTime.Now);
       if (resultParam.userList == null)
       {
         status = UsersResponse.Results.NG;
