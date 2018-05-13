@@ -105,6 +105,13 @@ namespace WebAPI.Controllers
     [HttpGet("adduser")]
     public IActionResult AddUser(AddUserRequest request)
     {
+      // 入力チェック
+      if (!request.Validate())
+      {
+        logger.LogError("Pram[{0}]が未設定", request.ValidateNGPropertyName);
+        return BadRequest();
+      }
+
       var status = UsersResponse.Results.OK;
       var message = string.Empty;
 
