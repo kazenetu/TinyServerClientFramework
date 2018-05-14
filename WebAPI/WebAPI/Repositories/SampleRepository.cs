@@ -63,6 +63,7 @@ namespace WebAPI.Repositories
       sql.AppendLine("  , MOD_VERSION");
       sql.AppendLine("from");
       sql.AppendLine("  MT_USER");
+      sql.AppendLine("order by USER_ID ");
       sql.AppendLine(db.GetLimitSQL(25, 0));
 
       // Param設定
