@@ -13,17 +13,17 @@
   <div>
     <form method="get" action="api/values/adduser">
       <div>
-        <input type="text" name="UserId" placeholder="ユーザーID" />
+        <input type="text" name="UserId" placeholder="ユーザーID" onkeydown="return ignoreEnterKey(event);" />
       </div>
       <div>
-        <input type="text" name="UserName" placeholder="ユーザー名"  />
+        <input type="text" name="UserName" placeholder="ユーザー名" onkeydown="return ignoreEnterKey(event);" />
       </div>
       <div>
-        <input type="text" name="Password" placeholder="ユーザーパスワード"  />
+        <input type="text" name="Password" placeholder="ユーザーパスワード" onkeydown="return ignoreEnterKey(event);" />
       </div>
 
       <input type="hidden" name="LoginUserID" value="test" />
-      <input type="submit" value="ユーザー追加" />
+      <button type="submit">ユーザー追加</button>
     </form>
   </div>
 
@@ -48,6 +48,17 @@
         }
       }
       return "";
+    }
+
+    /**
+     * フォーム内テキストのエンターキー無効化
+     * @param ev キー入力情報
+     */
+    function ignoreEnterKey(ev) {
+      if ((ev.which && ev.which === 13) || (ev.keyCode && ev.keyCode === 13)) {
+        return false;
+      }
+      return true;
     }
 
     function postEvent() {
