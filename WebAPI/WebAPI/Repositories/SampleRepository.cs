@@ -77,7 +77,7 @@ namespace WebAPI.Repositories
     /// インスタンスのプロパティに該当しないデータの処理
     /// </summary>
     /// <typeparam name="T">テーブルDTO</typeparam>
-    /// <param name="callerMethodName">fillメソッドを呼び出したメソッド名</param>
+    /// <param name="methodName">fillメソッドを呼び出したメソッド名</param>
     /// <param name="columnName">カラム名</param>
     /// <param name="columnValue">カラムの値</param>
     /// <param name="instance">クラスインスタンス</param>
