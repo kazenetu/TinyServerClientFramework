@@ -92,7 +92,7 @@ namespace WebAPI.Repositories
             return;
           }
 
-          switch (columnName)
+          switch (columnName.ToLower())
           {
             case "id":
               mtUserDto.UserId = columnValue.ToString();
