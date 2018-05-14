@@ -28,6 +28,7 @@ namespace WebAPI.Repositories
       sql.AppendLine("  , DEL_FLAG");
       sql.AppendLine("  , ENTRY_USER");
       sql.AppendLine("  , ENTRY_DATE");
+      sql.AppendLine("  , MOD_VERSION");
       sql.AppendLine(") ");
       sql.AppendLine("VALUES ( ");
       sql.AppendLine("  @USER_ID");
@@ -36,6 +37,7 @@ namespace WebAPI.Repositories
       sql.AppendLine("  , '0'");
       sql.AppendLine("  , @ENTRY_USER");
       sql.AppendLine("  , @ENTRY_DATE");
+      sql.AppendLine("  , 1");
       sql.AppendLine(")");
 
       // Param設定
