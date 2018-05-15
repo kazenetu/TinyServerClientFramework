@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace WebAPIFramework.ConfigModel
 {
   /// <summary>
@@ -6,15 +8,15 @@ namespace WebAPIFramework.ConfigModel
   public class DatabaseConfigModel
   {
     /// <summary>
-    /// DBタイプ
+    /// 生成するDB
     /// </summary>
     /// <returns>DB種類</returns>
-    public string Type { set; get; }
+    public string Target { set; get; }
 
     /// <summary>
-    /// 接続文字列
+    /// DBごとの接続文字列
     /// </summary>
-    /// <returns>接続文字列</returns>
-    public string connectionString { set; get; }
+    /// <returns>「DB名と接続文字列」情報</returns>
+    public Dictionary<string, string> ConnectionStrings { set; get; }
   }
 }

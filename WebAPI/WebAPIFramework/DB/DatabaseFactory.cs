@@ -26,20 +26,29 @@ namespace WebAPIFramework.DB
     {
       IDatabase result = null;
 
+      var targetDB = config.Target.ToLower();
+
+      if (!config.ConnectionStrings.ContainsKey(targetDB))
+      {
+        return result;
+      }
+
+      var connectionString = config.ConnectionStrings[targetDB];
+
       // DB種類で作成するインスタンスを変える
-      switch (config.Type.ToLower())
+      switch (targetDB)
       {
         case nameof(DatabaseTypes.sqlite):
-          result = new SQLiteDB(config.connectionString);
+          result = new SQLiteDB(connectionString);
           break;
         case nameof(DatabaseTypes.postgres):
-          result = new PostgreSQLDB(config.connectionString);
+          result = new PostgreSQLDB(connectionString);
           break;
         case nameof(DatabaseTypes.sqlserver):
-          result = new SQLServerDB(config.connectionString);
+          result = new SQLServerDB(connectionString);
           break;
         default:
-          result = new SQLiteDB(config.connectionString);
+          result = new SQLiteDB(connectionString);
           break;
       }
 
