@@ -22,10 +22,23 @@ namespace WebAPIFramework.BaseClasses
     protected IDatabase db;
 
     /// <summary>
+    /// DB情報
+    /// </summary>
+    private IOptions<DatabaseConfigModel> config;
+
+    /// <summary>
     /// DB設定取得用コンストラクタ
     /// </summary>
     /// <param name="config">DB設定取得</param>
     public RepositoryBase(IOptions<DatabaseConfigModel> config)
+    {
+      this.config = config;
+    }
+
+    /// <summary>
+    /// 初期化処理
+    /// </summary>
+    public void Initialize()
     {
       // DatabaseFactoryから永続化対象のDBインスタンスを取得
       db = DatabaseFactory.Create(config.Value);
@@ -45,7 +58,7 @@ namespace WebAPIFramework.BaseClasses
     /// </summary>
     public void Dispose()
     {
-      db.Dispose();
+      db?.Dispose();
     }
 
     /// <summary>

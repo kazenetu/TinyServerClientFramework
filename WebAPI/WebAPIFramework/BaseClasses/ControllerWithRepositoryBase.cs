@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using WebAPIFramework.Interfaces;
 
 namespace WebAPIFramework.BaseClasses
@@ -36,6 +37,11 @@ namespace WebAPIFramework.BaseClasses
     /// </summary>
     protected readonly ILogger logger;
 
+    /// <summary>
+    /// コンストラクタで発生した例外エラー
+    /// </summary>
+    private Exception exception = null;
+
     #endregion
 
     #region プロパティ
@@ -64,8 +70,33 @@ namespace WebAPIFramework.BaseClasses
     {
       this.repository = repository;
       this.logger = logger;
+
+      try
+      {
+        // DatabaseFactoryから永続化対象のDBインスタンスを取得
+        this.repository.Initialize();
+      }
+      catch (Exception ex)
+      {
+        exception = ex;
+      }
     }
     #endregion
+
+    /// <summary>
+    /// エラーチェック
+    /// </summary>
+    /// <returns>エラーがある場合はエラーメッセージ、ない場合はnull</returns>
+    protected string getSystemErrorMessage()
+    {
+      if (exception != null)
+      {
+        logger.LogError(exception.ToString());
+        return "システムエラーが発生しました。";
+      }
+
+      return null;
+    }
 
     /// <summary>
     /// セッションキーの文字列を取得
