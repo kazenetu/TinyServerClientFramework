@@ -225,9 +225,16 @@ namespace WebAPIFramework.DB
     protected virtual SqliteConnection getConnection(string connectionString)
     {
       var resourcePath = AppContext.BaseDirectory;
-      resourcePath = String.Format("Data Source={0}", Path.Combine(resourcePath, connectionString));
+      resourcePath = Path.Combine(resourcePath, connectionString);
 
-      return new SqliteConnection(resourcePath);
+      // DBファイルが存在するか確認
+      if (!File.Exists(resourcePath))
+      {
+        throw new Exception($"DBファイル「{resourcePath}」がありません。");
+      }
+
+      // コネクション作成
+      return new SqliteConnection($"Data Source={resourcePath}");
     }
 
     /// <summary>
