@@ -30,10 +30,7 @@ namespace WebAPI.Controllers
     public IActionResult Get(LoginRequest request)
     {
       // システムエラーチェック
-      if (getSystemErrorMessage() is string errorMessage)
-      {
-        return Json(new UsersResponse(UsersResponse.Results.NG, errorMessage));
-      }
+      if (systenErrorResult is IActionResult) return systenErrorResult;
 
       // 入力チェック
       if (!request.Validate())
@@ -66,10 +63,7 @@ namespace WebAPI.Controllers
     public IActionResult Login([FromBody]LoginRequest request)
     {
       // システムエラーチェック
-      if (getSystemErrorMessage() is string errorMessage)
-      {
-        return Json(new UsersResponse(UsersResponse.Results.NG, errorMessage));
-      }
+      if (systenErrorResult is IActionResult) return systenErrorResult;
 
       // 入力チェック
       if (!request.Validate())
@@ -101,10 +95,7 @@ namespace WebAPI.Controllers
     public IActionResult GetAllUser()
     {
       // システムエラーチェック
-      if (getSystemErrorMessage() is string errorMessage)
-      {
-        return Json(new UsersResponse(UsersResponse.Results.NG, errorMessage));
-      }
+      if (systenErrorResult is IActionResult) return systenErrorResult;
 
       var status = UsersResponse.Results.OK;
       var message = string.Empty;
@@ -124,10 +115,7 @@ namespace WebAPI.Controllers
     public IActionResult AddUser(AddUserRequest request)
     {
       // システムエラーチェック
-      if (getSystemErrorMessage() is string errorMessage)
-      {
-        return Json(new UsersResponse(UsersResponse.Results.NG, errorMessage));
-      }
+      if (systenErrorResult is IActionResult) return systenErrorResult;
 
       // 入力チェック
       if (!request.Validate())

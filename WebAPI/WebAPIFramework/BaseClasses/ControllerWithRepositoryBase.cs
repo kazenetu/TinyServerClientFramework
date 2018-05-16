@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DataTransferObjects.Response.BaseClasses;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -38,9 +39,9 @@ namespace WebAPIFramework.BaseClasses
     protected readonly ILogger logger;
 
     /// <summary>
-    /// コンストラクタで発生した例外エラー
+    /// システムエラー用ActionResult
     /// </summary>
-    private Exception exception = null;
+    protected IActionResult systenErrorResult = null;
 
     #endregion
 
@@ -56,6 +57,7 @@ namespace WebAPIFramework.BaseClasses
         return HttpContext.Session;
       }
     }
+
     #endregion
 
     #region メソッド
@@ -78,25 +80,11 @@ namespace WebAPIFramework.BaseClasses
       }
       catch (Exception ex)
       {
-        exception = ex;
+        logger.LogError(ex.ToString());
+        systenErrorResult = Json(new ResponseBase<object>(ResponseBase<object>.Results.NG, "システムエラーが発生しました。"));
       }
     }
     #endregion
-
-    /// <summary>
-    /// エラーチェック
-    /// </summary>
-    /// <returns>エラーがある場合はエラーメッセージ、ない場合はnull</returns>
-    protected string getSystemErrorMessage()
-    {
-      if (exception != null)
-      {
-        logger.LogError(exception.ToString());
-        return "システムエラーが発生しました。";
-      }
-
-      return null;
-    }
 
     /// <summary>
     /// セッションキーの文字列を取得
