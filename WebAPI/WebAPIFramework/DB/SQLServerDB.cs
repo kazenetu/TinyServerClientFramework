@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using WebAPIFramework.Interfaces;
@@ -57,10 +58,17 @@ namespace WebAPIFramework.DB
     /// <param name="connectionString">接続文字列</param>
     public SQLServerDB(string connectionString)
     {
-      this.conn = this.getConnection(connectionString);
-      this.conn.Open();
+      try
+      {
+        this.conn = this.getConnection(connectionString);
+        this.conn.Open();
 
-      this.param = new Dictionary<string, object>();
+        this.param = new Dictionary<string, object>();
+      }
+      catch (Exception ex)
+      {
+        throw new Exception($"「{connectionString}」への接続失敗", ex);
+      }
     }
 
     /// <summary>
