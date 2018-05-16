@@ -1,3 +1,4 @@
+using System;
 using WebAPIFramework.ConfigModel;
 using WebAPIFramework.Interfaces;
 
@@ -30,7 +31,7 @@ namespace WebAPIFramework.DB
 
       if (!config.ConnectionStrings.ContainsKey(targetDB))
       {
-        return result;
+        throw new Exception($"{targetDB}の接続文字列が定義されていません。");
       }
 
       var connectionString = config.ConnectionStrings[targetDB];
