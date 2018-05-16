@@ -29,6 +29,12 @@ namespace WebAPI.Controllers
     [HttpGet]
     public IActionResult Get(LoginRequest request)
     {
+      // システムエラーチェック
+      if (getSystemErrorMessage() is string errorMessage)
+      {
+        return Json(new UsersResponse(UsersResponse.Results.NG, errorMessage));
+      }
+
       // 入力チェック
       if (!request.Validate())
       {
@@ -59,6 +65,12 @@ namespace WebAPI.Controllers
     [AutoValidateAntiforgeryToken]
     public IActionResult Login([FromBody]LoginRequest request)
     {
+      // システムエラーチェック
+      if (getSystemErrorMessage() is string errorMessage)
+      {
+        return Json(new UsersResponse(UsersResponse.Results.NG, errorMessage));
+      }
+
       // 入力チェック
       if (!request.Validate())
       {
@@ -88,6 +100,12 @@ namespace WebAPI.Controllers
     [HttpGet("alluser")]
     public IActionResult GetAllUser()
     {
+      // システムエラーチェック
+      if (getSystemErrorMessage() is string errorMessage)
+      {
+        return Json(new UsersResponse(UsersResponse.Results.NG, errorMessage));
+      }
+
       var status = UsersResponse.Results.OK;
       var message = string.Empty;
 
@@ -105,6 +123,12 @@ namespace WebAPI.Controllers
     [HttpGet("adduser")]
     public IActionResult AddUser(AddUserRequest request)
     {
+      // システムエラーチェック
+      if (getSystemErrorMessage() is string errorMessage)
+      {
+        return Json(new UsersResponse(UsersResponse.Results.NG, errorMessage));
+      }
+
       // 入力チェック
       if (!request.Validate())
       {
