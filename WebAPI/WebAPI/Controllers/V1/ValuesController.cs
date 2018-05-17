@@ -93,7 +93,7 @@ namespace WebAPI.Controllers.V1
     /// <returns>全ユーザー情報</returns>
     /// <remarks>暫定版のため入力情報なし</remarks>
     [HttpGet("alluser")]
-    public IActionResult GetAllUser()
+    public virtual IActionResult GetAllUser()
     {
       // システムエラーチェック
       if (systenErrorResult is IActionResult) return systenErrorResult;
