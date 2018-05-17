@@ -9,7 +9,8 @@ using WebAPIFramework.Interfaces;
 
 namespace WebAPI.Controllers
 {
-  [Route("api/[controller]")]
+  [ApiExplorerSettings(GroupName ="v1")]
+  [Route("api/v1/[controller]")]
   public class ValuesController : ControllerWithRepositoryBase
   {
     /// <summary>
