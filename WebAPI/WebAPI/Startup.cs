@@ -56,6 +56,7 @@ namespace WebAPI
       services.AddSwaggerGen(c =>
       {
         c.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info { Title = "My API", Version = "v1" });
+        c.SwaggerDoc("v2", new Swashbuckle.AspNetCore.Swagger.Info { Title = "My API", Version = "v2" });
 
         // XMLコメントを反映
         var xmlFile = $"{Assembly.GetEntryAssembly().GetName().Name}.xml";
@@ -112,6 +113,7 @@ namespace WebAPI
       app.UseSwaggerUI(c =>
       {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+        c.SwaggerEndpoint("/swagger/v2/swagger.json", "My API V2");
 
         c.IndexStream = () =>
         {
