@@ -7,7 +7,7 @@ using WebAPI.Transactions;
 using WebAPIFramework.BaseClasses;
 using WebAPIFramework.Interfaces;
 
-namespace WebAPI.Controllers
+namespace WebAPI.Controllers.V1
 {
   [ApiExplorerSettings(GroupName ="v1")]
   [Route("api/v1/[controller]")]
