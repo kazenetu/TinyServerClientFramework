@@ -2,6 +2,7 @@
 using ClientFramework.ConnectLib;
 using DataTransferObjects.Request;
 using DataTransferObjects.Response;
+using static Client.Statics;
 
 namespace Client.Business
 {
@@ -15,7 +16,7 @@ namespace Client.Business
     /// <returns></returns>
     public LoginResponse GetSample(LoginRequest request)
     {
-      var webAPIUrl = $"values?id={request.ID}&password={request.Password}";
+      var webAPIUrl = $"{WebAPIVersion}/values?id={request.ID}&password={request.Password}";
 
       HttpConnectLib.StubWebAPIDelegate stub = null;
 #if STUB
@@ -33,7 +34,7 @@ namespace Client.Business
 
     public LoginResponse PostSample(LoginRequest request)
     {
-      var webAPIUrl = $"values/login";
+      var webAPIUrl = $"{WebAPIVersion}/values/login";
       var param = new LoginRequest() { ID = "test", Password = "test" };
 
       HttpConnectLib.StubWebAPIDelegate stub = null;
