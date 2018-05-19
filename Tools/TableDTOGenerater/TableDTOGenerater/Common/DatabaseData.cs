@@ -18,7 +18,7 @@ namespace TableDTOGenerater.Common
   {
     private static DatabaseData instance = new DatabaseData();
 
-    private Dictionary<string, string> dbInfos =new Dictionary<string, string>();
+    private Dictionary<string, string> dbInfos = new Dictionary<string, string>();
 
     IDatabase db = null;
 
