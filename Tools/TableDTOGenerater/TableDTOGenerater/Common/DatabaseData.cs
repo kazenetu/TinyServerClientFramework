@@ -255,6 +255,13 @@ namespace TableDTOGenerater.Common
       var colmunLogicalNames = getLogicalColmunName(tableName, dbName);
 
       var sql = $"select * from {tableName};";
+
+      // PostgreSQLの場合は大文字テーブルを正しく表示できるようにする
+      if (dbName.ToLower() == nameof(DatabaseTypes.postgres))
+      {
+        sql = $"select * from \"{tableName}\";";
+      }
+
       var dbResult = db.Fill(sql);
       foreach (DataColumn column in dbResult.Columns)
       {
