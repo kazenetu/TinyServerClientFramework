@@ -11,8 +11,26 @@
 namespace DataTransferObjects.Tables
 {
   /// <summary>
-  /// <#= Table.TableLogicalName #>
+  /// <#= getTableName().Trim() #>
   /// </summary>
+<# 
+var tableRemarks = getTableRemarks();
+if(tableRemarks.Any())
+{
+#>
+  /// <remarks>
+<# 
+  foreach(var tableRemark in tableRemarks)
+  {
+#>
+  /// <#= tableRemark.Trim() #>
+<# 
+  }
+#>
+  /// </remarks>
+<# 
+}
+#>
   public class <#= Table.TableName #> : TableBase
   {
     /// <summary>
@@ -40,8 +58,26 @@ foreach(var column in Table.Columns)
 {
 #>
     /// <summary>
-    /// <#= column.ColumnLogicalName #>
+    /// <#= getColumnName(column.ColumnLogicalName).Trim() #>
     /// </summary>
+<# 
+  var columnRemarks = getColumnRemarks(column.ColumnLogicalName);
+  if(columnRemarks.Any())
+  {
+#>
+    /// <remarks>
+<# 
+    foreach(var columnRemark in columnRemarks)
+    {
+#>
+    /// <#= columnRemark.Trim() #>
+<# 
+    }
+#>
+    /// </remarks>
+<# 
+  }
+#>
     public <#= column.GetColumnTypeName() #> <#= column.ColumnName #> { set; get; }
 
 <# 
