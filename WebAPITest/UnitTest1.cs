@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
 using System.Collections.Generic;
-using WebAPI.Controllers;
+using WebAPI.Controllers.V1;
 using WebAPI.Repositories;
 using WebAPIFramework.Interfaces;
 using Xunit;
