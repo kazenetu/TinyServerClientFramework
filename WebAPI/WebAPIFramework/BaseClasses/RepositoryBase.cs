@@ -150,13 +150,13 @@ namespace WebAPIFramework.BaseClasses
         {
           // パースを試みる("True"や"False")
           bool boolResult = false;
-          if (bool.TryParse(dbResult.ToString(), out boolResult))
+          if (bool.TryParse(dbValue.ToString(), out boolResult))
           {
             return boolResult;
           }
 
           // 0・1の場合は値を判定する
-          if (dbResult.ToString() == "1")
+          if (dbValue.ToString() == "1")
           {
             return true;
           }
