@@ -6,6 +6,9 @@ using static Client.Statics;
 
 namespace Client.Business
 {
+  /// <summary>
+  /// サンプルロジック
+  /// </summary>
   public class SampleBusiness : BussinessBase
   {
 
