@@ -1,9 +1,6 @@
 ﻿using Client.Business;
-using ClientFramework.ConnectLib;
 using DataTransferObjects.Request;
-using DataTransferObjects.Response;
 using System;
-using System.Deployment.Application;
 using System.Windows.Forms;
 
 namespace Client
