@@ -15,6 +15,12 @@ namespace Client
       InitializeComponent();
     }
 
+    /// <summary>
+    /// GETボタンクリック
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    /// <remarks>Get発行サンプル</remarks>
     private void webAPIGet_Click(object sender, EventArgs e)
     {
       try
@@ -35,6 +41,12 @@ namespace Client
       }
     }
 
+    /// <summary>
+    /// POSTボタンクリック
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    /// <remarks>POST発行サンプル</remarks>
     private void webAPIPost_Click(object sender, EventArgs e)
     {
       try
