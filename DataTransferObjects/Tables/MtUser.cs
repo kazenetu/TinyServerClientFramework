@@ -8,7 +8,7 @@ namespace DataTransferObjects.Tables
   /// <summary>
   /// ユーザーマスタ―
   /// </summary>
-  public class MtUser: TableBase
+  public class MtUser : TableBase
   {
     /// <summary>
     /// DBカラム名とプロパティのコレクション取得
@@ -16,7 +16,7 @@ namespace DataTransferObjects.Tables
     /// <returns>DBカラム名とプロパティのコレクション</returns>
     public override Dictionary<string, PropertyInfo> GetDBComlunProperyColection()
     {
-      var result= new Dictionary<string, PropertyInfo>();
+      var result = new Dictionary<string, PropertyInfo>();
 
       var classType = this.GetType();
       result.Add("USER_ID", classType.GetProperty("UserId"));
@@ -28,7 +28,6 @@ namespace DataTransferObjects.Tables
       result.Add("MOD_USER", classType.GetProperty("ModUser"));
       result.Add("MOD_DATE", classType.GetProperty("ModDate"));
       result.Add("MOD_VERSION", classType.GetProperty("ModVersion"));
-
       return result;
     }
 
@@ -50,12 +49,12 @@ namespace DataTransferObjects.Tables
     /// <summary>
     /// 削除フラグ
     /// </summary>
-    public bool DelFlag { set; get; }
+    public string DelFlag { set; get; }
 
     /// <summary>
     /// 登録ユーザー
     /// </summary>
-    public string EntryUser{ set; get; }
+    public string EntryUser { set; get; }
 
     /// <summary>
     /// 登録日時
@@ -76,5 +75,6 @@ namespace DataTransferObjects.Tables
     /// 更新バージョン
     /// </summary>
     public int ModVersion { set; get; }
+
   }
 }
