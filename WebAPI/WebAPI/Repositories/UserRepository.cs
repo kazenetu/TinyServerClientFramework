@@ -1,4 +1,5 @@
-﻿using DataTransferObjects.Tables;
+﻿using DataTransferObjects.BaseClasses;
+using DataTransferObjects.Tables;
 using System.Text;
 using WebAPIFramework.BaseClasses;
 using WebAPIFramework.Interfaces;
@@ -34,7 +35,7 @@ namespace WebAPI.Repositories
       sql.AppendLine("  @USER_ID");
       sql.AppendLine("  , @USER_NAME");
       sql.AppendLine("  , @PASSWORD");
-      sql.AppendLine("  , '0'");
+      sql.AppendLine("  , @DEL_FLAG");
       sql.AppendLine("  , @ENTRY_USER");
       sql.AppendLine("  , @ENTRY_DATE");
       sql.AppendLine("  , 1");
@@ -47,6 +48,7 @@ namespace WebAPI.Repositories
       db.AddParam("@PASSWORD", request.Password);
       db.AddParam("@ENTRY_USER", request.EntryUser);
       db.AddParam("@ENTRY_DATE", request.EntryDate);
+      db.AddParam("@DEL_FLAG", TableBase.StringFalse);
 
       // SQL発行
       var result = db.ExecuteNonQuery(sql.ToString());
