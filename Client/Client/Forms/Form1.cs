@@ -4,7 +4,7 @@ using DataTransferObjects.Request.User;
 using System;
 using System.Windows.Forms;
 
-namespace Client
+namespace Client.Forms
 {
   public partial class Form1 : FormBase
   {
