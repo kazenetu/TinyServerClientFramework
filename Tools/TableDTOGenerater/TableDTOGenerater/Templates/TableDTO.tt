@@ -39,7 +39,7 @@ if(tableRemarks.Any())
     /// <returns>DBカラム名とプロパティのコレクション</returns>
     public override Dictionary<string, PropertyInfo> GetDBComlunProperyColection()
     {
-      var result= new Dictionary<string, PropertyInfo>();
+      var result = new Dictionary<string, PropertyInfo>();
 
       var classType = this.GetType();
 <# 
