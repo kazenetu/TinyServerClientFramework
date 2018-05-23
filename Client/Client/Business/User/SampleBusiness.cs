@@ -1,7 +1,7 @@
 ﻿using ClientFramework.BaseClasses;
 using ClientFramework.ConnectLib;
-using DataTransferObjects.Request;
-using DataTransferObjects.Response;
+using DataTransferObjects.Request.User;
+using DataTransferObjects.Response.User;
 using static Client.Statics;
 
 namespace Client.Business

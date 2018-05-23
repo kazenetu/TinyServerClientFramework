@@ -2,7 +2,7 @@
 using DataTransferObjects.Tables;
 using System.Collections.Generic;
 
-namespace DataTransferObjects.Response
+namespace DataTransferObjects.Response.User
 {
   public class UsersResponse: ResponseBase<UsersResponse.UsersResponsePram>
   {

@@ -1,5 +1,5 @@
-using DataTransferObjects.Request;
-using DataTransferObjects.Response;
+using DataTransferObjects.Request.User;
+using DataTransferObjects.Response.User;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;

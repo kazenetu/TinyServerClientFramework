@@ -1,4 +1,4 @@
-﻿using DataTransferObjects.Request;
+﻿using DataTransferObjects.Request.User;
 using DataTransferObjects.Tables;
 using System.Collections.Generic;
 using System.Text;

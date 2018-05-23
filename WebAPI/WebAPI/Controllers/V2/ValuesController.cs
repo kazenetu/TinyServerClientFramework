@@ -1,4 +1,4 @@
-﻿using DataTransferObjects.Response;
+﻿using DataTransferObjects.Response.User;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebAPI.Transactions;

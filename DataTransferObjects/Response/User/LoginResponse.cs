@@ -1,6 +1,6 @@
 ﻿using DataTransferObjects.Response.BaseClasses;
 
-namespace DataTransferObjects.Response
+namespace DataTransferObjects.Response.User
 {
   public class LoginResponse : ResponseBase<LoginResponse.LoginResponseParam>
   {

@@ -1,5 +1,5 @@
 ﻿using Client.Business;
-using DataTransferObjects.Request;
+using DataTransferObjects.Request.User;
 using System;
 using System.Windows.Forms;
 

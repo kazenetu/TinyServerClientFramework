@@ -1,7 +1,7 @@
 ﻿using DataTransferObjects.Request.BaseClasses;
 using System.ComponentModel.DataAnnotations;
 
-namespace DataTransferObjects.Request
+namespace DataTransferObjects.Request.User
 {
   /// <summary>
   /// ユーザー追加リクエスト

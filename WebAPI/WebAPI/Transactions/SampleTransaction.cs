@@ -1,5 +1,5 @@
-﻿using DataTransferObjects.Request;
-using DataTransferObjects.Response;
+﻿using DataTransferObjects.Request.User;
+using DataTransferObjects.Response.User;
 using DataTransferObjects.Tables;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.Extensions.Logging;
