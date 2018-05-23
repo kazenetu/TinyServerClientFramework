@@ -88,6 +88,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\User\GetSample.cs" />
+    <Compile Include="Business\User\PostSample.cs" />
     <Compile Include="Business\User\SampleBusiness.cs" />
     <Compile Include="Statics.cs" />
     <Compile Include="Form1.cs">
