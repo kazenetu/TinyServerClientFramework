@@ -1,4 +1,4 @@
-﻿using Client.Business;
+﻿using Client.Business.User;
 using DataTransferObjects.Request.User;
 using System;
 using System.Windows.Forms;

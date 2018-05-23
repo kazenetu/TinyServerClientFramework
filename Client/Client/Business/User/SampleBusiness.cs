@@ -4,7 +4,7 @@ using DataTransferObjects.Request.User;
 using DataTransferObjects.Response.User;
 using static Client.Statics;
 
-namespace Client.Business
+namespace Client.Business.User
 {
   /// <summary>
   /// サンプルロジック
