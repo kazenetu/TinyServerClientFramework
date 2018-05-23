@@ -23,6 +23,7 @@ namespace Client.Business
 
       HttpConnectLib.StubWebAPIDelegate stub = null;
 #if STUB
+      // WebAPI回避　ダミーデータを返す
       stub = (url, data) =>
       {
         var response = data as LoginResponse;
@@ -46,6 +47,7 @@ namespace Client.Business
 
       HttpConnectLib.StubWebAPIDelegate stub = null;
 #if STUB
+      // WebAPI回避　ダミーデータを返す
       stub = (url, data) =>
       {
         var response = data as LoginResponse;
