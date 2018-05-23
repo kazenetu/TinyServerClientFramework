@@ -50,13 +50,14 @@ namespace TableDTOGenerater
 
       var sb = new StringBuilder();
       var basePath = tableDTOPath.Text;
+      var utf8Encoding = new UTF8Encoding(true);
       foreach (var item in dbDataInstance.GetTables(databaseCombo.Text))
       {
         var template = new Templates.TableDTO();
         template.Table = item;
 
         var filePath = $"{basePath}\\{item.TableName}.cs";
-        using (var tw = new StreamWriter(filePath))
+        using (var tw = new StreamWriter(filePath,false, utf8Encoding))
         {
           tw.Write(template.TransformText());
         }
