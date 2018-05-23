@@ -43,7 +43,6 @@ namespace Client.Business
     public LoginResponse PostSample(LoginRequest request)
     {
       var webAPIUrl = $"{WebAPIVersion}/values/login";
-      var param = new LoginRequest() { ID = "test", Password = "test" };
 
       HttpConnectLib.StubWebAPIDelegate stub = null;
 #if STUB
@@ -56,7 +55,7 @@ namespace Client.Business
       };
 #endif
 
-      return post<LoginResponse>(webAPIUrl, param, stub);
+      return post<LoginResponse>(webAPIUrl, request, stub);
     }
   }
 }
