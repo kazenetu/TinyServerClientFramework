@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.IO;
+using System.Text;
 using System.Windows.Forms;
 using TableDTOGenerater.Common;
 
@@ -15,6 +16,9 @@ namespace TableDTOGenerater
       var databaseNames = dbDataInstance.DatabaseNames;
       databaseNames.Insert(0, string.Empty);
       databaseCombo.DataSource = databaseNames;
+
+      // TableDTOのパスを設定
+      tableDTOPath.Text = Path.GetFullPath(@"../../../../..\DataTransferObjects\Tables");
     }
 
     private void databaseCombo_SelectedValueChanged(object sender, System.EventArgs e)
@@ -33,17 +37,48 @@ namespace TableDTOGenerater
 
     private void generate_Click(object sender, System.EventArgs e)
     {
+      if(databaseCombo.Text == string.Empty)
+      {
+        return;
+      }
+      if (tableDTOPath.Text == string.Empty)
+      {
+        return;
+      }
+
       var dbDataInstance = DatabaseData.GetInstance();
 
       var sb = new StringBuilder();
-      foreach(var item in dbDataInstance.GetTables(databaseCombo.Text))
+      var basePath = tableDTOPath.Text;
+      foreach (var item in dbDataInstance.GetTables(databaseCombo.Text))
       {
         var template = new Templates.TableDTO();
         template.Table = item;
-        sb.AppendLine(template.TransformText());
+
+        var filePath = $"{basePath}\\{item.TableName}.cs";
+        using (var tw = new StreamWriter(filePath))
+        {
+          tw.Write(template.TransformText());
+        }
+
+        sb.AppendLine($"{filePath }を書き出しました。");
+        textBox1.Text = sb.ToString();
       }
 
       textBox1.Text = sb.ToString();
+    }
+
+    private void refFolder_Click(object sender, System.EventArgs e)
+    {
+      if (tableDTOPath.Text != string.Empty)
+      {
+        folderBrowserDialog1.SelectedPath = tableDTOPath.Text;
+      }
+
+      if(folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+      {
+        tableDTOPath.Text = folderBrowserDialog1.SelectedPath;
+      }
     }
   }
 }

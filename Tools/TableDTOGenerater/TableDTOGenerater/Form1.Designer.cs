@@ -33,6 +33,10 @@
       this.connectionString = new System.Windows.Forms.TextBox();
       this.generate = new System.Windows.Forms.Button();
       this.textBox1 = new System.Windows.Forms.TextBox();
+      this.tableDTOPath = new System.Windows.Forms.TextBox();
+      this.label2 = new System.Windows.Forms.Label();
+      this.refFolder = new System.Windows.Forms.Button();
+      this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
       this.SuspendLayout();
       // 
       // label1
@@ -58,15 +62,15 @@
       // 
       this.connectionString.Location = new System.Drawing.Point(242, 13);
       this.connectionString.Name = "connectionString";
-      this.connectionString.Size = new System.Drawing.Size(449, 19);
+      this.connectionString.Size = new System.Drawing.Size(527, 19);
       this.connectionString.TabIndex = 2;
       this.connectionString.Validating += new System.ComponentModel.CancelEventHandler(this.connectionString_Validating);
       // 
       // generate
       // 
-      this.generate.Location = new System.Drawing.Point(714, 8);
+      this.generate.Location = new System.Drawing.Point(108, 77);
       this.generate.Name = "generate";
-      this.generate.Size = new System.Drawing.Size(75, 23);
+      this.generate.Size = new System.Drawing.Size(614, 23);
       this.generate.TabIndex = 3;
       this.generate.Text = "生成";
       this.generate.UseVisualStyleBackColor = true;
@@ -74,7 +78,7 @@
       // 
       // textBox1
       // 
-      this.textBox1.Location = new System.Drawing.Point(15, 51);
+      this.textBox1.Location = new System.Drawing.Point(12, 106);
       this.textBox1.Multiline = true;
       this.textBox1.Name = "textBox1";
       this.textBox1.ReadOnly = true;
@@ -82,11 +86,44 @@
       this.textBox1.Size = new System.Drawing.Size(757, 299);
       this.textBox1.TabIndex = 4;
       // 
+      // tableDTOPath
+      // 
+      this.tableDTOPath.Location = new System.Drawing.Point(129, 49);
+      this.tableDTOPath.Name = "tableDTOPath";
+      this.tableDTOPath.Size = new System.Drawing.Size(593, 19);
+      this.tableDTOPath.TabIndex = 5;
+      // 
+      // label2
+      // 
+      this.label2.AutoSize = true;
+      this.label2.Location = new System.Drawing.Point(13, 52);
+      this.label2.Name = "label2";
+      this.label2.Size = new System.Drawing.Size(110, 12);
+      this.label2.TabIndex = 6;
+      this.label2.Text = "TableDTOフォルダパス";
+      // 
+      // refFolder
+      // 
+      this.refFolder.Location = new System.Drawing.Point(728, 47);
+      this.refFolder.Name = "refFolder";
+      this.refFolder.Size = new System.Drawing.Size(41, 23);
+      this.refFolder.TabIndex = 7;
+      this.refFolder.Text = "...";
+      this.refFolder.UseVisualStyleBackColor = true;
+      this.refFolder.Click += new System.EventHandler(this.refFolder_Click);
+      // 
+      // folderBrowserDialog1
+      // 
+      this.folderBrowserDialog1.ShowNewFolderButton = false;
+      // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(800, 450);
+      this.Controls.Add(this.refFolder);
+      this.Controls.Add(this.label2);
+      this.Controls.Add(this.tableDTOPath);
       this.Controls.Add(this.textBox1);
       this.Controls.Add(this.generate);
       this.Controls.Add(this.connectionString);
@@ -106,6 +143,10 @@
     private System.Windows.Forms.TextBox connectionString;
     private System.Windows.Forms.Button generate;
     private System.Windows.Forms.TextBox textBox1;
+    private System.Windows.Forms.TextBox tableDTOPath;
+    private System.Windows.Forms.Label label2;
+    private System.Windows.Forms.Button refFolder;
+    private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
   }
 }
 
