@@ -117,7 +117,7 @@ namespace SourceGenerater.GeneraterEngine
       var addItenGroup = new StringBuilder();
       addItenGroup.AppendLine("  <ItemGroup>");
       addItenGroup.AppendLine(targetItemGroup);
-      addItenGroup.AppendLine("  <ItemGroup>");
+      addItenGroup.AppendLine("  </ItemGroup>");
       addItenGroup.Append("</Project>");
 
       var lastTagStartPos = projectValue.LastIndexOf("</Project>");
