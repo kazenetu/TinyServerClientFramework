@@ -1,0 +1,39 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+using ClientFramework.ConnectLib;
+using DataTransferObjects.Request.<#= BaseName #>;
+using DataTransferObjects.Response.<#= BaseName #>;
+using static Client.Statics;
+
+namespace Client.Business.<#= BaseName #>
+{
+  public partial class <#= BaseName #>Business
+  {
+    /// <summary>
+    /// <#= MethodName #>
+    /// </summary>
+    /// <param name="request">入力リクエスト</param>
+    /// <returns>結果</returns>
+    public <#= MethodName #>Response <#= MethodName #>(<#= MethodName #>Request request)
+    {
+      var webAPIUrl = $"{WebAPIVersion}/<#= BaseName.ToLower() #>/<#= MethodName.ToLower() #>";
+
+      HttpConnectLib.StubWebAPIDelegate stub = null;
+#if STUB
+      // WebAPI回避　ダミーデータを返す
+      stub = (url, data) =>
+      {
+        var response = data as <#= MethodName #>Response;
+        response.ErrorMessage = "";
+        response.ResponseData = new <#= MethodName #>Response.<#= MethodName #>ResponseParam() {};
+        return response;
+      };
+#endif
+
+      return post<<#= MethodName #>Response>(webAPIUrl, request, stub);
+    }
+  }
+}
