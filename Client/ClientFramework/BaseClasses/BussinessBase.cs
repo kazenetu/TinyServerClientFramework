@@ -38,7 +38,7 @@ namespace ClientFramework.BaseClasses
     protected Response post<Response>(string webAPIUrl, object param, StubWebAPIDelegate stubDelegate = null) where Response : new()
     {
       // 一回もトークンを取得していない場合は取得する
-      if (!existToken)
+      if (!existToken && stubDelegate == null)
       {
         HttpConnectLib.GetToken(getWebApiRootAddress(false));
         existToken = true;
