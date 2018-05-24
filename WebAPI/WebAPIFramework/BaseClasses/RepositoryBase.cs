@@ -40,6 +40,12 @@ namespace WebAPIFramework.BaseClasses
     /// </summary>
     public void Initialize()
     {
+      // 設定されていない場合は終了
+      if(config == null)
+      {
+        return;
+      }
+
       // DatabaseFactoryから永続化対象のDBインスタンスを取得
       db = DatabaseFactory.Create(config.Value);
     }
