@@ -24,7 +24,7 @@ namespace SourceGenerater.GeneraterEngine
       foreach(var t4 in targetT4)
       {
         t4.BaseName = baseName;
-        if (!createFile($"{clientRootPath}\\{t4.CreateFileName}",t4.TransformText()))
+        if (!CreateFile($"{clientRootPath}\\{t4.CreateFileName}",t4.TransformText()))
         {
           return false;
         }
@@ -41,7 +41,7 @@ namespace SourceGenerater.GeneraterEngine
       {
         t4.BaseName = baseName;
         t4.MethodName = methodName;
-        if (!createFile($"{clientRootPath}\\{t4.CreateFileName}", t4.TransformText()))
+        if (!CreateFile($"{clientRootPath}\\{t4.CreateFileName}", t4.TransformText()))
         {
           return false;
         }
@@ -56,7 +56,7 @@ namespace SourceGenerater.GeneraterEngine
     /// <param name="filePath">ファイル名を含むフルパス</param>
     /// <param name="transformText">T4で変換したソースコード</param>
     /// <returns>作成成否</returns>
-    private bool createFile(string filePath, string transformText)
+    private bool CreateFile(string filePath, string transformText)
     {
       var fullPath = Path.GetFullPath(filePath);
       if (File.Exists(fullPath))
