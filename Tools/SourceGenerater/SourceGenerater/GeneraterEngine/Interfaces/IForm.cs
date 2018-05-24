@@ -4,5 +4,6 @@
   {
     string BaseName { set; get; }
     string CreateFileName { get; }
+    string ProjectElement { get; }
   }
 }

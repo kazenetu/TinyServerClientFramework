@@ -17,5 +17,12 @@ namespace SourceGenerater.GeneraterEngine.Templates
         return $"Business\\{BaseName}\\{BaseName}Business.cs";
       }
     }
+    public string ProjectElement
+    {
+      get
+      {
+        return $"    <Compile Include=\"Business\\{BaseName}\\{BaseName}Business.cs\" />";
+      }
+    }
   }
 }

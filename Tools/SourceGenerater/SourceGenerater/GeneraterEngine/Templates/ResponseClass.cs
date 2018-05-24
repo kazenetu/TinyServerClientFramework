@@ -12,6 +12,13 @@ namespace SourceGenerater.GeneraterEngine.Templates
         return $"..\\..\\DataTransferObjects\\Response\\{BaseName}\\{MethodName}Response.cs";
       }
     }
+    public string ProjectElement
+    {
+      get
+      {
+        return string.Empty;
+      }
+    }
     public string MethodName { set; get; }
   }
 }

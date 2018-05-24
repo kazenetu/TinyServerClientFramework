@@ -1,4 +1,5 @@
 ﻿using SourceGenerater.GeneraterEngine.Interfaces;
+using System.Text;
 
 namespace SourceGenerater.GeneraterEngine.Templates
 {
@@ -10,6 +11,18 @@ namespace SourceGenerater.GeneraterEngine.Templates
       get
       {
         return $"Forms\\{BaseName}Form.cs";
+      }
+    }
+    public string ProjectElement
+    {
+      get
+      {
+        var sb = new StringBuilder();
+        sb.AppendLine($"    <Compile Include=\"Forms\\{BaseName}Form.cs\">");
+        sb.AppendLine($"      <SubType>Form</SubType>");
+        sb.AppendLine($"    </Compile>");
+
+        return sb.ToString();
       }
     }
   }
