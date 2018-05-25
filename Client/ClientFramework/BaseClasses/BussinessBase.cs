@@ -16,6 +16,11 @@ namespace ClientFramework.BaseClasses
     private static bool existToken = false;
 
     /// <summary>
+    /// WebAPIのベースURL
+    /// </summary>
+    public static string WebAPIBaseUrl { set; get; }
+
+    /// <summary>
     /// Getメソッド
     /// </summary>
     /// <typeparam name="Response">ResponseBaseを継承したDTOクラス</typeparam>
@@ -54,30 +59,12 @@ namespace ClientFramework.BaseClasses
     /// <returns>APIのルートURL</returns>
     private string getWebApiRootAddress(bool setApiPath)
     {
-      var url = string.Empty;
+      var url = WebAPIBaseUrl;
 
-      if (ApplicationDeployment.IsNetworkDeployed)
-      {
-        // ClickOnce実行時のURL
-        var updateLocation = ApplicationDeployment.CurrentDeployment.UpdateLocation;
-        url = string.Format("{0}://{1}:{2}/", updateLocation.Scheme, updateLocation.Host, updateLocation.Port);
-      }
-      else
+      if(url == string.Empty)
       {
         // デバッグ実行時のURL
-        var args = Environment.GetCommandLineArgs();
-        if (args.Length >= 2)
-        {
-          url = args[1];
-          if (url[url.Length - 1] != '/')
-          {
-            url += "/";
-          }
-        }
-        else
-        {
-          url = "http://localhost:5000/";
-        }
+        url = "http://localhost:5000/";
       }
 
       // APIパス追加
