@@ -18,7 +18,7 @@ namespace ClientFramework.BaseClasses
     /// <summary>
     /// WebAPIのベースURL
     /// </summary>
-    public static string WebAPIBaseUrl { set; get; }
+    public static string WebAPIBaseUrl { set; get; } = string.Empty;
 
     /// <summary>
     /// Getメソッド
