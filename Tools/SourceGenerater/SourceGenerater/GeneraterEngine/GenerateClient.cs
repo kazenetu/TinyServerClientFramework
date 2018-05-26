@@ -8,6 +8,8 @@ namespace SourceGenerater.GeneraterEngine
 {
   public class GenerateClient
   {
+    public ScreenData ScreenDatas { get; } = new ScreenData();
+
     /// <summary>
     /// FormクラスとBusinessクラスの自動生成
     /// </summary>
@@ -125,5 +127,19 @@ namespace SourceGenerater.GeneraterEngine
         sw.Write(projectValue);
       }
     }
+
+    #region  関連クラス
+
+    /// <summary>
+    /// 画面情報
+    /// </summary>
+    public class ScreenData
+    {
+      /// <summary>
+      /// 画面IDをキーとした機能IDリスト
+      /// </summary>
+      public Dictionary<string, List<string>> ScreenInfo { get; } = new Dictionary<string, List<string>>();
+    }
+    #endregion
   }
 }
