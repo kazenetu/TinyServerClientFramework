@@ -22,6 +22,11 @@ namespace TableDTOGenerater.Common
     /// </summary>
     private static readonly DatabaseData instance = new DatabaseData();
 
+    /// <summary>
+    /// 設定ファイル名
+    /// </summary>
+    private const string DBConnectionFileName = "TableDTOGenerater.json";
+
     #region インスタンスフィールド
 
     /// <summary>
@@ -71,7 +76,7 @@ namespace TableDTOGenerater.Common
     {
       var sw = new DataContractJsonSerializer(typeof(Dictionary<string, string>));
 
-      var path = Path.Combine(basePath, "names.txt");
+      var path = Path.Combine(basePath, DBConnectionFileName);
       using (var tw = new StreamWriter(path, false))
       {
         using (var ms = new MemoryStream()) // 書き込み用のストリームを用意し、
@@ -92,7 +97,7 @@ namespace TableDTOGenerater.Common
     /// <param name="basePath">実行ファイルのパス</param>
     public void LoadDatabaseConnectionStrings(string basePath)
     {
-      var path = Path.Combine(basePath, "names.txt");
+      var path = Path.Combine(basePath, DBConnectionFileName);
       if (!File.Exists(path))
       {
         return;
