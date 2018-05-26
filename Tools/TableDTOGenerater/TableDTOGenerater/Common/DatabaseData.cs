@@ -12,14 +12,24 @@ using static WebAPIFramework.DB.DatabaseFactory;
 namespace TableDTOGenerater.Common
 {
   /// <summary>
-  /// データベース情報 シングルトンクラス
+  /// データベース情報
   /// </summary>
+  /// <remarks>シングルトンクラス</remarks>
   public class DatabaseData
   {
+    /// <summary>
+    /// インスタンス
+    /// </summary>
     private static DatabaseData instance = new DatabaseData();
 
+    /// <summary>
+    /// DBごとの接続文字列
+    /// </summary>
     private Dictionary<string, string> dbInfos = new Dictionary<string, string>();
 
+    /// <summary>
+    /// DTO作成用DBインスタンス
+    /// </summary>
     IDatabase db = null;
 
     /// <summary>
