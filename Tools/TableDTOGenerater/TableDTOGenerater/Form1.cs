@@ -23,7 +23,29 @@ namespace TableDTOGenerater
       databaseCombo.DataSource = databaseNames;
 
       // TableDTOのパスを設定
-      tableDTOPath.Text = Path.GetFullPath(@"../../../../..\DataTransferObjects\Tables");
+      if (File.Exists("RootFolder.txt"))
+      {
+        var rootFolderName = string.Empty;
+        using(var sr = new StreamReader("RootFolder.txt"))
+        {
+          rootFolderName = sr.ReadLine();
+        }
+
+        // 設定ファイルに値が存在している場合は実行ファイルのフルパスからTabaleDTOのパスを設定する
+        if(rootFolderName.Trim() != string.Empty)
+        {
+          var rootFolder = Application.StartupPath;
+          var index = rootFolder.LastIndexOf(rootFolderName);
+          rootFolder = rootFolder.Substring(0, index + rootFolderName.Length);
+
+          tableDTOPath.Text = Path.Combine(rootFolder, @"DataTransferObjects\Tables");
+        }
+      }
+      if(tableDTOPath.Text.Trim() == string.Empty)
+      {
+        // 未設定の場合は相対パスを初期値に設定
+        tableDTOPath.Text = Path.GetFullPath(@"../../../../..\DataTransferObjects\Tables");
+      }
     }
 
     /// <summary>

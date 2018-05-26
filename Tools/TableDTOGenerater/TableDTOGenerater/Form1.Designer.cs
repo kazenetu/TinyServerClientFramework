@@ -42,7 +42,7 @@
       // label1
       // 
       this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(13, 13);
+      this.label1.Location = new System.Drawing.Point(13, 12);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(53, 12);
       this.label1.TabIndex = 0;
@@ -52,7 +52,7 @@
       // 
       this.databaseCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
       this.databaseCombo.FormattingEnabled = true;
-      this.databaseCombo.Location = new System.Drawing.Point(82, 13);
+      this.databaseCombo.Location = new System.Drawing.Point(82, 12);
       this.databaseCombo.Name = "databaseCombo";
       this.databaseCombo.Size = new System.Drawing.Size(144, 20);
       this.databaseCombo.TabIndex = 1;
@@ -60,7 +60,7 @@
       // 
       // connectionString
       // 
-      this.connectionString.Location = new System.Drawing.Point(242, 13);
+      this.connectionString.Location = new System.Drawing.Point(242, 12);
       this.connectionString.Name = "connectionString";
       this.connectionString.Size = new System.Drawing.Size(527, 19);
       this.connectionString.TabIndex = 2;
@@ -68,7 +68,7 @@
       // 
       // generate
       // 
-      this.generate.Location = new System.Drawing.Point(108, 77);
+      this.generate.Location = new System.Drawing.Point(108, 67);
       this.generate.Name = "generate";
       this.generate.Size = new System.Drawing.Size(614, 23);
       this.generate.TabIndex = 3;
@@ -78,17 +78,17 @@
       // 
       // textBox1
       // 
-      this.textBox1.Location = new System.Drawing.Point(12, 106);
+      this.textBox1.Location = new System.Drawing.Point(12, 105);
       this.textBox1.Multiline = true;
       this.textBox1.Name = "textBox1";
       this.textBox1.ReadOnly = true;
       this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-      this.textBox1.Size = new System.Drawing.Size(757, 299);
+      this.textBox1.Size = new System.Drawing.Size(757, 300);
       this.textBox1.TabIndex = 4;
       // 
       // tableDTOPath
       // 
-      this.tableDTOPath.Location = new System.Drawing.Point(129, 49);
+      this.tableDTOPath.Location = new System.Drawing.Point(129, 39);
       this.tableDTOPath.Name = "tableDTOPath";
       this.tableDTOPath.Size = new System.Drawing.Size(593, 19);
       this.tableDTOPath.TabIndex = 5;
@@ -96,7 +96,7 @@
       // label2
       // 
       this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(13, 52);
+      this.label2.Location = new System.Drawing.Point(13, 42);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(110, 12);
       this.label2.TabIndex = 6;
@@ -104,7 +104,7 @@
       // 
       // refFolder
       // 
-      this.refFolder.Location = new System.Drawing.Point(728, 47);
+      this.refFolder.Location = new System.Drawing.Point(728, 37);
       this.refFolder.Name = "refFolder";
       this.refFolder.Size = new System.Drawing.Size(41, 23);
       this.refFolder.TabIndex = 7;
