@@ -30,11 +30,15 @@
     {
       this.button1 = new System.Windows.Forms.Button();
       this.button2 = new System.Windows.Forms.Button();
+      this.RefRootFolder = new System.Windows.Forms.Button();
+      this.RootFolder = new System.Windows.Forms.TextBox();
+      this.label3 = new System.Windows.Forms.Label();
+      this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
       this.SuspendLayout();
       // 
       // button1
       // 
-      this.button1.Location = new System.Drawing.Point(324, 54);
+      this.button1.Location = new System.Drawing.Point(546, 53);
       this.button1.Name = "button1";
       this.button1.Size = new System.Drawing.Size(175, 28);
       this.button1.TabIndex = 0;
@@ -52,16 +56,50 @@
       this.button2.UseVisualStyleBackColor = true;
       this.button2.Click += new System.EventHandler(this.button2_Click);
       // 
+      // RefRootFolder
+      // 
+      this.RefRootFolder.Location = new System.Drawing.Point(680, 10);
+      this.RefRootFolder.Name = "RefRootFolder";
+      this.RefRootFolder.Size = new System.Drawing.Size(41, 23);
+      this.RefRootFolder.TabIndex = 10;
+      this.RefRootFolder.Text = "...";
+      this.RefRootFolder.UseVisualStyleBackColor = true;
+      this.RefRootFolder.Click += new System.EventHandler(this.RefTargetFolder_Click);
+      // 
+      // RootFolder
+      // 
+      this.RootFolder.Location = new System.Drawing.Point(86, 12);
+      this.RootFolder.Name = "RootFolder";
+      this.RootFolder.Size = new System.Drawing.Size(588, 19);
+      this.RootFolder.TabIndex = 9;
+      // 
+      // label3
+      // 
+      this.label3.AutoSize = true;
+      this.label3.Location = new System.Drawing.Point(12, 15);
+      this.label3.Name = "label3";
+      this.label3.Size = new System.Drawing.Size(68, 12);
+      this.label3.TabIndex = 8;
+      this.label3.Text = "ルートフォルダ";
+      // 
+      // folderBrowserDialog1
+      // 
+      this.folderBrowserDialog1.ShowNewFolderButton = false;
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(570, 364);
+      this.ClientSize = new System.Drawing.Size(783, 455);
+      this.Controls.Add(this.RefRootFolder);
+      this.Controls.Add(this.RootFolder);
+      this.Controls.Add(this.label3);
       this.Controls.Add(this.button2);
       this.Controls.Add(this.button1);
       this.Name = "MainForm";
       this.Text = "Form1";
       this.ResumeLayout(false);
+      this.PerformLayout();
 
     }
 
@@ -69,6 +107,10 @@
 
     private System.Windows.Forms.Button button1;
     private System.Windows.Forms.Button button2;
+    private System.Windows.Forms.Button RefRootFolder;
+    private System.Windows.Forms.TextBox RootFolder;
+    private System.Windows.Forms.Label label3;
+    private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
   }
 }
 
