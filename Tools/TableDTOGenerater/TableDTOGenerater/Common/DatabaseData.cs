@@ -48,7 +48,7 @@ namespace TableDTOGenerater.Common
     {
       dbInfos.Add(nameof(DatabaseTypes.sqlserver).ToUpper(), @"Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True;");
       dbInfos.Add(nameof(DatabaseTypes.postgres).ToUpper(), @"Server=localhost;Port=5432;User Id=test;Password=test;Database=test;");
-      dbInfos.Add(nameof(DatabaseTypes.sqlite).ToUpper(), @"..\..\..\..\..\WebAPI\WebAPI\Resource/Test.db");
+      dbInfos.Add(nameof(DatabaseTypes.sqlite).ToUpper(), @"..\..\..\..\..\WebAPI\WebAPI\Resource\Test.db");
     }
 
     #region プロパティ
