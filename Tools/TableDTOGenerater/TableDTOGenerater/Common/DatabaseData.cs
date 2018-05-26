@@ -22,6 +22,8 @@ namespace TableDTOGenerater.Common
     /// </summary>
     private static DatabaseData instance = new DatabaseData();
 
+    #region インスタンスフィールド
+
     /// <summary>
     /// DBごとの接続文字列
     /// </summary>
@@ -31,6 +33,8 @@ namespace TableDTOGenerater.Common
     /// DTO作成用DBインスタンス
     /// </summary>
     IDatabase db = null;
+
+    #endregion
 
     /// <summary>
     /// コンストラクタ
@@ -42,6 +46,8 @@ namespace TableDTOGenerater.Common
       dbInfos.Add(nameof(DatabaseTypes.sqlite).ToUpper(), @"..\..\..\..\..\WebAPI\WebAPI\Resource/Test.db");
     }
 
+    #region プロパティ
+
     /// <summary>
     /// DB名リストを取得
     /// </summary>
@@ -52,6 +58,10 @@ namespace TableDTOGenerater.Common
         return dbInfos.Keys.ToList();
       }
     }
+
+    #endregion
+
+    #region 設定ファイル保存・読み込み
 
     /// <summary>
     /// DBごとの接続文字列を保存
@@ -100,6 +110,8 @@ namespace TableDTOGenerater.Common
       }
     }
 
+    #endregion
+
     /// <summary>
     /// 接続文字列設定
     /// </summary>
@@ -126,6 +138,8 @@ namespace TableDTOGenerater.Common
       }
       return string.Empty;
     }
+
+    #region テーブル情報を取得
 
     /// <summary>
     /// テーブル・カラム情報を取得
@@ -385,6 +399,8 @@ namespace TableDTOGenerater.Common
       return result;
     }
 
+    #endregion
+
     /// <summary>
     /// インスタンス取得
     /// </summary>
@@ -393,6 +409,8 @@ namespace TableDTOGenerater.Common
     {
       return instance;
     }
+
+    #region テーブル情報用クラス群
 
     /// <summary>
     /// テーブル情報
@@ -507,6 +525,8 @@ namespace TableDTOGenerater.Common
         return $" > {ColumnName}[{ColumnOriginalName}] : {ColumnType.Name} : {ColumnLogicalName}";
       }
     }
+
+    #endregion
 
   }
 }
