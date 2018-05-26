@@ -20,7 +20,7 @@ namespace TableDTOGenerater
       // Database名を取得し、コンボボックスに設定
       var databaseNames = dbDataInstance.DatabaseNames;
       databaseNames.Insert(0, string.Empty);
-      databaseCombo.DataSource = databaseNames;
+      DatabaseCombo.DataSource = databaseNames;
 
       // TableDTOのパスを設定
       if (File.Exists("RootFolder.txt"))
@@ -38,13 +38,13 @@ namespace TableDTOGenerater
           var index = rootFolder.LastIndexOf(rootFolderName);
           rootFolder = rootFolder.Substring(0, index + rootFolderName.Length);
 
-          tableDTOPath.Text = Path.Combine(rootFolder, @"DataTransferObjects\Tables");
+          TableDTOPath.Text = Path.Combine(rootFolder, @"DataTransferObjects\Tables");
         }
       }
-      if(tableDTOPath.Text.Trim() == string.Empty)
+      if(TableDTOPath.Text.Trim() == string.Empty)
       {
         // 未設定の場合は相対パスを初期値に設定
-        tableDTOPath.Text = Path.GetFullPath(@"../../../../..\DataTransferObjects\Tables");
+        TableDTOPath.Text = Path.GetFullPath(@"../../../../..\DataTransferObjects\Tables");
       }
     }
 
@@ -53,13 +53,13 @@ namespace TableDTOGenerater
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void databaseCombo_SelectedValueChanged(object sender, System.EventArgs e)
+    private void DatabaseCombo_SelectedValueChanged(object sender, System.EventArgs e)
     {
       // dbDataインスタンス取得
       var dbDataInstance = DatabaseData.GetInstance();
 
       // 選択されたDatabaseの接続文字列を設定
-      connectionString.Text = dbDataInstance.GetConnectString(databaseCombo.Text);
+      ConnectionString.Text = dbDataInstance.GetConnectString(DatabaseCombo.Text);
     }
 
     /// <summary>
@@ -67,13 +67,13 @@ namespace TableDTOGenerater
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void connectionString_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+    private void ConnectionString_Validating(object sender, System.ComponentModel.CancelEventArgs e)
     {
       // dbDataインスタンス取得
       var dbDataInstance = DatabaseData.GetInstance();
 
       // 選択中のDatabaseの接続文字列を入力値で反映
-      dbDataInstance.SetConnectString(databaseCombo.Text, connectionString.Text);
+      dbDataInstance.SetConnectString(DatabaseCombo.Text, ConnectionString.Text);
     }
 
     /// <summary>
@@ -81,22 +81,22 @@ namespace TableDTOGenerater
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void generate_Click(object sender, System.EventArgs e)
+    private void Generate_Click(object sender, System.EventArgs e)
     {
       // Database未選択の場合は終了
-      if(databaseCombo.Text == string.Empty)
+      if(DatabaseCombo.Text == string.Empty)
       {
         return;
       }
 
       // 出力先未設定の場合は終了
-      if (tableDTOPath.Text == string.Empty)
+      if (TableDTOPath.Text == string.Empty)
       {
         return;
       }
 
       // TableDTOのベースパスを取得
-      var basePath = tableDTOPath.Text;
+      var basePath = TableDTOPath.Text;
 
       // 文字コードをUTF8に設定
       var utf8Encoding = new UTF8Encoding(true);
@@ -105,11 +105,13 @@ namespace TableDTOGenerater
       var dbDataInstance = DatabaseData.GetInstance();
 
       var sb = new StringBuilder();
-      foreach (var item in dbDataInstance.GetTables(databaseCombo.Text))
+      foreach (var item in dbDataInstance.GetTables(DatabaseCombo.Text))
       {
         // テーブル単位でcsファイルを作成
-        var template = new Templates.TableDTO();
-        template.Table = item;
+        var template = new Templates.TableDTO
+        {
+          Table = item
+        };
 
         var filePath = $"{basePath}\\{item.TableName}.cs";
         using (var tw = new StreamWriter(filePath,false, utf8Encoding))
@@ -123,7 +125,7 @@ namespace TableDTOGenerater
       }
 
       // 書き出し結果をテキストボックスに表示
-      textBox1.Text = sb.ToString();
+      CreateResult.Text = sb.ToString();
     }
 
     /// <summary>
@@ -131,18 +133,18 @@ namespace TableDTOGenerater
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void refFolder_Click(object sender, System.EventArgs e)
+    private void RefFolder_Click(object sender, System.EventArgs e)
     {
       // 出力先が指定されている場合はフォルダ指定ダイアログに設定
-      if (tableDTOPath.Text != string.Empty)
+      if (TableDTOPath.Text != string.Empty)
       {
-        folderBrowserDialog1.SelectedPath = tableDTOPath.Text;
+        folderBrowserDialog1.SelectedPath = TableDTOPath.Text;
       }
 
       // OKボタンクリックの場合は出力先を設定
       if(folderBrowserDialog1.ShowDialog() == DialogResult.OK)
       {
-        tableDTOPath.Text = folderBrowserDialog1.SelectedPath;
+        TableDTOPath.Text = folderBrowserDialog1.SelectedPath;
       }
     }
   }

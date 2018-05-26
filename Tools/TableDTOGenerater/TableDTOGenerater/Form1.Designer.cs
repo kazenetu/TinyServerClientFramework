@@ -29,11 +29,11 @@
     private void InitializeComponent()
     {
       this.label1 = new System.Windows.Forms.Label();
-      this.databaseCombo = new System.Windows.Forms.ComboBox();
-      this.connectionString = new System.Windows.Forms.TextBox();
-      this.generate = new System.Windows.Forms.Button();
-      this.textBox1 = new System.Windows.Forms.TextBox();
-      this.tableDTOPath = new System.Windows.Forms.TextBox();
+      this.DatabaseCombo = new System.Windows.Forms.ComboBox();
+      this.ConnectionString = new System.Windows.Forms.TextBox();
+      this.Generate = new System.Windows.Forms.Button();
+      this.CreateResult = new System.Windows.Forms.TextBox();
+      this.TableDTOPath = new System.Windows.Forms.TextBox();
       this.label2 = new System.Windows.Forms.Label();
       this.refFolder = new System.Windows.Forms.Button();
       this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
@@ -48,50 +48,50 @@
       this.label1.TabIndex = 0;
       this.label1.Text = "Database";
       // 
-      // databaseCombo
+      // DatabaseCombo
       // 
-      this.databaseCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-      this.databaseCombo.FormattingEnabled = true;
-      this.databaseCombo.Location = new System.Drawing.Point(82, 12);
-      this.databaseCombo.Name = "databaseCombo";
-      this.databaseCombo.Size = new System.Drawing.Size(144, 20);
-      this.databaseCombo.TabIndex = 1;
-      this.databaseCombo.SelectedValueChanged += new System.EventHandler(this.databaseCombo_SelectedValueChanged);
+      this.DatabaseCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.DatabaseCombo.FormattingEnabled = true;
+      this.DatabaseCombo.Location = new System.Drawing.Point(82, 12);
+      this.DatabaseCombo.Name = "DatabaseCombo";
+      this.DatabaseCombo.Size = new System.Drawing.Size(144, 20);
+      this.DatabaseCombo.TabIndex = 1;
+      this.DatabaseCombo.SelectedValueChanged += new System.EventHandler(this.DatabaseCombo_SelectedValueChanged);
       // 
-      // connectionString
+      // ConnectionString
       // 
-      this.connectionString.Location = new System.Drawing.Point(242, 12);
-      this.connectionString.Name = "connectionString";
-      this.connectionString.Size = new System.Drawing.Size(527, 19);
-      this.connectionString.TabIndex = 2;
-      this.connectionString.Validating += new System.ComponentModel.CancelEventHandler(this.connectionString_Validating);
+      this.ConnectionString.Location = new System.Drawing.Point(242, 12);
+      this.ConnectionString.Name = "ConnectionString";
+      this.ConnectionString.Size = new System.Drawing.Size(527, 19);
+      this.ConnectionString.TabIndex = 2;
+      this.ConnectionString.Validating += new System.ComponentModel.CancelEventHandler(this.ConnectionString_Validating);
       // 
-      // generate
+      // Generate
       // 
-      this.generate.Location = new System.Drawing.Point(108, 67);
-      this.generate.Name = "generate";
-      this.generate.Size = new System.Drawing.Size(614, 23);
-      this.generate.TabIndex = 3;
-      this.generate.Text = "生成";
-      this.generate.UseVisualStyleBackColor = true;
-      this.generate.Click += new System.EventHandler(this.generate_Click);
+      this.Generate.Location = new System.Drawing.Point(108, 67);
+      this.Generate.Name = "Generate";
+      this.Generate.Size = new System.Drawing.Size(614, 23);
+      this.Generate.TabIndex = 3;
+      this.Generate.Text = "生成";
+      this.Generate.UseVisualStyleBackColor = true;
+      this.Generate.Click += new System.EventHandler(this.Generate_Click);
       // 
-      // textBox1
+      // CreateResult
       // 
-      this.textBox1.Location = new System.Drawing.Point(12, 105);
-      this.textBox1.Multiline = true;
-      this.textBox1.Name = "textBox1";
-      this.textBox1.ReadOnly = true;
-      this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-      this.textBox1.Size = new System.Drawing.Size(757, 300);
-      this.textBox1.TabIndex = 4;
+      this.CreateResult.Location = new System.Drawing.Point(12, 105);
+      this.CreateResult.Multiline = true;
+      this.CreateResult.Name = "CreateResult";
+      this.CreateResult.ReadOnly = true;
+      this.CreateResult.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+      this.CreateResult.Size = new System.Drawing.Size(757, 300);
+      this.CreateResult.TabIndex = 4;
       // 
-      // tableDTOPath
+      // TableDTOPath
       // 
-      this.tableDTOPath.Location = new System.Drawing.Point(129, 39);
-      this.tableDTOPath.Name = "tableDTOPath";
-      this.tableDTOPath.Size = new System.Drawing.Size(593, 19);
-      this.tableDTOPath.TabIndex = 5;
+      this.TableDTOPath.Location = new System.Drawing.Point(129, 39);
+      this.TableDTOPath.Name = "TableDTOPath";
+      this.TableDTOPath.Size = new System.Drawing.Size(593, 19);
+      this.TableDTOPath.TabIndex = 5;
       // 
       // label2
       // 
@@ -110,7 +110,7 @@
       this.refFolder.TabIndex = 7;
       this.refFolder.Text = "...";
       this.refFolder.UseVisualStyleBackColor = true;
-      this.refFolder.Click += new System.EventHandler(this.refFolder_Click);
+      this.refFolder.Click += new System.EventHandler(this.RefFolder_Click);
       // 
       // folderBrowserDialog1
       // 
@@ -123,11 +123,11 @@
       this.ClientSize = new System.Drawing.Size(800, 450);
       this.Controls.Add(this.refFolder);
       this.Controls.Add(this.label2);
-      this.Controls.Add(this.tableDTOPath);
-      this.Controls.Add(this.textBox1);
-      this.Controls.Add(this.generate);
-      this.Controls.Add(this.connectionString);
-      this.Controls.Add(this.databaseCombo);
+      this.Controls.Add(this.TableDTOPath);
+      this.Controls.Add(this.CreateResult);
+      this.Controls.Add(this.Generate);
+      this.Controls.Add(this.ConnectionString);
+      this.Controls.Add(this.DatabaseCombo);
       this.Controls.Add(this.label1);
       this.Name = "Form1";
       this.Text = "Form1";
@@ -139,11 +139,11 @@
     #endregion
 
     private System.Windows.Forms.Label label1;
-    private System.Windows.Forms.ComboBox databaseCombo;
-    private System.Windows.Forms.TextBox connectionString;
-    private System.Windows.Forms.Button generate;
-    private System.Windows.Forms.TextBox textBox1;
-    private System.Windows.Forms.TextBox tableDTOPath;
+    private System.Windows.Forms.ComboBox DatabaseCombo;
+    private System.Windows.Forms.TextBox ConnectionString;
+    private System.Windows.Forms.Button Generate;
+    private System.Windows.Forms.TextBox CreateResult;
+    private System.Windows.Forms.TextBox TableDTOPath;
     private System.Windows.Forms.Label label2;
     private System.Windows.Forms.Button refFolder;
     private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;

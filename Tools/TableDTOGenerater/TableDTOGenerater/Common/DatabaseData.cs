@@ -20,7 +20,7 @@ namespace TableDTOGenerater.Common
     /// <summary>
     /// インスタンス
     /// </summary>
-    private static DatabaseData instance = new DatabaseData();
+    private static readonly DatabaseData instance = new DatabaseData();
 
     #region インスタンスフィールド
 
@@ -195,8 +195,8 @@ namespace TableDTOGenerater.Common
       foreach (DataRow row in dbResult.Rows)
       {
         var originalTableName = row["tname"].ToString();
-        var tableName = snakeCase2CamelCase(originalTableName);
-        var logicalName = getTableLogicalName(originalTableName, dbName);
+        var tableName = SnakeCase2CamelCase(originalTableName);
+        var logicalName = GetTableLogicalName(originalTableName, dbName);
 
         var tableData = new TableData() { TableName = tableName, TableOriginalName = originalTableName, TableLogicalName = logicalName };
 
@@ -216,7 +216,7 @@ namespace TableDTOGenerater.Common
     /// <param name="dbName">DB名</param>
     /// <returns>テーブル論理名</returns>
     /// <remarks>未設定・SQLiteの場合は物理テーブル名</remarks>
-    private string getTableLogicalName(string tableName, string dbName)
+    private string GetTableLogicalName(string tableName, string dbName)
     {
       var sql = new StringBuilder();
 
@@ -276,7 +276,7 @@ namespace TableDTOGenerater.Common
     {
       var result = new List<TableColumnData>();
 
-      var colmunLogicalNames = getLogicalColmunName(tableName, dbName);
+      var colmunLogicalNames = GetLogicalColmunName(tableName, dbName);
 
       var sql = $"select * from {tableName};";
 
@@ -289,7 +289,7 @@ namespace TableDTOGenerater.Common
       var dbResult = db.Fill(sql);
       foreach (DataColumn column in dbResult.Columns)
       {
-        var columnName = snakeCase2CamelCase(column.ColumnName);
+        var columnName = SnakeCase2CamelCase(column.ColumnName);
         var dataType = column.DataType;
         var columnLogicalName = columnName;
         if (colmunLogicalNames.ContainsKey(column.ColumnName))
@@ -308,7 +308,7 @@ namespace TableDTOGenerater.Common
     /// </summary>
     /// <param name="tableName">テーブル名</param>
     /// <returns>物理カラムと論理カラム名のコレクション</returns>
-    private Dictionary<string, string> getLogicalColmunName(string tableName, string dbName)
+    private Dictionary<string, string> GetLogicalColmunName(string tableName, string dbName)
     {
       var result = new Dictionary<string, string>();
 
@@ -375,7 +375,7 @@ namespace TableDTOGenerater.Common
     /// </summary>
     /// <param name="srcSnakeCase">スネークケースの文字列</param>
     /// <returns>アッパーキャメルケース文字列</returns>
-    private string snakeCase2CamelCase(string srcSnakeCase)
+    private string SnakeCase2CamelCase(string srcSnakeCase)
     {
       if (srcSnakeCase.Length <= 0) return string.Empty;
 

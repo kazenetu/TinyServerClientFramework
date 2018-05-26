@@ -16,18 +16,18 @@ namespace TableDTOGenerater.Templates
     /// クラス名(テーブル名) 取得
     /// </summary>
     /// <returns>クラス名(テーブル名)</returns>
-    private string getTableName()
+    private string GetTableName()
     {
-      return getSplitStrings(Table.TableLogicalName).First();
+      return GetSplitStrings(Table.TableLogicalName).First();
     }
 
     /// <summary>
     /// クラス(テーブル)備考 取得
     /// </summary>
     /// <returns>クラス(テーブル)備考</returns>
-    private List<string> getTableRemarks()
+    private List<string> GetTableRemarks()
     {
-      return getSplitStrings(Table.TableLogicalName).Where((data) => data != getTableName()).ToList();
+      return GetSplitStrings(Table.TableLogicalName).Where((data) => data != GetTableName()).ToList();
     }
 
     /// <summary>
@@ -35,9 +35,9 @@ namespace TableDTOGenerater.Templates
     /// </summary>
     /// <param name="columnLogicalName">カラム論理名</param>
     /// <returns>プロパティ名(カラム名)</returns>
-    private string getColumnName(string columnLogicalName)
+    private string GetColumnName(string columnLogicalName)
     {
-      return getSplitStrings(columnLogicalName).First();
+      return GetSplitStrings(columnLogicalName).First();
     }
 
     /// <summary>
@@ -45,9 +45,9 @@ namespace TableDTOGenerater.Templates
     /// </summary>
     /// <param name="columnLogicalName">カラム論理名</param>
     /// <returns>プロパティ(カラム)備考</returns>
-    private List<string> getColumnRemarks(string columnLogicalName)
+    private List<string> GetColumnRemarks(string columnLogicalName)
     {
-      return getSplitStrings(columnLogicalName).Where((data) => data != getColumnName(columnLogicalName)).ToList();
+      return GetSplitStrings(columnLogicalName).Where((data) => data != GetColumnName(columnLogicalName)).ToList();
     }
 
     /// <summary>
@@ -55,7 +55,7 @@ namespace TableDTOGenerater.Templates
     /// </summary>
     /// <param name="src">改行情報も含めた文字列</param>
     /// <returns></returns>
-    private string[] getSplitStrings(string src)
+    private string[] GetSplitStrings(string src)
     {
       var srcData = src.Replace("\t", Environment.NewLine);
       return srcData.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
