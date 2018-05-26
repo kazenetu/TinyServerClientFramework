@@ -1,5 +1,6 @@
 ﻿using SourceGenerater.GeneraterEngine;
 using System;
+using System.Linq;
 using System.IO;
 using System.Windows.Forms;
 
@@ -7,6 +8,8 @@ namespace SourceGenerater
 {
   public partial class MainForm : Form
   {
+    private GenerateClient generater = new GenerateClient();
+
     public MainForm()
     {
       InitializeComponent();
@@ -81,6 +84,20 @@ namespace SourceGenerater
       else
       {
         MessageBox.Show("NG");
+      }
+    }
+
+    private void ScreenID_Leave(object sender, EventArgs e)
+    {
+      if (!generater.ScreenDatas.ScreenInfo.ContainsKey(ScreenID.Text))
+      {
+        var screenID = ScreenID.Text;
+        generater.ScreenDatas.ScreenInfo.Add(screenID, new System.Collections.Generic.List<string>());
+
+        ScreenID.DataSource = generater.ScreenDatas.ScreenInfo.Keys.ToList();
+        ScreenID.Text = string.Empty;
+
+        ScreenID.SelectedText = screenID;
       }
     }
   }

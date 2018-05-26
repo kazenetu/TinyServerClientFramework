@@ -96,6 +96,7 @@
       this.ScreenID.Name = "ScreenID";
       this.ScreenID.Size = new System.Drawing.Size(454, 20);
       this.ScreenID.TabIndex = 11;
+      this.ScreenID.Leave += new System.EventHandler(this.ScreenID_Leave);
       // 
       // label1
       // 
