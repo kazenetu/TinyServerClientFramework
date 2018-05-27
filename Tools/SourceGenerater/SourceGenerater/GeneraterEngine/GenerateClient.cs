@@ -10,6 +10,8 @@ namespace SourceGenerater.GeneraterEngine
   {
     public ScreenData ScreenDatas { get; } = new ScreenData();
 
+    public List<FileData> FileDatas { get; } = new List<FileData>();
+
     /// <summary>
     /// FormクラスとBusinessクラスの自動生成
     /// </summary>
@@ -18,19 +20,31 @@ namespace SourceGenerater.GeneraterEngine
     /// <returns>生成成否</returns>
     public bool Generate(string clientRootPath,string baseName)
     {
+      // ファイル作成情報をクリア
+      FileDatas.Clear();
+
       var targetT4 = new List<IForm>() { new Form(), new FormDesigner(),new Business() };
 
+      // プロジェクトファイル追加用StringBuilder生成
       var itemGroups = new StringBuilder();
+
       foreach (var t4 in targetT4)
       {
+        // パラメータ設定
         t4.BaseName = baseName;
-        if (!CreateFile($"{clientRootPath}\\{t4.CreateFileName}",t4.TransformText()))
-        {
-          return false;
-        }
+
+        // ファイル生成
+        var filePath = $"{clientRootPath}\\{t4.CreateFileName}";
+        var created = CreateFile(filePath, t4.TransformText());
+
+        // ファイル作成情報に追加
+        FileDatas.Add(new FileData(created, filePath));
+
+        // プロジェクトファイル追加
         itemGroups.Append(t4.ProjectElement);
       }
 
+      // プロジェクトファイルにForm・Form.Designer・Businessを追加
       AddCSProject(clientRootPath, itemGroups.ToString());
 
       return true;
@@ -45,20 +59,32 @@ namespace SourceGenerater.GeneraterEngine
     /// <returns>生成成否</returns>
     public bool AddBusinessMethod(string clientRootPath, string baseName, string methodName)
     {
+      // ファイル作成情報をクリア
+      FileDatas.Clear();
+
       var targetT4 = new List<IMethod>() { new BusinessMethod(), new Request(), new Response() };
 
+      // プロジェクトファイル追加用StringBuilder生成
       var itemGroups = new StringBuilder();
+
       foreach (var t4 in targetT4)
       {
+        // パラメータ設定
         t4.BaseName = baseName;
         t4.MethodName = methodName;
-        if (!CreateFile($"{clientRootPath}\\{t4.CreateFileName}", t4.TransformText()))
-        {
-          return false;
-        }
+
+        // ファイル生成
+        var filePath = $"{clientRootPath}\\{t4.CreateFileName}";
+        var created = CreateFile(filePath, t4.TransformText());
+
+        // ファイル作成情報に追加
+        FileDatas.Add(new FileData(created, filePath));
+
+        // プロジェクトファイル追加
         itemGroups.Append(t4.ProjectElement);
       }
 
+      // プロジェクトファイルにForm・Form.Designer・Businessを追加
       AddCSProject(clientRootPath, itemGroups.ToString());
 
       return true;
@@ -139,6 +165,34 @@ namespace SourceGenerater.GeneraterEngine
       /// 画面IDをキーとした機能IDリスト
       /// </summary>
       public Dictionary<string, List<string>> ScreenInfo { get; } = new Dictionary<string, List<string>>();
+    }
+
+    public class FileData
+    {
+      public bool IsCreated { get; }
+      public string ClassName { get; }
+      public string Remarks { get; }
+
+      /// <summary>
+      /// コンストラクタ
+      /// </summary>
+      /// <param name="isCreated"></param>
+      /// <param name="flieName"></param>
+      public FileData(bool isCreated,string filePath)
+      {
+        IsCreated = isCreated;
+        ClassName = Path.GetFileName(filePath).Replace(".cs",string.Empty);
+
+        if (isCreated)
+        {
+          Remarks = "ファイルを作成しました。";
+        }
+        else
+        {
+          Remarks = "ファイルが存在するため作成しませんでした。";
+        }
+        Remarks += filePath;
+      }
     }
     #endregion
   }
