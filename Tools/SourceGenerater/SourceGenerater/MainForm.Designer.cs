@@ -82,6 +82,7 @@
       this.ScreenID.Name = "ScreenID";
       this.ScreenID.Size = new System.Drawing.Size(504, 20);
       this.ScreenID.TabIndex = 11;
+      this.ScreenID.SelectedIndexChanged += new System.EventHandler(this.ScreenID_Leave);
       this.ScreenID.Leave += new System.EventHandler(this.ScreenID_Leave);
       // 
       // ScreenIDName
@@ -135,6 +136,7 @@
       this.FunctionID.Name = "FunctionID";
       this.FunctionID.Size = new System.Drawing.Size(504, 20);
       this.FunctionID.TabIndex = 16;
+      this.FunctionID.SelectedIndexChanged += new System.EventHandler(this.FunctionID_Leave);
       this.FunctionID.Leave += new System.EventHandler(this.FunctionID_Leave);
       // 
       // IsCreated

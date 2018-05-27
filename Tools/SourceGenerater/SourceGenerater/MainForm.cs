@@ -89,8 +89,9 @@ namespace SourceGenerater
       }
 
       // 機能IDの設定
-      FunctionID.DataSource = generater.ScreenDatas.ScreenInfo[ScreenID.Text];
-      FunctionID.Text = string.Empty;
+      FunctionID.Items.Clear();
+      FunctionID.Items.AddRange(generater.ScreenDatas.ScreenInfo[ScreenID.Text].ToArray());
+      FunctionID.Text = generater.ScreenDatas.ScreenInfo[ScreenID.Text].FirstOrDefault();
     }
 
     /// <summary>
@@ -151,7 +152,8 @@ namespace SourceGenerater
       {
         generater.ScreenDatas.ScreenInfo[screenID].Add(functionID);
 
-        FunctionID.DataSource = generater.ScreenDatas.ScreenInfo[screenID];
+        FunctionID.Items.Clear();
+        FunctionID.Items.AddRange(generater.ScreenDatas.ScreenInfo[ScreenID.Text].ToArray());
         FunctionID.Text = string.Empty;
 
         FunctionID.SelectedText = functionID;
