@@ -3,15 +3,79 @@ using SourceGenerater.GeneraterEngine.Templates;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Serialization.Json;
 using System.Text;
 
 namespace SourceGenerater.GeneraterEngine
 {
   public class GenerateClient
   {
+    /// <summary>
+    /// 設定ファイル名
+    /// </summary>
+    private const string SettingFileName = "GenerateClient.json";
+
     public ScreenData ScreenDatas { get; } = new ScreenData();
 
     public List<FileData> FileDatas { get; } = new List<FileData>();
+
+    #region 保存と読み込み
+
+    /// <summary>
+    /// 設定ファイルを保存
+    /// </summary>
+    /// <param name="basePath">実行ファイルのパス</param>
+    public void Save(string basePath)
+    {
+      var sw = new DataContractJsonSerializer(typeof(ScreenData));
+
+      var path = Path.Combine(basePath, SettingFileName);
+      using (var tw = new StreamWriter(path, false))
+      {
+        using (var ms = new MemoryStream()) // 書き込み用のストリームを用意し、
+        {
+          // シリアライザーのWriteObjectメソッドにストリームと対象オブジェクトを渡す
+          sw.WriteObject(ms, ScreenDatas);
+
+          var output = Encoding.UTF8.GetString(ms.ToArray()); // 既定ではUTF-8で出力
+
+          tw.Write(output);
+        }
+      }
+    }
+
+    /// <summary>
+    /// 設定ファイルの読み込み
+    /// </summary>
+    /// <param name="basePath">実行ファイルのパス</param>
+    public void Load(string basePath)
+    {
+      var path = Path.Combine(basePath, SettingFileName);
+      if (!File.Exists(path))
+      {
+        return;
+      }
+      using (var tr = new StreamReader(path, false))
+      {
+        // 一旦クリア
+        ScreenDatas.ScreenInfo.Clear();
+
+        var sw = new DataContractJsonSerializer(typeof(ScreenData));
+        using (var ms = new MemoryStream(Encoding.UTF8.GetBytes(tr.ReadToEnd()), false))
+        {
+          // シリアライザーのReadObjectメソッドに読み取りストリームを渡す
+          var tempScreenDatas = sw.ReadObject(ms) as ScreenData;
+
+          // 設定
+          foreach(var key in tempScreenDatas.ScreenInfo.Keys)
+          {
+            ScreenDatas.ScreenInfo.Add(key, tempScreenDatas.ScreenInfo[key]);
+          }
+        }
+      }
+    }
+
+    #endregion
 
     /// <summary>
     /// FormクラスとBusinessクラスの自動生成
