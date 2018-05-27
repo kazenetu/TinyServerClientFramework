@@ -38,6 +38,13 @@ namespace SourceGenerater
       }
     }
 
+    #region ルートフォルダ
+
+    /// <summary>
+    /// ルートフォルダ設定
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void RefTargetFolder_Click(object sender, EventArgs e)
     {
       // 出力先が指定されている場合はフォルダ指定ダイアログに設定
@@ -53,40 +60,16 @@ namespace SourceGenerater
       }
     }
 
-    private void button1_Click(object sender, EventArgs e)
-    {
-      var basePath = Path.GetFullPath(@"../../../../..\Client\Client");
-      var baseName = "Test";
+    #endregion
 
-      var generater = new GenerateClient();
-      if (generater.Generate(basePath, baseName))
-      {
-        MessageBox.Show("OK");
-      }
-      else
-      {
-        MessageBox.Show("NG");
-      }
 
-    }
+    #region 画面ID
 
-    private void button2_Click(object sender, EventArgs e)
-    {
-      var basePath = Path.GetFullPath(@"../../../../..\Client\Client");
-      var baseName = "Test";
-      var methodName = "Display";
-
-      var generater = new GenerateClient();
-      if (generater.AddBusinessMethod(basePath, baseName, methodName))
-      {
-        MessageBox.Show("OK");
-      }
-      else
-      {
-        MessageBox.Show("NG");
-      }
-    }
-
+    /// <summary>
+    /// 画面IDテキストボックス ロストフォーカス
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void ScreenID_Leave(object sender, EventArgs e)
     {
       if (!generater.ScreenDatas.ScreenInfo.ContainsKey(ScreenID.Text))
@@ -98,7 +81,117 @@ namespace SourceGenerater
         ScreenID.Text = string.Empty;
 
         ScreenID.SelectedText = screenID;
+
+        // 機能IDの設定
+        FunctionID_Leave(FunctionID,new EventArgs());
       }
     }
+
+    /// <summary>
+    /// Form・Business生成ボタン
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void CreateFormBus_Click(object sender, EventArgs e)
+    {
+      // パラメータ設定
+      var screenID = ScreenID.Text;
+
+      // 入力チェック
+      if(screenID.Trim() == string.Empty)
+      {
+        MessageBox.Show($"{ScreenIDName.Text}を入力してください。");
+        ScreenID.Focus();
+        return;
+      }
+
+      // 対象パス指定
+      var basePath = Path.Combine(RootFolder.Text, @"Client\Client");
+
+      // 対象ファイル作成
+      var generater = new GenerateClient();
+      if (generater.Generate(basePath, screenID))
+      {
+        MessageBox.Show("OK");
+      }
+      else
+      {
+        MessageBox.Show("NG");
+      }
+
+      // 生成結果をグリッドに表示
+      ResultView.DataSource = generater.FileDatas;
+    }
+    #endregion
+
+    #region 機能ID
+
+    /// <summary>
+    /// 機能IDテキストボックス ロストフォーカス
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void FunctionID_Leave(object sender, EventArgs e)
+    {
+      if (!generater.ScreenDatas.ScreenInfo.ContainsKey(ScreenID.Text))
+      {
+        var screenID = ScreenID.Text;
+        var functionID = FunctionID.Text;
+        if (!generater.ScreenDatas.ScreenInfo[screenID].Contains(functionID))
+        {
+          generater.ScreenDatas.ScreenInfo[screenID].Add(functionID);
+
+          FunctionID.DataSource = generater.ScreenDatas.ScreenInfo[screenID];
+          FunctionID.Text = string.Empty;
+
+          FunctionID.SelectedText = functionID;
+        }
+      }
+    }
+
+    /// <summary>
+    /// Form・Business生成ボタン
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void AddBusinessMethod_Click(object sender, EventArgs e)
+    {
+      // パラメータ設定
+      var screenID = ScreenID.Text;
+      var functionID = FunctionID.Text;
+
+      // 入力チェック
+      if (screenID.Trim() == string.Empty)
+      {
+        MessageBox.Show($"{ScreenIDName.Text}を入力してください。");
+        ScreenID.Focus();
+        return;
+      }
+      if (functionID.Trim() == string.Empty)
+      {
+        MessageBox.Show($"{FunctionIDName.Text}を入力してください。");
+        FunctionID.Focus();
+        return;
+      }
+
+      // 対象パス指定
+      var basePath = Path.Combine(RootFolder.Text, @"Client\Client");
+
+      // 対象ファイル作成
+      var generater = new GenerateClient();
+      if (generater.AddBusinessMethod(basePath, screenID, functionID))
+      {
+        MessageBox.Show("OK");
+      }
+      else
+      {
+        MessageBox.Show("NG");
+      }
+
+      // 生成結果をグリッドに表示
+      ResultView.DataSource = generater.FileDatas;
+    }
+    #endregion
+
   }
 }
