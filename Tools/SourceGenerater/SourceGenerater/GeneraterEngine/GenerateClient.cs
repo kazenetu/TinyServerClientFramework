@@ -1,5 +1,6 @@
 ﻿using SourceGenerater.GeneraterEngine.Interfaces;
 using SourceGenerater.GeneraterEngine.Templates;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -198,7 +199,7 @@ namespace SourceGenerater.GeneraterEngine
         {
           Remarks = "ファイルが存在するため作成しませんでした。";
         }
-        Remarks += filePath;
+        Remarks += Environment.NewLine + filePath;
       }
     }
     #endregion

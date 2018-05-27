@@ -28,6 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
       this.RefRootFolder = new System.Windows.Forms.Button();
       this.RootFolder = new System.Windows.Forms.TextBox();
       this.label3 = new System.Windows.Forms.Label();
@@ -38,10 +39,10 @@
       this.ResultView = new System.Windows.Forms.DataGridView();
       this.FunctionIDName = new System.Windows.Forms.Label();
       this.FunctionID = new System.Windows.Forms.ComboBox();
+      this.AddBusinessMethod = new System.Windows.Forms.Button();
       this.IsCreated = new System.Windows.Forms.DataGridViewCheckBoxColumn();
       this.ClassName = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.Remarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.AddBusinessMethod = new System.Windows.Forms.Button();
       ((System.ComponentModel.ISupportInitialize)(this.ResultView)).BeginInit();
       this.SuspendLayout();
       // 
@@ -116,7 +117,9 @@
       this.ResultView.Location = new System.Drawing.Point(13, 142);
       this.ResultView.Name = "ResultView";
       this.ResultView.ReadOnly = true;
-      this.ResultView.RowTemplate.Height = 21;
+      dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+      this.ResultView.RowsDefaultCellStyle = dataGridViewCellStyle1;
+      this.ResultView.RowTemplate.Height = 30;
       this.ResultView.Size = new System.Drawing.Size(758, 289);
       this.ResultView.TabIndex = 15;
       // 
@@ -139,6 +142,16 @@
       this.FunctionID.SelectedIndexChanged += new System.EventHandler(this.FunctionID_Leave);
       this.FunctionID.Leave += new System.EventHandler(this.FunctionID_Leave);
       // 
+      // AddBusinessMethod
+      // 
+      this.AddBusinessMethod.Location = new System.Drawing.Point(608, 84);
+      this.AddBusinessMethod.Name = "AddBusinessMethod";
+      this.AddBusinessMethod.Size = new System.Drawing.Size(163, 23);
+      this.AddBusinessMethod.TabIndex = 17;
+      this.AddBusinessMethod.Text = "Businessメソッド・DTO追加";
+      this.AddBusinessMethod.UseVisualStyleBackColor = true;
+      this.AddBusinessMethod.Click += new System.EventHandler(this.AddBusinessMethod_Click);
+      // 
       // IsCreated
       // 
       this.IsCreated.DataPropertyName = "IsCreated";
@@ -159,23 +172,13 @@
       // 
       // Remarks
       // 
+      this.Remarks.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
       this.Remarks.DataPropertyName = "Remarks";
       this.Remarks.FillWeight = 1000F;
       this.Remarks.HeaderText = "備考";
       this.Remarks.MinimumWidth = 100;
       this.Remarks.Name = "Remarks";
       this.Remarks.ReadOnly = true;
-      this.Remarks.Width = 500;
-      // 
-      // AddBusinessMethod
-      // 
-      this.AddBusinessMethod.Location = new System.Drawing.Point(608, 84);
-      this.AddBusinessMethod.Name = "AddBusinessMethod";
-      this.AddBusinessMethod.Size = new System.Drawing.Size(163, 23);
-      this.AddBusinessMethod.TabIndex = 17;
-      this.AddBusinessMethod.Text = "Businessメソッド・DTO追加";
-      this.AddBusinessMethod.UseVisualStyleBackColor = true;
-      this.AddBusinessMethod.Click += new System.EventHandler(this.AddBusinessMethod_Click);
       // 
       // MainForm
       // 
@@ -211,10 +214,10 @@
     private System.Windows.Forms.DataGridView ResultView;
     private System.Windows.Forms.Label FunctionIDName;
     private System.Windows.Forms.ComboBox FunctionID;
+    private System.Windows.Forms.Button AddBusinessMethod;
     private System.Windows.Forms.DataGridViewCheckBoxColumn IsCreated;
     private System.Windows.Forms.DataGridViewTextBoxColumn ClassName;
     private System.Windows.Forms.DataGridViewTextBoxColumn Remarks;
-    private System.Windows.Forms.Button AddBusinessMethod;
   }
 }
 
