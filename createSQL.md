@@ -1,18 +1,30 @@
 # テストテーブル作成DDL
 - SQLServer
   ```
-  create table [dbo].MT_USER (
-    USER_ID nvarchar(30) not null
-    , USER_NAME nvarchar(30)
-    , PASSWORD nvarchar(100)
-    , DEL_FLAG nchar(1)
-    , ENTRY_USER nvarchar(30)
-    , ENTRY_DATE datetime
-    , MOD_USER nvarchar(30)
-    , MOD_DATE datetime
-    , MOD_VERSION int
-    , primary key (USER_ID)
-  );
+-- ユーザーマスター
+create table MT_USER (
+  USER_ID VARCHAR(30)
+  , USER_NAME VARCHAR(30)
+  , PASSWORD VARCHAR(100)
+  , DEL_FLAG CHAR(1)
+  , ENTRY_USER VARCHAR(30)
+  , ENTRY_DATE DATETIME
+  , MOD_USER VARCHAR(30)
+  , MOD_DATE DATETIME
+  , MOD_VERSION INTEGER
+  , constraint MT_USER_PKC primary key (USER_ID)
+) ;
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'ユーザーマスター', N'SCHEMA', N'dbo', N'TABLE', N'MT_USER', NULL, NULL;
+EXECUTE sp_addextendedproperty N'MS_Description', N'ユーザーID', N'SCHEMA', N'dbo', N'TABLE', N'MT_USER', N'COLUMN', N'USER_ID';
+EXECUTE sp_addextendedproperty N'MS_Description', N'ユーザー名', N'SCHEMA', N'dbo', N'TABLE', N'MT_USER', N'COLUMN', N'USER_NAME';
+EXECUTE sp_addextendedproperty N'MS_Description', N'パスワード', N'SCHEMA', N'dbo', N'TABLE', N'MT_USER', N'COLUMN', N'PASSWORD';
+EXECUTE sp_addextendedproperty N'MS_Description', N'削除フラグ', N'SCHEMA', N'dbo', N'TABLE', N'MT_USER', N'COLUMN', N'DEL_FLAG';
+EXECUTE sp_addextendedproperty N'MS_Description', N'登録ユーザー', N'SCHEMA', N'dbo', N'TABLE', N'MT_USER', N'COLUMN', N'ENTRY_USER';
+EXECUTE sp_addextendedproperty N'MS_Description', N'登録日時', N'SCHEMA', N'dbo', N'TABLE', N'MT_USER', N'COLUMN', N'ENTRY_DATE';
+EXECUTE sp_addextendedproperty N'MS_Description', N'更新ユーザー', N'SCHEMA', N'dbo', N'TABLE', N'MT_USER', N'COLUMN', N'MOD_USER';
+EXECUTE sp_addextendedproperty N'MS_Description', N'更新日時', N'SCHEMA', N'dbo', N'TABLE', N'MT_USER', N'COLUMN', N'MOD_DATE';
+EXECUTE sp_addextendedproperty N'MS_Description', N'更新バージョン', N'SCHEMA', N'dbo', N'TABLE', N'MT_USER', N'COLUMN', N'MOD_VERSION';
   ```
 
 - SQLite
@@ -33,18 +45,30 @@
 
 - PostgeSQL
   ```
-  create table MT_USER (
-    USER_ID character varying(30)
-    , USER_NAME character varying(30)
-    , PASSWORD character varying(100)
-    , DEL_FLAG character(1)
-    , ENTRY_USER character varying(30)
-    , ENTRY_DATE timestamp
-    , MOD_USER character varying(30)
-    , MOD_DATE timestamp
-    , MOD_VERSION integer
-    , constraint MT_USER_PKC primary key (USER_ID)
-  ) ;
+-- ユーザーマスター
+create table MT_USER (
+  USER_ID character varying(30)
+  , USER_NAME character varying(30)
+  , PASSWORD character varying(100)
+  , DEL_FLAG character(1)
+  , ENTRY_USER character varying(30)
+  , ENTRY_DATE timestamp
+  , MOD_USER character varying(30)
+  , MOD_DATE timestamp
+  , MOD_VERSION integer
+  , constraint MT_USER_PKC primary key (USER_ID)
+) ;
+
+comment on table MT_USER is 'ユーザーマスター';
+comment on column MT_USER.USER_ID is 'ユーザーID';
+comment on column MT_USER.USER_NAME is 'ユーザー名';
+comment on column MT_USER.PASSWORD is 'パスワード';
+comment on column MT_USER.DEL_FLAG is '削除フラグ';
+comment on column MT_USER.ENTRY_USER is '登録ユーザー';
+comment on column MT_USER.ENTRY_DATE is '登録日時';
+comment on column MT_USER.MOD_USER is '更新ユーザー';
+comment on column MT_USER.MOD_DATE is '更新日時';
+comment on column MT_USER.MOD_VERSION is '更新バージョン';
   ```
 
 # テストデータ
