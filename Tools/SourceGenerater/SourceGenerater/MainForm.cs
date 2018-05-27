@@ -36,6 +36,17 @@ namespace SourceGenerater
         // 未設定の場合は相対パスを初期値に設定
         RootFolder.Text = Path.GetFullPath(@"../../../../../");
       }
+
+      // 画面IDの設定
+      ScreenID.DataSource = generater.ScreenDatas.ScreenInfo.Keys.ToList();
+      ScreenID.Text = generater.ScreenDatas.ScreenInfo.Keys.FirstOrDefault();
+
+      // 機能IDの設定
+      if (generater.ScreenDatas.ScreenInfo.ContainsKey(ScreenID.Text)) {
+        FunctionID.Items.Clear();
+        FunctionID.Items.AddRange(generater.ScreenDatas.ScreenInfo[ScreenID.Text].ToArray());
+        FunctionID.Text = generater.ScreenDatas.ScreenInfo[ScreenID.Text].FirstOrDefault();
+      }
     }
 
     #region ルートフォルダ
