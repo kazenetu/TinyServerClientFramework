@@ -8,7 +8,7 @@ namespace SourceGenerater
 {
   public partial class MainForm : Form
   {
-    private GenerateClient generater = new GenerateClient();
+    private GenerateClient generater = GenerateClient.GetInstance();
 
     public MainForm()
     {
@@ -116,7 +116,6 @@ namespace SourceGenerater
       var basePath = Path.Combine(RootFolder.Text, @"Client\Client");
 
       // 対象ファイル作成
-      var generater = new GenerateClient();
       generater.Generate(basePath, screenID);
 
       // 生成結果をグリッドに表示
@@ -189,7 +188,6 @@ namespace SourceGenerater
       var basePath = Path.Combine(RootFolder.Text, @"Client\Client");
 
       // 対象ファイル作成
-      var generater = new GenerateClient();
       generater.AddBusinessMethod(basePath, screenID, functionID);
 
       // 生成結果をグリッドに表示

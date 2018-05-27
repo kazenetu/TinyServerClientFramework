@@ -8,8 +8,17 @@ using System.Text;
 
 namespace SourceGenerater.GeneraterEngine
 {
+  /// <summary>
+  /// ソース作成クラス
+  /// </summary>
+  /// <remarks>シングルトンクラス</remarks>
   public class GenerateClient
   {
+    /// <summary>
+    /// インスタンス
+    /// </summary>
+    private static readonly GenerateClient instance = new GenerateClient();
+
     /// <summary>
     /// 設定ファイル名
     /// </summary>
@@ -18,6 +27,22 @@ namespace SourceGenerater.GeneraterEngine
     public ScreenData ScreenDatas { get; } = new ScreenData();
 
     public List<FileData> FileDatas { get; } = new List<FileData>();
+
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    private GenerateClient()
+    {
+    }
+
+    /// <summary>
+    /// インスタンス取得
+    /// </summary>
+    /// <returns>インスタンス</returns>
+    public static GenerateClient GetInstance()
+    {
+      return instance;
+    }
 
     #region 保存と読み込み
 
