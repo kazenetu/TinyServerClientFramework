@@ -101,7 +101,7 @@ namespace SourceGenerater.GeneraterEngine
       var fullPath = Path.GetFullPath(filePath);
       if (File.Exists(fullPath))
       {
-        //return false;
+        return false;
       }
 
       var folderPath = Path.GetDirectoryName(fullPath);
