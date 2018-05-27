@@ -40,12 +40,18 @@ namespace SourceGenerater.GeneraterEngine
         // ファイル作成情報に追加
         FileDatas.Add(new FileData(created, filePath));
 
-        // プロジェクトファイル追加
-        itemGroups.Append(t4.ProjectElement);
+        // 生成した場合はプロジェクトファイル追加
+        if (created)
+        {
+          itemGroups.Append(t4.ProjectElement);
+        }
       }
 
       // プロジェクトファイルにForm・Form.Designer・Businessを追加
-      AddCSProject(clientRootPath, itemGroups.ToString());
+      if(itemGroups.ToString().Trim() != string.Empty)
+      {
+        AddCSProject(clientRootPath, itemGroups.ToString());
+      }
 
       return true;
     }
@@ -80,12 +86,18 @@ namespace SourceGenerater.GeneraterEngine
         // ファイル作成情報に追加
         FileDatas.Add(new FileData(created, filePath));
 
-        // プロジェクトファイル追加
-        itemGroups.Append(t4.ProjectElement);
+        // 生成した場合はプロジェクトファイル追加
+        if (created)
+        {
+          itemGroups.Append(t4.ProjectElement);
+        }
       }
 
       // プロジェクトファイルにForm・Form.Designer・Businessを追加
-      AddCSProject(clientRootPath, itemGroups.ToString());
+      if (itemGroups.ToString().Trim() != string.Empty)
+      {
+        AddCSProject(clientRootPath, itemGroups.ToString());
+      }
 
       return true;
     }
