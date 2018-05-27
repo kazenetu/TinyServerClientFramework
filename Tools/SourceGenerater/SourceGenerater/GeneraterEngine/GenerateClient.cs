@@ -18,7 +18,7 @@ namespace SourceGenerater.GeneraterEngine
     /// <param name="clientRootPath">クライアントプロジェクトのルートパス</param>
     /// <param name="baseName">ベース名</param>
     /// <returns>生成成否</returns>
-    public bool Generate(string clientRootPath,string baseName)
+    public void Generate(string clientRootPath,string baseName)
     {
       // ファイル作成情報をクリア
       FileDatas.Clear();
@@ -52,8 +52,6 @@ namespace SourceGenerater.GeneraterEngine
       {
         AddCSProject(clientRootPath, itemGroups.ToString());
       }
-
-      return true;
     }
 
     /// <summary>
@@ -62,8 +60,7 @@ namespace SourceGenerater.GeneraterEngine
     /// <param name="clientRootPath">クライアントプロジェクトのルートパス</param>
     /// <param name="baseName">ベース名</param>
     /// <param name="methodName">メソッド名</param>
-    /// <returns>生成成否</returns>
-    public bool AddBusinessMethod(string clientRootPath, string baseName, string methodName)
+    public void AddBusinessMethod(string clientRootPath, string baseName, string methodName)
     {
       // ファイル作成情報をクリア
       FileDatas.Clear();
@@ -98,8 +95,6 @@ namespace SourceGenerater.GeneraterEngine
       {
         AddCSProject(clientRootPath, itemGroups.ToString());
       }
-
-      return true;
     }
 
     /// <summary>

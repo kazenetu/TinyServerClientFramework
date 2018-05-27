@@ -72,6 +72,11 @@ namespace SourceGenerater
     /// <param name="e"></param>
     private void ScreenID_Leave(object sender, EventArgs e)
     {
+      if(ScreenID.Text.Trim() == string.Empty)
+      {
+        return;
+      }
+
       if (!generater.ScreenDatas.ScreenInfo.ContainsKey(ScreenID.Text))
       {
         var screenID = ScreenID.Text;
@@ -81,10 +86,11 @@ namespace SourceGenerater
         ScreenID.Text = string.Empty;
 
         ScreenID.SelectedText = screenID;
-
-        // 機能IDの設定
-        FunctionID_Leave(FunctionID,new EventArgs());
       }
+
+      // 機能IDの設定
+      FunctionID.DataSource = generater.ScreenDatas.ScreenInfo[ScreenID.Text];
+      FunctionID.Text = string.Empty;
     }
 
     /// <summary>
@@ -110,14 +116,7 @@ namespace SourceGenerater
 
       // 対象ファイル作成
       var generater = new GenerateClient();
-      if (generater.Generate(basePath, screenID))
-      {
-        MessageBox.Show("OK");
-      }
-      else
-      {
-        MessageBox.Show("NG");
-      }
+      generater.Generate(basePath, screenID);
 
       // 生成結果をグリッドに表示
       ResultView.DataSource = generater.FileDatas;
@@ -133,19 +132,29 @@ namespace SourceGenerater
     /// <param name="e"></param>
     private void FunctionID_Leave(object sender, EventArgs e)
     {
+      if (FunctionID.Text.Trim() == string.Empty)
+      {
+        return;
+      }
+
+      // 画面IDが設定されていない場合はクリアして終了
       if (!generater.ScreenDatas.ScreenInfo.ContainsKey(ScreenID.Text))
       {
-        var screenID = ScreenID.Text;
-        var functionID = FunctionID.Text;
-        if (!generater.ScreenDatas.ScreenInfo[screenID].Contains(functionID))
-        {
-          generater.ScreenDatas.ScreenInfo[screenID].Add(functionID);
+        FunctionID.DataSource = null;
+        FunctionID.Text = string.Empty;
+      }
 
-          FunctionID.DataSource = generater.ScreenDatas.ScreenInfo[screenID];
-          FunctionID.Text = string.Empty;
+      // 機能IDが存在しない場合は追加
+      var screenID = ScreenID.Text;
+      var functionID = FunctionID.Text;
+      if (!generater.ScreenDatas.ScreenInfo[screenID].Contains(functionID))
+      {
+        generater.ScreenDatas.ScreenInfo[screenID].Add(functionID);
 
-          FunctionID.SelectedText = functionID;
-        }
+        FunctionID.DataSource = generater.ScreenDatas.ScreenInfo[screenID];
+        FunctionID.Text = string.Empty;
+
+        FunctionID.SelectedText = functionID;
       }
     }
 
@@ -179,14 +188,7 @@ namespace SourceGenerater
 
       // 対象ファイル作成
       var generater = new GenerateClient();
-      if (generater.AddBusinessMethod(basePath, screenID, functionID))
-      {
-        MessageBox.Show("OK");
-      }
-      else
-      {
-        MessageBox.Show("NG");
-      }
+      generater.AddBusinessMethod(basePath, screenID, functionID);
 
       // 生成結果をグリッドに表示
       ResultView.DataSource = generater.FileDatas;
