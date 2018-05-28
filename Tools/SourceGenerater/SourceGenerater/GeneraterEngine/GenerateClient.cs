@@ -155,7 +155,7 @@ namespace SourceGenerater.GeneraterEngine
       // ファイル作成情報をクリア
       FileDatas.Clear();
 
-      var targetT4 = new List<IMethod>() { new BusinessMethod(), new Request(), new Response() };
+      var targetT4 = new List<IMethod>() { new BusinessMethod(), new Request(), new Response(), new WebAPIControllerMethod() };
 
       // プロジェクトファイル追加用StringBuilder生成
       var itemGroups = new StringBuilder();
