@@ -11,10 +11,10 @@
 namespace DataTransferObjects.Tables
 {
   /// <summary>
-  /// <#= getTableName().Trim() #>
+  /// <#= GetTableName().Trim() #>
   /// </summary>
 <# 
-var tableRemarks = getTableRemarks();
+var tableRemarks = GetTableRemarks();
 if(tableRemarks.Any())
 {
 #>
@@ -58,10 +58,10 @@ foreach(var column in Table.Columns)
 {
 #>
     /// <summary>
-    /// <#= getColumnName(column.ColumnLogicalName).Trim() #>
+    /// <#= GetColumnName(column.ColumnLogicalName).Trim() #>
     /// </summary>
 <# 
-  var columnRemarks = getColumnRemarks(column.ColumnLogicalName);
+  var columnRemarks = GetColumnRemarks(column.ColumnLogicalName);
   if(columnRemarks.Any())
   {
 #>
