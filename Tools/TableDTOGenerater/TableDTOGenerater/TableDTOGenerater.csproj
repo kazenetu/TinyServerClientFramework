@@ -126,6 +126,7 @@
     <Content Include="Templates\TableDTO.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>TableDTO.cs</LastGenOutput>
+      <CustomToolNamespace>TableDTOGenerater.Templates</CustomToolNamespace>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
