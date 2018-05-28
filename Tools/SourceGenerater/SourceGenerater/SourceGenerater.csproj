@@ -123,26 +123,32 @@
     <Content Include="GeneraterEngine\Templates\Business.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>Business.cs</LastGenOutput>
+      <CustomToolNamespace>SourceGenerater.GeneraterEngine.Templates</CustomToolNamespace>
     </Content>
     <Content Include="GeneraterEngine\Templates\BusinessMethod.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>BusinessMethod.cs</LastGenOutput>
+      <CustomToolNamespace>SourceGenerater.GeneraterEngine.Templates</CustomToolNamespace>
     </Content>
     <Content Include="GeneraterEngine\Templates\Form.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>Form.cs</LastGenOutput>
+      <CustomToolNamespace>SourceGenerater.GeneraterEngine.Templates</CustomToolNamespace>
     </Content>
     <Content Include="GeneraterEngine\Templates\FormDesigner.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>FormDesigner.cs</LastGenOutput>
+      <CustomToolNamespace>SourceGenerater.GeneraterEngine.Templates</CustomToolNamespace>
     </Content>
     <Content Include="GeneraterEngine\Templates\Request.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>Request.cs</LastGenOutput>
+      <CustomToolNamespace>SourceGenerater.GeneraterEngine.Templates</CustomToolNamespace>
     </Content>
     <Content Include="GeneraterEngine\Templates\Response.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>Response.cs</LastGenOutput>
+      <CustomToolNamespace>SourceGenerater.GeneraterEngine.Templates</CustomToolNamespace>
     </Content>
     <Content Include="RootFolder.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
