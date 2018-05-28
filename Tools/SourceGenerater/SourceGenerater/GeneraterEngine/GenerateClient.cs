@@ -121,7 +121,7 @@ namespace SourceGenerater.GeneraterEngine
       foreach (var t4 in targetT4)
       {
         // パラメータ設定
-        t4.BaseName = baseName;
+        t4.BaseName = baseName.Substring(0, 1).ToUpper() + baseName.Substring(1);
 
         // ファイル生成
         var filePath = $"{clientRootPath}\\{t4.CreateFileName}";
@@ -163,8 +163,8 @@ namespace SourceGenerater.GeneraterEngine
       foreach (var t4 in targetT4)
       {
         // パラメータ設定
-        t4.BaseName = baseName;
-        t4.MethodName = methodName;
+        t4.BaseName = baseName.Substring(0, 1).ToUpper() + baseName.Substring(1);
+        t4.MethodName = methodName.Substring(0, 1).ToUpper() + methodName.Substring(1);
 
         // ファイル生成
         var filePath = $"{clientRootPath}\\{t4.CreateFileName}";
