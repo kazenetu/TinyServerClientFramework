@@ -131,6 +131,7 @@ namespace SourceGenerater
 
       // 生成結果をグリッドに表示
       ResultView.DataSource = generater.FileDatas;
+      ResultView.Refresh();
     }
     #endregion
 
@@ -203,6 +204,7 @@ namespace SourceGenerater
 
       // 生成結果をグリッドに表示
       ResultView.DataSource = generater.FileDatas;
+      ResultView.Refresh();
     }
     #endregion
 
