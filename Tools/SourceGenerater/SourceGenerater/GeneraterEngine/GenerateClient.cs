@@ -131,7 +131,7 @@ namespace SourceGenerater.GeneraterEngine
         FileDatas.Add(new FileData(created, filePath));
 
         // 生成した場合はプロジェクトファイル追加
-        if (created)
+        if (created && t4.ProjectElement != string.Empty)
         {
           itemGroups.Append(t4.ProjectElement);
         }
@@ -174,7 +174,7 @@ namespace SourceGenerater.GeneraterEngine
         FileDatas.Add(new FileData(created, filePath));
 
         // 生成した場合はプロジェクトファイル追加
-        if (created)
+        if (created && t4.ProjectElement != string.Empty)
         {
           itemGroups.Append(t4.ProjectElement);
         }
