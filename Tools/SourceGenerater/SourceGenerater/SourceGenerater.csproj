@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GeneraterEngine\Templates\WebAPIController.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebAPIController.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GeneraterEngine\Templates\WebAPIControllerClass.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,6 +154,11 @@
     <Content Include="GeneraterEngine\Templates\Response.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>Response.cs</LastGenOutput>
+      <CustomToolNamespace>SourceGenerater.GeneraterEngine.Templates</CustomToolNamespace>
+    </Content>
+    <Content Include="GeneraterEngine\Templates\WebAPIController.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>WebAPIController.cs</LastGenOutput>
       <CustomToolNamespace>SourceGenerater.GeneraterEngine.Templates</CustomToolNamespace>
     </Content>
     <Content Include="RootFolder.txt">
