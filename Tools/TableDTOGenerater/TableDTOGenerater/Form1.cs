@@ -113,7 +113,17 @@ namespace TableDTOGenerater
           Table = item
         };
 
+        // 作成ファイルパス設定
         var filePath = $"{basePath}\\{item.TableName}.cs";
+
+        // フォルダの存在確認と作成
+        var folderPath = Path.GetDirectoryName(filePath);
+        if (!Directory.Exists(folderPath))
+        {
+          Directory.CreateDirectory(folderPath);
+        }
+
+        // ファイル書き出し
         using (var tw = new StreamWriter(filePath,false, utf8Encoding))
         {
           // csファイル作成
