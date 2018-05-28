@@ -25,5 +25,6 @@ namespace SourceGenerater.GeneraterEngine.Templates
         return sb.ToString();
       }
     }
+    public string WebAPIVersion { get; set; } = string.Empty;
   }
 }

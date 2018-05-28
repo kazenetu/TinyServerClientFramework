@@ -20,5 +20,6 @@ namespace SourceGenerater.GeneraterEngine.Templates
       }
     }
     public string MethodName { set; get; }
+    public string WebAPIVersion { get; set; } = string.Empty;
   }
 }

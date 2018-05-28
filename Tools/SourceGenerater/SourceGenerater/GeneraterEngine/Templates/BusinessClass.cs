@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SourceGenerater.GeneraterEngine.Templates
 {
-  partial class Business : IForm
+  public partial class Business : IForm
   {
     public string BaseName { set; get; }
     public string CreateFileName
@@ -24,5 +24,7 @@ namespace SourceGenerater.GeneraterEngine.Templates
         return $"    <Compile Include=\"Business\\{BaseName}\\{BaseName}Business.cs\" />";
       }
     }
+
+    public string WebAPIVersion { get; set; } = string.Empty;
   }
 }
