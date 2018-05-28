@@ -1,6 +1,4 @@
 ﻿using ClientFramework.ConnectLib;
-using System;
-using System.Deployment.Application;
 using static ClientFramework.ConnectLib.HttpConnectLib;
 
 namespace ClientFramework.BaseClasses
