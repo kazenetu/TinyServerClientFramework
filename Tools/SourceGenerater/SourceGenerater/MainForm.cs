@@ -47,6 +47,8 @@ namespace SourceGenerater
         FunctionID.Items.AddRange(generater.ScreenDatas.ScreenInfo[ScreenID.Text].ToArray());
         FunctionID.Text = generater.ScreenDatas.ScreenInfo[ScreenID.Text].FirstOrDefault();
       }
+
+      GenerateClient.GetInstance().SetWebAPIVersion(RootFolder.Text);
     }
 
     #region ルートフォルダ

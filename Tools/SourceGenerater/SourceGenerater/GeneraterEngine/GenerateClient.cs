@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace SourceGenerater.GeneraterEngine
 {
@@ -23,6 +24,8 @@ namespace SourceGenerater.GeneraterEngine
     /// 設定ファイル名
     /// </summary>
     private const string SettingFileName = "GenerateClient.json";
+
+    private string webAPIVersion = "v1";
 
     public ScreenData ScreenDatas { get; } = new ScreenData();
 
@@ -97,6 +100,42 @@ namespace SourceGenerater.GeneraterEngine
             ScreenDatas.ScreenInfo.Add(key, tempScreenDatas.ScreenInfo[key]);
           }
         }
+      }
+    }
+
+    public void SetWebAPIVersion(string clientRootPath)
+    {
+      var staticsFilePath = $"{clientRootPath}\\Client\\Client\\Statics.cs";
+      if (!File.Exists(staticsFilePath)) return;
+
+      var webAPIversionSentences = getWebAPIVerionSentens();
+      if (webAPIversionSentences == string.Empty) return;
+
+      var reg = new Regex("\\\"[a-z0-9]+\\\"");
+      var matches = reg.Matches(webAPIversionSentences);
+
+      var result = new StringBuilder();
+      foreach (Match match in matches)
+      {
+        result.Append(match.Value);
+      }
+
+      webAPIVersion = result.ToString().Replace("\"", string.Empty);
+
+      string getWebAPIVerionSentens()
+      {
+        using (var tr = new StreamReader(staticsFilePath, false))
+        {
+          while (!tr.EndOfStream)
+          {
+            var line = tr.ReadLine();
+            if (line.Contains("WebAPIVersion = "))
+            {
+              return line;
+            }
+          }
+        }
+        return string.Empty;
       }
     }
 
