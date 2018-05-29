@@ -49,7 +49,7 @@ namespace SourceGenerater
       }
 
       // WebAPIバージョンを定数クラスから取得するように修正
-      GenerateClient.GetInstance().SetWebAPIVersion(RootFolder.Text);
+      generater.SetWebAPIVersion(RootFolder.Text);
     }
 
     #region ルートフォルダ
