@@ -48,6 +48,7 @@ namespace SourceGenerater
         FunctionID.Text = generater.ScreenDatas.ScreenInfo[ScreenID.Text].FirstOrDefault();
       }
 
+      // WebAPIバージョンを定数クラスから取得するように修正
       GenerateClient.GetInstance().SetWebAPIVersion(RootFolder.Text);
     }
 

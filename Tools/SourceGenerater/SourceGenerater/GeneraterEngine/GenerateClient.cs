@@ -25,10 +25,21 @@ namespace SourceGenerater.GeneraterEngine
     /// </summary>
     private const string SettingFileName = "GenerateClient.json";
 
+    /// <summary>
+    /// WebAPIバージョン
+    /// </summary>
+    /// <remarks>定数クラスから取得する</remarks>
     private string webAPIVersion = "v1";
 
+    /// <summary>
+    /// 画面ID単位の機能IDリスト
+    /// </summary>
+    /// <remarks>保存対象</remarks>
     public ScreenData ScreenDatas { get; } = new ScreenData();
 
+    /// <summary>
+    /// 自動生成結果
+    /// </summary>
     public List<FileData> FileDatas { get; } = new List<FileData>();
 
     /// <summary>
@@ -103,6 +114,10 @@ namespace SourceGenerater.GeneraterEngine
       }
     }
 
+    /// <summary>
+    /// WebAPIバージョン取得
+    /// </summary>
+    /// <param name="clientRootPath">slnファイルのフォルダ</param>
     public void SetWebAPIVersion(string clientRootPath)
     {
       var staticsFilePath = $"{clientRootPath}\\Client\\Client\\Statics.cs";

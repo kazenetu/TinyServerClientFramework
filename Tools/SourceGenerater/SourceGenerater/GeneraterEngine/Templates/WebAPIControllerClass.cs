@@ -2,9 +2,19 @@
 
 namespace SourceGenerater.GeneraterEngine.Templates
 {
+  /// <summary>
+  /// WebAPIControllerテンプレート
+  /// </summary>
   partial class WebAPIController : IForm
   {
+    /// <summary>
+    /// 画面ID
+    /// </summary>
     public string BaseName { set; get; }
+
+    /// <summary>
+    /// 出力ファイルパス
+    /// </summary>
     public string CreateFileName
     {
       get
@@ -12,6 +22,11 @@ namespace SourceGenerater.GeneraterEngine.Templates
         return $"..\\..\\WebAPI\\WebAPI\\Controllers\\{WebAPIVersion.ToUpper()}\\{BaseName}\\{BaseName}Controller.cs";
       }
     }
+
+    /// <summary>
+    /// .NET Frameworkプロジェクト追加用要素
+    /// </summary>
+    /// <remarks>追加しない場合はstring.Empty</remarks>
     public string ProjectElement
     {
       get
@@ -19,9 +34,22 @@ namespace SourceGenerater.GeneraterEngine.Templates
         return string.Empty;
       }
     }
+    /// <summary>
+    /// WebAPIバージョン
+    /// </summary>
+    /// <remarks>使用しない場合はstring.Empty</remarks>
     public string WebAPIVersion { get; set; } = "v1";
+
+    /// <summary>
+    /// ルートパス(slnファイルのフォルダ)
+    /// </summary>
+    /// <remarks>旧バージョンのメソッドがあるかファイル確認をおこなうため</remarks>
     public string BasePath { set; get; } = string.Empty;
 
+    /// <summary>
+    /// スーパークラス取得
+    /// </summary>
+    /// <returns>旧バージョンがある場合はそのクラス、ない場合は大本のスーパークラス</returns>
     public string GetSuperClassName()
     {
       var reg = new System.Text.RegularExpressions.Regex(@"[^0-9]");
