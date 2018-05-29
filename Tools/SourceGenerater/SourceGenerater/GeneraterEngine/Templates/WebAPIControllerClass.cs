@@ -24,21 +24,22 @@ namespace SourceGenerater.GeneraterEngine.Templates
 
     public string GetSuperClassName()
     {
-      var result = "ControllerWithRepositoryBase";
       var reg = new System.Text.RegularExpressions.Regex(@"[^0-9]");
       var nowVersion = reg.Replace(WebAPIVersion, string.Empty);
       var beforeVersion = int.Parse(nowVersion) - 1;
-      if (beforeVersion >= 1)
+      while (beforeVersion > 0)
       {
         var targetFile = System.IO.Path.GetFullPath(System.IO.Path.Combine(BasePath, CreateFileName));
         targetFile = targetFile.Replace(WebAPIVersion.ToUpper(), $"V{beforeVersion}");
         if (System.IO.File.Exists(targetFile))
         {
-          result = $"WebAPI.Controllers.V{beforeVersion}.{BaseName}Controller";
+          return $"WebAPI.Controllers.V{beforeVersion}.{BaseName}Controller";
         }
-      }
-      return result;
-    }
 
+        beforeVersion -= 1;
+      }
+
+      return "ControllerWithRepositoryBase";
+    }
   }
 }
