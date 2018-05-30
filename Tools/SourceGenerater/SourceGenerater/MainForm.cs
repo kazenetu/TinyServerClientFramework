@@ -133,6 +133,7 @@ namespace SourceGenerater
       generater.Generate(basePath, screenID);
 
       // 生成結果をグリッドに表示
+      ResultView.DataSource = null;
       ResultView.DataSource = generater.FileDatas;
       ResultView.Refresh();
     }
@@ -206,6 +207,7 @@ namespace SourceGenerater
       generater.AddBusinessMethod(basePath, screenID, functionID);
 
       // 生成結果をグリッドに表示
+      ResultView.DataSource = null;
       ResultView.DataSource = generater.FileDatas;
       ResultView.Refresh();
     }

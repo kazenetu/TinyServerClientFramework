@@ -37,12 +37,12 @@
       this.ScreenIDName = new System.Windows.Forms.Label();
       this.CreateFormBus = new System.Windows.Forms.Button();
       this.ResultView = new System.Windows.Forms.DataGridView();
-      this.FunctionIDName = new System.Windows.Forms.Label();
-      this.FunctionID = new System.Windows.Forms.ComboBox();
-      this.AddBusinessMethod = new System.Windows.Forms.Button();
       this.IsCreated = new System.Windows.Forms.DataGridViewCheckBoxColumn();
       this.ClassName = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.Remarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.FunctionIDName = new System.Windows.Forms.Label();
+      this.FunctionID = new System.Windows.Forms.ComboBox();
+      this.AddBusinessMethod = new System.Windows.Forms.Button();
       ((System.ComponentModel.ISupportInitialize)(this.ResultView)).BeginInit();
       this.SuspendLayout();
       // 
@@ -109,6 +109,8 @@
       // 
       this.ResultView.AllowUserToAddRows = false;
       this.ResultView.AllowUserToDeleteRows = false;
+      this.ResultView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+      this.ResultView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
       this.ResultView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
       this.ResultView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IsCreated,
@@ -122,6 +124,34 @@
       this.ResultView.RowTemplate.Height = 30;
       this.ResultView.Size = new System.Drawing.Size(758, 289);
       this.ResultView.TabIndex = 15;
+      // 
+      // IsCreated
+      // 
+      this.IsCreated.DataPropertyName = "IsCreated";
+      this.IsCreated.FillWeight = 60F;
+      this.IsCreated.HeaderText = "生成";
+      this.IsCreated.MinimumWidth = 50;
+      this.IsCreated.Name = "IsCreated";
+      this.IsCreated.ReadOnly = true;
+      this.IsCreated.Width = 50;
+      // 
+      // ClassName
+      // 
+      this.ClassName.DataPropertyName = "ClassName";
+      this.ClassName.HeaderText = "クラス名";
+      this.ClassName.MinimumWidth = 100;
+      this.ClassName.Name = "ClassName";
+      this.ClassName.ReadOnly = true;
+      // 
+      // Remarks
+      // 
+      this.Remarks.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+      this.Remarks.DataPropertyName = "Remarks";
+      this.Remarks.FillWeight = 1000F;
+      this.Remarks.HeaderText = "備考";
+      this.Remarks.MinimumWidth = 100;
+      this.Remarks.Name = "Remarks";
+      this.Remarks.ReadOnly = true;
       // 
       // FunctionIDName
       // 
@@ -151,34 +181,6 @@
       this.AddBusinessMethod.Text = "Businessメソッド・DTO追加";
       this.AddBusinessMethod.UseVisualStyleBackColor = true;
       this.AddBusinessMethod.Click += new System.EventHandler(this.AddBusinessMethod_Click);
-      // 
-      // IsCreated
-      // 
-      this.IsCreated.DataPropertyName = "IsCreated";
-      this.IsCreated.FillWeight = 60F;
-      this.IsCreated.HeaderText = "生成";
-      this.IsCreated.MinimumWidth = 50;
-      this.IsCreated.Name = "IsCreated";
-      this.IsCreated.ReadOnly = true;
-      this.IsCreated.Width = 50;
-      // 
-      // ClassName
-      // 
-      this.ClassName.DataPropertyName = "ClassName";
-      this.ClassName.HeaderText = "クラス名";
-      this.ClassName.MinimumWidth = 100;
-      this.ClassName.Name = "ClassName";
-      this.ClassName.ReadOnly = true;
-      // 
-      // Remarks
-      // 
-      this.Remarks.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-      this.Remarks.DataPropertyName = "Remarks";
-      this.Remarks.FillWeight = 1000F;
-      this.Remarks.HeaderText = "備考";
-      this.Remarks.MinimumWidth = 100;
-      this.Remarks.Name = "Remarks";
-      this.Remarks.ReadOnly = true;
       // 
       // MainForm
       // 
