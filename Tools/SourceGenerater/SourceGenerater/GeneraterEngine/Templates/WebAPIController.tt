@@ -9,7 +9,7 @@ using System;
 using WebAPIFramework.BaseClasses;
 using WebAPIFramework.Interfaces;
 
-namespace WebAPI.Controllers.<#= WebAPIVersion.ToUpper() #>
+namespace WebAPI.Controllers.<#= WebAPIVersion.ToUpper() #>.<#= BaseName #>
 {
   [ApiExplorerSettings(GroupName ="<#= WebAPIVersion #>")]
   [Route("api/<#= WebAPIVersion #>/<#= BaseName.ToLower() #>")]

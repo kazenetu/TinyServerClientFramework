@@ -12,7 +12,7 @@ using WebAPI.Transactions;
 using WebAPIFramework.BaseClasses;
 using WebAPIFramework.Interfaces;
 
-namespace WebAPI.Controllers.<#= WebAPIVersion.ToUpper() #>
+namespace WebAPI.Controllers.<#= WebAPIVersion.ToUpper() #>.<#= BaseName #>
 {
   public partial class <#= BaseName #>Controller
   {
