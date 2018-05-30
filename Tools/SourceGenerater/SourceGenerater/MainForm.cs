@@ -50,7 +50,53 @@ namespace SourceGenerater
 
       // WebAPIバージョンを定数クラスから取得するように修正
       generater.SetWebAPIVersion(RootFolder.Text);
+
+      // Select専用チェックボックスの設定
+      SelectOnly.Checked = GetSelectOnly();
     }
+
+    #region Select専用情報
+
+    /// <summary>
+    /// 画面ID・機能IDに紐づくSelect専用情報の取得
+    /// </summary>
+    /// <returns>未設定の場合はTrueを返す。設定済みの場合は設定値</returns>
+    private bool GetSelectOnly()
+    {
+      if (ScreenID.Text == string.Empty || FunctionID.Text == string.Empty)
+      {
+        return false;
+      }
+
+      var selectOnlyKey = $"{ScreenID.Text}{FunctionID.Text}";
+      if (!generater.ScreenDatas.SelectOnlyMethod.ContainsKey(selectOnlyKey))
+      {
+        generater.ScreenDatas.SelectOnlyMethod[selectOnlyKey] = true;
+        return true;
+      }
+      return generater.ScreenDatas.SelectOnlyMethod[selectOnlyKey];
+    }
+
+    /// <summary>
+    /// 画面ID・機能IDに紐づくSelect専用情報の設定
+    /// </summary>
+    private void SetSelectOnly()
+    {
+      if (ScreenID.Text == string.Empty || FunctionID.Text == string.Empty)
+      {
+        return;
+      }
+
+      var selectOnlyKey = $"{ScreenID.Text}{FunctionID.Text}";
+      if (!generater.ScreenDatas.SelectOnlyMethod.ContainsKey(selectOnlyKey))
+      {
+        generater.ScreenDatas.SelectOnlyMethod[selectOnlyKey] = true;
+        return;
+      }
+      generater.ScreenDatas.SelectOnlyMethod[selectOnlyKey] = SelectOnly.Checked;
+    }
+
+    #endregion
 
     #region ルートフォルダ
 
@@ -106,6 +152,9 @@ namespace SourceGenerater
       FunctionID.Items.Clear();
       FunctionID.Items.AddRange(generater.ScreenDatas.ScreenInfo[ScreenID.Text].ToArray());
       FunctionID.Text = generater.ScreenDatas.ScreenInfo[ScreenID.Text].FirstOrDefault();
+
+      // Select専用チェックボックスの設定
+      SelectOnly.Checked = GetSelectOnly();
     }
 
     /// <summary>
@@ -173,6 +222,9 @@ namespace SourceGenerater
 
         FunctionID.SelectedText = functionID;
       }
+
+      // Select専用チェックボックスの設定
+      SelectOnly.Checked = GetSelectOnly();
     }
 
     /// <summary>
@@ -210,6 +262,9 @@ namespace SourceGenerater
       ResultView.DataSource = null;
       ResultView.DataSource = generater.FileDatas;
       ResultView.Refresh();
+
+      // Select専用チェックボックスの設定
+      SetSelectOnly();
     }
     #endregion
 

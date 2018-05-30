@@ -28,7 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
-      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
       this.RefRootFolder = new System.Windows.Forms.Button();
       this.RootFolder = new System.Windows.Forms.TextBox();
       this.label3 = new System.Windows.Forms.Label();
@@ -43,6 +43,7 @@
       this.FunctionIDName = new System.Windows.Forms.Label();
       this.FunctionID = new System.Windows.Forms.ComboBox();
       this.AddBusinessMethod = new System.Windows.Forms.Button();
+      this.SelectOnly = new System.Windows.Forms.CheckBox();
       ((System.ComponentModel.ISupportInitialize)(this.ResultView)).BeginInit();
       this.SuspendLayout();
       // 
@@ -119,8 +120,8 @@
       this.ResultView.Location = new System.Drawing.Point(13, 142);
       this.ResultView.Name = "ResultView";
       this.ResultView.ReadOnly = true;
-      dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-      this.ResultView.RowsDefaultCellStyle = dataGridViewCellStyle1;
+      dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+      this.ResultView.RowsDefaultCellStyle = dataGridViewCellStyle2;
       this.ResultView.RowTemplate.Height = 30;
       this.ResultView.Size = new System.Drawing.Size(758, 289);
       this.ResultView.TabIndex = 15;
@@ -182,11 +183,23 @@
       this.AddBusinessMethod.UseVisualStyleBackColor = true;
       this.AddBusinessMethod.Click += new System.EventHandler(this.AddBusinessMethod_Click);
       // 
+      // SelectOnly
+      // 
+      this.SelectOnly.AutoSize = true;
+      this.SelectOnly.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+      this.SelectOnly.Location = new System.Drawing.Point(454, 112);
+      this.SelectOnly.Name = "SelectOnly";
+      this.SelectOnly.Size = new System.Drawing.Size(134, 20);
+      this.SelectOnly.TabIndex = 18;
+      this.SelectOnly.Text = "Select専用機能";
+      this.SelectOnly.UseVisualStyleBackColor = true;
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(783, 455);
+      this.Controls.Add(this.SelectOnly);
       this.Controls.Add(this.AddBusinessMethod);
       this.Controls.Add(this.FunctionID);
       this.Controls.Add(this.ResultView);
@@ -220,6 +233,7 @@
     private System.Windows.Forms.DataGridViewCheckBoxColumn IsCreated;
     private System.Windows.Forms.DataGridViewTextBoxColumn ClassName;
     private System.Windows.Forms.DataGridViewTextBoxColumn Remarks;
+    private System.Windows.Forms.CheckBox SelectOnly;
   }
 }
 

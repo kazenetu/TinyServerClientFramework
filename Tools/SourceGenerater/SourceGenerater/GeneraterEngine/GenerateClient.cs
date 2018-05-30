@@ -106,9 +106,13 @@ namespace SourceGenerater.GeneraterEngine
           var tempScreenDatas = sw.ReadObject(ms) as ScreenData;
 
           // 設定
-          foreach(var key in tempScreenDatas.ScreenInfo.Keys)
+          foreach (var key in tempScreenDatas.ScreenInfo.Keys)
           {
             ScreenDatas.ScreenInfo.Add(key, tempScreenDatas.ScreenInfo[key]);
+          }
+          foreach (var key in tempScreenDatas.SelectOnlyMethod.Keys)
+          {
+            ScreenDatas.SelectOnlyMethod.Add(key, tempScreenDatas.SelectOnlyMethod[key]);
           }
         }
       }
@@ -316,6 +320,8 @@ namespace SourceGenerater.GeneraterEngine
       /// 画面IDをキーとした機能IDリスト
       /// </summary>
       public Dictionary<string, List<string>> ScreenInfo { get; } = new Dictionary<string, List<string>>();
+
+      public Dictionary<string, bool> SelectOnlyMethod { get; } = new Dictionary<string, bool>();
     }
 
     public class FileData
