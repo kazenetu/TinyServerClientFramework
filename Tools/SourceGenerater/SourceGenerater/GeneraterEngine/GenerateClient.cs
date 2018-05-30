@@ -208,12 +208,24 @@ namespace SourceGenerater.GeneraterEngine
     /// <param name="clientRootPath">クライアントプロジェクトのルートパス</param>
     /// <param name="baseName">ベース名</param>
     /// <param name="methodName">メソッド名</param>
-    public void AddBusinessMethod(string clientRootPath, string baseName, string methodName)
+    /// <param name="selectOnly">Select専用機能か否か</param>
+    public void AddBusinessMethod(string clientRootPath, string baseName, string methodName, bool selectOnly)
     {
       // ファイル作成情報をクリア
       FileDatas.Clear();
 
-      var targetT4 = new List<IMethod>() { new BusinessMethod(), new Request(), new Response(), new WebAPIControllerMethod() { BasePath = clientRootPath }, new WebAPITransactionMethod() };
+      var targetT4 = new List<IMethod>() { new BusinessMethod(), new Request(), new Response(), new WebAPIControllerMethod() { BasePath = clientRootPath }};
+
+      if (selectOnly)
+      {
+        // 選択系メソッドテンプレート
+        targetT4.Add(new WebAPITransactionMethod());
+      }
+      else
+      {
+        // TODO 更新系メソッドテンプレート
+        targetT4.Add(new WebAPITransactionMethod());
+      }
 
       // プロジェクトファイル追加用StringBuilder生成
       var itemGroups = new StringBuilder();

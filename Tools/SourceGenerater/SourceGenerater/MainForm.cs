@@ -237,6 +237,7 @@ namespace SourceGenerater
       // パラメータ設定
       var screenID = ScreenID.Text;
       var functionID = FunctionID.Text;
+      var selectOnly = SelectOnly.Checked;
 
       // 入力チェック
       if (screenID.Trim() == string.Empty)
@@ -256,7 +257,7 @@ namespace SourceGenerater
       var basePath = Path.Combine(RootFolder.Text, @"Client\Client");
 
       // 対象ファイル作成
-      generater.AddBusinessMethod(basePath, screenID, functionID);
+      generater.AddBusinessMethod(basePath, screenID, functionID, selectOnly);
 
       // 生成結果をグリッドに表示
       ResultView.DataSource = null;
