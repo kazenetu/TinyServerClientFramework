@@ -8,7 +8,7 @@ using DataTransferObjects.Response.<#= BaseName #>;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
-using WebAPI.Transactions;
+using WebAPI.Transactions.<#= BaseName #>;
 using WebAPIFramework.BaseClasses;
 using WebAPIFramework.Interfaces;
 
@@ -38,8 +38,10 @@ namespace WebAPI.Controllers.<#= WebAPIVersion.ToUpper() #>.<#= BaseName #>
       var message = string.Empty;
       <#= MethodName #>Response.<#= MethodName #>ResponseParam resultParam = null;
 
-//      var transaction = new SampleTransaction(repository, logger);
-//      resultParam = transaction.Test(request);
+      var transaction = new <#= BaseName #>Transaction(repository, logger);
+      resultParam = transaction.<#= MethodName #>(request);
+
+      // TODO 結果確認を実装してください。(本コメントは削除してください)
 //      if (string.IsNullOrEmpty(resultParam.Name))
 //      {
 //        status = LoginResponse.Results.NG;
