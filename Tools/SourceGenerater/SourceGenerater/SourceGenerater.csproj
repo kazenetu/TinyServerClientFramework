@@ -58,6 +58,12 @@
       <DependentUpon>WebAPIControllerMethod.tt</DependentUpon>
     </Compile>
     <Compile Include="GeneraterEngine\Templates\WebAPIControllerMethodClass.cs" />
+    <Compile Include="GeneraterEngine\Templates\WebAPITransaction.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebAPITransaction.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GeneraterEngine\Templates\WebAPITransactionClass.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +176,11 @@
     <Content Include="GeneraterEngine\Templates\WebAPIControllerMethod.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>WebAPIControllerMethod.cs</LastGenOutput>
+      <CustomToolNamespace>SourceGenerater.GeneraterEngine.Templates</CustomToolNamespace>
+    </Content>
+    <Content Include="GeneraterEngine\Templates\WebAPITransaction.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>WebAPITransaction.cs</LastGenOutput>
       <CustomToolNamespace>SourceGenerater.GeneraterEngine.Templates</CustomToolNamespace>
     </Content>
     <Content Include="RootFolder.txt">

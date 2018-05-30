@@ -6,3 +6,4 @@
 /Request.cs
 /WebAPIController.cs
 /WebAPIControllerMethod.cs
+/WebAPITransaction.cs

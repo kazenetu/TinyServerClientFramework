@@ -1,0 +1,27 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+using Microsoft.Extensions.Logging;
+using System;
+using System.Text;
+using WebAPI.Repositories;
+using WebAPIFramework.BaseClasses;
+using WebAPIFramework.Interfaces;
+
+namespace WebAPI.Transactions.<#= BaseName #>
+{
+  public partial class <#= BaseName #>Transaction : TransactionBase
+  {
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    /// <param name="repository">RepositoryBase用インターフェース</param>
+    /// <param name="logger">ロガーインスタンス</param>
+    /// <remarks>パラメータはControllerから引き渡される</remarks>
+    public <#= BaseName #>Transaction(IRepositoryBase repository, ILogger logger) : base(repository, logger)
+    {
+    }
+  }
+}
