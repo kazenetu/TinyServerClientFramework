@@ -1,0 +1,66 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+using DataTransferObjects.Request.<#= BaseName #>;
+using DataTransferObjects.Response.<#= BaseName #>;
+using DataTransferObjects.Tables;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Text;
+using WebAPI.Repositories;
+using WebAPIFramework.BaseClasses;
+using WebAPIFramework.Interfaces;
+
+namespace WebAPI.Transactions.<#= BaseName #>
+{
+  public partial class <#= BaseName #>Transaction : TransactionBase
+  {
+    /// <summary>
+    /// <#= MethodName #>
+    /// </summary>
+    /// <param name="request">入力リクエスト</param>
+    /// <returns>処理結果</returns>
+    public <#= MethodName #>Response.<#= MethodName #>ResponseParam <#= MethodName #>(<#= MethodName #>Request request)
+    {
+      var result = new <#= MethodName #>Response.<#= MethodName #>ResponseParam();
+
+      // トランザクション設定
+//      repository.BeginTransaction();
+
+      try
+      {
+        // ユーザーRepositoryのインスタンスを取得
+//        var user = new MtUser();
+//        user.UserId = request.UserId;
+//        user.UserName = request.UserName;
+//        user.Password = createPasswordHash(request.UserId, request.Password, entryDate);
+//        user.EntryUser = request.LoginUserID;
+//        user.EntryDate = entryDate;
+//        var userRepository = repository.Cast<UserRepository>();
+//        if (userRepository.AddUser(user))
+//        {
+//          // TestRepositoryのインスタンスを取得
+//          var testRepository = repository.Cast<SampleRepository>();
+//
+//          // SQLを発行・戻り値に格納
+//          result.userList = testRepository.GetAllUsers();
+//
+//          repository.Commit();
+//        }
+//        else
+//        {
+//          repository.Rollback();
+//        }
+      }
+      catch (Exception ex)
+      {
+        logger.LogError($"{nameof(SampleTransaction)}.{nameof(<#= MethodName #>)}:\"{ex.Message}\"");
+//        repository.Rollback();
+      }
+
+      return result;
+    }
+  }
+}
