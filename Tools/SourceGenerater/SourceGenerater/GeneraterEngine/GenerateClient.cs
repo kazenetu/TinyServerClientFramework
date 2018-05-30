@@ -167,7 +167,7 @@ namespace SourceGenerater.GeneraterEngine
       // ファイル作成情報をクリア
       FileDatas.Clear();
 
-      var targetT4 = new List<IForm>() { new Form(), new FormDesigner(), new Business(), new WebAPIController() { BasePath = clientRootPath }, new WebAPITransaction() };
+      var targetT4 = new List<IForm>() { new Form(), new FormDesigner(), new Business(), new WebAPIController() { BasePath = clientRootPath }, new WebAPITransaction(), new WebAPIRepository() };
 
       // プロジェクトファイル追加用StringBuilder生成
       var itemGroups = new StringBuilder();
