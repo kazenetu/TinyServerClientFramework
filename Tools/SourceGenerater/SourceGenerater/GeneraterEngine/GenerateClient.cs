@@ -220,7 +220,7 @@ namespace SourceGenerater.GeneraterEngine
       if (selectOnly)
       {
         // 選択系メソッドテンプレート
-        targetT4.Add(new WebAPIControllerMethod() { BasePath = clientRootPath });
+        targetT4.Add(new WebAPIControllerSelectMethod() { BasePath = clientRootPath });
         targetT4.Add(new WebAPITransactionMethod());
       }
       else

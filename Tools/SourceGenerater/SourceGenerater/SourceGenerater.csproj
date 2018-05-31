@@ -58,6 +58,12 @@
       <DependentUpon>WebAPIControllerMethod.tt</DependentUpon>
     </Compile>
     <Compile Include="GeneraterEngine\Templates\WebAPIControllerMethodClass.cs" />
+    <Compile Include="GeneraterEngine\Templates\WebAPIControllerSelectMethod.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebAPIControllerSelectMethod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GeneraterEngine\Templates\WebAPIControllerSelectMethodClass.cs" />
     <Compile Include="GeneraterEngine\Templates\WebAPIRepository.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -188,6 +194,11 @@
     <Content Include="GeneraterEngine\Templates\WebAPIControllerMethod.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>WebAPIControllerMethod.cs</LastGenOutput>
+      <CustomToolNamespace>SourceGenerater.GeneraterEngine.Templates</CustomToolNamespace>
+    </Content>
+    <Content Include="GeneraterEngine\Templates\WebAPIControllerSelectMethod.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>WebAPIControllerSelectMethod.cs</LastGenOutput>
       <CustomToolNamespace>SourceGenerater.GeneraterEngine.Templates</CustomToolNamespace>
     </Content>
     <Content Include="GeneraterEngine\Templates\WebAPIRepository.tt">
