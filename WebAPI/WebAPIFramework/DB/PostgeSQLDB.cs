@@ -111,6 +111,13 @@ namespace WebAPIFramework.DB
     /// <returns>処理件数</returns>
     public int ExecuteNonQuery(string sql)
     {
+      // SQL未設定
+      if (sql == string.Empty)
+      {
+        return 0;
+      }
+
+      // SQL発行
       using (NpgsqlCommand command = conn.CreateCommand())
       {
         command.CommandText = sql;
@@ -131,6 +138,13 @@ namespace WebAPIFramework.DB
     /// <returns>検索結果</returns>
     public DataTable Fill(string sql)
     {
+      // SQL未設定
+      if (sql == string.Empty)
+      {
+        return new DataTable();
+      }
+
+      // SQL発行
       using (NpgsqlCommand command = conn.CreateCommand())
       {
         command.CommandText = sql;
