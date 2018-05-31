@@ -224,7 +224,7 @@ namespace SourceGenerater.GeneraterEngine
       }
       else
       {
-        // TODO 更新系メソッドテンプレート
+        // 更新系メソッドテンプレート
         targetT4.Add(new WebAPITransactionMethod());
       }
 
