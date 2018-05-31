@@ -28,7 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
-      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
       this.RefRootFolder = new System.Windows.Forms.Button();
       this.RootFolder = new System.Windows.Forms.TextBox();
       this.label3 = new System.Windows.Forms.Label();
@@ -120,8 +120,8 @@
       this.ResultView.Location = new System.Drawing.Point(13, 142);
       this.ResultView.Name = "ResultView";
       this.ResultView.ReadOnly = true;
-      dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-      this.ResultView.RowsDefaultCellStyle = dataGridViewCellStyle2;
+      dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+      this.ResultView.RowsDefaultCellStyle = dataGridViewCellStyle1;
       this.ResultView.RowTemplate.Height = 30;
       this.ResultView.Size = new System.Drawing.Size(758, 289);
       this.ResultView.TabIndex = 15;
@@ -211,7 +211,7 @@
       this.Controls.Add(this.RootFolder);
       this.Controls.Add(this.label3);
       this.Name = "MainForm";
-      this.Text = "Form1";
+      this.Text = "ソースコードジェネレータ";
       ((System.ComponentModel.ISupportInitialize)(this.ResultView)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
