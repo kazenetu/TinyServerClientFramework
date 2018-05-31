@@ -70,7 +70,7 @@ namespace WebAPI.Repositories
       db.ClearParam();
 
       // 結果をリストで返す
-      return fill<MtUser>(db.Fill(sql.ToString()));
+      return Fill<MtUser>(db.Fill(sql.ToString()));
     }
 
     /// <summary>
@@ -81,7 +81,7 @@ namespace WebAPI.Repositories
     /// <param name="columnName">カラム名</param>
     /// <param name="columnValue">カラムの値</param>
     /// <param name="instance">クラスインスタンス</param>
-    protected override void fillOhter<T>(string methodName, string columnName, object columnValue, T instance)
+    protected override void FillOhter<T>(string methodName, string columnName, object columnValue, T instance)
     {
       switch (methodName)
       {

@@ -22,7 +22,7 @@ namespace XUnitTestProject1.TestBase
     /// </summary>
     /// <param name="connectionString"></param>
     /// <returns></returns>
-    protected override SqliteConnection getConnection(string connectionString)
+    protected override SqliteConnection GetConnection(string connectionString)
     {
       return new SqliteConnection($"Data Source={connectionString}");
     }

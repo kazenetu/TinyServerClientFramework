@@ -109,7 +109,7 @@ namespace WebAPIFramework.BaseClasses
     /// <param name="dbResult">DB結果</param>
     /// <param name="callerMethodName">呼び出したメソッド名</param>
     /// <returns>テーブルDTOのリスト</returns>
-    protected List<T> fill<T>(DataTable dbResult, [CallerMemberName] string callerMethodName = "") where T : TableBase, new()
+    protected List<T> Fill<T>(DataTable dbResult, [CallerMemberName] string callerMethodName = "") where T : TableBase, new()
     {
       var result = new List<T>();
 
@@ -130,7 +130,7 @@ namespace WebAPIFramework.BaseClasses
           else
           {
             // クラスインスタンスに該当するプロパティがない場合は専用メソッドを呼び出す
-            fillOhter(callerMethodName, col.ColumnName, row[col.ColumnName], instance);
+            FillOhter(callerMethodName, col.ColumnName, row[col.ColumnName], instance);
           }
         }
         result.Add(instance);
@@ -184,7 +184,7 @@ namespace WebAPIFramework.BaseClasses
     /// <param name="columnName">カラム名</param>
     /// <param name="columnValue">カラムの値</param>
     /// <param name="instance">クラスインスタンス</param>
-    protected virtual void fillOhter<T>(string methodName, string columnName, object columnValue, T instance)
+    protected virtual void FillOhter<T>(string methodName, string columnName, object columnValue, T instance)
     {
     }
   }

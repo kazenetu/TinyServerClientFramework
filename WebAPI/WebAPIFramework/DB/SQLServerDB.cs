@@ -27,7 +27,7 @@ namespace WebAPIFramework.DB
     /// <summary>
     /// パラメータ
     /// </summary>
-    private Dictionary<string, object> param;
+    private readonly Dictionary<string, object> param;
 
     /// <summary>
     /// トランザクションが開いているか否か
@@ -60,7 +60,7 @@ namespace WebAPIFramework.DB
     {
       try
       {
-        this.conn = this.getConnection(connectionString);
+        this.conn = this.GetConnection(connectionString);
         this.conn.Open();
 
         this.param = new Dictionary<string, object>();
@@ -249,7 +249,7 @@ namespace WebAPIFramework.DB
     /// </summary>
     /// <param name="connectionString">接続文字列</param>
     /// <returns>コネクションインスタンス</returns>
-    private SqlConnection getConnection(string connectionString)
+    private SqlConnection GetConnection(string connectionString)
     {
       return new SqlConnection(connectionString);
     }
