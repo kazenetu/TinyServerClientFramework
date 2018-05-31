@@ -4,7 +4,6 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 using DataTransferObjects.Request.<#= BaseName #>;
-using DataTransferObjects.Response.<#= BaseName #>;
 using DataTransferObjects.Tables;
 using Microsoft.Extensions.Logging;
 using System;
@@ -22,42 +21,47 @@ namespace WebAPI.Transactions.<#= BaseName #>
     /// </summary>
     /// <param name="request">入力リクエスト</param>
     /// <returns>処理結果</returns>
-    public <#= MethodName #>Response.<#= MethodName #>ResponseParam <#= MethodName #>(<#= MethodName #>Request request)
+    public bool <#= MethodName #>(<#= MethodName #>Request request)
     {
-      var result = new <#= MethodName #>Response.<#= MethodName #>ResponseParam();
+      var result = false;
 
       // トランザクション設定
-//      repository.BeginTransaction();
+      repository.BeginTransaction();
 
       try
       {
-        // ユーザーRepositoryのインスタンスを取得
-//        var user = new MtUser();
-//        user.UserId = request.UserId;
-//        user.UserName = request.UserName;
-//        user.Password = createPasswordHash(request.UserId, request.Password, entryDate);
-//        user.EntryUser = request.LoginUserID;
-//        user.EntryDate = entryDate;
-//        var userRepository = repository.Cast<UserRepository>();
-//        if (userRepository.AddUser(user))
-//        {
-//          // TestRepositoryのインスタンスを取得
-//          var testRepository = repository.Cast<SampleRepository>();
-//
-//          // SQLを発行・戻り値に格納
-//          result.userList = testRepository.GetAllUsers();
-//
-//          repository.Commit();
-//        }
-//        else
-//        {
-//          repository.Rollback();
-//        }
+        // 登録情報を設定する
+        // TODO 登録情報saveDataにテーブルDTO(またはカスタマイズしたテーブルDTO)をnewして設定してください。(本コメントは削除してください)
+        var saveData = new DummyTable();
+
+
+        // <#= BaseName #>Repositoryのインスタンスを取得
+        var <#= BaseName.ToLower() #>Repository = repository.Cast<<#= BaseName #>Repository>();
+
+        // <#= BaseName #>Repository経由でSQLを発行
+        var <#= BaseName.ToLower() #>Result = <#= BaseName.ToLower() #>Repository.<#= MethodName #>(saveData);
+
+        // 発行結果を確認
+        if(<#= BaseName.ToLower() #>Result)
+        {
+          // コミット
+          repository.Commit();
+
+          // 戻り値を完了に設定
+          result = true;
+        }
+        else{
+          // ロールバック
+          repository.Rollback();
+        }
       }
       catch (Exception ex)
       {
-        logger.LogError($"{nameof(SampleTransaction)}.{nameof(<#= MethodName #>)}:\"{ex.Message}\"");
-//        repository.Rollback();
+        // 一意制約違反などの場合はログ出力
+        logger.LogError($"{nameof(<#= BaseName #>Transaction)}.{nameof(<#= MethodName #>)}:\"{ex.Message}\"");
+
+        // ロールバック
+        repository.Rollback();
       }
 
       return result;
