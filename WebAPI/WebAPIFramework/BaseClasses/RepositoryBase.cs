@@ -155,8 +155,7 @@ namespace WebAPIFramework.BaseClasses
         if (pi.PropertyType == typeof(bool))
         {
           // パースを試みる("True"や"False")
-          bool boolResult = false;
-          if (bool.TryParse(dbValue.ToString(), out boolResult))
+          if (bool.TryParse(dbValue.ToString(), out bool boolResult))
           {
             return boolResult;
           }
