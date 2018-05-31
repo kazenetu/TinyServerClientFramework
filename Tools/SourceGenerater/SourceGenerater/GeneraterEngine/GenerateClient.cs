@@ -3,6 +3,7 @@ using SourceGenerater.GeneraterEngine.Templates;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -173,8 +174,8 @@ namespace SourceGenerater.GeneraterEngine
 
       var targetT4 = new List<IForm>() { new Form(), new FormDesigner(), new Business(), new WebAPIController() { BasePath = clientRootPath }, new WebAPITransaction(), new WebAPIRepository() };
 
-      // プロジェクトファイル追加用StringBuilder生成
-      var itemGroups = new StringBuilder();
+      // プロジェクトファイル追加用List生成
+      var itemGroups = new List<string>();
 
       foreach (var t4 in targetT4)
       {
@@ -191,14 +192,14 @@ namespace SourceGenerater.GeneraterEngine
         // 生成した場合はプロジェクトファイル追加
         if (created && t4.ProjectElement != string.Empty)
         {
-          itemGroups.Append(t4.ProjectElement);
+          itemGroups.Add(t4.ProjectElement);
         }
       }
 
       // プロジェクトファイルにForm・Form.Designer・Businessを追加
       if(itemGroups.ToString().Trim() != string.Empty)
       {
-        AddCSProject(clientRootPath, itemGroups.ToString());
+        AddCSProject(clientRootPath, itemGroups);
       }
     }
 
@@ -227,8 +228,8 @@ namespace SourceGenerater.GeneraterEngine
         targetT4.Add(new WebAPITransactionMethod());
       }
 
-      // プロジェクトファイル追加用StringBuilder生成
-      var itemGroups = new StringBuilder();
+      // プロジェクトファイル追加用List生成
+      var itemGroups = new List<string>();
 
       foreach (var t4 in targetT4)
       {
@@ -246,14 +247,14 @@ namespace SourceGenerater.GeneraterEngine
         // 生成した場合はプロジェクトファイル追加
         if (created && t4.ProjectElement != string.Empty)
         {
-          itemGroups.Append(t4.ProjectElement);
+          itemGroups.Add(t4.ProjectElement);
         }
       }
 
       // プロジェクトファイルにForm・Form.Designer・Businessを追加
       if (itemGroups.ToString().Trim() != string.Empty)
       {
-        AddCSProject(clientRootPath, itemGroups.ToString());
+        AddCSProject(clientRootPath, itemGroups);
       }
     }
 
@@ -290,8 +291,8 @@ namespace SourceGenerater.GeneraterEngine
     /// ClientプロジェクトファイルにItemGroupを追加する
     /// </summary>
     /// <param name="clientRootPath">クライアントプロジェクトのルートパス</param>
-    /// <param name="targetItemGroup">追加するItemGroup情報</param>
-    private void AddCSProject(string clientRootPath, string targetItemGroup)
+    /// <param name="targetItems">追加するItemGroup情報</param>
+    private void AddCSProject(string clientRootPath, List<string> targetItems)
     {
       var projectFile = $"{clientRootPath}\\Client.csproj";
       if (!File.Exists(projectFile))
@@ -307,14 +308,32 @@ namespace SourceGenerater.GeneraterEngine
       }
 
       var addItenGroup = new StringBuilder();
-      addItenGroup.AppendLine("  <ItemGroup>");
-      addItenGroup.AppendLine(targetItemGroup);
-      addItenGroup.AppendLine("  </ItemGroup>");
+      foreach (var targetItem in targetItems)
+      {
+        var checktarget = targetItem.Split(new string[] { Environment.NewLine }, StringSplitOptions.None).First();
+        if (!projectValue.Contains(checktarget))
+        {
+          addItenGroup.Append(targetItem);
+        }
+      }
+
+      // 追加するものがない場合はそのまま終了
+      if (addItenGroup.Length <= 0)
+      {
+        return;
+      }
+
+      // ItemGroupタグとProject終了タグを追加
+      addItenGroup.AppendLine();
+      addItenGroup.Insert(0, $"  <ItemGroup>{Environment.NewLine}");
+      addItenGroup.AppendLine($"  </ItemGroup>");
       addItenGroup.Append("</Project>");
 
+      // 備考にItemGroupを追加
       var lastTagStartPos = projectValue.LastIndexOf("</Project>");
-      projectValue = projectValue.Substring(0, lastTagStartPos)+ addItenGroup.ToString();
+      projectValue = projectValue.Substring(0, lastTagStartPos) + addItenGroup.ToString();
 
+      // ファイル上書き
       using (var sw = new StreamWriter(projectFile, false, new UTF8Encoding(true)))
       {
         sw.Write(projectValue);
