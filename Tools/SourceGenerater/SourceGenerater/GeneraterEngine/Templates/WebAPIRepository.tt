@@ -29,7 +29,7 @@ namespace WebAPI.Repositories
     /// <param name="columnValue">カラムの値</param>
     /// <param name="instance">クラスインスタンス</param>
     /// <remarks>インスタンスのプロパティに該当しないデータの処理</remarks>
-    protected override void fillOhter<T>(string methodName, string columnName, object columnValue, T instance)
+    protected override void FillOhter<T>(string methodName, string columnName, object columnValue, T instance)
     {
       // HACK 必要になったら実装してください。(本コメントは削除してください)
       // メソッド名で検索

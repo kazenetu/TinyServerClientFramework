@@ -31,7 +31,7 @@ namespace WebAPI.Repositories
 
       // 結果をリストで返す
       // ※ テーブルDTOまたはカスタマイズされたテーブルDTOに存在しない別名を使用している場合はfillOhterメソッドにて設定を行うこと
-      return fill<DummyTable>(db.Fill(sql.ToString()));
+      return Fill<DummyTable>(db.Fill(sql.ToString()));
     }
   }
 }
