@@ -39,14 +39,18 @@ namespace WebAPI.Controllers.<#= WebAPIVersion.ToUpper() #>.<#= BaseName #>
       <#= MethodName #>Response.<#= MethodName #>ResponseParam resultParam = null;
 
       var transaction = new <#= BaseName #>Transaction(repository, logger);
-      resultParam = transaction.<#= MethodName #>(request);
+      if (transaction.Update(request))
+      {
+        // TODO 成功時の処理を実装してください。(本コメントは削除してください)
 
-      // TODO 結果確認を実装してください。(本コメントは削除してください)
-//      if (string.IsNullOrEmpty(resultParam.Name))
-//      {
-//        status = LoginResponse.Results.NG;
-//        message = "ログイン不可";
-//      }
+      }
+      else
+      {
+        status = <#= MethodName #>Response.Results.NG;
+
+       // TODO エラーメッセージを設定してください。(本コメントは削除してください)
+        message = "メッセージ";
+      }
 
       return Json(new <#= MethodName #>Response(status, message, resultParam));
     }
