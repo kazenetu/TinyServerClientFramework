@@ -215,16 +215,18 @@ namespace SourceGenerater.GeneraterEngine
       // ファイル作成情報をクリア
       FileDatas.Clear();
 
-      var targetT4 = new List<IMethod>() { new BusinessMethod(), new Request(), new Response(), new WebAPIControllerMethod() { BasePath = clientRootPath }};
+      var targetT4 = new List<IMethod>() { new BusinessMethod(), new Request(), new Response()};
 
       if (selectOnly)
       {
         // 選択系メソッドテンプレート
+        targetT4.Add(new WebAPIControllerMethod() { BasePath = clientRootPath });
         targetT4.Add(new WebAPITransactionMethod());
       }
       else
       {
         // 更新系メソッドテンプレート
+        targetT4.Add(new WebAPIControllerMethod() { BasePath = clientRootPath });
         targetT4.Add(new WebAPITransactionMethod());
       }
 
