@@ -10,7 +10,7 @@ using WebAPIFramework.Interfaces;
 
 namespace WebAPI.Repositories
 {
-  public class <#= BaseName #>Repository : RepositoryBase
+  public partial class <#= BaseName #>Repository : RepositoryBase
   {
     /// <summary>
     /// コンストラクタ
