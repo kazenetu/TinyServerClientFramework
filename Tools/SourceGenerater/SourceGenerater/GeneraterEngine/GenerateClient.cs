@@ -221,7 +221,7 @@ namespace SourceGenerater.GeneraterEngine
       {
         // 選択系メソッドテンプレート
         targetT4.Add(new WebAPIControllerSelectMethod() { BasePath = clientRootPath });
-        targetT4.Add(new WebAPITransactionMethod());
+        targetT4.Add(new WebAPITransactionSelectMethod());
       }
       else
       {

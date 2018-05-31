@@ -82,6 +82,12 @@
       <DependentUpon>WebAPITransactionMethod.tt</DependentUpon>
     </Compile>
     <Compile Include="GeneraterEngine\Templates\WebAPITransactionMethodClass.cs" />
+    <Compile Include="GeneraterEngine\Templates\WebAPITransactionSelectMethod.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebAPITransactionSelectMethod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GeneraterEngine\Templates\WebAPITransactionSelectMethodClass.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,6 +220,11 @@
     <Content Include="GeneraterEngine\Templates\WebAPITransactionMethod.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>WebAPITransactionMethod.cs</LastGenOutput>
+      <CustomToolNamespace>SourceGenerater.GeneraterEngine.Templates</CustomToolNamespace>
+    </Content>
+    <Content Include="GeneraterEngine\Templates\WebAPITransactionSelectMethod.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>WebAPITransactionSelectMethod.cs</LastGenOutput>
       <CustomToolNamespace>SourceGenerater.GeneraterEngine.Templates</CustomToolNamespace>
     </Content>
     <Content Include="RootFolder.txt">
