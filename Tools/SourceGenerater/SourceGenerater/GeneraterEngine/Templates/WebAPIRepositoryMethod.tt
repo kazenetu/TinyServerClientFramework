@@ -1,0 +1,43 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+using DataTransferObjects.Tables;
+using System.Text;
+using WebAPIFramework.BaseClasses;
+using WebAPIFramework.Interfaces;
+
+namespace WebAPI.Repositories
+{
+  public partial class <#= BaseName #>Repository : RepositoryBase
+  {
+    /// <summary>
+    /// <#= MethodName #>
+    /// </summary>
+    /// <param name="saveData">DB反映対象のDTO</param>
+    /// <returns>処理結果</returns>
+    public virtual bool <#= MethodName #>(DummyTable saveData)
+    {
+      // TODO DummyTableからテーブルDTOまたはカスタマイズされたテーブルDTOに置き換えてください。(本コメントは削除してください)
+
+      var sql = new StringBuilder();
+      // TODO SQLを追加してください。(本コメントは削除してください)
+
+      // Param設定
+      db.ClearParam();
+      // TODO db.AddParamメソッドを使って、パラメーターを追加してください。(本コメントは削除してください)
+
+      // SQL発行
+      var result = db.ExecuteNonQuery(sql.ToString());
+
+      // 結果確認
+      // TODO 検索結果件数の確認を行ってください。サンプルとして0件以下の場合は失敗。それ以外は成功としています。(本コメントは削除してください)
+      if (result <= 0)
+      {
+        return false;
+      }
+      return true;
+    }
+  }
+}

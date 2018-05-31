@@ -229,6 +229,7 @@ namespace SourceGenerater.GeneraterEngine
         // 更新系メソッドテンプレート
         targetT4.Add(new WebAPIControllerMethod() { BasePath = clientRootPath });
         targetT4.Add(new WebAPITransactionMethod());
+        targetT4.Add(new WebAPIRepositoryMethod());
       }
 
       // プロジェクトファイル追加用List生成
