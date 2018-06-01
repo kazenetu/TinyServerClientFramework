@@ -1,0 +1,41 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+using System;
+using WebAPIFramework.Interfaces;
+
+public class <#= Table.TableName #>Test
+{
+  /// <summary>
+  /// テーブル作成
+  /// </summary>
+  /// <param name="db">テスト用SQLiteDBインスタンス</param>
+  public static void CreateTable(IDatabase db)
+  {
+    var sql =  @"<#= Table.GetCreateTableSQL().ToUpper() #>";
+
+    // SQL発行
+    db.ExecuteNonQuery(sql);
+  }
+
+  /// <summary>
+  /// データ登録
+  /// </summary>
+  /// <param name="db">テスト用SQLiteDBインスタンス</param>
+<#= GetInsertMethodComments() #>
+  public static void Insert(IDatabase db
+<#= GetInsertMethodParam() #>
+                      )
+  {
+    var sql = @"<#= Table.GetInsertSQL().ToUpper() #>";
+
+    // Param設定
+    db.ClearParam();
+<#= GetInsertSQLParams() #>
+
+    // SQL発行
+    db.ExecuteNonQuery(sql);
+  }
+}

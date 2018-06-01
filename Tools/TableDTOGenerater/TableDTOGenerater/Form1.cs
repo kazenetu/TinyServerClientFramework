@@ -1,7 +1,10 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using TableDTOGenerater.Common;
+using TableDTOGenerater.Common.Interfaces;
+using static TableDTOGenerater.Common.DatabaseData;
 
 namespace TableDTOGenerater
 {
@@ -107,35 +110,73 @@ namespace TableDTOGenerater
       var sb = new StringBuilder();
       foreach (var item in dbDataInstance.GetTables(DatabaseCombo.Text))
       {
-        // テーブル単位でcsファイルを作成
-        var template = new Templates.TableDTO
-        {
-          Table = item
-        };
+        // テーブルDTOを作成
+        sb.AppendLine(
+          CreateFile(
+            $"{basePath}\\DataTransferObjects\\Tables\\{item.TableName}.cs",
+            new Templates.TableDTO { Table = item })
+        );
 
-        // 作成ファイルパス設定
-        var filePath = $"{basePath}\\DataTransferObjects\\Tables\\{item.TableName}.cs";
+        // テストテーブルクラスを作成
+        sb.AppendLine(
+          CreateFile(
+            $"{basePath}\\WebAPITest\\TestTables\\{item.TableName}Test.cs",
+            new Templates.TestTable { Table = item })
+        );
 
-        // フォルダの存在確認と作成
-        var folderPath = Path.GetDirectoryName(filePath);
-        if (!Directory.Exists(folderPath))
-        {
-          Directory.CreateDirectory(folderPath);
-        }
+        //// テーブル単位でcsファイルを作成
+        //var template = new Templates.TableDTO
+        //{
+        //  Table = item
+        //};
 
-        // ファイル書き出し
-        using (var tw = new StreamWriter(filePath,false, utf8Encoding))
-        {
-          // csファイル作成
-          tw.Write(template.TransformText());
-        }
+        //// 作成ファイルパス設定
+        //var filePath = $"{basePath}\\DataTransferObjects\\Tables\\{item.TableName}.cs";
 
-        // 書き出し結果を反映
-        sb.AppendLine($"{filePath }を書き出しました。");
+        //// フォルダの存在確認と作成
+        //var folderPath = Path.GetDirectoryName(filePath);
+        //if (!Directory.Exists(folderPath))
+        //{
+        //  Directory.CreateDirectory(folderPath);
+        //}
+
+        //// ファイル書き出し
+        //using (var tw = new StreamWriter(filePath,false, utf8Encoding))
+        //{
+        //  // csファイル作成
+        //  tw.Write(template.TransformText());
+        //}
+
       }
 
       // 書き出し結果をテキストボックスに表示
       CreateResult.Text = sb.ToString();
+    }
+
+    /// <summary>
+    /// ファイル作成
+    /// </summary>
+    /// <param name="filePath">ファイルパス</param>
+    /// <param name="template">T4インスタンス</param>
+    /// <returns>ファイル作成メッセージ</returns>
+    private string CreateFile(string filePath, ITransformText template)
+    {
+      // フォルダの存在確認と作成
+      var folderPath = Path.GetDirectoryName(filePath);
+      if (!Directory.Exists(folderPath))
+      {
+        Directory.CreateDirectory(folderPath);
+      }
+
+      // ファイル書き出し
+      using (var tw = new StreamWriter(filePath, false, new UTF8Encoding(true)))
+      {
+        // csファイル作成
+        tw.Write(template.TransformText());
+      }
+
+      // 書き出し結果を反映
+      return $"{filePath }を書き出しました。";
     }
 
     /// <summary>

@@ -76,6 +76,7 @@
     <Compile Include="Common\DB\SQLiteDB.cs" />
     <Compile Include="Common\DB\SQLServerDB.cs" />
     <Compile Include="Common\Interfaces\IDatabase.cs" />
+    <Compile Include="Common\Interfaces\ITransformText.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +91,12 @@
       <DependentUpon>TableDTO.tt</DependentUpon>
     </Compile>
     <Compile Include="Templates\TableDTOClass.cs" />
+    <Compile Include="Templates\TestTable.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\TestTableClass.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -126,6 +133,11 @@
     <Content Include="Templates\TableDTO.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>TableDTO.cs</LastGenOutput>
+      <CustomToolNamespace>TableDTOGenerater.Templates</CustomToolNamespace>
+    </Content>
+    <Content Include="Templates\TestTable.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>TestTable.cs</LastGenOutput>
       <CustomToolNamespace>TableDTOGenerater.Templates</CustomToolNamespace>
     </Content>
   </ItemGroup>

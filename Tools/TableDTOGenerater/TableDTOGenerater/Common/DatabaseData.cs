@@ -466,6 +466,92 @@ namespace TableDTOGenerater.Common
 
         return sb.ToString();
       }
+
+      /// <summary>
+      /// テーブル作成SQL取得
+      /// </summary>
+      /// <returns>テーブル作成SQL</returns>
+      public string GetCreateTableSQL()
+      {
+        var sb = new StringBuilder();
+
+        if (Columns == null)
+        {
+          return string.Empty;
+        }
+
+        // テーブル情報出力
+        sb.Append($"CREATE TABLE {TableOriginalName}(");
+
+        // カラム情報出力
+        var isFirstColumn = true;
+        foreach (var column in Columns)
+        {
+          if (!isFirstColumn)
+          {
+            sb.Append(" ,");
+          }
+          isFirstColumn = false;
+
+          sb.Append($"{column.ColumnOriginalName} ");
+
+          switch (column.ColumnType.Name)
+          {
+            case nameof(String):
+            case nameof(DateTime):
+              sb.Append("TEXT");
+              break;
+            case nameof(Int32):
+              sb.Append("INTEGER");
+              break;
+            case nameof(Double):
+              sb.Append("REAL");
+              break;
+            default:
+              sb.Append("NONE");
+              break;
+          }
+        }
+        sb.Append($");");
+
+        return sb.ToString();
+      }
+
+      /// <summary>
+      /// 登録SQL作成
+      /// </summary>
+      /// <returns>登録SQL</returns>
+      public string GetInsertSQL()
+      {
+        if (Columns == null)
+        {
+          return string.Empty;
+        }
+
+        var sb = new StringBuilder();
+        var paramSb = new StringBuilder();
+
+        sb.Append($"INSERT INTO {TableOriginalName}(");
+        paramSb.Append(") VALUES (");
+
+        // カラム情報出力
+        var isFirstColumn = true;
+        foreach (var column in Columns)
+        {
+          if (!isFirstColumn)
+          {
+            sb.Append(" ,");
+            paramSb.Append(" ,");
+          }
+          isFirstColumn = false;
+
+          sb.Append($"{column.ColumnOriginalName}");
+          paramSb.Append($"@{column.ColumnOriginalName}");
+        }
+        paramSb.Append(");");
+
+        return sb.ToString() + paramSb.ToString();
+      }
     }
 
     /// <summary>

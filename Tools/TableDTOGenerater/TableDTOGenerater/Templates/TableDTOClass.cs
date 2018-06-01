@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TableDTOGenerater.Common.Interfaces;
 using static TableDTOGenerater.Common.DatabaseData;
 
 namespace TableDTOGenerater.Templates
 {
-  partial class TableDTO
+  partial class TableDTO : ITransformText
   {
     /// <summary>
     /// テーブル情報
