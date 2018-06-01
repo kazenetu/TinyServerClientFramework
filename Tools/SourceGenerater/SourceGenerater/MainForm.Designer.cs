@@ -52,7 +52,7 @@
       this.RefRootFolder.Location = new System.Drawing.Point(680, 10);
       this.RefRootFolder.Name = "RefRootFolder";
       this.RefRootFolder.Size = new System.Drawing.Size(41, 23);
-      this.RefRootFolder.TabIndex = 10;
+      this.RefRootFolder.TabIndex = 2;
       this.RefRootFolder.Text = "...";
       this.RefRootFolder.UseVisualStyleBackColor = true;
       this.RefRootFolder.Click += new System.EventHandler(this.RefTargetFolder_Click);
@@ -62,7 +62,7 @@
       this.RootFolder.Location = new System.Drawing.Point(86, 12);
       this.RootFolder.Name = "RootFolder";
       this.RootFolder.Size = new System.Drawing.Size(588, 19);
-      this.RootFolder.TabIndex = 9;
+      this.RootFolder.TabIndex = 1;
       // 
       // label3
       // 
@@ -70,7 +70,7 @@
       this.label3.Location = new System.Drawing.Point(12, 15);
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(68, 12);
-      this.label3.TabIndex = 8;
+      this.label3.TabIndex = 0;
       this.label3.Text = "ルートフォルダ";
       // 
       // folderBrowserDialog1
@@ -83,7 +83,7 @@
       this.ScreenID.Location = new System.Drawing.Point(86, 53);
       this.ScreenID.Name = "ScreenID";
       this.ScreenID.Size = new System.Drawing.Size(504, 20);
-      this.ScreenID.TabIndex = 11;
+      this.ScreenID.TabIndex = 4;
       this.ScreenID.SelectedIndexChanged += new System.EventHandler(this.ScreenID_Leave);
       this.ScreenID.Leave += new System.EventHandler(this.ScreenID_Leave);
       // 
@@ -93,7 +93,7 @@
       this.ScreenIDName.Location = new System.Drawing.Point(12, 56);
       this.ScreenIDName.Name = "ScreenIDName";
       this.ScreenIDName.Size = new System.Drawing.Size(40, 12);
-      this.ScreenIDName.TabIndex = 12;
+      this.ScreenIDName.TabIndex = 3;
       this.ScreenIDName.Text = "画面ID";
       // 
       // CreateFormBus
@@ -101,7 +101,7 @@
       this.CreateFormBus.Location = new System.Drawing.Point(608, 50);
       this.CreateFormBus.Name = "CreateFormBus";
       this.CreateFormBus.Size = new System.Drawing.Size(163, 23);
-      this.CreateFormBus.TabIndex = 13;
+      this.CreateFormBus.TabIndex = 5;
       this.CreateFormBus.Text = "Form・Business作成";
       this.CreateFormBus.UseVisualStyleBackColor = true;
       this.CreateFormBus.Click += new System.EventHandler(this.CreateFormBus_Click);
@@ -124,7 +124,8 @@
       this.ResultView.RowsDefaultCellStyle = dataGridViewCellStyle1;
       this.ResultView.RowTemplate.Height = 30;
       this.ResultView.Size = new System.Drawing.Size(758, 289);
-      this.ResultView.TabIndex = 15;
+      this.ResultView.TabIndex = 10;
+      this.ResultView.TabStop = false;
       // 
       // IsCreated
       // 
@@ -160,7 +161,7 @@
       this.FunctionIDName.Location = new System.Drawing.Point(12, 89);
       this.FunctionIDName.Name = "FunctionIDName";
       this.FunctionIDName.Size = new System.Drawing.Size(40, 12);
-      this.FunctionIDName.TabIndex = 12;
+      this.FunctionIDName.TabIndex = 6;
       this.FunctionIDName.Text = "機能ID";
       // 
       // FunctionID
@@ -169,7 +170,7 @@
       this.FunctionID.Location = new System.Drawing.Point(86, 86);
       this.FunctionID.Name = "FunctionID";
       this.FunctionID.Size = new System.Drawing.Size(504, 20);
-      this.FunctionID.TabIndex = 16;
+      this.FunctionID.TabIndex = 7;
       this.FunctionID.SelectedIndexChanged += new System.EventHandler(this.FunctionID_Leave);
       this.FunctionID.Leave += new System.EventHandler(this.FunctionID_Leave);
       // 
@@ -178,7 +179,7 @@
       this.AddBusinessMethod.Location = new System.Drawing.Point(608, 84);
       this.AddBusinessMethod.Name = "AddBusinessMethod";
       this.AddBusinessMethod.Size = new System.Drawing.Size(163, 23);
-      this.AddBusinessMethod.TabIndex = 17;
+      this.AddBusinessMethod.TabIndex = 9;
       this.AddBusinessMethod.Text = "Businessメソッド・DTO追加";
       this.AddBusinessMethod.UseVisualStyleBackColor = true;
       this.AddBusinessMethod.Click += new System.EventHandler(this.AddBusinessMethod_Click);
@@ -190,7 +191,7 @@
       this.SelectOnly.Location = new System.Drawing.Point(454, 112);
       this.SelectOnly.Name = "SelectOnly";
       this.SelectOnly.Size = new System.Drawing.Size(134, 20);
-      this.SelectOnly.TabIndex = 18;
+      this.SelectOnly.TabIndex = 8;
       this.SelectOnly.Text = "Select専用機能";
       this.SelectOnly.UseVisualStyleBackColor = true;
       // 
