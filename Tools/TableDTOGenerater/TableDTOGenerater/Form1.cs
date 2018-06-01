@@ -38,13 +38,13 @@ namespace TableDTOGenerater
           var index = rootFolder.LastIndexOf(rootFolderName);
           rootFolder = rootFolder.Substring(0, index + rootFolderName.Length);
 
-          TableDTOPath.Text = Path.Combine(rootFolder, @"DataTransferObjects\Tables");
+          RootFolder.Text = rootFolder;
         }
       }
-      if(TableDTOPath.Text.Trim() == string.Empty)
+      if (RootFolder.Text.Trim() == string.Empty)
       {
         // 未設定の場合は相対パスを初期値に設定
-        TableDTOPath.Text = Path.GetFullPath(@"../../../../..\DataTransferObjects\Tables");
+        RootFolder.Text = Path.GetFullPath(@"../../../../..");
       }
     }
 
@@ -90,13 +90,13 @@ namespace TableDTOGenerater
       }
 
       // 出力先未設定の場合は終了
-      if (TableDTOPath.Text == string.Empty)
+      if (RootFolder.Text == string.Empty)
       {
         return;
       }
 
       // TableDTOのベースパスを取得
-      var basePath = TableDTOPath.Text;
+      var basePath = RootFolder.Text;
 
       // 文字コードをUTF8に設定
       var utf8Encoding = new UTF8Encoding(true);
@@ -114,7 +114,7 @@ namespace TableDTOGenerater
         };
 
         // 作成ファイルパス設定
-        var filePath = $"{basePath}\\{item.TableName}.cs";
+        var filePath = $"{basePath}\\DataTransferObjects\\Tables\\{item.TableName}.cs";
 
         // フォルダの存在確認と作成
         var folderPath = Path.GetDirectoryName(filePath);
@@ -143,18 +143,18 @@ namespace TableDTOGenerater
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void RefFolder_Click(object sender, System.EventArgs e)
+    private void RefRootFolder_Click(object sender, System.EventArgs e)
     {
       // 出力先が指定されている場合はフォルダ指定ダイアログに設定
-      if (TableDTOPath.Text != string.Empty)
+      if (RootFolder.Text != string.Empty)
       {
-        folderBrowserDialog1.SelectedPath = TableDTOPath.Text;
+        folderBrowserDialog1.SelectedPath = RootFolder.Text;
       }
 
       // OKボタンクリックの場合は出力先を設定
       if(folderBrowserDialog1.ShowDialog() == DialogResult.OK)
       {
-        TableDTOPath.Text = folderBrowserDialog1.SelectedPath;
+        RootFolder.Text = folderBrowserDialog1.SelectedPath;
       }
     }
   }

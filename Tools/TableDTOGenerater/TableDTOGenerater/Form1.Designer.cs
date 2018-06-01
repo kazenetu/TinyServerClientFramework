@@ -33,9 +33,9 @@
       this.ConnectionString = new System.Windows.Forms.TextBox();
       this.Generate = new System.Windows.Forms.Button();
       this.CreateResult = new System.Windows.Forms.TextBox();
-      this.TableDTOPath = new System.Windows.Forms.TextBox();
+      this.RootFolder = new System.Windows.Forms.TextBox();
       this.label2 = new System.Windows.Forms.Label();
-      this.refFolder = new System.Windows.Forms.Button();
+      this.RefRootFolder = new System.Windows.Forms.Button();
       this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
       this.SuspendLayout();
       // 
@@ -86,31 +86,31 @@
       this.CreateResult.Size = new System.Drawing.Size(757, 300);
       this.CreateResult.TabIndex = 4;
       // 
-      // TableDTOPath
+      // RootFolder
       // 
-      this.TableDTOPath.Location = new System.Drawing.Point(129, 39);
-      this.TableDTOPath.Name = "TableDTOPath";
-      this.TableDTOPath.Size = new System.Drawing.Size(593, 19);
-      this.TableDTOPath.TabIndex = 5;
+      this.RootFolder.Location = new System.Drawing.Point(82, 39);
+      this.RootFolder.Name = "RootFolder";
+      this.RootFolder.Size = new System.Drawing.Size(640, 19);
+      this.RootFolder.TabIndex = 5;
       // 
       // label2
       // 
       this.label2.AutoSize = true;
       this.label2.Location = new System.Drawing.Point(13, 42);
       this.label2.Name = "label2";
-      this.label2.Size = new System.Drawing.Size(110, 12);
+      this.label2.Size = new System.Drawing.Size(68, 12);
       this.label2.TabIndex = 6;
-      this.label2.Text = "TableDTOフォルダパス";
+      this.label2.Text = "ルートフォルダ";
       // 
-      // refFolder
+      // RefRootFolder
       // 
-      this.refFolder.Location = new System.Drawing.Point(728, 37);
-      this.refFolder.Name = "refFolder";
-      this.refFolder.Size = new System.Drawing.Size(41, 23);
-      this.refFolder.TabIndex = 7;
-      this.refFolder.Text = "...";
-      this.refFolder.UseVisualStyleBackColor = true;
-      this.refFolder.Click += new System.EventHandler(this.RefFolder_Click);
+      this.RefRootFolder.Location = new System.Drawing.Point(728, 37);
+      this.RefRootFolder.Name = "RefRootFolder";
+      this.RefRootFolder.Size = new System.Drawing.Size(41, 23);
+      this.RefRootFolder.TabIndex = 7;
+      this.RefRootFolder.Text = "...";
+      this.RefRootFolder.UseVisualStyleBackColor = true;
+      this.RefRootFolder.Click += new System.EventHandler(this.RefRootFolder_Click);
       // 
       // folderBrowserDialog1
       // 
@@ -121,9 +121,9 @@
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(800, 450);
-      this.Controls.Add(this.refFolder);
+      this.Controls.Add(this.RefRootFolder);
       this.Controls.Add(this.label2);
-      this.Controls.Add(this.TableDTOPath);
+      this.Controls.Add(this.RootFolder);
       this.Controls.Add(this.CreateResult);
       this.Controls.Add(this.Generate);
       this.Controls.Add(this.ConnectionString);
@@ -143,9 +143,9 @@
     private System.Windows.Forms.TextBox ConnectionString;
     private System.Windows.Forms.Button Generate;
     private System.Windows.Forms.TextBox CreateResult;
-    private System.Windows.Forms.TextBox TableDTOPath;
+    private System.Windows.Forms.TextBox RootFolder;
     private System.Windows.Forms.Label label2;
-    private System.Windows.Forms.Button refFolder;
+    private System.Windows.Forms.Button RefRootFolder;
     private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
   }
 }
