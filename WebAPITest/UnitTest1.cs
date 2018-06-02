@@ -117,27 +117,5 @@ namespace WebAPITest
 
       return db;
     }
-
-
-    //public IRepositoryBase GetDummyRepository()
-    //{
-    //    return new DummyTestRepo(null);
-    //}
-
-    //private class DummyTestRepo : TestRepository
-    //{
-    //    public DummyTestRepo(IDatabase db) : base(db)
-    //    {
-    //    }
-    //    public override T Cast<T>() 
-    //    {
-    //        return (T)(IRepositoryBase)new DummyTestRepo(db);
-    //    }
-
-    //    public override string Login(string userID, string password)
-    //    {
-    //        return "";
-    //    }
-    //}
   }
 }
