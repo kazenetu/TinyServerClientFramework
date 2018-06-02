@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.Sqlite;
 using WebAPIFramework.DB;
 
-namespace XUnitTestProject1.TestBase
+namespace WebAPITest.TestBase
 {
   /// <summary>
   /// テスト用SQLiteクラス

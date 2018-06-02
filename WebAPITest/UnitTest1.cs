@@ -8,19 +8,19 @@ using WebAPI.Controllers.V1;
 using WebAPI.Repositories;
 using WebAPIFramework.Interfaces;
 using Xunit;
-using XUnitTestProject1.TestBase;
+using WebAPITest.TestBase;
 
-namespace XUnitTestProject1
+namespace WebAPITest
 {
   public class UnitTest1
   {
     /// <summary>
-    /// ƒƒOƒCƒ“ƒXƒ^ƒ“ƒX
+    /// ï¿½ï¿½ï¿½Oï¿½Cï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½X
     /// </summary>
     private ILogger<ValuesController> logger = new LoggerFactory().AddConsole().CreateLogger<ValuesController>();
 
     /// <summary>
-    /// ƒŠƒNƒGƒXƒgì¬ƒƒ\ƒbƒh
+    /// ï¿½ï¿½ï¿½Nï¿½Gï¿½Xï¿½gï¿½ì¬ï¿½ï¿½ï¿½\ï¿½bï¿½h
     /// </summary>
     /// <param name="id"></param>
     /// <param name="password"></param>
@@ -35,7 +35,7 @@ namespace XUnitTestProject1
     }
 
     /// <summary>
-    /// Repository‚Ìƒ‚ƒbƒN·‚µ‘Ö‚¦‚Ä‚ÌƒeƒXƒg
+    /// Repositoryï¿½Ìƒï¿½ï¿½bï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½Ö‚ï¿½ï¿½Ä‚Ìƒeï¿½Xï¿½g
     /// </summary>
     [Theory]
     [MemberData(nameof(MakeLoginRequest),"test","test")]
@@ -44,57 +44,57 @@ namespace XUnitTestProject1
 
       var mock = new Mock<SampleRepository>(null);
       mock.Setup(c => c.Cast<SampleRepository>()).Returns(mock.Object);
-      mock.Setup(c => c.Login(It.IsAny<LoginRequest>())).Returns("ƒeƒXƒgƒ†[ƒU[");
+      mock.Setup(c => c.Login(It.IsAny<LoginRequest>())).Returns("ï¿½eï¿½Xï¿½gï¿½ï¿½ï¿½[ï¿½Uï¿½[");
       var controller = new ValuesController(mock.Object as IRepositoryBase, logger);
 
-      // ƒRƒ“ƒgƒ[ƒ‰[ƒƒ\ƒbƒhÀs
+      // ï¿½Rï¿½ï¿½ï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½\ï¿½bï¿½hï¿½ï¿½ï¿½s
       var result = controller.Get(request);
 
-      // Response‚ÌŒ‹‰Ê‚ªJsonResult
+      // Responseï¿½ÌŒï¿½ï¿½Ê‚ï¿½JsonResult
       Assert.True(result is JsonResult, "Not JsonResult");
 
-      // Œ‹‰ÊƒIƒuƒWƒFƒNƒg‚ğæ“¾
+      // ï¿½ï¿½ï¿½ÊƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½æ“¾
       var responseObject = ((JsonResult)result).Value as LoginResponse;
 
-      // Œ‹‰ÊŠm”F
+      // ï¿½ï¿½ï¿½ÊŠmï¿½F
       Assert.NotNull(responseObject);
     }
 
     /// <summary>
-    /// ƒCƒ“ƒƒ‚ƒŠ‚ÌSQLite‚ğg—p‚µ‚Ä‚ÌƒƒOƒCƒ“ƒeƒXƒg
+    /// ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½SQLiteï¿½ï¿½gï¿½pï¿½ï¿½ï¿½Ä‚Ìƒï¿½ï¿½Oï¿½Cï¿½ï¿½ï¿½eï¿½Xï¿½g
     /// </summary>
     [Theory]
     [MemberData(nameof(MakeLoginRequest), "test", "test")]
     public void Test2(LoginRequest request)
     {
-      // ƒCƒ“ƒƒ‚ƒŠSQLite‚ÅRepositoryƒCƒ“ƒXƒ^ƒ“ƒX‚ğì¬
+      // ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½SQLiteï¿½ï¿½Repositoryï¿½Cï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½Xï¿½ï¿½ì¬
       var controller = new ValuesController(new SampleRepository(getDB()), logger);
 
-      // ƒRƒ“ƒgƒ[ƒ‰[ƒƒ\ƒbƒhÀs
+      // ï¿½Rï¿½ï¿½ï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½\ï¿½bï¿½hï¿½ï¿½ï¿½s
       var result = controller.Get(request);
 
-      // Response‚ÌŒ‹‰Ê‚ªJsonResult
+      // Responseï¿½ÌŒï¿½ï¿½Ê‚ï¿½JsonResult
       Assert.True(result is JsonResult, "Not JsonResult");
 
-      // Œ‹‰ÊƒIƒuƒWƒFƒNƒg‚ğæ“¾
+      // ï¿½ï¿½ï¿½ÊƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½æ“¾
       var responseObject = ((JsonResult)result).Value as LoginResponse;
 
       Assert.NotNull(responseObject);
 
-      // Œ‹‰ÊŠm”F
-      Assert.Equal("ƒeƒXƒgƒ†[ƒU[", responseObject.ResponseData.Name);
+      // ï¿½ï¿½ï¿½ÊŠmï¿½F
+      Assert.Equal("ï¿½eï¿½Xï¿½gï¿½ï¿½ï¿½[ï¿½Uï¿½[", responseObject.ResponseData.Name);
     }
 
     /// <summary>
-    /// ƒCƒ“ƒƒ‚ƒŠSQLiteƒCƒ“ƒXƒ^ƒ“ƒX‚Ìæ“¾
+    /// ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½SQLiteï¿½Cï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½Xï¿½Ìæ“¾
     /// </summary>
     /// <returns></returns>
     private IDatabase getDB()
     {
-      // ƒCƒ“ƒƒ‚ƒŠSQLiteƒCƒ“ƒXƒ^ƒ“ƒX¶¬
+      // ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½SQLiteï¿½Cï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½
       var db = new TestSQLiteDB(@":memory:");
 
-      // ƒe[ƒuƒ‹ì¬
+      // ï¿½eï¿½[ï¿½uï¿½ï¿½ï¿½ì¬
       var createTable =
           @"create table MT_USER (
                   USER_ID NVARCHAR
@@ -111,8 +111,8 @@ namespace XUnitTestProject1
 
       db.ExecuteNonQuery(createTable);
 
-      // ƒeƒXƒgƒf[ƒ^“o˜^
-      var testData = @"insert into MT_USER(USER_ID,USER_NAME,PASSWORD,DEL_FLAG,ENTRY_USER,ENTRY_DATE,MOD_USER,MOD_DATE,MOD_VERSION) values ('test','ƒeƒXƒgƒ†[ƒU[','Z5SMGm/kEGTiZP8tHwuWSwYWFguMP7/qJOnLNL1u4is=','0','','2018/01/21 17:32:00',null,null,1);";
+      // ï¿½eï¿½Xï¿½gï¿½fï¿½[ï¿½^ï¿½oï¿½^
+      var testData = @"insert into MT_USER(USER_ID,USER_NAME,PASSWORD,DEL_FLAG,ENTRY_USER,ENTRY_DATE,MOD_USER,MOD_DATE,MOD_VERSION) values ('test','ï¿½eï¿½Xï¿½gï¿½ï¿½ï¿½[ï¿½Uï¿½[','Z5SMGm/kEGTiZP8tHwuWSwYWFguMP7/qJOnLNL1u4is=','0','','2018/01/21 17:32:00',null,null,1);";
       db.ExecuteNonQuery(testData);
 
       return db;
