@@ -124,29 +124,6 @@ namespace TableDTOGenerater
             new Templates.TestTable { Table = item })
         );
 
-        //// テーブル単位でcsファイルを作成
-        //var template = new Templates.TableDTO
-        //{
-        //  Table = item
-        //};
-
-        //// 作成ファイルパス設定
-        //var filePath = $"{basePath}\\DataTransferObjects\\Tables\\{item.TableName}.cs";
-
-        //// フォルダの存在確認と作成
-        //var folderPath = Path.GetDirectoryName(filePath);
-        //if (!Directory.Exists(folderPath))
-        //{
-        //  Directory.CreateDirectory(folderPath);
-        //}
-
-        //// ファイル書き出し
-        //using (var tw = new StreamWriter(filePath,false, utf8Encoding))
-        //{
-        //  // csファイル作成
-        //  tw.Write(template.TransformText());
-        //}
-
       }
 
       // 書き出し結果をテキストボックスに表示
