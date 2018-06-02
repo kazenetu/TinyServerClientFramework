@@ -6,36 +6,39 @@
 using System;
 using WebAPIFramework.Interfaces;
 
-public class <#= Table.TableName #>Test
+namespace WebAPITest.TestTables
 {
-  /// <summary>
-  /// テーブル作成
-  /// </summary>
-  /// <param name="db">テスト用SQLiteDBインスタンス</param>
-  public static void CreateTable(IDatabase db)
+  public class <#= Table.TableName #>Test
   {
-    var sql =  @"<#= Table.GetCreateTableSQL().ToUpper() #>";
+    /// <summary>
+    /// テーブル作成
+    /// </summary>
+    /// <param name="db">テスト用SQLiteDBインスタンス</param>
+    public static void CreateTable(IDatabase db)
+    {
+      var sql =  @"<#= Table.GetCreateTableSQL().ToUpper() #>";
 
-    // SQL発行
-    db.ExecuteNonQuery(sql);
-  }
+      // SQL発行
+      db.ExecuteNonQuery(sql);
+    }
 
-  /// <summary>
-  /// データ登録
-  /// </summary>
-  /// <param name="db">テスト用SQLiteDBインスタンス</param>
-<#= GetInsertMethodComments() #>
-  public static void Insert(IDatabase db
-<#= GetInsertMethodParam() #>
-                      )
-  {
-    var sql = @"<#= Table.GetInsertSQL().ToUpper() #>";
+    /// <summary>
+    /// データ登録
+    /// </summary>
+    /// <param name="db">テスト用SQLiteDBインスタンス</param>
+  <#= GetInsertMethodComments() #>
+    public static void Insert(IDatabase db
+  <#= GetInsertMethodParam() #>
+                        )
+    {
+      var sql = @"<#= Table.GetInsertSQL().ToUpper() #>";
 
-    // Param設定
-    db.ClearParam();
-<#= GetInsertSQLParams() #>
+      // Param設定
+      db.ClearParam();
+  <#= GetInsertSQLParams() #>
 
-    // SQL発行
-    db.ExecuteNonQuery(sql);
+      // SQL発行
+      db.ExecuteNonQuery(sql);
+    }
   }
 }
