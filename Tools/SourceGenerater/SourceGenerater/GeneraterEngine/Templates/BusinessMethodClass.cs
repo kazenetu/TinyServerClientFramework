@@ -19,7 +19,7 @@ namespace SourceGenerater.GeneraterEngine.Templates
     {
       get
       {
-        return $"Business\\{BaseName}\\{MethodName}.cs";
+        return $"Business\\{BaseName}\\Bus{MethodName}.cs";
       }
     }
 
@@ -31,7 +31,7 @@ namespace SourceGenerater.GeneraterEngine.Templates
     {
       get
       {
-        return $"    <Compile Include=\"Business\\{BaseName}\\{MethodName}.cs\" />";
+        return $"    <Compile Include=\"Business\\{BaseName}\\Bus{MethodName}.cs\" />";
       }
     }
 
