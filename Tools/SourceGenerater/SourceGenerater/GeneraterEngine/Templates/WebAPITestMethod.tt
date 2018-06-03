@@ -22,7 +22,7 @@ namespace WebAPITest.<#= BaseName #>
     /// <#= MethodName #>のテスト
     /// </summary>
     [Theory]
-    public void <#= MethodName #>Test(<#= MethodName #>Request request)
+    public void <#= MethodName #>Test<#= WebAPIVersion.ToUpper() #>(<#= MethodName #>Request request)
     {
       // controller作成
       var controller = new <#= BaseName #>Controller(new <#= BaseName #>Repository(getDB()), logger);
