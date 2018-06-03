@@ -173,7 +173,7 @@ namespace SourceGenerater.GeneraterEngine
       FileDatas.Clear();
 
       var targetT4 = new List<IForm>() { new Form(), new FormDesigner(), new Business(), new WebAPIController() { BasePath = clientRootPath }, new WebAPITransaction(), new WebAPIRepository() };
-      targetT4.Add(new WebAPITest() { BasePath = clientRootPath });
+      targetT4.Add(new WebAPITest());
 
       // プロジェクトファイル追加用List生成
       var itemGroups = new List<string>();
