@@ -19,9 +19,24 @@ namespace WebAPITest.<#= BaseName #>
   public partial class <#= BaseName #>Test<#= WebAPIVersion.ToUpper() #>
   {
     /// <summary>
+    /// <#= MethodName #>用入力データ生成、取得
+    /// </summary>
+    /// <returns>入力データリスト</returns>
+    public static IEnumerable<object[]> Make<#= MethodName #>Request()
+    {
+      var result = new List<object[]>();
+
+      // TODO 入力データとして<#= MethodName #>Requestを作成してください。(本コメントは削除してください)
+      //result.Add(new object[] { new <#= MethodName #>Request() { プロパティ名=値,...} });
+
+      return result;
+    }
+
+    /// <summary>
     /// <#= MethodName #>のテスト
     /// </summary>
     [Theory]
+    [MemberData(nameof(Make<#= MethodName #>Request))]
     public void <#= MethodName #>Test<#= WebAPIVersion.ToUpper() #>(<#= MethodName #>Request request)
     {
       // controller作成
