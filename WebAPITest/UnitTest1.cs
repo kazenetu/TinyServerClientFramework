@@ -15,12 +15,12 @@ namespace WebAPITest
   public class UnitTest1
   {
     /// <summary>
-    /// ���O�C���X�^���X
+    /// ログインスタンス
     /// </summary>
     private ILogger<ValuesController> logger = new LoggerFactory().AddConsole().CreateLogger<ValuesController>();
 
     /// <summary>
-    /// ���N�G�X�g�쐬���\�b�h
+    /// リクエスト作成メソッド
     /// </summary>
     /// <param name="id"></param>
     /// <param name="password"></param>
@@ -35,66 +35,66 @@ namespace WebAPITest
     }
 
     /// <summary>
-    /// Repository�̃��b�N�����ւ��Ẵe�X�g
+    /// Repositoryのモック差し替えてのテスト
     /// </summary>
     [Theory]
-    [MemberData(nameof(MakeLoginRequest),"test","test")]
+    [MemberData(nameof(MakeLoginRequest), "test", "test")]
     public void Test1(LoginRequest request)
     {
 
       var mock = new Mock<SampleRepository>(null);
       mock.Setup(c => c.Cast<SampleRepository>()).Returns(mock.Object);
-      mock.Setup(c => c.Login(It.IsAny<LoginRequest>())).Returns("�e�X�g���[�U�[");
+      mock.Setup(c => c.Login(It.IsAny<LoginRequest>())).Returns("テストユーザー");
       var controller = new ValuesController(mock.Object as IRepositoryBase, logger);
 
-      // �R���g���[���[���\�b�h���s
+      // コントローラーメソッド実行
       var result = controller.Get(request);
 
-      // Response�̌��ʂ�JsonResult
+      // Responseの結果がJsonResult
       Assert.True(result is JsonResult, "Not JsonResult");
 
-      // ���ʃI�u�W�F�N�g��擾
+      // 結果オブジェクトを取得
       var responseObject = ((JsonResult)result).Value as LoginResponse;
 
-      // ���ʊm�F
+      // 結果確認
       Assert.NotNull(responseObject);
     }
 
     /// <summary>
-    /// �C����������SQLite��g�p���Ẵ��O�C���e�X�g
+    /// インメモリのSQLiteを使用してのログインテスト
     /// </summary>
     [Theory]
     [MemberData(nameof(MakeLoginRequest), "test", "test")]
     public void Test2(LoginRequest request)
     {
-      // �C��������SQLite��Repository�C���X�^���X��쐬
+      // インメモリSQLiteでRepositoryインスタンスを作成
       var controller = new ValuesController(new SampleRepository(getDB()), logger);
 
-      // �R���g���[���[���\�b�h���s
+      // コントローラーメソッド実行
       var result = controller.Get(request);
 
-      // Response�̌��ʂ�JsonResult
+      // Responseの結果がJsonResult
       Assert.True(result is JsonResult, "Not JsonResult");
 
-      // ���ʃI�u�W�F�N�g��擾
+      // 結果オブジェクトを取得
       var responseObject = ((JsonResult)result).Value as LoginResponse;
 
       Assert.NotNull(responseObject);
 
-      // ���ʊm�F
-      Assert.Equal("�e�X�g���[�U�[", responseObject.ResponseData.Name);
+      // 結果確認
+      Assert.Equal("テストユーザー", responseObject.ResponseData.Name);
     }
 
     /// <summary>
-    /// �C��������SQLite�C���X�^���X�̎擾
+    /// インメモリSQLiteインスタンスの取得
     /// </summary>
     /// <returns></returns>
     private IDatabase getDB()
     {
-      // �C��������SQLite�C���X�^���X����
+      // インメモリSQLiteインスタンス生成
       var db = new TestSQLiteDB(@":memory:");
 
-      // �e�[�u���쐬
+      // テーブル作成
       var createTable =
           @"create table MT_USER (
                   USER_ID NVARCHAR
@@ -111,8 +111,8 @@ namespace WebAPITest
 
       db.ExecuteNonQuery(createTable);
 
-      // �e�X�g�f�[�^�o�^
-      var testData = @"insert into MT_USER(USER_ID,USER_NAME,PASSWORD,DEL_FLAG,ENTRY_USER,ENTRY_DATE,MOD_USER,MOD_DATE,MOD_VERSION) values ('test','�e�X�g���[�U�[','Z5SMGm/kEGTiZP8tHwuWSwYWFguMP7/qJOnLNL1u4is=','0','','2018/01/21 17:32:00',null,null,1);";
+      // テストデータ登録
+      var testData = @"insert into MT_USER(USER_ID,USER_NAME,PASSWORD,DEL_FLAG,ENTRY_USER,ENTRY_DATE,MOD_USER,MOD_DATE,MOD_VERSION) values ('test','テストユーザー','Z5SMGm/kEGTiZP8tHwuWSwYWFguMP7/qJOnLNL1u4is=','0','','2018/01/21 17:32:00',null,null,1);";
       db.ExecuteNonQuery(testData);
 
       return db;
