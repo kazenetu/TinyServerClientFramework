@@ -1,0 +1,47 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+using DataTransferObjects.Request.<#= BaseName #>;
+using DataTransferObjects.Response.<#= BaseName #>;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using WebAPIFramework.Interfaces;
+using WebAPI.Controllers.<#= WebAPIVersion.ToUpper() #>.<#= BaseName #>;
+using WebAPI.Repositories;
+using WebAPITest.TestBase;
+using Xunit;
+
+namespace WebAPITest.<#= BaseName #>
+{
+  public partial class <#= BaseName #>Test<#= WebAPIVersion.ToUpper() #>
+  {
+    /// <summary>
+    /// <#= MethodName #>のテスト
+    /// </summary>
+    [Theory]
+    public void <#= MethodName #>Test(<#= MethodName #>Request request)
+    {
+      // controller作成
+      var controller = new <#= BaseName #>Controller(new <#= BaseName #>Repository(getDB()), logger);
+
+      // controllerメソッド呼び出し
+      var result = controller.<#= MethodName #>(request);
+
+      // 戻り値がJSONか確認
+      Assert.True(result is JsonResult, "Not JsonResult");
+
+      // ResponseDTOを取得
+      var responseObject = ((JsonResult)result).Value as <#= MethodName #>Response;
+
+      // ResponseDTOのnull確認
+      Assert.NotNull(responseObject);
+
+      // 値確認
+      // TODO 具体的な値の確認をしてください。(本コメントは削除してください)
+
+    }
+  }
+}

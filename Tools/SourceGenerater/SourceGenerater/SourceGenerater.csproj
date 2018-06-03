@@ -88,6 +88,12 @@
       <DependentUpon>WebAPITest.tt</DependentUpon>
     </Compile>
     <Compile Include="GeneraterEngine\Templates\WebAPITestClass.cs" />
+    <Compile Include="GeneraterEngine\Templates\WebAPITestMethod.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebAPITestMethod.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GeneraterEngine\Templates\WebAPITestMethodClass.cs" />
     <Compile Include="GeneraterEngine\Templates\WebAPITransaction.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -243,6 +249,11 @@
     <Content Include="GeneraterEngine\Templates\WebAPITest.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>WebAPITest.cs</LastGenOutput>
+      <CustomToolNamespace>SourceGenerater.GeneraterEngine.Templates</CustomToolNamespace>
+    </Content>
+    <Content Include="GeneraterEngine\Templates\WebAPITestMethod.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>WebAPITestMethod.cs</LastGenOutput>
       <CustomToolNamespace>SourceGenerater.GeneraterEngine.Templates</CustomToolNamespace>
     </Content>
     <Content Include="GeneraterEngine\Templates\WebAPITransaction.tt">

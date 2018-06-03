@@ -232,6 +232,7 @@ namespace SourceGenerater.GeneraterEngine
         targetT4.Add(new WebAPITransactionMethod());
         targetT4.Add(new WebAPIRepositoryMethod());
       }
+      targetT4.Add(new WebAPITestMethod());
 
       // プロジェクトファイル追加用List生成
       var itemGroups = new List<string>();
