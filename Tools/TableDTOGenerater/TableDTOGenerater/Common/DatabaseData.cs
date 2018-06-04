@@ -489,7 +489,7 @@ namespace TableDTOGenerater.Common
         {
           if (!isFirstColumn)
           {
-            sb.Append(" ,");
+            sb.Append(",");
           }
           isFirstColumn = false;
 
@@ -540,8 +540,8 @@ namespace TableDTOGenerater.Common
         {
           if (!isFirstColumn)
           {
-            sb.Append(" ,");
-            paramSb.Append(" ,");
+            sb.Append(",");
+            paramSb.Append(",");
           }
           isFirstColumn = false;
 
