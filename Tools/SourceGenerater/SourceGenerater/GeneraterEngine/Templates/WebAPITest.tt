@@ -6,6 +6,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
+using WebAPI.Controllers.<#= WebAPIVersion.ToUpper() #>.<#= BaseName #>;
 using WebAPIFramework.Interfaces;
 using Xunit;
 using WebAPITest.TestBase;
