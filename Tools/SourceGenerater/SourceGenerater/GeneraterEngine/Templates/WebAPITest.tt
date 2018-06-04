@@ -27,7 +27,7 @@ namespace WebAPITest.<#= BaseName #>
     /// SQLite(メモリ)にテーブルとデータを作成、取得
     /// </summary>
     /// <returns>SQLiteDBインスタンス</returns>
-    private IDatabase getDB()
+    private IDatabase GetDB()
     {
       // SQLiteインスタンス作成
       var db = new TestSQLiteDB(@":memory:");

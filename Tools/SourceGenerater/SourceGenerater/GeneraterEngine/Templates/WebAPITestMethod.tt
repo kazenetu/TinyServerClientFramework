@@ -40,7 +40,7 @@ namespace WebAPITest.<#= BaseName #>
     public void <#= MethodName #>Test<#= WebAPIVersion.ToUpper() #>(<#= MethodName #>Request request)
     {
       // controller作成
-      var controller = new <#= BaseName #>Controller(new <#= BaseName #>Repository(getDB()), logger);
+      var controller = new <#= BaseName #>Controller(new <#= BaseName #>Repository(GetDB()), logger);
 
       // controllerメソッド呼び出し
       var result = controller.<#= MethodName #>(request);
