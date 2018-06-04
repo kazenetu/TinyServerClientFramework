@@ -6,12 +6,9 @@
 using DataTransferObjects.Request.<#= BaseName #>;
 using DataTransferObjects.Response.<#= BaseName #>;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
-using WebAPIFramework.Interfaces;
 using WebAPI.Controllers.<#= WebAPIVersion.ToUpper() #>.<#= BaseName #>;
 using WebAPI.Repositories;
-using WebAPITest.TestBase;
 using Xunit;
 
 namespace WebAPITest.<#= BaseName #>
