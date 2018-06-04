@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using TableDTOGenerater.Common.Interfaces;
 using static TableDTOGenerater.Common.DatabaseData;
 
@@ -59,9 +60,9 @@ namespace TableDTOGenerater.Templates
           sb.AppendLine();
         }
         isFirstItem = false;
-        sb.Append($"  /// <param name=\"{column.ColumnName}\">{column.ColumnLogicalName}</param>");
+        sb.Append($"  /// <param name=\"{column.ColumnName}\">{column.ColumnLogicalName.Replace(Environment.NewLine, " ")}</param>");
       }
-      
+
       return sb.ToString();
     }
   }
