@@ -36,6 +36,7 @@ namespace WebAPITest.<#= BaseName #>
     /// </summary>
     [Theory]
     [MemberData(nameof(Make<#= MethodName #>Request))]
+    [Trait("Test", "<#= BaseName #>Test<#= WebAPIVersion.ToUpper() #>")]
     public void <#= MethodName #>Test<#= WebAPIVersion.ToUpper() #>(<#= MethodName #>Request request)
     {
       // controller作成
