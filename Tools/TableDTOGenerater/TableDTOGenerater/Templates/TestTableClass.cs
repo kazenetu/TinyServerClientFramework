@@ -20,9 +20,16 @@ namespace TableDTOGenerater.Templates
     {
       var sb = new StringBuilder();
 
+      var isFirstItem = true;
       foreach (var column in Table.Columns)
       {
-        sb.AppendLine($"                            , {column.GetColumnTypeName()} {column.ColumnName}");
+        if (!isFirstItem)
+        {
+          sb.AppendLine();
+        }
+        isFirstItem = false;
+
+        sb.Append($"                              , {column.GetColumnTypeName()} {column.ColumnName}");
       }
 
       return sb.ToString();
@@ -36,9 +43,16 @@ namespace TableDTOGenerater.Templates
     {
       var sb = new StringBuilder();
 
+      var isFirstItem = true;
       foreach (var column in Table.Columns)
       {
-        sb.AppendLine($"    db.AddParam(\"@{column.ColumnOriginalName.ToUpper()}\",{column.ColumnName});");
+        if (!isFirstItem)
+        {
+          sb.AppendLine();
+        }
+        isFirstItem = false;
+
+        sb.Append($"      db.AddParam(\"@{column.ColumnOriginalName.ToUpper()}\",{column.ColumnName});");
       }
 
       return sb.ToString();
@@ -60,7 +74,7 @@ namespace TableDTOGenerater.Templates
           sb.AppendLine();
         }
         isFirstItem = false;
-        sb.Append($"  /// <param name=\"{column.ColumnName}\">{column.ColumnLogicalName.Replace(Environment.NewLine, " ")}</param>");
+        sb.Append($"    /// <param name=\"{column.ColumnName}\">{column.ColumnLogicalName.Replace(Environment.NewLine, " ")}</param>");
       }
 
       return sb.ToString();
