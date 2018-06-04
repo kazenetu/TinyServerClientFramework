@@ -22,7 +22,7 @@ namespace WebAPITest.<#= BaseName #>
     /// <summary>
     /// ログ インスタンス
     /// </summary>
-    private ILogger<<#= BaseName #>Test> logger = new LoggerFactory().AddConsole().CreateLogger<<#= BaseName #>Test>();
+    private ILogger<<#= BaseName #>Controller> logger = new LoggerFactory().AddConsole().CreateLogger<<#= BaseName #>Controller>();
 
     /// <summary>
     /// SQLite(メモリ)にテーブルとデータを作成、取得
