@@ -26,7 +26,7 @@ namespace WebAPITest.<#= BaseName #>
       // 入力データリストの追加
       // TODO 入力データとして<#= MethodName #>Requestを作成してください。(本コメントは削除してください)
       //result.Add(new object[] { new <#= MethodName #>Request() { プロパティ名=値,...} });
-      result.Add(new object[] { new <#= MethodName #>Request()); //例(削除してください)
+      result.Add(new object[] { new <#= MethodName #>Request() }); //例(削除してください)
 
       return result;
     }
