@@ -13,13 +13,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\Client\Client\Business\**\*.cs">
+    <Compile Include="..\Client\Business\**\*.cs">
       <Link>%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\Client\Client\Statics.cs" Link="Statics.cs" />
+    <Compile Include="..\Client\Statics.cs" Link="Statics.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Client\Client.csproj" />
     <ProjectReference Include="..\DataTransferObjects\DataTransferObjects.csproj" />
     <ProjectReference Include="..\Frameworks\Client\FrameworkClient.csproj" />
   </ItemGroup>
