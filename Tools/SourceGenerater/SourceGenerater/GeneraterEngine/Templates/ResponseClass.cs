@@ -19,7 +19,7 @@ namespace SourceGenerater.GeneraterEngine.Templates
     {
       get
       {
-        return $"..\\..\\DataTransferObjects\\Response\\{BaseName}\\{MethodName}Response.cs";
+        return $"..\\DataTransferObjects\\Response\\{BaseName}\\{MethodName}Response.cs";
       }
     }
 

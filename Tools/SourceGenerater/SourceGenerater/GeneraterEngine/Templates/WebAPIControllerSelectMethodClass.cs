@@ -19,7 +19,7 @@ namespace SourceGenerater.GeneraterEngine.Templates
     {
       get
       {
-        return $"..\\..\\WebAPI\\WebAPI\\Controllers\\{WebAPIVersion.ToUpper()}\\{BaseName}\\Cntl{MethodName}.cs";
+        return $"..\\WebAPI\\Controllers\\{WebAPIVersion.ToUpper()}\\{BaseName}\\Cntl{MethodName}.cs";
       }
     }
 

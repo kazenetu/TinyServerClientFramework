@@ -19,7 +19,7 @@ namespace SourceGenerater.GeneraterEngine.Templates
     {
       get
       {
-        return $"..\\..\\WebAPITest\\{BaseName}\\Tes{MethodName}{WebAPIVersion.ToUpper()}.cs";
+        return $"..\\WebAPITest\\{BaseName}\\Tes{MethodName}{WebAPIVersion.ToUpper()}.cs";
       }
     }
 

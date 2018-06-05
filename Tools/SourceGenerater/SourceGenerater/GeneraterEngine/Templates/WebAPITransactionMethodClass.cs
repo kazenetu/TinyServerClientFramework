@@ -19,7 +19,7 @@ namespace SourceGenerater.GeneraterEngine.Templates
     {
       get
       {
-        return $"..\\..\\WebAPI\\WebAPI\\Transactions\\{BaseName}\\Tran{MethodName}.cs";
+        return $"..\\WebAPI\\Transactions\\{BaseName}\\Tran{MethodName}.cs";
       }
     }
 

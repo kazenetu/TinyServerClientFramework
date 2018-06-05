@@ -125,7 +125,7 @@ namespace SourceGenerater.GeneraterEngine
     /// <param name="clientRootPath">slnファイルのフォルダ</param>
     public void SetWebAPIVersion(string clientRootPath)
     {
-      var staticsFilePath = $"{clientRootPath}\\Client\\Client\\Statics.cs";
+      var staticsFilePath = $"{clientRootPath}\\Client\\Statics.cs";
       if (!File.Exists(staticsFilePath)) return;
 
       var webAPIversionSentences = getWebAPIVerionSentens();

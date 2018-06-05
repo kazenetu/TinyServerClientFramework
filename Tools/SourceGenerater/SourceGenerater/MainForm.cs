@@ -176,7 +176,7 @@ namespace SourceGenerater
       }
 
       // 対象パス指定
-      var basePath = Path.Combine(RootFolder.Text, @"Client\Client");
+      var basePath = Path.Combine(RootFolder.Text, "Client");
 
       // 対象ファイル作成
       generater.Generate(basePath, screenID);
@@ -254,7 +254,7 @@ namespace SourceGenerater
       }
 
       // 対象パス指定
-      var basePath = Path.Combine(RootFolder.Text, @"Client\Client");
+      var basePath = Path.Combine(RootFolder.Text, "Client");
 
       // 対象ファイル作成
       generater.AddBusinessMethod(basePath, screenID, functionID, selectOnly);
