@@ -32,4 +32,10 @@
     <None Update="swaggerIndex.html" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Transactions\" />
+  </ItemGroup>
+
 </Project>
