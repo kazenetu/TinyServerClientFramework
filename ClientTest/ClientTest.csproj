@@ -30,8 +30,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Client\ClientFramework\ClientFramework.csproj" />
     <ProjectReference Include="..\DataTransferObjects\DataTransferObjects.csproj" />
+    <ProjectReference Include="..\Frameworks\Client\FrameworkClient.csproj" />
   </ItemGroup>
 
 </Project>

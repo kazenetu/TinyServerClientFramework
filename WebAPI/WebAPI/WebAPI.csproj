@@ -17,8 +17,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="2.4.0" />
     
     <ProjectReference Include="..\..\DataTransferObjects\DataTransferObjects.csproj" />
-
-    <ProjectReference Include="..\WebAPIFramework\WebAPIFramework.csproj" />
+    
+    <ProjectReference Include="..\..\Frameworks\WebAPI\FrameworkWebAPI.csproj" />
   </ItemGroup>
 
   <ItemGroup>
