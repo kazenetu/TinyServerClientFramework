@@ -33,7 +33,7 @@ namespace Client.Business.<#= BaseName #>
       };
 #endif
 
-      return post<<#= MethodName #>Response>(webAPIUrl, request, stub);
+      return Post<<#= MethodName #>Response>(webAPIUrl, request, stub);
     }
   }
 }
