@@ -28,7 +28,7 @@ namespace Client.Business.User
       };
 #endif
 
-      return get<LoginResponse>(webAPIUrl, stub);
+      return Get<LoginResponse>(webAPIUrl, stub);
     }
   }
 }
