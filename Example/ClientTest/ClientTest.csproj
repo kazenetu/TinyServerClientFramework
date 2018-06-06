@@ -31,7 +31,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Frameworks\Client\FrameworkClient.csproj" />
-    <ProjectReference Include="..\Client\Client.csproj" />
     <ProjectReference Include="..\DataTransferObjects\DataTransferObjects.csproj" />
   </ItemGroup>
 
