@@ -6,6 +6,7 @@
 using DataTransferObjects.Request.<#= BaseName #>;
 using DataTransferObjects.Response.<#= BaseName #>;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using WebAPI.Controllers.<#= WebAPIVersion.ToUpper() #>.<#= BaseName #>;
 using WebAPI.Repositories;

@@ -4,6 +4,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 using Microsoft.Extensions.Logging;
+using System;
 using WebAPI.Controllers.<#= WebAPIVersion.ToUpper() #>.<#= BaseName #>;
 using WebAPIFramework.Interfaces;
 using WebAPITest.TestBase;
