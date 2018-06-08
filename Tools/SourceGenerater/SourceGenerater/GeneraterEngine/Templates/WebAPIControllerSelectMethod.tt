@@ -31,7 +31,7 @@ namespace WebAPI.Controllers.<#= WebAPIVersion.ToUpper() #>.<#= BaseName #>
       if (!request.Validate())
       {
         logger.LogError("Pram[{0}]が未設定", request.ValidateNGPropertyName);
-        return BadRequest();
+        return Json(new <#= MethodName #>Response(<#= MethodName #>Response.Results.NG, "未入力項目があります。", null));
       }
 
       var status = <#= MethodName #>Response.Results.OK;
