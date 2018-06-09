@@ -1,4 +1,4 @@
-﻿namespace WebAPIFramework.Interfaces
+﻿namespace Framework.WebAPI.Interfaces
 {
   /// <summary>
   /// Repositoryのスーパークラス

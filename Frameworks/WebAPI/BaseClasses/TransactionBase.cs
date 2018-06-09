@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
-using WebAPIFramework.Interfaces;
+using Framework.WebAPI.Interfaces;
 
-namespace WebAPIFramework.BaseClasses
+namespace Framework.WebAPI.BaseClasses
 {
   /// <summary>
   /// Transactionのスーパークラス

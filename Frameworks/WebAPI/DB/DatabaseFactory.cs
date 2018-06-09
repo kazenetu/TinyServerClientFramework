@@ -1,8 +1,8 @@
 using System;
-using WebAPIFramework.ConfigModel;
-using WebAPIFramework.Interfaces;
+using Framework.WebAPI.ConfigModel;
+using Framework.WebAPI.Interfaces;
 
-namespace WebAPIFramework.DB
+namespace Framework.WebAPI.DB
 {
   /// <summary>
   /// DBインスタンス生成クラス

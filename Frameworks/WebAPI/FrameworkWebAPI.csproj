@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>FrameworkWebAPI</AssemblyName>
+    <RootNamespace>Framework.WebAPI</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

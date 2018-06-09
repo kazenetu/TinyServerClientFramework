@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace WebAPIFramework.ConfigModel
+namespace Framework.WebAPI.ConfigModel
 {
   /// <summary>
   /// 設定ファイル：DB

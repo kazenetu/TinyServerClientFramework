@@ -1,15 +1,15 @@
-﻿using DataTransferObjects.BaseClasses;
+﻿using Framework.DataTransferObject.BaseClasses;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using WebAPIFramework.ConfigModel;
-using WebAPIFramework.DB;
-using WebAPIFramework.Interfaces;
+using Framework.WebAPI.ConfigModel;
+using Framework.WebAPI.DB;
+using Framework.WebAPI.Interfaces;
 
-namespace WebAPIFramework.BaseClasses
+namespace Framework.WebAPI.BaseClasses
 {
   /// <summary>
   /// Repositoryのスーパークラス

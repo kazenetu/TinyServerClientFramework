@@ -1,11 +1,11 @@
-﻿using DataTransferObjects.Response.BaseClasses;
+﻿using Framework.DataTransferObject.BaseClasses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
-using WebAPIFramework.Interfaces;
+using Framework.WebAPI.Interfaces;
 
-namespace WebAPIFramework.BaseClasses
+namespace Framework.WebAPI.BaseClasses
 {
   /// <summary>
   /// ControllerのIRepositoryBase付スーパークラス

@@ -2,10 +2,10 @@ using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using WebAPIFramework.Interfaces;
-using static WebAPIFramework.DB.DatabaseFactory;
+using Framework.WebAPI.Interfaces;
+using static Framework.WebAPI.DB.DatabaseFactory;
 
-namespace WebAPIFramework.DB
+namespace Framework.WebAPI.DB
 {
   /// <summary>
   /// PostgreSQLラッパークラス

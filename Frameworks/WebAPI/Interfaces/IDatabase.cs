@@ -1,8 +1,8 @@
 using System;
 using System.Data;
-using static WebAPIFramework.DB.DatabaseFactory;
+using static Framework.WebAPI.DB.DatabaseFactory;
 
-namespace WebAPIFramework.Interfaces
+namespace Framework.WebAPI.Interfaces
 {
   /// <summary>
   /// データベース用インターフェース
