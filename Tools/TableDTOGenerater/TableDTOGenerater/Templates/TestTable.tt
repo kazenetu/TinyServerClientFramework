@@ -4,7 +4,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 using System;
-using WebAPIFramework.Interfaces;
+using Framework.WebAPI.Interfaces;
 
 namespace WebAPITest.TestTables
 {

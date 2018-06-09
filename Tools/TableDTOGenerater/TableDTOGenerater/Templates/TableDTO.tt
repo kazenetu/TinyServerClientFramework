@@ -3,10 +3,10 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-<#= "using DataTransferObjects.BaseClasses;" #>
-<#= "using System;" #>
-<#= "using System.Collections.Generic;" #>
-<#= "using System.Reflection;" #>
+using Framework.DataTransferObject.BaseClasses;
+using System;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace DataTransferObjects.Tables
 {
