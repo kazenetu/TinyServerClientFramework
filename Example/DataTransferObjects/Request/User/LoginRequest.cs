@@ -1,4 +1,4 @@
-﻿using DataTransferObjects.Request.BaseClasses;
+﻿using Framework.DataTransferObject.BaseClasses;
 using System.ComponentModel.DataAnnotations;
 
 namespace DataTransferObjects.Request.User

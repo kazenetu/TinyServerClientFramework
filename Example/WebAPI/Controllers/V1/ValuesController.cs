@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using WebAPI.Transactions;
-using WebAPIFramework.BaseClasses;
-using WebAPIFramework.Interfaces;
+using Framework.WebAPI.BaseClasses;
+using Framework.WebAPI.Interfaces;
 
 namespace WebAPI.Controllers.V1
 {

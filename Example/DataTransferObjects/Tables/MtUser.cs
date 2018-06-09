@@ -1,4 +1,4 @@
-﻿using DataTransferObjects.BaseClasses;
+﻿using Framework.DataTransferObject.BaseClasses;
 using System;
 using System.Collections.Generic;
 using System.Reflection;

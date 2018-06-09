@@ -1,8 +1,8 @@
-﻿using DataTransferObjects.BaseClasses;
+﻿using Framework.DataTransferObject.BaseClasses;
 using DataTransferObjects.Tables;
 using System.Text;
-using WebAPIFramework.BaseClasses;
-using WebAPIFramework.Interfaces;
+using Framework.WebAPI.BaseClasses;
+using Framework.WebAPI.Interfaces;
 
 namespace WebAPI.Repositories
 {

@@ -1,5 +1,5 @@
 ﻿using Client.Forms;
-using ClientFramework.BaseClasses;
+using Framework.Client.BaseClasses;
 using System;
 using System.Deployment.Application;
 using System.Windows.Forms;
@@ -24,7 +24,7 @@ namespace Client
 
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
-      Application.Run(new Form1());
+      Application.Run(new Sample());
     }
   }
 }

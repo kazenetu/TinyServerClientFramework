@@ -1,5 +1,5 @@
 ﻿using Client.Forms;
-using ClientFramework.BaseClasses;
+using Framework.Client.BaseClasses;
 using System;
 using System.Deployment.Application;
 using System.Windows.Forms;

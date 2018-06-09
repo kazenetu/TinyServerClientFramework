@@ -6,7 +6,7 @@ using Moq;
 using System.Collections.Generic;
 using WebAPI.Controllers.V1;
 using WebAPI.Repositories;
-using WebAPIFramework.Interfaces;
+using Framework.WebAPI.Interfaces;
 using Xunit;
 using WebAPITest.TestBase;
 

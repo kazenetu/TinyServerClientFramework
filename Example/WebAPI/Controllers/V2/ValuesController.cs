@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebAPI.Transactions;
-using WebAPIFramework.Interfaces;
+using Framework.WebAPI.Interfaces;
 
 namespace WebAPI.Controllers.V2
 {

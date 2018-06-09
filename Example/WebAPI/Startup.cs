@@ -8,9 +8,9 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Text;
-using WebAPIFramework.BaseClasses;
-using WebAPIFramework.ConfigModel;
-using WebAPIFramework.Interfaces;
+using Framework.WebAPI.BaseClasses;
+using Framework.WebAPI.ConfigModel;
+using Framework.WebAPI.Interfaces;
 
 namespace WebAPI
 {

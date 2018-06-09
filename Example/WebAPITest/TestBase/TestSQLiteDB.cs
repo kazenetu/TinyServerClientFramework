@@ -1,5 +1,5 @@
 ﻿using Microsoft.Data.Sqlite;
-using WebAPIFramework.DB;
+using Framework.WebAPI.DB;
 
 namespace WebAPITest.TestBase
 {

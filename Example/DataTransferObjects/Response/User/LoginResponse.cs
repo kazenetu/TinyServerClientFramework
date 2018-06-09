@@ -1,4 +1,4 @@
-﻿using DataTransferObjects.Response.BaseClasses;
+﻿using Framework.DataTransferObject.BaseClasses;
 
 namespace DataTransferObjects.Response.User
 {

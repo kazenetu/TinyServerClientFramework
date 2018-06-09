@@ -1,4 +1,4 @@
-﻿using DataTransferObjects.Response.BaseClasses;
+﻿using Framework.DataTransferObject.BaseClasses;
 using DataTransferObjects.Tables;
 using System.Collections.Generic;
 
