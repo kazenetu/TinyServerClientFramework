@@ -9,8 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using WebAPI.Transactions.<#= BaseName #>;
-using WebAPIFramework.BaseClasses;
-using WebAPIFramework.Interfaces;
+using Framework.WebAPI.BaseClasses;
+using Framework.WebAPI.Interfaces;
 
 namespace WebAPI.Controllers.<#= WebAPIVersion.ToUpper() #>.<#= BaseName #>
 {

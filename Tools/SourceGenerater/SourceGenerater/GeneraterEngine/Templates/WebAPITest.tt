@@ -6,7 +6,7 @@
 using Microsoft.Extensions.Logging;
 using System;
 using WebAPI.Controllers.<#= WebAPIVersion.ToUpper() #>.<#= BaseName #>;
-using WebAPIFramework.Interfaces;
+using Framework.WebAPI.Interfaces;
 using WebAPITest.TestBase;
 using WebAPITest.TestTables;
 

@@ -7,7 +7,7 @@ using DataTransferObjects.Request.<#= BaseName #>;
 using DataTransferObjects.Tables;
 using System.Collections.Generic;
 using System.Text;
-using WebAPIFramework.BaseClasses;
+using Framework.WebAPI.BaseClasses;
 
 namespace WebAPI.Repositories
 {
