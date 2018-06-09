@@ -4,7 +4,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-namespace ClientFramework.ConnectLib
+namespace Framework.Client.ConnectLib
 {
   public class HttpConnectLib
   {

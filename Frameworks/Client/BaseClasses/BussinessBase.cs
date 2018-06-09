@@ -1,7 +1,7 @@
-﻿using ClientFramework.ConnectLib;
-using static ClientFramework.ConnectLib.HttpConnectLib;
+﻿using Framework.Client.ConnectLib;
+using static Framework.Client.ConnectLib.HttpConnectLib;
 
-namespace ClientFramework.BaseClasses
+namespace Framework.Client.BaseClasses
 {
   /// <summary>
   /// ビジネスクラスのスーパークラス

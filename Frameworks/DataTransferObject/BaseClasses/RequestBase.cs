@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
-namespace DataTransferObjects.Request.BaseClasses
+namespace Framework.DataTransferObject.BaseClasses
 {
   /// <summary>
   /// リクエストのスーパークラス

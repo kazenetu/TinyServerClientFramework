@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 
-namespace DataTransferObjects.BaseClasses
+namespace Framework.DataTransferObject.BaseClasses
 {
   /// <summary>
   /// テーブルDTOのスーパークラス

@@ -7,8 +7,8 @@
     <ProjectGuid>{C53B5385-AFB3-4350-8E42-6CD6C4AEF15E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClientFramework</RootNamespace>
-    <AssemblyName>ClientFramework</AssemblyName>
+    <RootNamespace>Framework.Client</RootNamespace>
+    <AssemblyName>FrameworkClient</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
