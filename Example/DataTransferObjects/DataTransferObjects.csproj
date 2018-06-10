@@ -10,7 +10,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\..\Frameworks\DataTransferObject\FrameworkDataTransferObject.csproj" />
+    <ProjectReference Include="..\..\Source\DataTransferObject\FrameworkDataTransferObject.csproj" />
   </ItemGroup>
 
 </Project>

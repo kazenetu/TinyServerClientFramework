@@ -17,8 +17,6 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="2.4.0" />
     
     <ProjectReference Include="..\DataTransferObjects\DataTransferObjects.csproj" />
-    
-    <ProjectReference Include="..\Frameworks\WebAPI\FrameworkWebAPI.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,6 +34,12 @@
     <Folder Include="Controllers\" />
     <Folder Include="Repositories\" />
     <Folder Include="Transactions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="FrameworkWebAPI">
+      <HintPath>..\FrameworkDlls\FrameworkWebAPI.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

@@ -92,7 +92,7 @@
       <MySourceFiles Include="$(OutDir)FrameworkClient.dll;$(OutDir)Newtonsoft.Json.Compact.dll"/>
   </ItemGroup>
   <Target Name="CopyCustomContent" AfterTargets="AfterBuild" Condition="$(Configuration)=='Release' ">
-    <Copy SourceFiles="@(MySourceFiles)" DestinationFolder="../dlls" />
+    <Copy SourceFiles="@(MySourceFiles)" DestinationFolder="../../StarterKit/FrameworkDlls" />
   </Target>
 
 </Project>

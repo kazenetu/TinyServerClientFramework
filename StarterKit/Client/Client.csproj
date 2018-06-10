@@ -72,6 +72,9 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FrameworkClient">
+      <HintPath>..\FrameworkDlls\FrameworkClient.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -131,14 +134,6 @@
     <ProjectReference Include="..\DataTransferObjects\DataTransferObjects.csproj">
       <Project>{ac6eb4bf-1281-4ba8-89d6-bea41e871bb8}</Project>
       <Name>DataTransferObjects</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Frameworks\Client\FrameworkClient.csproj">
-      <Project>{c53b5385-afb3-4350-8e42-6cd6c4aef15e}</Project>
-      <Name>FrameworkClient</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Frameworks\DataTransferObject\FrameworkDataTransferObject.csproj">
-      <Project>{6fbac8c8-31c1-4fd5-b6ea-cb4e490f3809}</Project>
-      <Name>FrameworkDataTransferObject</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

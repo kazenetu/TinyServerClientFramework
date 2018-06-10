@@ -131,12 +131,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Frameworks\Client\FrameworkClient.csproj">
+    <ProjectReference Include="..\..\Source\Client\FrameworkClient.csproj">
       <Project>{c53b5385-afb3-4350-8e42-6cd6c4aef15e}</Project>
       <Name>FrameworkClient</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Frameworks\DataTransferObject\FrameworkDataTransferObject.csproj">
-      <Project>{3a7c7233-8759-4f1c-872f-de63958b7b04}</Project>
+    <ProjectReference Include="..\..\Source\DataTransferObject\FrameworkDataTransferObject.csproj">
+      <Project>{37e19702-7d0d-4318-9769-6d66832a22df}</Project>
       <Name>FrameworkDataTransferObject</Name>
     </ProjectReference>
     <ProjectReference Include="..\DataTransferObjects\DataTransferObjects.csproj">

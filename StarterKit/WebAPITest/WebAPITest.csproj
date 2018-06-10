@@ -19,4 +19,10 @@
     <ProjectReference Include="..\WebAPI\WebAPI.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="FrameworkWebAPI">
+      <HintPath>..\FrameworkDlls\FrameworkWebAPI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

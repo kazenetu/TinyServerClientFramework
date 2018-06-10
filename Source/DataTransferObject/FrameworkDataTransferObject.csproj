@@ -14,6 +14,6 @@
     <MySourceFiles Include="$(OutDir)/FrameworkDataTransferObject.dll" />
   </ItemGroup>
   <Target Name="CopyCustomContent" AfterTargets="AfterBuild" Condition="$(Configuration)=='Release' ">
-    <Copy SourceFiles="@(MySourceFiles)" DestinationFolder="../dlls" />
+    <Copy SourceFiles="@(MySourceFiles)" DestinationFolder="../../StarterKit/FrameworkDlls" />
   </Target>
 </Project>
