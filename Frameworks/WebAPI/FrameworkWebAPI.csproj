@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
@@ -15,4 +15,11 @@
   <ItemGroup>
     <ProjectReference Include="..\DataTransferObject\FrameworkDataTransferObject.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <MySourceFiles Include="$(OutDir)/FrameworkWebAPI.dll" />
+  </ItemGroup>
+  <Target Name="CopyCustomContent" AfterTargets="AfterBuild" Condition="$(Configuration)=='Release' ">
+    <Copy SourceFiles="@(MySourceFiles)" DestinationFolder="../dlls" />
+  </Target>
 </Project>

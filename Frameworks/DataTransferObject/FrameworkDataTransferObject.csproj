@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -10,4 +10,10 @@
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <MySourceFiles Include="$(OutDir)/FrameworkDataTransferObject.dll" />
+  </ItemGroup>
+  <Target Name="CopyCustomContent" AfterTargets="AfterBuild" Condition="$(Configuration)=='Release' ">
+    <Copy SourceFiles="@(MySourceFiles)" DestinationFolder="../dlls" />
+  </Target>
 </Project>

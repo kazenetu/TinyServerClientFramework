@@ -87,4 +87,12 @@
     <Content Include="ConnectLib\lib\Newtonsoft.Json.Compact.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
+  <ItemGroup>
+      <MySourceFiles Include="$(OutDir)FrameworkClient.dll;$(OutDir)Newtonsoft.Json.Compact.dll"/>
+  </ItemGroup>
+  <Target Name="CopyCustomContent" AfterTargets="AfterBuild" Condition="$(Configuration)=='Release' ">
+    <Copy SourceFiles="@(MySourceFiles)" DestinationFolder="../dlls" />
+  </Target>
+
 </Project>
