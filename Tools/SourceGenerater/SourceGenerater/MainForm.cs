@@ -37,6 +37,9 @@ namespace SourceGenerater
         RootFolder.Text = Path.GetFullPath(@"../../../../../");
       }
 
+      // フォームタイトルにバージョン情報を追加
+      Text += $"  ver {Application.ProductVersion}";
+
       // 画面IDの設定
       ScreenID.DataSource = generater.ScreenDatas.ScreenInfo.Keys.ToList();
       ScreenID.Text = generater.ScreenDatas.ScreenInfo.Keys.FirstOrDefault();
