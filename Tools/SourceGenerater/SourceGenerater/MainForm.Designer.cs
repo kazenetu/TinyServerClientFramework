@@ -212,7 +212,7 @@
       this.Controls.Add(this.RootFolder);
       this.Controls.Add(this.label3);
       this.Name = "MainForm";
-      this.Text = "ソースコードジェネレータ";
+      this.Text = "ソースコード作成ツール";
       ((System.ComponentModel.ISupportInitialize)(this.ResultView)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
