@@ -49,7 +49,7 @@ namespace WebAPITest.TestTables
     /// </summary>
     /// <param name="db">テスト用SQLiteDBインスタンス</param>
 <#= GetFindMethodComments() #>
-    <returns>検索結果リスト</returns>
+    /// <returns>検索結果リスト</returns>
     public static List<<#=Table.TableName #>> Find(IDatabase db
 <#= GetFindMethodParam() #>)
 
