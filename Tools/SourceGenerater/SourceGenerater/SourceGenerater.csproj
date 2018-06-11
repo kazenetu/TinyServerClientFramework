@@ -279,7 +279,11 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>COPY $(TargetPath) $(SolutionDir)\..\..\StarterKit\Tools</PostBuildEvent>
-  </PropertyGroup>
+
+  <ItemGroup>
+      <MySourceFiles Include="$(TargetPath)"/>
+  </ItemGroup>
+  <Target Name="CopyCustomContent" AfterTargets="AfterBuild" Condition="$(Configuration)=='Release' ">
+    <Copy SourceFiles="@(MySourceFiles)" DestinationFolder="../../../StarterKit/Tools" />
+  </Target>
 </Project>
