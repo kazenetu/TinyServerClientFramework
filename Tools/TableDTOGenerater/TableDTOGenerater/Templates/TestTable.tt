@@ -4,6 +4,10 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Data;
+using DataTransferObjects.Tables;
 using Framework.WebAPI.Interfaces;
 
 namespace WebAPITest.TestTables
@@ -38,6 +42,63 @@ namespace WebAPITest.TestTables
 
       // SQL発行
       db.ExecuteNonQuery(sql);
+    }
+
+    /// <summary>
+    /// データ取得
+    /// </summary>
+    /// <param name="db">テスト用SQLiteDBインスタンス</param>
+<#= GetFindMethodComments() #>
+    <returns>検索結果リスト</returns>
+    public static List<<#=Table.TableName #>> Find(IDatabase db
+<#= GetFindMethodParam() #>)
+
+    {
+      var sql = new StringBuilder();
+      sql.AppendLine("SELECT * FROM <#=Table.TableOriginalName #> WHERE 1=1");
+
+      var sqlWhere = new StringBuilder();
+<# 
+foreach(var column in Table.Columns)
+{
+  var singleQuote = GetSingleQuote(column.ColumnType.Name);
+#>
+      if(<#= column.ColumnName #> != null)
+      {
+        sqlWhere.AppendLine($" AND <#= column.ColumnOriginalName.ToUpper() #> = <#= singleQuote #>{<#= column.ColumnName #>}<#= singleQuote #>");
+      }
+<# 
+}
+#>
+      if(sqlWhere.ToString() != string.Empty)
+      {
+        sql.AppendLine($" {sqlWhere.ToString()};");
+      }
+
+      // Param設定
+      db.ClearParam();
+
+      // SQL発行
+      var dt = db.Fill(sql.ToString());
+
+      // DataTableからテーブルDTOのリストに変換
+      var result = new List<<#=Table.TableName #>>();
+      foreach(DataRow row in dt.Rows)
+      {
+        var rowData = new <#=Table.TableName #>();
+
+<# 
+foreach(var column in Table.Columns)
+{
+#>
+        rowData.<#= column.ColumnName #> =  <#= GetDBCoumnCastString(column) #>;
+<# 
+}
+#>
+        result.Add(rowData);
+      }
+
+      return result;
     }
   }
 }
