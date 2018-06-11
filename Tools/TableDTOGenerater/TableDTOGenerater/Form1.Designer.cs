@@ -130,7 +130,7 @@
       this.Controls.Add(this.DatabaseCombo);
       this.Controls.Add(this.label1);
       this.Name = "Form1";
-      this.Text = "Form1";
+      this.Text = "テーブルDTO作成ツール";
       this.ResumeLayout(false);
       this.PerformLayout();
 
