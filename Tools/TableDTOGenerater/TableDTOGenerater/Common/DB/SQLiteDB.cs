@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SQLite;
 using System.IO;
-using Microsoft.Data.Sqlite;
 using WebAPIFramework.Interfaces;
 using static WebAPIFramework.DB.DatabaseFactory;
 
@@ -18,12 +18,12 @@ namespace WebAPIFramework.DB
     /// <summary>
     /// コネクションインスタンス
     /// </summary>
-    private SqliteConnection conn = null;
+    private SQLiteConnection conn = null;
 
     /// <summary>
     /// トランザクションインスタンス
     /// </summary>
-    private SqliteTransaction tran = null;
+    private SQLiteTransaction tran = null;
 
     /// <summary>
     /// パラメータ
@@ -101,7 +101,7 @@ namespace WebAPIFramework.DB
     /// <returns>処理件数</returns>
     public int ExecuteNonQuery(string sql)
     {
-      using (SqliteCommand command = conn.CreateCommand())
+      using (SQLiteCommand command = conn.CreateCommand())
       {
         command.CommandText = sql;
 
@@ -121,7 +121,7 @@ namespace WebAPIFramework.DB
     /// <returns>検索結果</returns>
     public DataTable Fill(string sql)
     {
-      using (SqliteCommand command = conn.CreateCommand())
+      using (SQLiteCommand command = conn.CreateCommand())
       {
         command.CommandText = sql;
 
@@ -130,7 +130,7 @@ namespace WebAPIFramework.DB
           command.Parameters.AddWithValue(key, this.param[key]);
         }
 
-        using (SqliteDataReader reader = command.ExecuteReader())
+        using (SQLiteDataReader reader = command.ExecuteReader())
         {
           //スキーマ取得
           var result = this.GetShcema(reader);
@@ -214,12 +214,12 @@ namespace WebAPIFramework.DB
     /// </summary>
     /// <param name="connectionString">接続文字列</param>
     /// <returns>コネクションインスタンス</returns>
-    protected virtual SqliteConnection getConnection(string connectionString)
+    protected virtual SQLiteConnection getConnection(string connectionString)
     {
-      var resourcePath = AppContext.BaseDirectory;
+      var resourcePath = String.Empty;
       resourcePath = String.Format("Data Source={0}", Path.Combine(resourcePath, connectionString));
 
-      return new SqliteConnection(resourcePath);
+      return new SQLiteConnection(resourcePath);
     }
 
     /// <summary>
@@ -227,7 +227,7 @@ namespace WebAPIFramework.DB
     /// </summary>
     /// <param name="reader"></param>
     /// <returns></returns>
-    private DataTable GetShcema(SqliteDataReader reader)
+    private DataTable GetShcema(SQLiteDataReader reader)
     {
       var result = new DataTable();
 
