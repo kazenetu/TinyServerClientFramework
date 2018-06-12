@@ -150,9 +150,9 @@
     <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.108.0\build\net45\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.108.0\build\net45\System.Data.SQLite.Core.targets'))" />
   </Target>
   <PropertyGroup Condition="$(Configuration)=='Release'">
-    <PostBuildEvent>XCOPY $(TargetDir)*.exe $(SolutionDir)\..\..\StarterKit\Tools
-XCOPY $(TargetDir)*.dll $(SolutionDir)\..\..\StarterKit\Tools
-XCOPY $(TargetDir)x64\*.dll $(SolutionDir)\..\..\StarterKit\Tools
+    <PostBuildEvent>XCOPY $(TargetDir)*.exe $(SolutionDir)\..\..\StarterKit\Tools\bin
+XCOPY $(TargetDir)*.dll $(SolutionDir)\..\..\StarterKit\Tools\bin
+XCOPY $(TargetDir)x64\*.dll $(SolutionDir)\..\..\StarterKit\Tools\bin
 </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>

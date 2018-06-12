@@ -284,6 +284,6 @@
       <MySourceFiles Include="$(TargetPath)"/>
   </ItemGroup>
   <Target Name="CopyCustomContent" AfterTargets="AfterBuild" Condition="$(Configuration)=='Release' ">
-    <Copy SourceFiles="@(MySourceFiles)" DestinationFolder="../../../StarterKit/Tools" />
+    <Copy SourceFiles="@(MySourceFiles)" DestinationFolder="../../../StarterKit/Tools/bin" />
   </Target>
 </Project>
