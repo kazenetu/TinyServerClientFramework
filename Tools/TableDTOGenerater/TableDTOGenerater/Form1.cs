@@ -47,7 +47,7 @@ namespace TableDTOGenerater
       if (RootFolder.Text.Trim() == string.Empty)
       {
         // 未設定の場合は相対パスを初期値に設定
-        RootFolder.Text = Path.GetFullPath(@"../");
+        RootFolder.Text = Path.GetFullPath(@"../../");
       }
 
       Text += $"  ver {Application.ProductVersion}";
