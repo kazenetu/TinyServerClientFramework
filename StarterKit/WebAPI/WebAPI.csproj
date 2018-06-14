@@ -37,6 +37,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="FrameworkDataTransferObject">
+      <HintPath>..\FrameworkDlls\FrameworkDataTransferObject.dll</HintPath>
+    </Reference>
     <Reference Include="FrameworkWebAPI">
       <HintPath>..\FrameworkDlls\FrameworkWebAPI.dll</HintPath>
     </Reference>
