@@ -280,10 +280,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 
-  <ItemGroup>
-      <MySourceFiles Include="$(TargetPath)"/>
-  </ItemGroup>
-  <Target Name="CopyCustomContent" AfterTargets="AfterBuild" Condition="$(Configuration)=='Release' ">
-    <Copy SourceFiles="@(MySourceFiles)" DestinationFolder="../../../StarterKit/Tools/bin" />
-  </Target>
+  <PropertyGroup Condition="$(Configuration)=='Release'">
+    <PostBuildEvent>XCOPY $(TargetDir)*.exe $(SolutionDir)..\..\StarterKit\Tools\bin /Y
+    </PostBuildEvent>
+  </PropertyGroup>
+
 </Project>
