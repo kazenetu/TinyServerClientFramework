@@ -10,7 +10,14 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\..\Source\DataTransferObject\FrameworkDataTransferObject.csproj" />
+    <Folder Include="Request\" />
+    <Folder Include="Response\" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Reference Include="FrameworkDataTransferObject">
+      <HintPath>..\FrameworkDlls\FrameworkDataTransferObject.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

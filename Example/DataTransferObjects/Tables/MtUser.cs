@@ -6,7 +6,7 @@ using System.Reflection;
 namespace DataTransferObjects.Tables
 {
   /// <summary>
-  /// ユーザーマスタ
+  /// ユーザーマスタ―
   /// </summary>
   public class MtUser : TableBase
   {

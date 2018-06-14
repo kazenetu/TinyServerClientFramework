@@ -15,7 +15,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Antiforgery" Version="2.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="2.4.0" />
-    <ProjectReference Include="..\..\Source\WebAPI\FrameworkWebAPI.csproj" />
     
     <ProjectReference Include="..\DataTransferObjects\DataTransferObjects.csproj" />
   </ItemGroup>
@@ -29,6 +28,21 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="swaggerIndex.html" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Transactions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="FrameworkDataTransferObject">
+      <HintPath>..\FrameworkDlls\FrameworkDataTransferObject.dll</HintPath>
+    </Reference>
+    <Reference Include="FrameworkWebAPI">
+      <HintPath>..\FrameworkDlls\FrameworkWebAPI.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

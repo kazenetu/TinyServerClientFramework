@@ -30,8 +30,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Client\Client.csproj" />
     <ProjectReference Include="..\DataTransferObjects\DataTransferObjects.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="FrameworkClient">
+      <HintPath>..\FrameworkDlls\FrameworkClient.dll</HintPath>
+    </Reference>
+    <Reference Include="FrameworkDataTransferObject">
+      <HintPath>..\FrameworkDlls\FrameworkDataTransferObject.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

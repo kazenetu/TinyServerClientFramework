@@ -72,6 +72,12 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FrameworkClient">
+      <HintPath>..\FrameworkDlls\FrameworkClient.dll</HintPath>
+    </Reference>
+    <Reference Include="FrameworkDataTransferObject">
+      <HintPath>..\FrameworkDlls\FrameworkDataTransferObject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -92,21 +98,9 @@
     <Compile Include="BaseClasses\FormBase.Designer.cs">
       <DependentUpon>FormBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Business\User\GetSample.cs" />
-    <Compile Include="Business\User\PostSample.cs" />
-    <Compile Include="Business\User\SampleBusiness.cs" />
     <Compile Include="Statics.cs" />
-    <Compile Include="Forms\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -131,14 +125,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Source\Client\FrameworkClient.csproj">
-      <Project>{c53b5385-afb3-4350-8e42-6cd6c4aef15e}</Project>
-      <Name>FrameworkClient</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Source\DataTransferObject\FrameworkDataTransferObject.csproj">
-      <Project>{37e19702-7d0d-4318-9769-6d66832a22df}</Project>
-      <Name>FrameworkDataTransferObject</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DataTransferObjects\DataTransferObjects.csproj">
       <Project>{ac6eb4bf-1281-4ba8-89d6-bea41e871bb8}</Project>
       <Name>DataTransferObjects</Name>
@@ -148,4 +134,31 @@
     <Folder Include="UserControls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="Forms\OrderListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OrderListForm.Designer.cs">
+      <DependentUpon>OrderListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Business\OrderList\OrderListBusiness.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Business\OrderList\BusInitialize.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Forms\OrderEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OrderEditForm.Designer.cs">
+      <DependentUpon>OrderEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Business\OrderEdit\OrderEditBusiness.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Business\OrderEdit\BusInitialize.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Business\OrderEdit\BusSave.cs" />
+  </ItemGroup>
 </Project>
