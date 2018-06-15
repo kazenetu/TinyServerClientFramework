@@ -5,10 +5,35 @@ namespace Client.Forms
 {
   public partial class OrderEditForm : FormBase
   {
+    /// <summary>
+    /// 更新か否か
+    /// </summary>
+    private bool IsModify = false;
+
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
     public OrderEditForm()
     {
       InitializeComponent();
     }
+
+    /// <summary>
+    /// 更新用コンストラクタ
+    /// </summary>
+    /// <param name="orderNo">注文番号</param>
+    /// <param name="orderUserID">注文者ID</param>
+    public OrderEditForm(int orderNo,string orderUserID)
+    {
+      InitializeComponent();
+
+      // 値を設定
+      IsModify = true;
+      OrderNo.Text = OrderNo.ToString();
+      UserID.Text = orderUserID;
+
+    }
+
 
     /// <summary>
     /// 保存

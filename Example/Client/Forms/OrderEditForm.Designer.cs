@@ -32,7 +32,7 @@ namespace Client.Forms
       this.label1 = new System.Windows.Forms.Label();
       this.OrderNo = new System.Windows.Forms.TextBox();
       this.label2 = new System.Windows.Forms.Label();
-      this.UserId = new System.Windows.Forms.TextBox();
+      this.UserID = new System.Windows.Forms.TextBox();
       this.UserName = new System.Windows.Forms.TextBox();
       this.Cancel = new System.Windows.Forms.Button();
       this.Save = new System.Windows.Forms.Button();
@@ -64,12 +64,12 @@ namespace Client.Forms
       this.label2.TabIndex = 0;
       this.label2.Text = "ユーザーID";
       // 
-      // UserId
+      // UserID
       // 
-      this.UserId.Location = new System.Drawing.Point(106, 65);
-      this.UserId.Name = "UserId";
-      this.UserId.Size = new System.Drawing.Size(127, 19);
-      this.UserId.TabIndex = 1;
+      this.UserID.Location = new System.Drawing.Point(106, 65);
+      this.UserID.Name = "UserID";
+      this.UserID.Size = new System.Drawing.Size(127, 19);
+      this.UserID.TabIndex = 1;
       // 
       // UserName
       // 
@@ -109,7 +109,7 @@ namespace Client.Forms
       this.Controls.Add(this.Save);
       this.Controls.Add(this.Cancel);
       this.Controls.Add(this.UserName);
-      this.Controls.Add(this.UserId);
+      this.Controls.Add(this.UserID);
       this.Controls.Add(this.label2);
       this.Controls.Add(this.OrderNo);
       this.Controls.Add(this.label1);
@@ -127,7 +127,7 @@ namespace Client.Forms
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.TextBox OrderNo;
     private System.Windows.Forms.Label label2;
-    private System.Windows.Forms.TextBox UserId;
+    private System.Windows.Forms.TextBox UserID;
     private System.Windows.Forms.TextBox UserName;
     private System.Windows.Forms.Button Cancel;
     private System.Windows.Forms.Button Save;
