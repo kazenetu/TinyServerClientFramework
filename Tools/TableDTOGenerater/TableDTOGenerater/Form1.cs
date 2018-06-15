@@ -109,27 +109,34 @@ namespace TableDTOGenerater
       // dbDataインスタンス取得
       var dbDataInstance = DatabaseData.GetInstance();
 
-      var sb = new StringBuilder();
-      foreach (var item in dbDataInstance.GetTables(DatabaseCombo.Text))
+      try
       {
-        // テーブルDTOを作成
-        sb.AppendLine(
-          CreateFile(
-            $"{basePath}\\DataTransferObjects\\Tables\\{item.TableName}.cs",
-            new Templates.TableDTO { Table = item })
-        );
+        var sb = new StringBuilder();
+        foreach (var item in dbDataInstance.GetTables(DatabaseCombo.Text))
+        {
+          // テーブルDTOを作成
+          sb.AppendLine(
+            CreateFile(
+              $"{basePath}\\DataTransferObjects\\Tables\\{item.TableName}.cs",
+              new Templates.TableDTO { Table = item })
+          );
 
-        // テストテーブルクラスを作成
-        sb.AppendLine(
-          CreateFile(
-            $"{basePath}\\WebAPITest\\TestTables\\{item.TableName}Test.cs",
-            new Templates.TestTable { Table = item })
-        );
+          // テストテーブルクラスを作成
+          sb.AppendLine(
+            CreateFile(
+              $"{basePath}\\WebAPITest\\TestTables\\{item.TableName}Test.cs",
+              new Templates.TestTable { Table = item })
+          );
 
+        }
+
+        // 書き出し結果をテキストボックスに表示
+        CreateResult.Text = sb.ToString();
       }
-
-      // 書き出し結果をテキストボックスに表示
-      CreateResult.Text = sb.ToString();
+      catch(Exception ex)
+      {
+        CreateResult.Text = $"DB接続失敗「{ex.Message}」";
+      }
     }
 
     /// <summary>
