@@ -72,6 +72,9 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FrameworkDataTransferObject">
+      <HintPath>..\FrameworkDlls\FrameworkDataTransferObject.dll</HintPath>
+    </Reference>
     <Reference Include="FrameworkClient">
       <HintPath>..\FrameworkDlls\FrameworkClient.dll</HintPath>
     </Reference>
