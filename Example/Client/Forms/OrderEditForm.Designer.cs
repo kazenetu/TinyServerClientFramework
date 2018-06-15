@@ -51,6 +51,7 @@ namespace Client.Forms
       // 
       this.OrderNo.Location = new System.Drawing.Point(106, 28);
       this.OrderNo.Name = "OrderNo";
+      this.OrderNo.ReadOnly = true;
       this.OrderNo.Size = new System.Drawing.Size(127, 19);
       this.OrderNo.TabIndex = 1;
       this.OrderNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
