@@ -31,9 +31,7 @@ namespace Client.Forms
       IsModify = true;
       OrderNo.Text = OrderNo.ToString();
       UserID.Text = orderUserID;
-
     }
-
 
     /// <summary>
     /// 保存
@@ -42,8 +40,15 @@ namespace Client.Forms
     /// <param name="e"></param>
     private void Save_Click(object sender, EventArgs e)
     {
-      // TODO 登録・更新処理
-
+      // 登録・更新処理
+      if (IsModify)
+      {
+        // TODO 更新処理
+      }
+      else
+      {
+        // TODO 登録処理
+      }
 
       // OKを返す
       DialogResult = System.Windows.Forms.DialogResult.OK;
@@ -58,6 +63,16 @@ namespace Client.Forms
     {
       // Cancelを返す
       DialogResult = System.Windows.Forms.DialogResult.Cancel;
+    }
+
+    /// <summary>
+    /// ユーザーIDのロストフォーカス
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void UserID_Leave(object sender, EventArgs e)
+    {
+      // TODO ユーザーIDに紐づくユーザー名を表示
     }
   }
 }

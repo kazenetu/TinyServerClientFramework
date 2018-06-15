@@ -70,6 +70,7 @@ namespace Client.Forms
       this.UserID.Name = "UserID";
       this.UserID.Size = new System.Drawing.Size(127, 19);
       this.UserID.TabIndex = 1;
+      this.UserID.Leave += new System.EventHandler(this.UserID_Leave);
       // 
       // UserName
       // 
