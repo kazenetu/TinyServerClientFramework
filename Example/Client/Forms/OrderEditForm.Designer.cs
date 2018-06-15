@@ -73,6 +73,7 @@ namespace Client.Forms
       // 
       // UserName
       // 
+      this.UserName.Enabled = false;
       this.UserName.Location = new System.Drawing.Point(239, 65);
       this.UserName.Name = "UserName";
       this.UserName.ReadOnly = true;
