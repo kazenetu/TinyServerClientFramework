@@ -102,6 +102,7 @@ namespace Client.Forms
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(414, 202);
+      this.ControlBox = false;
       this.Controls.Add(this.Save);
       this.Controls.Add(this.Cancel);
       this.Controls.Add(this.UserName);
@@ -109,7 +110,7 @@ namespace Client.Forms
       this.Controls.Add(this.label2);
       this.Controls.Add(this.OrderNo);
       this.Controls.Add(this.label1);
-      this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+      this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
       this.Name = "OrderEditForm";
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
       this.Text = "注文登録";
