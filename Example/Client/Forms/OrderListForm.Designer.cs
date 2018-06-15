@@ -36,7 +36,7 @@ namespace Client.Forms
       this.panel1 = new System.Windows.Forms.Panel();
       this.Search = new System.Windows.Forms.Button();
       this.dataGridView1 = new System.Windows.Forms.DataGridView();
-      this.button1 = new System.Windows.Forms.Button();
+      this.Create = new System.Windows.Forms.Button();
       this.OrderNoColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.OrderUserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.UpdateColumn = new System.Windows.Forms.DataGridViewButtonColumn();
@@ -92,7 +92,7 @@ namespace Client.Forms
       // 
       // panel1
       // 
-      this.panel1.Controls.Add(this.button1);
+      this.panel1.Controls.Add(this.Create);
       this.panel1.Controls.Add(this.Search);
       this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
       this.panel1.Location = new System.Drawing.Point(698, 15);
@@ -126,14 +126,14 @@ namespace Client.Forms
       this.dataGridView1.Size = new System.Drawing.Size(794, 344);
       this.dataGridView1.TabIndex = 1;
       // 
-      // button1
+      // Create
       // 
-      this.button1.Location = new System.Drawing.Point(3, 7);
-      this.button1.Name = "button1";
-      this.button1.Size = new System.Drawing.Size(75, 23);
-      this.button1.TabIndex = 4;
-      this.button1.Text = "新規作成";
-      this.button1.UseVisualStyleBackColor = true;
+      this.Create.Location = new System.Drawing.Point(3, 7);
+      this.Create.Name = "Create";
+      this.Create.Size = new System.Drawing.Size(75, 23);
+      this.Create.TabIndex = 4;
+      this.Create.Text = "新規作成";
+      this.Create.UseVisualStyleBackColor = true;
       // 
       // OrderNoColumn
       // 
@@ -184,7 +184,7 @@ namespace Client.Forms
     private System.Windows.Forms.Panel panel1;
     private System.Windows.Forms.Button Search;
     private System.Windows.Forms.DataGridView dataGridView1;
-    private System.Windows.Forms.Button button1;
+    private System.Windows.Forms.Button Create;
     private System.Windows.Forms.DataGridViewTextBoxColumn OrderNoColumn;
     private System.Windows.Forms.DataGridViewTextBoxColumn OrderUserName;
     private System.Windows.Forms.DataGridViewButtonColumn UpdateColumn;
