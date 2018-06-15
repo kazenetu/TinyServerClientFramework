@@ -87,6 +87,7 @@ namespace Client.Forms
       this.Cancel.TabIndex = 2;
       this.Cancel.Text = "キャンセル";
       this.Cancel.UseVisualStyleBackColor = true;
+      this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
       // 
       // Save
       // 
@@ -96,6 +97,7 @@ namespace Client.Forms
       this.Save.TabIndex = 2;
       this.Save.Text = "保存";
       this.Save.UseVisualStyleBackColor = true;
+      this.Save.Click += new System.EventHandler(this.Save_Click);
       // 
       // OrderEditForm
       // 
