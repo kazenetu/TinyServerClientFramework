@@ -134,6 +134,7 @@ namespace Client.Forms
       this.Create.TabIndex = 4;
       this.Create.Text = "新規作成";
       this.Create.UseVisualStyleBackColor = true;
+      this.Create.Click += new System.EventHandler(this.Create_Click);
       // 
       // OrderNoColumn
       // 
