@@ -108,6 +108,7 @@ namespace Client.Forms
       this.Search.TabIndex = 3;
       this.Search.Text = "検索";
       this.Search.UseVisualStyleBackColor = true;
+      this.Search.Click += new System.EventHandler(this.Search_Click);
       // 
       // dataGridView1
       // 

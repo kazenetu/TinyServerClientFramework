@@ -25,5 +25,16 @@ namespace Client.Forms
 
       // TODO 再検索する
     }
+
+    /// <summary>
+    /// 検索
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void Search_Click(object sender, EventArgs e)
+    {
+      // TODO 検索する
+    }
+
   }
 }
