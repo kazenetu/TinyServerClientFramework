@@ -8,6 +8,9 @@ namespace DataTransferObjects.Request.OrderList
   /// </summary>
   public class SearchRequest : RequestBase
   {
-    // TODO:プロパティを追加してください。(本コメントは削除してください)
+    /// <summary>
+    /// 検索条件:ユーザーID　
+    /// </summary>
+    public string SearchUserID { set; get; }
   }
 }
