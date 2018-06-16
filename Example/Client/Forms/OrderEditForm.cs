@@ -22,15 +22,16 @@ namespace Client.Forms
     /// 更新用コンストラクタ
     /// </summary>
     /// <param name="orderNo">注文番号</param>
-    /// <param name="orderUserID">注文者ID</param>
-    public OrderEditForm(int orderNo,string orderUserID)
+    public OrderEditForm(int orderNo)
     {
       InitializeComponent();
 
       // 値を設定
       IsModify = true;
       OrderNo.Text = orderNo.ToString();
-      UserID.Text = orderUserID;
+
+      // TODO DBからユーザー名を取得
+      //UserID.Text = orderUserID;
     }
 
     /// <summary>
