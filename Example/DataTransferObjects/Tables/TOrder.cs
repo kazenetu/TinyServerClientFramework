@@ -21,6 +21,7 @@ namespace DataTransferObjects.Tables
       var classType = this.GetType();
       result.Add("ORDER_NO", classType.GetProperty("OrderNo"));
       result.Add("ORDER_USER_ID", classType.GetProperty("OrderUserId"));
+      result.Add("MOD_VERSION", classType.GetProperty("ModVersion"));
       return result;
     }
 
@@ -33,6 +34,11 @@ namespace DataTransferObjects.Tables
     /// 注文者ID
     /// </summary>
     public string OrderUserId { set; get; }
+
+    /// <summary>
+    /// 更新バージョン
+    /// </summary>
+    public int ModVersion { set; get; }
 
   }
 }

@@ -15,7 +15,7 @@ namespace WebAPITest.TestTables
     /// <param name="db">テスト用SQLiteDBインスタンス</param>
     public static void CreateTable(IDatabase db)
     {
-      var sql =  @"CREATE TABLE T_ORDER(ORDER_NO INTEGER,ORDER_USER_ID TEXT);";
+      var sql =  @"CREATE TABLE T_ORDER(ORDER_NO INTEGER,ORDER_USER_ID TEXT,MOD_VERSION INTEGER);";
 
       // SQL発行
       db.ExecuteNonQuery(sql);
@@ -27,16 +27,19 @@ namespace WebAPITest.TestTables
     /// <param name="db">テスト用SQLiteDBインスタンス</param>
     /// <param name="OrderNo">注文No</param>
     /// <param name="OrderUserId">注文者ID</param>
+    /// <param name="ModVersion">更新バージョン</param>
     public static void Insert(IDatabase db
                               , int OrderNo
-                              , string OrderUserId)
+                              , string OrderUserId
+                              , int ModVersion)
     {
-      var sql = @"INSERT INTO T_ORDER(ORDER_NO,ORDER_USER_ID) VALUES (@ORDER_NO,@ORDER_USER_ID);";
+      var sql = @"INSERT INTO T_ORDER(ORDER_NO,ORDER_USER_ID,MOD_VERSION) VALUES (@ORDER_NO,@ORDER_USER_ID,@MOD_VERSION);";
 
       // Param設定
       db.ClearParam();
       db.AddParam("@ORDER_NO",OrderNo);
       db.AddParam("@ORDER_USER_ID",OrderUserId);
+      db.AddParam("@MOD_VERSION",ModVersion);
 
       // SQL発行
       db.ExecuteNonQuery(sql);
@@ -48,10 +51,12 @@ namespace WebAPITest.TestTables
     /// <param name="db">テスト用SQLiteDBインスタンス</param>
     /// <param name="OrderNo">注文No</param>
     /// <param name="OrderUserId">注文者ID</param>
+    /// <param name="ModVersion">更新バージョン</param>
     /// <returns>検索結果リスト</returns>
     public static List<TOrder> Find(IDatabase db
                               , int? OrderNo = null
-                              , string OrderUserId = null)
+                              , string OrderUserId = null
+                              , int? ModVersion = null)
 
     {
       var sql = new StringBuilder();
@@ -65,6 +70,10 @@ namespace WebAPITest.TestTables
       if(OrderUserId != null)
       {
         sqlWhere.AppendLine($" AND ORDER_USER_ID = '{OrderUserId}'");
+      }
+      if(ModVersion != null)
+      {
+        sqlWhere.AppendLine($" AND MOD_VERSION = {ModVersion}");
       }
       if(sqlWhere.ToString() != string.Empty)
       {
@@ -85,6 +94,7 @@ namespace WebAPITest.TestTables
 
         rowData.OrderNo =  int.Parse(row["ORDER_NO"].ToString());
         rowData.OrderUserId =  row["ORDER_USER_ID"].ToString();
+        rowData.ModVersion =  int.Parse(row["MOD_VERSION"].ToString());
         result.Add(rowData);
       }
 
