@@ -1,4 +1,6 @@
-﻿using Framework.DataTransferObject.BaseClasses;
+﻿using DataTransferObjects.CustomTables;
+using Framework.DataTransferObject.BaseClasses;
+using System.Collections.Generic;
 
 namespace DataTransferObjects.Response.OrderList
 {
@@ -18,7 +20,10 @@ namespace DataTransferObjects.Response.OrderList
 
     public class SearchResponseParam
     {
-      // TODO:プロパティを追加してください。(本コメントは削除してください)
+      /// <summary>
+      /// 検索結果
+      /// </summary>
+      public List<CustomTOrder> List { get; } = new List<CustomTOrder>();
     }
   }
 }
