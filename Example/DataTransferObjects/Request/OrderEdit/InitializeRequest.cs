@@ -1,5 +1,4 @@
 ﻿using Framework.DataTransferObject.BaseClasses;
-using System.ComponentModel.DataAnnotations;
 
 namespace DataTransferObjects.Request.OrderEdit
 {
@@ -8,6 +7,9 @@ namespace DataTransferObjects.Request.OrderEdit
   /// </summary>
   public class InitializeRequest : RequestBase
   {
-    // TODO:プロパティを追加してください。(本コメントは削除してください)
+    /// <summary>
+    /// 注文番号
+    /// </summary>
+    public int OrderNo { set; get; }
   }
 }

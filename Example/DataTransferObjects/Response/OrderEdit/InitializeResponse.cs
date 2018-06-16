@@ -18,7 +18,15 @@ namespace DataTransferObjects.Response.OrderEdit
 
     public class InitializeResponseParam
     {
-      // TODO:プロパティを追加してください。(本コメントは削除してください)
+      /// <summary>
+      /// 注文者ID
+      /// </summary>
+      public string OrderUserID { set; get; }
+
+      /// <summary>
+      /// 更新バージョン
+      /// </summary>
+      public int ModVersion { set; get; }
     }
   }
 }
