@@ -29,7 +29,7 @@ namespace Client.Forms
 
       // 値を設定
       IsModify = true;
-      OrderNo.Text = OrderNo.ToString();
+      OrderNo.Text = orderNo.ToString();
       UserID.Text = orderUserID;
     }
 
