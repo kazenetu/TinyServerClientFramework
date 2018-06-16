@@ -1,4 +1,6 @@
 ﻿using Client.BaseClasses;
+using Client.Business.OrderEdit;
+using DataTransferObjects.Request.OrderEdit;
 using System;
 
 namespace Client.Forms
@@ -30,8 +32,14 @@ namespace Client.Forms
       IsModify = true;
       OrderNo.Text = orderNo.ToString();
 
-      // TODO DBからユーザー名を取得
-      //UserID.Text = orderUserID;
+      // パラメータ設定
+      var request = new InitializeRequest() { OrderNo = orderNo };
+
+      var business = new OrderEditBusiness();
+      var result = business.Initialize(request);
+
+      // DBからユーザー名を取得
+      UserID.Text = result.ResponseData.OrderUserID;
     }
 
     /// <summary>
