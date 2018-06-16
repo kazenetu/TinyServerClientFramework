@@ -150,9 +150,6 @@
     <Compile Include="Business\OrderList\OrderListBusiness.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business\OrderList\BusInitialize.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Forms\OrderEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
