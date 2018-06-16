@@ -24,6 +24,26 @@ namespace Client.Business.OrderEdit
         var response = data as InitializeResponse;
         response.ErrorMessage = "";
         response.ResponseData = new InitializeResponse.InitializeResponseParam() {};
+
+        switch(request.OrderNo)
+        {
+          case 1:
+            response.ResponseData.OrderUserID = "test1";
+            break;
+          case 2:
+            response.ResponseData.OrderUserID = "test2";
+            break;
+          case 3:
+            response.ResponseData.OrderUserID = "none";
+            break;
+          case 4:
+            response.ResponseData.OrderUserID = "dummy";
+            break;
+          default:
+            response.Result = nameof(InitializeResponse.Results.NG);
+            break;
+        }
+
         return response;
       };
 #endif
