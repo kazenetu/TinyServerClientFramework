@@ -1,5 +1,6 @@
 ﻿using Client.BaseClasses;
 using Client.Business.OrderList;
+using DataTransferObjects.CustomTables;
 using DataTransferObjects.Request.OrderList;
 using System;
 
@@ -60,5 +61,34 @@ namespace Client.Forms
       SearchProc();
     }
 
+    /// <summary>
+    /// 結果グリッドの更新
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void OrderList_CellContentClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+    {
+      // Headerは何もせずに終了
+      if (e.RowIndex < 0)
+      {
+        return;
+      }
+
+      var targetData = OrderList.Rows[e.RowIndex].DataBoundItem as CustomTOrder;
+      if(targetData == null)
+      {
+        return;
+      }
+
+      // 更新ウィンドウを表示する
+      var editWindow = new OrderEditForm(targetData.OrderNo,targetData.OrderUserId);
+      if (editWindow.ShowDialog(this) == System.Windows.Forms.DialogResult.Cancel)
+      {
+        return;
+      }
+
+      // 再検索する
+      SearchProc();
+    }
   }
 }

@@ -136,6 +136,7 @@ namespace Client.Forms
       this.OrderList.RowTemplate.Height = 21;
       this.OrderList.Size = new System.Drawing.Size(794, 344);
       this.OrderList.TabIndex = 1;
+      this.OrderList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OrderList_CellContentClick);
       // 
       // OrderNoColumn
       // 
