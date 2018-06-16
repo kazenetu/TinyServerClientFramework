@@ -1,4 +1,6 @@
 ﻿using Client.BaseClasses;
+using Client.Business.OrderList;
+using DataTransferObjects.Request.OrderList;
 using System;
 
 namespace Client.Forms
@@ -8,6 +10,26 @@ namespace Client.Forms
     public OrderListForm()
     {
       InitializeComponent();
+      OrderList.AutoGenerateColumns = false;
+    }
+
+    /// <summary>
+    /// 検索処理
+    /// </summary>
+    private void SearchProc()
+    {
+      // クリア
+      OrderList.DataSource = null;
+
+      // パラメータ設定
+      var request = new SearchRequest() { SearchUserID = UserID.Text };
+
+      // 検索処理
+      var result = new OrderListBusiness().Search(request);
+
+      // 結果をグリッドに反映
+      OrderList.DataSource = result.ResponseData.List;
+      OrderList.Refresh();
     }
 
     /// <summary>
@@ -23,7 +45,8 @@ namespace Client.Forms
         return;
       }
 
-      // TODO 再検索する
+      // 再検索する
+      SearchProc();
     }
 
     /// <summary>
@@ -33,7 +56,8 @@ namespace Client.Forms
     /// <param name="e"></param>
     private void Search_Click(object sender, EventArgs e)
     {
-      // TODO 検索する
+      // 検索する
+      SearchProc();
     }
 
   }

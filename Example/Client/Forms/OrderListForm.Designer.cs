@@ -31,14 +31,14 @@ namespace Client.Forms
     {
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.groupBox1 = new System.Windows.Forms.GroupBox();
-      this.label1 = new System.Windows.Forms.Label();
-      this.UserID = new System.Windows.Forms.TextBox();
       this.panel1 = new System.Windows.Forms.Panel();
-      this.Search = new System.Windows.Forms.Button();
-      this.OrderList = new System.Windows.Forms.DataGridView();
       this.Create = new System.Windows.Forms.Button();
+      this.Search = new System.Windows.Forms.Button();
+      this.UserID = new System.Windows.Forms.TextBox();
+      this.label1 = new System.Windows.Forms.Label();
+      this.OrderList = new System.Windows.Forms.DataGridView();
       this.OrderNoColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.OrderUserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.OrderUserNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.UpdateColumn = new System.Windows.Forms.DataGridViewButtonColumn();
       this.tableLayoutPanel1.SuspendLayout();
       this.groupBox1.SuspendLayout();
@@ -74,22 +74,6 @@ namespace Client.Forms
       this.groupBox1.TabStop = false;
       this.groupBox1.Text = "検索条件";
       // 
-      // label1
-      // 
-      this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(35, 33);
-      this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(56, 12);
-      this.label1.TabIndex = 0;
-      this.label1.Text = "ユーザーID";
-      // 
-      // UserID
-      // 
-      this.UserID.Location = new System.Drawing.Point(97, 30);
-      this.UserID.Name = "UserID";
-      this.UserID.Size = new System.Drawing.Size(159, 19);
-      this.UserID.TabIndex = 1;
-      // 
       // panel1
       // 
       this.panel1.Controls.Add(this.Create);
@@ -99,33 +83,6 @@ namespace Client.Forms
       this.panel1.Name = "panel1";
       this.panel1.Size = new System.Drawing.Size(93, 76);
       this.panel1.TabIndex = 3;
-      // 
-      // Search
-      // 
-      this.Search.Location = new System.Drawing.Point(3, 50);
-      this.Search.Name = "Search";
-      this.Search.Size = new System.Drawing.Size(75, 23);
-      this.Search.TabIndex = 3;
-      this.Search.Text = "検索";
-      this.Search.UseVisualStyleBackColor = true;
-      this.Search.Click += new System.EventHandler(this.Search_Click);
-      // 
-      // OrderList
-      // 
-      this.OrderList.AllowUserToAddRows = false;
-      this.OrderList.AllowUserToDeleteRows = false;
-      this.OrderList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-      this.OrderList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.OrderNoColumn,
-            this.OrderUserName,
-            this.UpdateColumn});
-      this.OrderList.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.OrderList.Location = new System.Drawing.Point(3, 103);
-      this.OrderList.Name = "OrderList";
-      this.OrderList.ReadOnly = true;
-      this.OrderList.RowTemplate.Height = 21;
-      this.OrderList.Size = new System.Drawing.Size(794, 344);
-      this.OrderList.TabIndex = 1;
       // 
       // Create
       // 
@@ -137,28 +94,71 @@ namespace Client.Forms
       this.Create.UseVisualStyleBackColor = true;
       this.Create.Click += new System.EventHandler(this.Create_Click);
       // 
+      // Search
+      // 
+      this.Search.Location = new System.Drawing.Point(3, 50);
+      this.Search.Name = "Search";
+      this.Search.Size = new System.Drawing.Size(75, 23);
+      this.Search.TabIndex = 3;
+      this.Search.Text = "検索";
+      this.Search.UseVisualStyleBackColor = true;
+      this.Search.Click += new System.EventHandler(this.Search_Click);
+      // 
+      // UserID
+      // 
+      this.UserID.Location = new System.Drawing.Point(97, 30);
+      this.UserID.Name = "UserID";
+      this.UserID.Size = new System.Drawing.Size(159, 19);
+      this.UserID.TabIndex = 1;
+      // 
+      // label1
+      // 
+      this.label1.AutoSize = true;
+      this.label1.Location = new System.Drawing.Point(35, 33);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(56, 12);
+      this.label1.TabIndex = 0;
+      this.label1.Text = "ユーザーID";
+      // 
+      // OrderList
+      // 
+      this.OrderList.AllowUserToAddRows = false;
+      this.OrderList.AllowUserToDeleteRows = false;
+      this.OrderList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+      this.OrderList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.OrderNoColumn,
+            this.OrderUserNameColumn,
+            this.UpdateColumn});
+      this.OrderList.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.OrderList.Location = new System.Drawing.Point(3, 103);
+      this.OrderList.Name = "OrderList";
+      this.OrderList.ReadOnly = true;
+      this.OrderList.RowTemplate.Height = 21;
+      this.OrderList.Size = new System.Drawing.Size(794, 344);
+      this.OrderList.TabIndex = 1;
+      // 
       // OrderNoColumn
       // 
-      this.OrderNoColumn.DataPropertyName = "OderNo";
-      this.OrderNoColumn.Frozen = true;
+      this.OrderNoColumn.DataPropertyName = "OrderNo";
       this.OrderNoColumn.HeaderText = "注文番号";
       this.OrderNoColumn.Name = "OrderNoColumn";
       this.OrderNoColumn.ReadOnly = true;
       // 
-      // OrderUserName
+      // OrderUserNameColumn
       // 
-      this.OrderUserName.DataPropertyName = "OrderUserName";
-      this.OrderUserName.Frozen = true;
-      this.OrderUserName.HeaderText = "注文者";
-      this.OrderUserName.Name = "OrderUserName";
-      this.OrderUserName.ReadOnly = true;
-      this.OrderUserName.Width = 500;
+      this.OrderUserNameColumn.DataPropertyName = "OrderUserName";
+      this.OrderUserNameColumn.HeaderText = "注文者";
+      this.OrderUserNameColumn.Name = "OrderUserNameColumn";
+      this.OrderUserNameColumn.ReadOnly = true;
+      this.OrderUserNameColumn.Width = 500;
       // 
       // UpdateColumn
       // 
       this.UpdateColumn.HeaderText = "更新";
       this.UpdateColumn.Name = "UpdateColumn";
       this.UpdateColumn.ReadOnly = true;
+      this.UpdateColumn.Text = "更新";
+      this.UpdateColumn.UseColumnTextForButtonValue = true;
       // 
       // OrderListForm
       // 
@@ -185,10 +185,10 @@ namespace Client.Forms
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.Panel panel1;
     private System.Windows.Forms.Button Search;
-    private System.Windows.Forms.DataGridView OrderList;
     private System.Windows.Forms.Button Create;
+    private System.Windows.Forms.DataGridView OrderList;
     private System.Windows.Forms.DataGridViewTextBoxColumn OrderNoColumn;
-    private System.Windows.Forms.DataGridViewTextBoxColumn OrderUserName;
+    private System.Windows.Forms.DataGridViewTextBoxColumn OrderUserNameColumn;
     private System.Windows.Forms.DataGridViewButtonColumn UpdateColumn;
   }
 }
