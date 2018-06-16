@@ -35,7 +35,7 @@ namespace Client.Forms
       this.UserID = new System.Windows.Forms.TextBox();
       this.panel1 = new System.Windows.Forms.Panel();
       this.Search = new System.Windows.Forms.Button();
-      this.dataGridView1 = new System.Windows.Forms.DataGridView();
+      this.OrderList = new System.Windows.Forms.DataGridView();
       this.Create = new System.Windows.Forms.Button();
       this.OrderNoColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.OrderUserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,7 +43,7 @@ namespace Client.Forms
       this.tableLayoutPanel1.SuspendLayout();
       this.groupBox1.SuspendLayout();
       this.panel1.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.OrderList)).BeginInit();
       this.SuspendLayout();
       // 
       // tableLayoutPanel1
@@ -51,7 +51,7 @@ namespace Client.Forms
       this.tableLayoutPanel1.ColumnCount = 1;
       this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
       this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
-      this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 0, 1);
+      this.tableLayoutPanel1.Controls.Add(this.OrderList, 0, 1);
       this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
       this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -110,22 +110,22 @@ namespace Client.Forms
       this.Search.UseVisualStyleBackColor = true;
       this.Search.Click += new System.EventHandler(this.Search_Click);
       // 
-      // dataGridView1
+      // OrderList
       // 
-      this.dataGridView1.AllowUserToAddRows = false;
-      this.dataGridView1.AllowUserToDeleteRows = false;
-      this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-      this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+      this.OrderList.AllowUserToAddRows = false;
+      this.OrderList.AllowUserToDeleteRows = false;
+      this.OrderList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+      this.OrderList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.OrderNoColumn,
             this.OrderUserName,
             this.UpdateColumn});
-      this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.dataGridView1.Location = new System.Drawing.Point(3, 103);
-      this.dataGridView1.Name = "dataGridView1";
-      this.dataGridView1.ReadOnly = true;
-      this.dataGridView1.RowTemplate.Height = 21;
-      this.dataGridView1.Size = new System.Drawing.Size(794, 344);
-      this.dataGridView1.TabIndex = 1;
+      this.OrderList.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.OrderList.Location = new System.Drawing.Point(3, 103);
+      this.OrderList.Name = "OrderList";
+      this.OrderList.ReadOnly = true;
+      this.OrderList.RowTemplate.Height = 21;
+      this.OrderList.Size = new System.Drawing.Size(794, 344);
+      this.OrderList.TabIndex = 1;
       // 
       // Create
       // 
@@ -172,7 +172,7 @@ namespace Client.Forms
       this.groupBox1.ResumeLayout(false);
       this.groupBox1.PerformLayout();
       this.panel1.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.OrderList)).EndInit();
       this.ResumeLayout(false);
 
     }
@@ -185,7 +185,7 @@ namespace Client.Forms
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.Panel panel1;
     private System.Windows.Forms.Button Search;
-    private System.Windows.Forms.DataGridView dataGridView1;
+    private System.Windows.Forms.DataGridView OrderList;
     private System.Windows.Forms.Button Create;
     private System.Windows.Forms.DataGridViewTextBoxColumn OrderNoColumn;
     private System.Windows.Forms.DataGridViewTextBoxColumn OrderUserName;
