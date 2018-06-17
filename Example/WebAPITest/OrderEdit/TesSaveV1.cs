@@ -26,13 +26,13 @@ namespace WebAPITest.OrderEdit
       result.Add(new object[] { new SaveRequest() });
 
       // 更新NG:Version違い
-      result.Add(new object[] { new SaveRequest() { OrderNo = 1, LoginUserID = "test2", ModVersion = 2 } });
+      result.Add(new object[] { new SaveRequest() { OrderNo = 1, OrderUserID = "test2", ModVersion = 2 } });
 
       // 登録:test
-      result.Add(new object[] { new SaveRequest() { OrderNo = 10, LoginUserID = "test", ModVersion = 1 } });
+      result.Add(new object[] { new SaveRequest() { OrderNo = 0, OrderUserID = "test", ModVersion = 1 } });
 
       // 更新:test
-      result.Add(new object[] { new SaveRequest() { OrderNo = 2, LoginUserID = "test", ModVersion = 1 } });
+      result.Add(new object[] { new SaveRequest() { OrderNo = 2, OrderUserID = "test", ModVersion = 1 } });
 
       return result;
     }
