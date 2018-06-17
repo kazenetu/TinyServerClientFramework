@@ -26,7 +26,7 @@ namespace DataTransferObjects.Response.OrderEdit
       /// <summary>
       /// 更新バージョン
       /// </summary>
-      public int ModVersion { set; get; };
+      public int ModVersion { set; get; }
     }
   }
 }
