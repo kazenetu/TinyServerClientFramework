@@ -24,6 +24,34 @@ namespace Client.Business.OrderEdit
         var response = data as FindUserNameResponse;
         response.ErrorMessage = "";
         response.ResponseData = new FindUserNameResponse.FindUserNameResponseParam() {};
+
+        if (string.IsNullOrEmpty(request.OrderUserID.Trim()))
+        {
+          response.Result = nameof(InitializeResponse.Results.NG);
+          response.ErrorMessage = "ユーザーIDを設定してください。";
+          return response;
+        }
+
+        switch (request.OrderUserID)
+        {
+          case "test":
+            response.ResponseData.OrderUserName = "テストユーザー";
+            break;
+          case "test2":
+            response.ResponseData.OrderUserName = "テストユーザー２";
+            break;
+          case "none":
+            response.ResponseData.OrderUserName = "";
+            break;
+          case "dummy":
+            response.ResponseData.OrderUserName = "ダミー";
+            break;
+          default:
+            response.Result = nameof(InitializeResponse.Results.NG);
+            response.ErrorMessage = "ユーザーがありません";
+            break;
+        }
+
         return response;
       };
 #endif
