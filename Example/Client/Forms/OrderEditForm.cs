@@ -102,30 +102,47 @@ namespace Client.Forms
 
       try
       {
-        // パラメータ設定
-        var request = new SaveRequest();
-
+        var result = string.Empty;
+        var resultOrderNo = 0;
+        var errorMessage = string.Empty;
         if (IsModify)
         {
+          // パラメータ設定
+          var request = new ModifyRequest();
           request.OrderNo = int.Parse(OrderNo.Text);
           request.OrderUserID = UserID.Text;
           request.ModVersion = OrderVersion;
+
+          // 更新処理
+          var resultDTO = new OrderEditBusiness().Modify(request);
+
+          // 結果取得
+          result = resultDTO.Result;
+          resultOrderNo = resultDTO.ResponseData.OrderNo;
+          errorMessage = resultDTO.ErrorMessage;
         }
         else
         {
+          // パラメータ設定
+          var request = new SaveRequest();
           request.OrderNo = -1;
           request.OrderUserID = UserID.Text;
           request.ModVersion = OrderVersion;
+
+          // 登録処理
+          var resultDTO = new OrderEditBusiness().Save(request);
+
+          // 結果取得
+          result = resultDTO.Result;
+          resultOrderNo = resultDTO.ResponseData.OrderNo;
+          errorMessage = resultDTO.ErrorMessage;
         }
 
-        // 更新処理
-        var result = new OrderEditBusiness().Save(request);
-
         // 更新結果確認
-        if(result.Result == Statics.ResultOK)
+        if (result == Statics.ResultOK)
         {
           // 注文番号を設定
-          OrderNo.Text = result.ResponseData.OrderNo.ToString();
+          OrderNo.Text = resultOrderNo.ToString();
 
           MessageBox.Show("保存完了しました。");
 
@@ -134,7 +151,7 @@ namespace Client.Forms
         }
         else
         {
-          MessageBox.Show(result.ErrorMessage);
+          MessageBox.Show(errorMessage);
         }
       }
       catch (Exception ex)

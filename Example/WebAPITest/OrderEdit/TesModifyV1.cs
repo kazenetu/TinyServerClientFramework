@@ -1,6 +1,7 @@
 ﻿using DataTransferObjects.Request.OrderEdit;
 using DataTransferObjects.Response.OrderEdit;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using WebAPI.Controllers.V1.OrderEdit;
 using WebAPI.Repositories;
@@ -11,37 +12,37 @@ namespace WebAPITest.OrderEdit
   public partial class OrderEditTestV1
   {
     /// <summary>
-    /// Save用入力データ生成、取得
+    /// Modify用入力データ生成、取得
     /// </summary>
     /// <returns>入力データリスト</returns>
-    public static IEnumerable<object[]> MakeSaveRequest()
+    public static IEnumerable<object[]> MakeModifyRequest()
     {
       var result = new List<object[]>();
 
       // 入力データリストの追加
 
       // 未入力:必須項目なしエラー
-      result.Add(new object[] { new SaveRequest() });
+      result.Add(new object[] { new ModifyRequest() });
 
-      // NG:登録対象外
-      result.Add(new object[] { new SaveRequest() { OrderNo = 1, OrderUserID = "test2", ModVersion = 2 } });
+      // NG:更新Version違い
+      result.Add(new object[] { new ModifyRequest() { OrderNo = 1, OrderUserID = "test2", ModVersion = 2 } });
 
-      // 登録:test
-      result.Add(new object[] { new SaveRequest() { OrderNo = 0, OrderUserID = "test", ModVersion = 1 } });
+      // NG:更新対象外
+      result.Add(new object[] { new ModifyRequest() { OrderNo = 0, OrderUserID = "test", ModVersion = 1 } });
 
-      // NG:登録対象外
-      result.Add(new object[] { new SaveRequest() { OrderNo = 2, OrderUserID = "test", ModVersion = 1 } });
+      // 更新:test
+      result.Add(new object[] { new ModifyRequest() { OrderNo = 2, OrderUserID = "test", ModVersion = 1 } });
 
       return result;
     }
 
     /// <summary>
-    /// Saveのテスト
+    /// Modifyのテスト
     /// </summary>
     [Theory]
-    [MemberData(nameof(MakeSaveRequest))]
+    [MemberData(nameof(MakeModifyRequest))]
     [Trait("Test", "OrderEditTestV1")]
-    public void SaveTestV1(SaveRequest request)
+    public void ModifyTestV1(ModifyRequest request)
     {
       // テスト用DBインスタンスを取得
       var testDB = GetDB();
@@ -50,13 +51,13 @@ namespace WebAPITest.OrderEdit
       var controller = new OrderEditController(new OrderEditRepository(testDB), logger);
 
       // controllerメソッド呼び出し
-      var result = controller.Save(request);
+      var result = controller.Modify(request);
 
       // 戻り値がJSONか確認
       Assert.True(result is JsonResult, "Not JsonResult");
 
       // ResponseDTOを取得
-      var responseObject = ((JsonResult)result).Value as SaveResponse;
+      var responseObject = ((JsonResult)result).Value as ModifyResponse;
 
       // ResponseDTOのnull確認
       Assert.NotNull(responseObject);
@@ -65,13 +66,7 @@ namespace WebAPITest.OrderEdit
       var expectedResult = "OK";
       switch (request.OrderNo)
       {
-        case 0:
-
-          // 値入力なしの場合はエラー
-          if(string.IsNullOrEmpty(request.OrderUserID))
-          {
-            expectedResult = "NG";
-          }
+        case 2:
           break;
         default:
           expectedResult = "NG";

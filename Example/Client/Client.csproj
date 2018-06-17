@@ -177,4 +177,7 @@
   <ItemGroup>
     <Compile Include="Business\OrderEdit\BusFindUserName.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Business\OrderEdit\BusModify.cs" />
+  </ItemGroup>
 </Project>

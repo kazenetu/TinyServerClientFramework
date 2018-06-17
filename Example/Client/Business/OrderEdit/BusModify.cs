@@ -8,32 +8,31 @@ namespace Client.Business.OrderEdit
   public partial class OrderEditBusiness
   {
     /// <summary>
-    /// Save
+    /// Modify
     /// </summary>
     /// <param name="request">入力リクエスト</param>
     /// <returns>結果</returns>
-    public SaveResponse Save(SaveRequest request)
+    public ModifyResponse Modify(ModifyRequest request)
     {
-      var webAPIUrl = $"{WebAPIVersion}/orderedit/save";
+      var webAPIUrl = $"{WebAPIVersion}/orderedit/modify";
 
       HttpConnectLib.StubWebAPIDelegate stub = null;
 #if STUB
       // WebAPI回避　ダミーデータを返す
       stub = (url, data) =>
       {
-        var response = data as SaveResponse;
+        var response = data as ModifyResponse;
         response.ErrorMessage = "";
-        response.ResponseData = new SaveResponse.SaveResponseParam() {};
+        response.ResponseData = new ModifyResponse.ModifyResponseParam() {};
 
         // 注文番号設定
-        // ダミー番号を返す
-        response.ResponseData.OrderNo = 100;
+        response.ResponseData.OrderNo = request.OrderNo;
 
         return response;
       };
 #endif
 
-      return Post<SaveResponse>(webAPIUrl, request, stub);
+      return Post<ModifyResponse>(webAPIUrl, request, stub);
     }
   }
 }
