@@ -13,20 +13,23 @@ namespace WebAPI.Repositories
     /// </summary>
     /// <param name="request">入力リクエスト</param>
     /// <returns>処理結果</returns>
-    public virtual List<DummyTable> FindUserName(FindUserNameRequest request)
+    public virtual List<MtUser> FindUserName(FindUserNameRequest request)
     {
-      // TODO DummyTableからテーブルDTOまたはカスタマイズされたテーブルDTOに置き換えてください。(本コメントは削除してください)
-
       var sql = new StringBuilder();
-      // TODO SQLを追加してください。(本コメントは削除してください)
+      sql.AppendLine("SELECT");
+      sql.AppendLine("  USER_NAME");
+      sql.AppendLine("FROM");
+      sql.AppendLine("  MT_USER ");
+      sql.AppendLine("WHERE");
+      sql.AppendLine("  USER_ID = @USER_ID ");
 
       // Param設定
       db.ClearParam();
-      // TODO db.AddParamメソッドを使って、パラメーターを追加してください。(本コメントは削除してください)
+      db.AddParam("@USER_ID",request.OrderUserID);
 
       // 結果をリストで返す
       // ※ テーブルDTOまたはカスタマイズされたテーブルDTOに存在しない別名を使用している場合はfillOhterメソッドにて設定を行うこと
-      return Fill<DummyTable>(db.Fill(sql.ToString()));
+      return Fill<MtUser>(db.Fill(sql.ToString()));
     }
   }
 }

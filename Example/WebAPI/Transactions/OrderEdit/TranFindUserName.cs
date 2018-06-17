@@ -7,6 +7,7 @@ using System.Text;
 using WebAPI.Repositories;
 using Framework.WebAPI.BaseClasses;
 using Framework.WebAPI.Interfaces;
+using System.Linq;
 
 namespace WebAPI.Transactions.OrderEdit
 {
@@ -20,6 +21,7 @@ namespace WebAPI.Transactions.OrderEdit
     public FindUserNameResponse.FindUserNameResponseParam FindUserName(FindUserNameRequest request)
     {
       var result = new FindUserNameResponse.FindUserNameResponseParam();
+      result.OrderUserName = string.Empty;
 
       // OrderEditRepositoryのインスタンスを取得
       var ordereditRepository = repository.Cast<OrderEditRepository>();
@@ -30,7 +32,10 @@ namespace WebAPI.Transactions.OrderEdit
         var ordereditResult = ordereditRepository.FindUserName(request);
 
         // 発行結果を確認、設定
-        // TODO ordereditResultの内容確認とresultへの設定を行ってください。(本コメントは削除してください)
+        if (ordereditResult.Any())
+        {
+          result.OrderUserName = ordereditResult.First().UserName;
+        }
 
       }
       catch (Exception ex)

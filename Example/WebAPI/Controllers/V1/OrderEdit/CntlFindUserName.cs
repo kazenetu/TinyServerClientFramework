@@ -17,7 +17,7 @@ namespace WebAPI.Controllers.V1.OrderEdit
     /// <param name="request">入力リクエスト</param>
     /// <returns>結果JSON</returns>
     [HttpPost("findusername")]
-    public virtual IActionResult FindUserName(FindUserNameRequest request)
+    public virtual IActionResult FindUserName([FromBody]FindUserNameRequest request)
     {
       // システムエラーチェック
       if (systenErrorResult is IActionResult) return systenErrorResult;
@@ -36,13 +36,11 @@ namespace WebAPI.Controllers.V1.OrderEdit
       var transaction = new OrderEditTransaction(repository, logger);
       resultParam = transaction.FindUserName(request);
 
-      // TODO resultParamのエラー条件を実装してください。(本コメントは削除してください)
-      if (false)
+      // 注文者名が存在しない場合はエラー
+      if (string.IsNullOrEmpty(resultParam.OrderUserName))
       {
         status = FindUserNameResponse.Results.NG;
-
-       // TODO エラーメッセージを設定してください。(本コメントは削除してください)
-        message = "メッセージ";
+        message = "注文者IDはありません。";
       }
 
       return Json(new FindUserNameResponse(status, message, resultParam));
