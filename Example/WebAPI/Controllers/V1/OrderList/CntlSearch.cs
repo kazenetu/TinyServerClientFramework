@@ -15,7 +15,7 @@ namespace WebAPI.Controllers.V1.OrderList
     /// <param name="request">入力リクエスト</param>
     /// <returns>結果JSON</returns>
     [HttpPost("search")]
-    public virtual IActionResult Search(SearchRequest request)
+    public virtual IActionResult Search([FromBody]SearchRequest request)
     {
       // システムエラーチェック
       if (systenErrorResult is IActionResult) return systenErrorResult;
