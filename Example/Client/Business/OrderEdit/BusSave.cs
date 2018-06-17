@@ -24,6 +24,15 @@ namespace Client.Business.OrderEdit
         var response = data as SaveResponse;
         response.ErrorMessage = "";
         response.ResponseData = new SaveResponse.SaveResponseParam() {};
+
+        // 注文番号設定
+        response.ResponseData.OrderNo = request.OrderNo;
+        if (response.ResponseData.OrderNo < 0)
+        {
+          // 登録の場合はダミー番号を返す
+          response.ResponseData.OrderNo = 100;
+        }
+
         return response;
       };
 #endif

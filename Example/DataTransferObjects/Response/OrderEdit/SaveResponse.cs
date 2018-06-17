@@ -18,7 +18,10 @@ namespace DataTransferObjects.Response.OrderEdit
 
     public class SaveResponseParam
     {
-      // TODO:プロパティを追加してください。(本コメントは削除してください)
+      /// <summary>
+      /// 注文番号
+      /// </summary>
+      public int OrderNo { set; get; }
     }
   }
 }

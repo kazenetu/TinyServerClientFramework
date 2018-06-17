@@ -14,6 +14,12 @@ namespace Client.Forms
     private bool IsModify = false;
 
     /// <summary>
+    /// 注文番号のバージョン
+    /// </summary>
+    /// <remarks>新規作成時は-1</remarks>
+    private int OrderVersion = -1;
+
+    /// <summary>
     /// コンストラクタ
     /// </summary>
     public OrderEditForm()
@@ -72,8 +78,9 @@ namespace Client.Forms
       var business = new OrderEditBusiness();
       var result = business.Initialize(request);
 
-      // DBからユーザー名を取得
+      // DBからユーザー名・更新バージョンを取得
       UserID.Text = result.ResponseData.OrderUserID;
+      OrderVersion = result.ResponseData.ModVersion;
 
       // ユーザー名取得
       SetUserName(false);
@@ -93,18 +100,48 @@ namespace Client.Forms
         return;
       }
 
-      // 登録・更新処理
-      if (IsModify)
+      try
       {
-        // TODO 更新処理
-      }
-      else
-      {
-        // TODO 登録処理
-      }
+        // パラメータ設定
+        var request = new SaveRequest();
 
-      // OKを返す
-      DialogResult = System.Windows.Forms.DialogResult.OK;
+        if (IsModify)
+        {
+          request.OrderNo = int.Parse(OrderNo.Text);
+          request.OrderUserID = UserID.Text;
+          request.ModVersion = OrderVersion;
+        }
+        else
+        {
+          request.OrderNo = -1;
+          request.OrderUserID = UserID.Text;
+          request.ModVersion = OrderVersion;
+        }
+
+        // 更新処理
+        var result = new OrderEditBusiness().Save(request);
+
+        // 更新結果確認
+        if(result.Result == Statics.ResultOK)
+        {
+          // 注文番号を設定
+          OrderNo.Text = result.ResponseData.OrderNo.ToString();
+
+          MessageBox.Show("保存完了しました。");
+
+          // OKを返す
+          DialogResult = System.Windows.Forms.DialogResult.OK;
+        }
+        else
+        {
+          MessageBox.Show(result.ErrorMessage);
+        }
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show(ex.Message);
+
+      }
     }
 
     /// <summary>

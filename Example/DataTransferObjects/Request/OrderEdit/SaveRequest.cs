@@ -8,6 +8,19 @@ namespace DataTransferObjects.Request.OrderEdit
   /// </summary>
   public class SaveRequest : RequestBase
   {
-    // TODO:プロパティを追加してください。(本コメントは削除してください)
+    /// <summary>
+    /// 注文番号
+    /// </summary>
+    public int OrderNo { set; get; }
+
+    /// <summary>
+    /// 注文者ID
+    /// </summary>
+    public string OrderUserID { set; get; }
+
+    /// <summary>
+    /// 更新バージョン
+    /// </summary>
+    public int ModVersion { set; get; }
   }
 }
