@@ -2,10 +2,7 @@
 using DataTransferObjects.Response.OrderEdit;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 using WebAPI.Transactions.OrderEdit;
-using Framework.WebAPI.BaseClasses;
-using Framework.WebAPI.Interfaces;
 
 namespace WebAPI.Controllers.V1.OrderEdit
 {
@@ -17,7 +14,7 @@ namespace WebAPI.Controllers.V1.OrderEdit
     /// <param name="request">入力リクエスト</param>
     /// <returns>結果JSON</returns>
     [HttpPost("save")]
-    public virtual IActionResult Save(SaveRequest request)
+    public virtual IActionResult Save([FromBody]SaveRequest request)
     {
       // システムエラーチェック
       if (systenErrorResult is IActionResult) return systenErrorResult;
@@ -31,18 +28,17 @@ namespace WebAPI.Controllers.V1.OrderEdit
 
       var status = SaveResponse.Results.OK;
       var message = string.Empty;
-      SaveResponse.SaveResponseParam resultParam = null;
+      SaveResponse.SaveResponseParam resultParam = new SaveResponse.SaveResponseParam();
 
       var transaction = new OrderEditTransaction(repository, logger);
-      resultParam = transaction.Save(request);
-
-      // TODO resultParamのエラー条件を実装してください。(本コメントは削除してください)
-      if (false)
+      if (transaction.Save(request))
+      {
+        resultParam.OrderNo = request.OrderNo;
+      }
+      else
       {
         status = SaveResponse.Results.NG;
-
-       // TODO エラーメッセージを設定してください。(本コメントは削除してください)
-        message = "メッセージ";
+        message = "保存失敗しました。";
       }
 
       return Json(new SaveResponse(status, message, resultParam));
