@@ -162,7 +162,8 @@ namespace Client.Forms
     /// <param name="e"></param>
     private void UserID_Leave(object sender, EventArgs e)
     {
-      // TODO ユーザーIDに紐づくユーザー名を表示
+      // ユーザー名取得
+      SetUserName(false);
     }
   }
 }
