@@ -22,7 +22,7 @@ namespace WebAPI.Controllers.<#= WebAPIVersion.ToUpper() #>.<#= BaseName #>
     /// <param name="request">入力リクエスト</param>
     /// <returns>結果JSON</returns>
     [HttpPost("<#= MethodName.ToLower() #>")]
-    public <#= GetMethodKeyword() #> IActionResult <#= MethodName #>(<#= MethodName #>Request request)
+    public <#= GetMethodKeyword() #> IActionResult <#= MethodName #>([FromBody]<#= MethodName #>Request request)
     {
       // システムエラーチェック
       if (systenErrorResult is IActionResult) return systenErrorResult;
