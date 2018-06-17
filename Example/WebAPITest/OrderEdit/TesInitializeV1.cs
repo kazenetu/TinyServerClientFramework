@@ -20,9 +20,15 @@ namespace WebAPITest.OrderEdit
       var result = new List<object[]>();
 
       // 入力データリストの追加
-      // TODO 入力データとしてInitializeRequestを作成してください。(本コメントは削除してください)
-      //result.Add(new object[] { new InitializeRequest() { プロパティ名=値,...} });
-      result.Add(new object[] { new InitializeRequest() }); //例(削除してください)
+
+      // 未入力:データなしエラー
+      result.Add(new object[] { new InitializeRequest() });
+
+      // 注文NO 1:データあり:test
+      result.Add(new object[] { new InitializeRequest() { OrderNo = 1 } });
+
+      // 注文NO 10:データなし
+      result.Add(new object[] { new InitializeRequest() { OrderNo = 10 } });
 
       return result;
     }
@@ -54,7 +60,33 @@ namespace WebAPITest.OrderEdit
       Assert.NotNull(responseObject);
 
       // 値確認
-      // TODO 具体的な値の確認をしてください。(本コメントは削除してください)
+      var expectedValue = string.Empty;
+      var expectedResult = "OK";
+      switch (request.OrderNo)
+      {
+        case 1:
+          expectedValue = "test";
+          break;
+        default:
+          expectedResult = "NG";
+          break;
+      }
+      Assert.True(responseObject.Result == expectedResult,
+                $"結果が異なります。期待値:{expectedResult},検索結果:{responseObject.Result}");
+
+      Assert.True(responseObject.ResponseData.OrderUserID == expectedValue,
+                $"ユーザーIDが異なります[{responseObject.ResponseData.OrderUserID}]");
+
+      if (expectedResult == "OK")
+      {
+        Assert.True(string.IsNullOrEmpty(responseObject.ErrorMessage),
+                $"エラーメッセージ「{responseObject.ErrorMessage}」が設定されています。");
+      }
+      else
+      {
+        Assert.True(!string.IsNullOrEmpty(responseObject.ErrorMessage),
+                "エラーメッセージが設定されていません。");
+      }
 
     }
   }
