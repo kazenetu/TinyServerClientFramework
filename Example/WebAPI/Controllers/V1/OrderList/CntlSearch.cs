@@ -39,7 +39,7 @@ namespace WebAPI.Controllers.V1.OrderList
         message = "検索件数がゼロ件です。";
       }
 
-        return Json(new SearchResponse(status, message, resultParam));
+      return Json(new SearchResponse(status, message, resultParam));
     }
   }
 }
