@@ -27,12 +27,18 @@ namespace WebAPITest.OrderEdit
       var db = new TestSQLiteDB(@":memory:");
 
       // テーブル作成
-      // TODO TestTablesのクラスを使ってテーブルを作成してください。(本コメントは削除してください)
-      //(本コメントは削除してください) 例) MtUserTest.CreateTable(db);
+      MtUserTest.CreateTable(db);
+      TOrderTest.CreateTable(db);
 
       // テストデータ登録
-      // TODO TestTablesのクラスを使ってテストデータを登録してください。(本コメントは削除してください)
-      //(本コメントは削除してください) 例) MtUserTest.Insert(db, "test", "テストユーザー", "Z5SMGm/kEGTiZP8tHwuWSwYWFguMP7/qJOnLNL1u4is=", "0", "", DateTime.Parse("2018/01/21 17:32:00"), "", new DateTime(), 1);
+      MtUserTest.Insert(db, "test", "テストユーザー", "Z5SMGm/kEGTiZP8tHwuWSwYWFguMP7/qJOnLNL1u4is=", "0", "", DateTime.Parse("2018/01/21 17:32:00"), "", new DateTime(), 1);
+      MtUserTest.Insert(db, "test2", "テストユーザー２", "Z5SMGm/kEGTiZP8tHwuWSwYWFguMP7/qJOnLNL1u4is=", "0", "", DateTime.Parse("2018/01/21 17:32:00"), "", new DateTime(), 1);
+      MtUserTest.Insert(db, "dummy", "ダミーユーザー", "Z5SMGm/kEGTiZP8tHwuWSwYWFguMP7/qJOnLNL1u4is=", "0", "", DateTime.Parse("2018/01/21 17:32:00"), "", new DateTime(), 1);
+
+      TOrderTest.Insert(db, 1, "test", 1);
+      TOrderTest.Insert(db, 2, "test2", 1);
+      TOrderTest.Insert(db, 3, "dummy", 1);
+      TOrderTest.Insert(db, 4, string.Empty, 1);
 
       // SQLiteインスタンスを返す
       return db;
