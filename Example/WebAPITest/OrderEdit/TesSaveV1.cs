@@ -21,8 +21,18 @@ namespace WebAPITest.OrderEdit
 
       // 入力データリストの追加
       // TODO 入力データとしてSaveRequestを作成してください。(本コメントは削除してください)
-      //result.Add(new object[] { new SaveRequest() { プロパティ名=値,...} });
-      result.Add(new object[] { new SaveRequest() }); //例(削除してください)
+
+      // 未入力:必須項目なしエラー
+      result.Add(new object[] { new SaveRequest() });
+
+      // 更新NG:Version違い
+      result.Add(new object[] { new SaveRequest() { OrderNo = 1, LoginUserID = "test2", ModVersion = 2 } });
+
+      // 登録:test
+      result.Add(new object[] { new SaveRequest() { OrderNo = 10, LoginUserID = "test", ModVersion = 1 } });
+
+      // 更新:test
+      result.Add(new object[] { new SaveRequest() { OrderNo = 2, LoginUserID = "test", ModVersion = 1 } });
 
       return result;
     }
@@ -54,7 +64,30 @@ namespace WebAPITest.OrderEdit
       Assert.NotNull(responseObject);
 
       // 値確認
-      // TODO 具体的な値の確認をしてください。(本コメントは削除してください)
+      var expectedResult = "OK";
+      switch (request.OrderNo)
+      {
+        case 2:
+        case 10:
+          break;
+        default:
+          expectedResult = "NG";
+          break;
+      }
+
+      Assert.True(responseObject.Result == expectedResult,
+                $"結果が異なります。期待値:{expectedResult},検索結果:{responseObject.Result}");
+
+      if (expectedResult == "OK")
+      {
+        Assert.True(string.IsNullOrEmpty(responseObject.ErrorMessage),
+                $"エラーメッセージ「{responseObject.ErrorMessage}」が設定されています。");
+      }
+      else
+      {
+        Assert.True(!string.IsNullOrEmpty(responseObject.ErrorMessage),
+                "エラーメッセージが設定されていません。");
+      }
 
     }
   }
