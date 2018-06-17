@@ -17,7 +17,7 @@ namespace WebAPI.Controllers.V1.OrderEdit
     /// <param name="request">入力リクエスト</param>
     /// <returns>結果JSON</returns>
     [HttpPost("initialize")]
-    public virtual IActionResult Initialize(InitializeRequest request)
+    public virtual IActionResult Initialize([FromBody]InitializeRequest request)
     {
       // システムエラーチェック
       if (systenErrorResult is IActionResult) return systenErrorResult;
@@ -36,13 +36,10 @@ namespace WebAPI.Controllers.V1.OrderEdit
       var transaction = new OrderEditTransaction(repository, logger);
       resultParam = transaction.Initialize(request);
 
-      // TODO resultParamのエラー条件を実装してください。(本コメントは削除してください)
-      if (false)
+      if (string.IsNullOrEmpty(resultParam.OrderUserID))
       {
         status = InitializeResponse.Results.NG;
-
-       // TODO エラーメッセージを設定してください。(本コメントは削除してください)
-        message = "メッセージ";
+        message = "ユーザーが見つかりません。";
       }
 
       return Json(new InitializeResponse(status, message, resultParam));

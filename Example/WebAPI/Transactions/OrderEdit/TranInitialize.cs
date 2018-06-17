@@ -7,6 +7,7 @@ using System.Text;
 using WebAPI.Repositories;
 using Framework.WebAPI.BaseClasses;
 using Framework.WebAPI.Interfaces;
+using System.Linq;
 
 namespace WebAPI.Transactions.OrderEdit
 {
@@ -30,7 +31,12 @@ namespace WebAPI.Transactions.OrderEdit
         var ordereditResult = ordereditRepository.Initialize(request);
 
         // 発行結果を確認、設定
-        // TODO ordereditResultの内容確認とresultへの設定を行ってください。(本コメントは削除してください)
+        if (ordereditResult.Any())
+        {
+          var targetData = ordereditResult.First();
+          result.OrderUserID = targetData.OrderUserId;
+          result.ModVersion = targetData.ModVersion;
+        }
 
       }
       catch (Exception ex)
