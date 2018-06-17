@@ -8,6 +8,9 @@ namespace DataTransferObjects.Request.OrderEdit
   /// </summary>
   public class FindUserNameRequest : RequestBase
   {
-    // TODO:プロパティを追加してください。(本コメントは削除してください)
+    /// <summary>
+    /// 注文者ID
+    /// </summary>
+    public string OrderUserID { set; get; }
   }
 }

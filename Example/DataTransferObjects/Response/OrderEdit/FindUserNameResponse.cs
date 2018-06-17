@@ -18,7 +18,10 @@ namespace DataTransferObjects.Response.OrderEdit
 
     public class FindUserNameResponseParam
     {
-      // TODO:プロパティを追加してください。(本コメントは削除してください)
+      /// <summary>
+      /// 注文者名
+      /// </summary>
+      public string OrderUserName { set; get; }
     }
   }
 }
