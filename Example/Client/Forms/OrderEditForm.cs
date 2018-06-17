@@ -2,6 +2,7 @@
 using Client.Business.OrderEdit;
 using DataTransferObjects.Request.OrderEdit;
 using System;
+using System.Windows.Forms;
 
 namespace Client.Forms
 {
@@ -18,6 +19,39 @@ namespace Client.Forms
     public OrderEditForm()
     {
       InitializeComponent();
+    }
+
+    /// <summary>
+    /// ユーザー名取得
+    /// </summary>
+    /// <param name="isShowMessage">メッセージ表示するか</param>
+    /// <returns></returns>
+    private bool SetUserName(bool isShowMessage)
+    {
+      // パラメータ設定
+      var request = new FindUserNameRequest() { OrderUserID = UserID.Text };
+
+      // 検索処理
+      var result = new OrderEditBusiness().FindUserName(request);
+
+      // 結果判定
+      if(result.Result == Statics.ResultNG)
+      {
+        UserName.Text =  string.Empty;
+
+        if (isShowMessage)
+        {
+          // エラーメッセージ表示
+          MessageBox.Show(result.ErrorMessage);
+        }
+
+        return false;
+      }
+
+      // ユーザー名の設定
+      UserName.Text = result.ResponseData.OrderUserName;
+
+      return true;
     }
 
     /// <summary>
@@ -40,6 +74,9 @@ namespace Client.Forms
 
       // DBからユーザー名を取得
       UserID.Text = result.ResponseData.OrderUserID;
+
+      // ユーザー名取得
+      SetUserName(false);
     }
 
     /// <summary>
@@ -49,6 +86,13 @@ namespace Client.Forms
     /// <param name="e"></param>
     private void Save_Click(object sender, EventArgs e)
     {
+      // ユーザー名取得
+      if (!SetUserName(true))
+      {
+        // 取得失敗時は終了
+        return;
+      }
+
       // 登録・更新処理
       if (IsModify)
       {
