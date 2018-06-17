@@ -39,7 +39,7 @@ namespace WebAPI.Controllers.<#= WebAPIVersion.ToUpper() #>.<#= BaseName #>
       <#= MethodName #>Response.<#= MethodName #>ResponseParam resultParam = null;
 
       var transaction = new <#= BaseName #>Transaction(repository, logger);
-      if (transaction.Update(request))
+      if (transaction.<#= MethodName #>(request))
       {
         // TODO 成功時の処理を実装してください。(本コメントは削除してください)
 
