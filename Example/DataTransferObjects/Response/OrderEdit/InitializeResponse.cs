@@ -21,12 +21,12 @@ namespace DataTransferObjects.Response.OrderEdit
       /// <summary>
       /// 注文者ID
       /// </summary>
-      public string OrderUserID { set; get; }
+      public string OrderUserID { set; get; } = string.Empty;
 
       /// <summary>
       /// 更新バージョン
       /// </summary>
-      public int ModVersion { set; get; }
+      public int ModVersion { set; get; };
     }
   }
 }
