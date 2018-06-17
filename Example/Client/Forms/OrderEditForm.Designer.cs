@@ -106,6 +106,7 @@ namespace Client.Forms
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.CausesValidation = false;
       this.ClientSize = new System.Drawing.Size(414, 202);
       this.ControlBox = false;
       this.Controls.Add(this.Save);
