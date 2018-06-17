@@ -2,10 +2,8 @@
 using DataTransferObjects.Response.OrderList;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
+using System.Linq;
 using WebAPI.Transactions.OrderList;
-using Framework.WebAPI.BaseClasses;
-using Framework.WebAPI.Interfaces;
 
 namespace WebAPI.Controllers.V1.OrderList
 {
@@ -36,16 +34,12 @@ namespace WebAPI.Controllers.V1.OrderList
       var transaction = new OrderListTransaction(repository, logger);
       resultParam = transaction.Search(request);
 
-      // TODO resultParamのエラー条件を実装してください。(本コメントは削除してください)
-      if (false)
+      if (!resultParam.List.Any())
       {
-        status = SearchResponse.Results.NG;
-
-       // TODO エラーメッセージを設定してください。(本コメントは削除してください)
-        message = "メッセージ";
+        message = "検索件数がゼロ件です。";
       }
 
-      return Json(new SearchResponse(status, message, resultParam));
+        return Json(new SearchResponse(status, message, resultParam));
     }
   }
 }

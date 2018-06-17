@@ -1,12 +1,9 @@
 ﻿using DataTransferObjects.Request.OrderList;
 using DataTransferObjects.Response.OrderList;
-using DataTransferObjects.Tables;
+using Framework.WebAPI.BaseClasses;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Text;
 using WebAPI.Repositories;
-using Framework.WebAPI.BaseClasses;
-using Framework.WebAPI.Interfaces;
 
 namespace WebAPI.Transactions.OrderList
 {
@@ -30,7 +27,7 @@ namespace WebAPI.Transactions.OrderList
         var orderlistResult = orderlistRepository.Search(request);
 
         // 発行結果を確認、設定
-        // TODO orderlistResultの内容確認とresultへの設定を行ってください。(本コメントは削除してください)
+        result.List.AddRange(orderlistResult);
 
       }
       catch (Exception ex)
