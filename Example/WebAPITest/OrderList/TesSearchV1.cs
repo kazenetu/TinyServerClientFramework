@@ -20,9 +20,15 @@ namespace WebAPITest.OrderList
       var result = new List<object[]>();
 
       // 入力データリストの追加
-      // TODO 入力データとしてSearchRequestを作成してください。(本コメントは削除してください)
-      //result.Add(new object[] { new SearchRequest() { プロパティ名=値,...} });
-      result.Add(new object[] { new SearchRequest() }); //例(削除してください)
+
+      // 検索条件なし 該当件数4件
+      result.Add(new object[] { new SearchRequest() { SearchUserID = string.Empty } });
+
+      // 検索条件あり:test 該当件数2件
+      result.Add(new object[] { new SearchRequest() { SearchUserID = "test" } });
+
+      // 検索条件あり:none 該当件数0件
+      result.Add(new object[] { new SearchRequest() { SearchUserID = "none" } });
 
       return result;
     }
@@ -54,8 +60,37 @@ namespace WebAPITest.OrderList
       Assert.NotNull(responseObject);
 
       // 値確認
-      // TODO 具体的な値の確認をしてください。(本コメントは削除してください)
+      var expectedValue = 0;
+      var expectedErrorMessage = false;
+      switch (request.SearchUserID)
+      {
+        case "":
+          // 期待する検索件数の設定
+          expectedValue = 4;
+          break;
+        case "test":
+          // 期待する検索件数の設定
+          expectedValue = 2;
+          break;
+        case "none":
+          // 期待する検索件数の設定
+          expectedValue = 0;
 
+          // エラーメッセージの確認
+          expectedErrorMessage = true;
+          break;
+      }
+      Assert.True(responseObject.ResponseData.List.Count == expectedValue,
+                  $"検索件数が異なります。期待値:{expectedValue},検索結果:{responseObject.ResponseData.List.Count}");
+
+      if (expectedErrorMessage)
+      {
+        Assert.True(!string.IsNullOrEmpty(responseObject.ErrorMessage), "エラーメッセージが設定されていません。");
+      }
+      else
+      {
+        Assert.True(string.IsNullOrEmpty(responseObject.ErrorMessage), $"エラーメッセージ「{responseObject.ErrorMessage}」が設定されています。");
+      }
     }
   }
 }
