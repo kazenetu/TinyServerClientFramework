@@ -9,5 +9,15 @@
     /// WebAPIのバージョン
     /// </summary>
     public static string WebAPIVersion = "v1";
+
+    /// <summary>
+    /// WebAPI結果Result:OK
+    /// </summary>
+    public const string ResultOK = "OK";
+
+    /// <summary>
+    /// WebAPI結果Result:NG
+    /// </summary>
+    public const string ResultNG = "NG";
   }
 }
