@@ -15,7 +15,7 @@ namespace WebAPITest.OrderEdit
     /// <summary>
     /// ログ インスタンス
     /// </summary>
-    private ILogger<OrderEditController> logger = new LoggerFactory().AddConsole().CreateLogger<OrderEditController>();
+    private ILogger<OrderEditController> logger = new LoggerFactory().CreateLogger<OrderEditController>();
 
     /// <summary>
     /// SQLite(メモリ)にテーブルとデータを作成、取得

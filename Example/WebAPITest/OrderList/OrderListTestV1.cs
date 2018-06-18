@@ -15,7 +15,7 @@ namespace WebAPITest.OrderList
     /// <summary>
     /// ログ インスタンス
     /// </summary>
-    private ILogger<OrderListController> logger = new LoggerFactory().AddConsole().CreateLogger<OrderListController>();
+    private ILogger<OrderListController> logger = new LoggerFactory().CreateLogger<OrderListController>();
 
     /// <summary>
     /// SQLite(メモリ)にテーブルとデータを作成、取得
