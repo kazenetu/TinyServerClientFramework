@@ -15,6 +15,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Antiforgery" Version="2.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="2.4.0" />
+    <PackageReference Include="Npgsql" Version="3.2.5" />
     
     <ProjectReference Include="..\DataTransferObjects\DataTransferObjects.csproj" />
   </ItemGroup>
