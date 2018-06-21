@@ -8,13 +8,13 @@ using DataTransferObjects.Response.<#= BaseName #>;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using WebAPI.Controllers.<#= WebAPIVersion.ToUpper() #>.<#= BaseName #>;
+using WebAPI.Controllers.<#= BaseName #>;
 using WebAPI.Repositories;
 using Xunit;
 
 namespace WebAPITest.<#= BaseName #>
 {
-  public partial class <#= BaseName #>Test<#= WebAPIVersion.ToUpper() #>
+  public partial class <#= BaseName #>Test
   {
     /// <summary>
     /// <#= MethodName #>用入力データ生成、取得
@@ -37,8 +37,8 @@ namespace WebAPITest.<#= BaseName #>
     /// </summary>
     [Theory]
     [MemberData(nameof(Make<#= MethodName #>Request))]
-    [Trait("Test", "<#= BaseName #>Test<#= WebAPIVersion.ToUpper() #>")]
-    public void <#= MethodName #>Test<#= WebAPIVersion.ToUpper() #>(<#= MethodName #>Request request)
+    [Trait("Test", "<#= BaseName #>Test")]
+    public void <#= MethodName #>Test(<#= MethodName #>Request request)
     {
       // テスト用DBインスタンスを取得
       var testDB = GetDB();

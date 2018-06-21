@@ -4,7 +4,7 @@ using System;
 using Framework.WebAPI.BaseClasses;
 using Framework.WebAPI.Interfaces;
 
-namespace WebAPI.Controllers.V1.OrderList
+namespace WebAPI.Controllers.OrderList
 {
   [Route("api/orderlist")]
   public partial class OrderListController : ControllerWithRepositoryBase

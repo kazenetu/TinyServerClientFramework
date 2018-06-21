@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebAPI.Transactions.OrderEdit;
 
-namespace WebAPI.Controllers.V1.OrderEdit
+namespace WebAPI.Controllers.OrderEdit
 {
   public partial class OrderEditController
   {

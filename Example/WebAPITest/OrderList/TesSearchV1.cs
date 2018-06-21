@@ -3,7 +3,7 @@ using DataTransferObjects.Response.OrderList;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using WebAPI.Controllers.V1.OrderList;
+using WebAPI.Controllers.OrderList;
 using WebAPI.Repositories;
 using Xunit;
 

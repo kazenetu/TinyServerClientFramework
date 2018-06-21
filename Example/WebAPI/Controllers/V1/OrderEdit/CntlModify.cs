@@ -7,7 +7,7 @@ using WebAPI.Transactions.OrderEdit;
 using Framework.WebAPI.BaseClasses;
 using Framework.WebAPI.Interfaces;
 
-namespace WebAPI.Controllers.V1.OrderEdit
+namespace WebAPI.Controllers.OrderEdit
 {
   public partial class OrderEditController
   {

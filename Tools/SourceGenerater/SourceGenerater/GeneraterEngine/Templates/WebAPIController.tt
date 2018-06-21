@@ -9,7 +9,7 @@ using System;
 using Framework.WebAPI.BaseClasses;
 using Framework.WebAPI.Interfaces;
 
-namespace WebAPI.Controllers.<#= WebAPIVersion.ToUpper() #>.<#= BaseName #>
+namespace WebAPI.Controllers.<#= BaseName #>
 {
   [Route("api/<#= BaseName.ToLower() #>")]
   public partial class <#= BaseName #>Controller : <#= GetSuperClassName() #>

@@ -3,7 +3,7 @@ using DataTransferObjects.Response.OrderEdit;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using WebAPI.Controllers.V1.OrderEdit;
+using WebAPI.Controllers.OrderEdit;
 using WebAPI.Repositories;
 using Xunit;
 

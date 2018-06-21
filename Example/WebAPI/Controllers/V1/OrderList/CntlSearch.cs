@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using System.Linq;
 using WebAPI.Transactions.OrderList;
 
-namespace WebAPI.Controllers.V1.OrderList
+namespace WebAPI.Controllers.OrderList
 {
   public partial class OrderListController
   {

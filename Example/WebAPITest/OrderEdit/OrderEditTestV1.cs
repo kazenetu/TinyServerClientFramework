@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
-using WebAPI.Controllers.V1.OrderEdit;
+using WebAPI.Controllers.OrderEdit;
 using Framework.WebAPI.Interfaces;
 using WebAPITest.TestBase;
 using WebAPITest.TestTables;
