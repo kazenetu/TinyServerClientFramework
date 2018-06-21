@@ -19,6 +19,12 @@ namespace Framework.DataTransferObject.BaseClasses
     /// 共通パラメータ：ログインユーザーID
     /// </summary>
     public string LoginUserID { set; get; }
+
+    /// <summary>
+    /// 共通パラメータ：対象バージョン
+    /// </summary>
+    public string TargetVersion { set; get; }
+
     #endregion
 
     #region メソッド
