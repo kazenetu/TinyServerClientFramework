@@ -7,7 +7,7 @@ using WebAPI.Transactions.OrderEdit;
 using Framework.WebAPI.BaseClasses;
 using Framework.WebAPI.Interfaces;
 
-namespace WebAPI.Controllers.V1.OrderEdit
+namespace WebAPI.Controllers.OrderEdit
 {
   public partial class OrderEditController
   {
@@ -22,11 +22,17 @@ namespace WebAPI.Controllers.V1.OrderEdit
       // システムエラーチェック
       if (systenErrorResult is IActionResult) return systenErrorResult;
 
+      // バージョンチェック
+      if (request.TargetVersion != Statics.WebAPIVersion)
+      {
+        return Json(new ModifyResponse(ModifyResponse.Results.NG, Statics.ErrorMessageUpdate, null));
+      }
+
       // 入力チェック
       if (!request.Validate())
       {
         logger.LogError("Pram[{0}]が未設定", request.ValidateNGPropertyName);
-        return Json(new ModifyResponse(ModifyResponse.Results.NG, "未入力項目があります。", null));
+        return Json(new ModifyResponse(ModifyResponse.Results.NG, Statics.ErrorMessageRequired, null));
       }
 
       var status = ModifyResponse.Results.OK;

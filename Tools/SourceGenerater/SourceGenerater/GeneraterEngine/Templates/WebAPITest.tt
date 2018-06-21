@@ -5,7 +5,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 using Microsoft.Extensions.Logging;
 using System;
-using WebAPI.Controllers.<#= WebAPIVersion.ToUpper() #>.<#= BaseName #>;
+using WebAPI.Controllers.<#= BaseName #>;
 using Framework.WebAPI.Interfaces;
 using WebAPITest.TestBase;
 using WebAPITest.TestTables;
@@ -13,9 +13,9 @@ using WebAPITest.TestTables;
 namespace WebAPITest.<#= BaseName #>
 {
   /// <summary>
-  /// WebAPI.Controllers.<#= WebAPIVersion.ToUpper() #>.<#= BaseName #>.<#= BaseName #>Controller用テストクラス
+  /// WebAPI.Controllers.<#= BaseName #>.<#= BaseName #>Controller用テストクラス
   /// </summary>
-  public partial class <#= BaseName #>Test<#= WebAPIVersion.ToUpper() #>
+  public partial class <#= BaseName #>Test
   {
     /// <summary>
     /// ログ インスタンス

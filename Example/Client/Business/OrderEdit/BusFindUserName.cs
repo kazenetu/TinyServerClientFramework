@@ -14,7 +14,8 @@ namespace Client.Business.OrderEdit
     /// <returns>結果</returns>
     public FindUserNameResponse FindUserName(FindUserNameRequest request)
     {
-      var webAPIUrl = $"{WebAPIVersion}/orderedit/findusername";
+      var webAPIUrl = "orderedit/findusername";
+      request.TargetVersion = WebAPIVersion;
 
       HttpConnectLib.StubWebAPIDelegate stub = null;
 #if STUB

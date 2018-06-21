@@ -12,7 +12,7 @@ using WebAPI.Transactions.<#= BaseName #>;
 using Framework.WebAPI.BaseClasses;
 using Framework.WebAPI.Interfaces;
 
-namespace WebAPI.Controllers.<#= WebAPIVersion.ToUpper() #>.<#= BaseName #>
+namespace WebAPI.Controllers.<#= BaseName #>
 {
   public partial class <#= BaseName #>Controller
   {
@@ -22,16 +22,22 @@ namespace WebAPI.Controllers.<#= WebAPIVersion.ToUpper() #>.<#= BaseName #>
     /// <param name="request">入力リクエスト</param>
     /// <returns>結果JSON</returns>
     [HttpPost("<#= MethodName.ToLower() #>")]
-    public <#= GetMethodKeyword() #> IActionResult <#= MethodName #>([FromBody]<#= MethodName #>Request request)
+    public IActionResult <#= MethodName #>([FromBody]<#= MethodName #>Request request)
     {
       // システムエラーチェック
       if (systenErrorResult is IActionResult) return systenErrorResult;
+
+      // バージョンチェック
+      if (request.TargetVersion != Statics.WebAPIVersion)
+      {
+        return Json(new <#= MethodName #>Response(<#= MethodName #>Response.Results.NG, Statics.ErrorMessageUpdate, null));
+      }
 
       // 入力チェック
       if (!request.Validate())
       {
         logger.LogError("Pram[{0}]が未設定", request.ValidateNGPropertyName);
-        return Json(new <#= MethodName #>Response(<#= MethodName #>Response.Results.NG, "未入力項目があります。", null));
+        return Json(new <#= MethodName #>Response(<#= MethodName #>Response.Results.NG, Statics.ErrorMessageRequired, null));
       }
 
       var status = <#= MethodName #>Response.Results.OK;

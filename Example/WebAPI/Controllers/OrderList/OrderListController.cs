@@ -4,18 +4,17 @@ using System;
 using Framework.WebAPI.BaseClasses;
 using Framework.WebAPI.Interfaces;
 
-namespace WebAPI.Controllers.V1.OrderEdit
+namespace WebAPI.Controllers.OrderList
 {
-  [ApiExplorerSettings(GroupName ="v1")]
-  [Route("api/v1/orderedit")]
-  public partial class OrderEditController : ControllerWithRepositoryBase
+  [Route("api/orderlist")]
+  public partial class OrderListController : ControllerWithRepositoryBase
   {
     /// <summary>
     /// コンストラクタ
     /// </summary>
     /// <param name="repository">DIで取得するRepositoryBase用インターフェース</param>
     /// <param name="logger">ロガーインスタンス</param>
-    public OrderEditController(IRepositoryBase repository, ILogger<OrderEditController> logger) : base(repository, logger)
+    public OrderListController(IRepositoryBase repository, ILogger<OrderListController> logger) : base(repository, logger)
     {
     }
   }

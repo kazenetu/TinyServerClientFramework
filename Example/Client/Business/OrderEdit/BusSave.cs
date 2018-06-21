@@ -14,7 +14,8 @@ namespace Client.Business.OrderEdit
     /// <returns>結果</returns>
     public SaveResponse Save(SaveRequest request)
     {
-      var webAPIUrl = $"{WebAPIVersion}/orderedit/save";
+      var webAPIUrl = $"orderedit/save";
+      request.TargetVersion = WebAPIVersion;
 
       HttpConnectLib.StubWebAPIDelegate stub = null;
 #if STUB

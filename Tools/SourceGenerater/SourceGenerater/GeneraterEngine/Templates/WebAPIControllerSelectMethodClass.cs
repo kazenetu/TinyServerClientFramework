@@ -19,7 +19,7 @@ namespace SourceGenerater.GeneraterEngine.Templates
     {
       get
       {
-        return $"..\\WebAPI\\Controllers\\{WebAPIVersion.ToUpper()}\\{BaseName}\\Cntl{MethodName}.cs";
+        return $"..\\WebAPI\\Controllers\\{BaseName}\\Cntl{MethodName}.cs";
       }
     }
 
@@ -40,40 +40,5 @@ namespace SourceGenerater.GeneraterEngine.Templates
     /// </summary>
     public string MethodName { set; get; }
 
-    /// <summary>
-    /// WebAPIバージョン
-    /// </summary>
-    /// <remarks>使用しない場合はstring.Empty</remarks>
-    public string WebAPIVersion { get; set; } = "v1";
-
-    /// <summary>
-    /// ルートパス(slnファイルのフォルダ)
-    /// </summary>
-    /// <remarks>旧バージョンのメソッドがあるかファイル確認をおこなうため</remarks>
-    public string BasePath { set; get; } = string.Empty;
-
-    /// <summary>
-    /// メソッドキーワード
-    /// </summary>
-    /// <returns>旧バージョンがある場合はoverride、ない場合はvirtual</returns>
-    public string GetMethodKeyword()
-    {
-      var reg = new System.Text.RegularExpressions.Regex(@"[^0-9]");
-      var nowVersion = reg.Replace(WebAPIVersion, string.Empty);
-      var beforeVersion = int.Parse(nowVersion) - 1;
-      while (beforeVersion > 0)
-      {
-        var targetFile = System.IO.Path.GetFullPath(System.IO.Path.Combine(BasePath, CreateFileName));
-        targetFile = targetFile.Replace(WebAPIVersion.ToUpper(), $"V{beforeVersion}");
-        if (System.IO.File.Exists(targetFile))
-        {
-          return "override";
-        }
-
-        beforeVersion -= 1;
-      }
-
-      return "virtual";
-    }
   }
 }

@@ -19,7 +19,7 @@ namespace SourceGenerater.GeneraterEngine.Templates
     {
       get
       {
-        return $"..\\WebAPITest\\{BaseName}\\{BaseName}Test{WebAPIVersion.ToUpper()}.cs";
+        return $"..\\WebAPITest\\{BaseName}\\{BaseName}Test.cs";
       }
     }
 
@@ -34,10 +34,5 @@ namespace SourceGenerater.GeneraterEngine.Templates
         return string.Empty;
       }
     }
-    /// <summary>
-    /// WebAPIバージョン
-    /// </summary>
-    /// <remarks>使用しない場合はstring.Empty</remarks>
-    public string WebAPIVersion { get; set; } = "v1";
   }
 }

@@ -1,21 +1,21 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
-using WebAPI.Controllers.V1.OrderList;
+using WebAPI.Controllers.OrderEdit;
 using Framework.WebAPI.Interfaces;
 using WebAPITest.TestBase;
 using WebAPITest.TestTables;
 
-namespace WebAPITest.OrderList
+namespace WebAPITest.OrderEdit
 {
   /// <summary>
-  /// WebAPI.Controllers.V1.OrderList.OrderListController用テストクラス
+  /// WebAPI.Controllers.OrderEdit.OrderEditController用テストクラス
   /// </summary>
-  public partial class OrderListTestV1
+  public partial class OrderEditTest
   {
     /// <summary>
     /// ログ インスタンス
     /// </summary>
-    private ILogger<OrderListController> logger = new LoggerFactory().CreateLogger<OrderListController>();
+    private ILogger<OrderEditController> logger = new LoggerFactory().CreateLogger<OrderEditController>();
 
     /// <summary>
     /// SQLite(メモリ)にテーブルとデータを作成、取得
