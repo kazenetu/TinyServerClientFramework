@@ -45,8 +45,4 @@
     </Reference>
   </ItemGroup>
 
-  <Target Name="CopyCustomContent" BeforeTargets="Build" Condition="Exists('../Client/Statics.cs')">
-    <Copy SourceFiles="../Client/Statics.cs" DestinationFolder="./" />
-  </Target>
-
 </Project>
