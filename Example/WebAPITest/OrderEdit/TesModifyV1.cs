@@ -9,7 +9,7 @@ using Xunit;
 
 namespace WebAPITest.OrderEdit
 {
-  public partial class OrderEditTestV1
+  public partial class OrderEditTest
   {
     /// <summary>
     /// Modify用入力データ生成、取得
@@ -41,8 +41,8 @@ namespace WebAPITest.OrderEdit
     /// </summary>
     [Theory]
     [MemberData(nameof(MakeModifyRequest))]
-    [Trait("Test", "OrderEditTestV1")]
-    public void ModifyTestV1(ModifyRequest request)
+    [Trait("Test", "OrderEditTest")]
+    public void ModifyTest(ModifyRequest request)
     {
       // テスト用DBインスタンスを取得
       var testDB = GetDB();

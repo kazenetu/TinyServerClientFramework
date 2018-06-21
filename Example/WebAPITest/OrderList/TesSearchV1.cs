@@ -9,7 +9,7 @@ using Xunit;
 
 namespace WebAPITest.OrderList
 {
-  public partial class OrderListTestV1
+  public partial class OrderListTest
   {
     /// <summary>
     /// Search用入力データ生成、取得
@@ -38,8 +38,8 @@ namespace WebAPITest.OrderList
     /// </summary>
     [Theory]
     [MemberData(nameof(MakeSearchRequest))]
-    [Trait("Test", "OrderListTestV1")]
-    public void SearchTestV1(SearchRequest request)
+    [Trait("Test", "OrderListTest")]
+    public void SearchTest(SearchRequest request)
     {
       // テスト用DBインスタンスを取得
       var testDB = GetDB();

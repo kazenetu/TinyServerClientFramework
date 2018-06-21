@@ -8,9 +8,9 @@ using WebAPITest.TestTables;
 namespace WebAPITest.OrderEdit
 {
   /// <summary>
-  /// WebAPI.Controllers.V1.OrderEdit.OrderEditController用テストクラス
+  /// WebAPI.Controllers.OrderEdit.OrderEditController用テストクラス
   /// </summary>
-  public partial class OrderEditTestV1
+  public partial class OrderEditTest
   {
     /// <summary>
     /// ログ インスタンス

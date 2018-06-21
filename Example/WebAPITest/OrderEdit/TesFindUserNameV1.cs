@@ -9,7 +9,7 @@ using Xunit;
 
 namespace WebAPITest.OrderEdit
 {
-  public partial class OrderEditTestV1
+  public partial class OrderEditTest
   {
     /// <summary>
     /// テスト用文字列:test2
@@ -48,8 +48,8 @@ namespace WebAPITest.OrderEdit
     /// </summary>
     [Theory]
     [MemberData(nameof(MakeFindUserNameRequest))]
-    [Trait("Test", "OrderEditTestV1")]
-    public void FindUserNameTestV1(FindUserNameRequest request)
+    [Trait("Test", "OrderEditTest")]
+    public void FindUserNameTest(FindUserNameRequest request)
     {
       // テスト用DBインスタンスを取得
       var testDB = GetDB();

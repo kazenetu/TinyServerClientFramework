@@ -8,7 +8,7 @@ using Xunit;
 
 namespace WebAPITest.OrderEdit
 {
-  public partial class OrderEditTestV1
+  public partial class OrderEditTest
   {
     /// <summary>
     /// Save用入力データ生成、取得
@@ -40,8 +40,8 @@ namespace WebAPITest.OrderEdit
     /// </summary>
     [Theory]
     [MemberData(nameof(MakeSaveRequest))]
-    [Trait("Test", "OrderEditTestV1")]
-    public void SaveTestV1(SaveRequest request)
+    [Trait("Test", "OrderEditTest")]
+    public void SaveTest(SaveRequest request)
     {
       // テスト用DBインスタンスを取得
       var testDB = GetDB();

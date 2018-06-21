@@ -8,9 +8,9 @@ using WebAPITest.TestTables;
 namespace WebAPITest.OrderList
 {
   /// <summary>
-  /// WebAPI.Controllers.V1.OrderList.OrderListController用テストクラス
+  /// WebAPI.Controllers.OrderList.OrderListController用テストクラス
   /// </summary>
-  public partial class OrderListTestV1
+  public partial class OrderListTest
   {
     /// <summary>
     /// ログ インスタンス
