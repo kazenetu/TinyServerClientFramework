@@ -3,6 +3,7 @@ using DataTransferObjects.Response.OrderEdit;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using WebAPI;
 using WebAPI.Controllers.OrderEdit;
 using WebAPI.Repositories;
 using Xunit;
@@ -34,11 +35,14 @@ namespace WebAPITest.OrderEdit
       // 未入力:データなしエラー
       result.Add(new object[] { new FindUserNameRequest() });
 
-      // test2:テストユーザー２
+      // test2:NG:バージョンなし:テストユーザー２
       result.Add(new object[] { new FindUserNameRequest() { OrderUserID = Test2 } });
 
+      // test2:テストユーザー２
+      result.Add(new object[] { new FindUserNameRequest() { TargetVersion = Statics.WebAPIVersion, OrderUserID = Test2 } });
+
       // none:データなしエラー
-      result.Add(new object[] { new FindUserNameRequest() { OrderUserID = None } });
+      result.Add(new object[] { new FindUserNameRequest() { TargetVersion = Statics.WebAPIVersion, OrderUserID = None } });
 
       return result;
     }
@@ -75,20 +79,28 @@ namespace WebAPITest.OrderEdit
       switch (request.OrderUserID)
       {
         case Test2:
-          expectedValue = "テストユーザー２";
+          if (string.IsNullOrEmpty(request.TargetVersion))
+          {
+            expectedResult = "NG";
+          }
+          else
+          {
+            expectedValue = "テストユーザー２";
+          }
           break;
         default:
           expectedResult = "NG";
           break;
       }
+
       Assert.True(responseObject.Result == expectedResult,
                 $"結果が異なります。期待値:{expectedResult},検索結果:{responseObject.Result}");
 
-      Assert.True(responseObject.ResponseData.OrderUserName == expectedValue, 
-                $"ユーザー名が異なります[{responseObject.ResponseData.OrderUserName}]");
-
-      if(expectedResult == "OK")
+      if (expectedResult == "OK")
       {
+        Assert.True(responseObject.ResponseData.OrderUserName == expectedValue,
+                  $"ユーザー名が異なります[{responseObject.ResponseData.OrderUserName}]");
+
         Assert.True(string.IsNullOrEmpty(responseObject.ErrorMessage), 
                 $"エラーメッセージ「{responseObject.ErrorMessage}」が設定されています。");
       }

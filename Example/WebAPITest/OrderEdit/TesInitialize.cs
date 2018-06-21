@@ -3,6 +3,7 @@ using DataTransferObjects.Response.OrderEdit;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using WebAPI;
 using WebAPI.Controllers.OrderEdit;
 using WebAPI.Repositories;
 using Xunit;
@@ -24,9 +25,12 @@ namespace WebAPITest.OrderEdit
       // 未入力:データなしエラー
       result.Add(new object[] { new InitializeRequest() });
 
-      // 注文NO 1:データあり:test
+      // 注文NO 1:NG:バージョンなし:データあり:test
       result.Add(new object[] { new InitializeRequest() { OrderNo = 1 } });
 
+      // 注文NO 1:データあり:test
+      result.Add(new object[] { new InitializeRequest() { TargetVersion = Statics.WebAPIVersion, OrderNo = 1 } });
+      
       // 注文NO 10:データなし
       result.Add(new object[] { new InitializeRequest() { OrderNo = 10 } });
 
@@ -65,7 +69,14 @@ namespace WebAPITest.OrderEdit
       switch (request.OrderNo)
       {
         case 1:
-          expectedValue = "test";
+          if (string.IsNullOrEmpty(request.TargetVersion))
+          {
+            expectedResult = "NG";
+          }
+          else
+          {
+            expectedValue = "test";
+          }
           break;
         default:
           expectedResult = "NG";
@@ -74,11 +85,11 @@ namespace WebAPITest.OrderEdit
       Assert.True(responseObject.Result == expectedResult,
                 $"結果が異なります。期待値:{expectedResult},検索結果:{responseObject.Result}");
 
-      Assert.True(responseObject.ResponseData.OrderUserID == expectedValue,
-                $"ユーザーIDが異なります[{responseObject.ResponseData.OrderUserID}]");
-
       if (expectedResult == "OK")
       {
+        Assert.True(responseObject.ResponseData.OrderUserID == expectedValue,
+                  $"ユーザーIDが異なります[{responseObject.ResponseData.OrderUserID}]");
+
         Assert.True(string.IsNullOrEmpty(responseObject.ErrorMessage),
                 $"エラーメッセージ「{responseObject.ErrorMessage}」が設定されています。");
       }

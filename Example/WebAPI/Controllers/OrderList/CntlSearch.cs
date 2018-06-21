@@ -20,11 +20,17 @@ namespace WebAPI.Controllers.OrderList
       // システムエラーチェック
       if (systenErrorResult is IActionResult) return systenErrorResult;
 
+      // バージョンチェック
+      if (request.TargetVersion != Statics.WebAPIVersion)
+      {
+        return Json(new SearchResponse(SearchResponse.Results.NG, Statics.ErrorMessageUpdate, null));
+      }
+
       // 入力チェック
       if (!request.Validate())
       {
         logger.LogError("Pram[{0}]が未設定", request.ValidateNGPropertyName);
-        return Json(new SearchResponse(SearchResponse.Results.NG, "未入力項目があります。", null));
+        return Json(new SearchResponse(SearchResponse.Results.NG, Statics.ErrorMessageRequired, null));
       }
 
       var status = SearchResponse.Results.OK;

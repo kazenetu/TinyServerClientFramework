@@ -3,6 +3,7 @@ using DataTransferObjects.Response.OrderList;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using WebAPI;
 using WebAPI.Controllers.OrderList;
 using WebAPI.Repositories;
 using Xunit;
@@ -22,13 +23,13 @@ namespace WebAPITest.OrderList
       // 入力データリストの追加
 
       // 検索条件なし 該当件数4件
-      result.Add(new object[] { new SearchRequest() { SearchUserID = string.Empty } });
+      result.Add(new object[] { new SearchRequest() { TargetVersion = Statics.WebAPIVersion, SearchUserID = string.Empty } });
 
       // 検索条件あり:test 該当件数2件
-      result.Add(new object[] { new SearchRequest() { SearchUserID = "test" } });
+      result.Add(new object[] { new SearchRequest() { TargetVersion = Statics.WebAPIVersion, SearchUserID = "test" } });
 
       // 検索条件あり:none 該当件数0件
-      result.Add(new object[] { new SearchRequest() { SearchUserID = "none" } });
+      result.Add(new object[] { new SearchRequest() { TargetVersion = Statics.WebAPIVersion, SearchUserID = "none" } });
 
       return result;
     }

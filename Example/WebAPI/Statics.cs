@@ -1,4 +1,4 @@
-﻿namespace Client
+﻿namespace WebAPI
 {
   /// <summary>
   /// 定数クラス
@@ -8,16 +8,17 @@
     /// <summary>
     /// WebAPIのバージョン
     /// </summary>
-    public static string WebAPIVersion = "v1";
+    public const string WebAPIVersion = "v1";
 
     /// <summary>
-    /// WebAPI結果Result:OK
+    /// バージョンアップを促すメッセージ
     /// </summary>
-    public const string ResultOK = "OK";
+    public const string ErrorMessageUpdate = "アップデートしてください。";
 
     /// <summary>
-    /// WebAPI結果Result:NG
+    /// バージョンアップを促すメッセージ
     /// </summary>
-    public const string ResultNG = "NG";
+    public const string ErrorMessageRequired = "未入力項目があります。";
+    
   }
 }

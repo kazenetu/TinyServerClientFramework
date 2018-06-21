@@ -3,6 +3,7 @@ using DataTransferObjects.Response.OrderEdit;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using WebAPI;
 using WebAPI.Controllers.OrderEdit;
 using WebAPI.Repositories;
 using Xunit;
@@ -25,13 +26,16 @@ namespace WebAPITest.OrderEdit
       result.Add(new object[] { new ModifyRequest() });
 
       // NG:更新Version違い
-      result.Add(new object[] { new ModifyRequest() { OrderNo = 1, OrderUserID = "test2", ModVersion = 2 } });
+      result.Add(new object[] { new ModifyRequest() { TargetVersion = Statics.WebAPIVersion, OrderNo = 1, OrderUserID = "test2", ModVersion = 2 } });
 
       // NG:更新対象外
-      result.Add(new object[] { new ModifyRequest() { OrderNo = 0, OrderUserID = "test", ModVersion = 1 } });
+      result.Add(new object[] { new ModifyRequest() { TargetVersion = Statics.WebAPIVersion, OrderNo = 0, OrderUserID = "test", ModVersion = 1 } });
+
+      // 更新:NG:バージョンなし;test
+      result.Add(new object[] { new ModifyRequest() { OrderNo = 2, OrderUserID = "test", ModVersion = 1 } });
 
       // 更新:test
-      result.Add(new object[] { new ModifyRequest() { OrderNo = 2, OrderUserID = "test", ModVersion = 1 } });
+      result.Add(new object[] { new ModifyRequest() { TargetVersion = Statics.WebAPIVersion, OrderNo = 2, OrderUserID = "test", ModVersion = 1 } });
 
       return result;
     }
@@ -67,6 +71,10 @@ namespace WebAPITest.OrderEdit
       switch (request.OrderNo)
       {
         case 2:
+          if (string.IsNullOrEmpty(request.TargetVersion))
+          {
+            expectedResult = "NG";
+          }
           break;
         default:
           expectedResult = "NG";

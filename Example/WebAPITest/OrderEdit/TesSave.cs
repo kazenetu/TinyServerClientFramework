@@ -2,6 +2,7 @@
 using DataTransferObjects.Response.OrderEdit;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using WebAPI;
 using WebAPI.Controllers.OrderEdit;
 using WebAPI.Repositories;
 using Xunit;
@@ -24,13 +25,16 @@ namespace WebAPITest.OrderEdit
       result.Add(new object[] { new SaveRequest() });
 
       // NG:登録対象外
-      result.Add(new object[] { new SaveRequest() { OrderNo = 1, OrderUserID = "test2", ModVersion = 2 } });
+      result.Add(new object[] { new SaveRequest() { TargetVersion = Statics.WebAPIVersion, OrderNo = 1, OrderUserID = "test2", ModVersion = 2 } });
 
-      // 登録:test
+      // NG:バージョンなし:登録:test
       result.Add(new object[] { new SaveRequest() { OrderNo = 0, OrderUserID = "test", ModVersion = 1 } });
 
+      // 登録:test
+      result.Add(new object[] { new SaveRequest() { TargetVersion = Statics.WebAPIVersion, OrderNo = 0, OrderUserID = "test", ModVersion = 1 } });
+
       // NG:登録対象外
-      result.Add(new object[] { new SaveRequest() { OrderNo = 2, OrderUserID = "test", ModVersion = 1 } });
+      result.Add(new object[] { new SaveRequest() { TargetVersion = Statics.WebAPIVersion, OrderNo = 2, OrderUserID = "test", ModVersion = 1 } });
 
       return result;
     }
@@ -69,6 +73,12 @@ namespace WebAPITest.OrderEdit
 
           // 値入力なしの場合はエラー
           if(string.IsNullOrEmpty(request.OrderUserID))
+          {
+            expectedResult = "NG";
+          }
+
+          // バージョンなしの場合はエラー
+          if (string.IsNullOrEmpty(request.TargetVersion))
           {
             expectedResult = "NG";
           }
