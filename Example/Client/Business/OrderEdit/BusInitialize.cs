@@ -14,7 +14,8 @@ namespace Client.Business.OrderEdit
     /// <returns>結果</returns>
     public InitializeResponse Initialize(InitializeRequest request)
     {
-      var webAPIUrl = $"{WebAPIVersion}/orderedit/initialize";
+      var webAPIUrl = "orderedit/initialize";
+      request.TargetVersion = WebAPIVersion;
 
       HttpConnectLib.StubWebAPIDelegate stub = null;
 #if STUB

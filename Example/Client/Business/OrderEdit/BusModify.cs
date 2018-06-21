@@ -14,7 +14,8 @@ namespace Client.Business.OrderEdit
     /// <returns>結果</returns>
     public ModifyResponse Modify(ModifyRequest request)
     {
-      var webAPIUrl = $"{WebAPIVersion}/orderedit/modify";
+      var webAPIUrl = "orderedit/modify";
+      request.TargetVersion = WebAPIVersion;
 
       HttpConnectLib.StubWebAPIDelegate stub = null;
 #if STUB

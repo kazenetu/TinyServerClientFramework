@@ -17,7 +17,8 @@ namespace Client.Business.OrderList
     /// <returns>結果</returns>
     public SearchResponse Search(SearchRequest request)
     {
-      var webAPIUrl = $"{WebAPIVersion}/orderlist/search";
+      var webAPIUrl = "orderlist/search";
+      request.TargetVersion = WebAPIVersion;
 
       HttpConnectLib.StubWebAPIDelegate stub = null;
 #if STUB

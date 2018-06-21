@@ -19,7 +19,8 @@ namespace Client.Business.<#= BaseName #>
     /// <returns>結果</returns>
     public <#= MethodName #>Response <#= MethodName #>(<#= MethodName #>Request request)
     {
-      var webAPIUrl = $"{WebAPIVersion}/<#= BaseName.ToLower() #>/<#= MethodName.ToLower() #>";
+      var webAPIUrl = "<#= BaseName.ToLower() #>/<#= MethodName.ToLower() #>";
+      request.TargetVersion = WebAPIVersion;
 
       HttpConnectLib.StubWebAPIDelegate stub = null;
 #if STUB
