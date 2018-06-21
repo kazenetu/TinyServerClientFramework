@@ -6,7 +6,7 @@ using Framework.WebAPI.Interfaces;
 
 namespace WebAPI.Controllers.V1.OrderList
 {
-  [Route("api/v1/orderlist")]
+  [Route("api/orderlist")]
   public partial class OrderListController : ControllerWithRepositoryBase
   {
     /// <summary>

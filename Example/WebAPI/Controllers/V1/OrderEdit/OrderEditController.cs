@@ -6,7 +6,7 @@ using Framework.WebAPI.Interfaces;
 
 namespace WebAPI.Controllers.V1.OrderEdit
 {
-  [Route("api/v1/orderedit")]
+  [Route("api/orderedit")]
   public partial class OrderEditController : ControllerWithRepositoryBase
   {
     /// <summary>

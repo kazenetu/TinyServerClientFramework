@@ -11,7 +11,7 @@ using Framework.WebAPI.Interfaces;
 
 namespace WebAPI.Controllers.<#= WebAPIVersion.ToUpper() #>.<#= BaseName #>
 {
-  [Route("api/<#= WebAPIVersion #>/<#= BaseName.ToLower() #>")]
+  [Route("api/<#= BaseName.ToLower() #>")]
   public partial class <#= BaseName #>Controller : <#= GetSuperClassName() #>
   {
     /// <summary>
