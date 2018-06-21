@@ -34,10 +34,5 @@ namespace SourceGenerater.GeneraterEngine.Templates
         return string.Empty;
       }
     }
-    /// <summary>
-    /// WebAPIバージョン
-    /// </summary>
-    /// <remarks>使用しない場合はstring.Empty</remarks>
-    public string WebAPIVersion { get; set; } = "v1";
   }
 }
