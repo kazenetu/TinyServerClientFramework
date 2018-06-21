@@ -12,7 +12,7 @@ using Framework.WebAPI.Interfaces;
 namespace WebAPI.Controllers.<#= BaseName #>
 {
   [Route("api/<#= BaseName.ToLower() #>")]
-  public partial class <#= BaseName #>Controller : <#= GetSuperClassName() #>
+  public partial class <#= BaseName #>Controller : ControllerWithRepositoryBase
   {
     /// <summary>
     /// コンストラクタ

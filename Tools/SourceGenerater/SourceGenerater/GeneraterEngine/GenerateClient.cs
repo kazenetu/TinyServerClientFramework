@@ -172,7 +172,7 @@ namespace SourceGenerater.GeneraterEngine
       // ファイル作成情報をクリア
       FileDatas.Clear();
 
-      var targetT4 = new List<IForm>() { new Form(), new FormDesigner(), new Business(), new WebAPIController() { BasePath = clientRootPath }, new WebAPITransaction(), new WebAPIRepository() };
+      var targetT4 = new List<IForm>() { new Form(), new FormDesigner(), new Business(), new WebAPIController(), new WebAPITransaction(), new WebAPIRepository() };
       targetT4.Add(new WebAPITest());
 
       // プロジェクトファイル追加用List生成
@@ -221,14 +221,14 @@ namespace SourceGenerater.GeneraterEngine
       if (selectOnly)
       {
         // 選択系メソッドテンプレート
-        targetT4.Add(new WebAPIControllerSelectMethod() { BasePath = clientRootPath });
+        targetT4.Add(new WebAPIControllerSelectMethod());
         targetT4.Add(new WebAPITransactionSelectMethod());
         targetT4.Add(new WebAPIRepositorySelectMethod());
       }
       else
       {
         // 更新系メソッドテンプレート
-        targetT4.Add(new WebAPIControllerMethod() { BasePath = clientRootPath });
+        targetT4.Add(new WebAPIControllerMethod());
         targetT4.Add(new WebAPITransactionMethod());
         targetT4.Add(new WebAPIRepositoryMethod());
       }
