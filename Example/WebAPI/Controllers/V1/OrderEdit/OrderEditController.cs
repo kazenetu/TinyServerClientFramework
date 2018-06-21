@@ -6,7 +6,6 @@ using Framework.WebAPI.Interfaces;
 
 namespace WebAPI.Controllers.V1.OrderEdit
 {
-  [ApiExplorerSettings(GroupName ="v1")]
   [Route("api/v1/orderedit")]
   public partial class OrderEditController : ControllerWithRepositoryBase
   {
