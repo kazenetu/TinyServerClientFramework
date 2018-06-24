@@ -28,7 +28,7 @@ namespace Framework.WebAPI.DB
     /// <summary>
     /// パラメータ
     /// </summary>
-    private readonly Dictionary<string, object> param;
+    protected readonly Dictionary<string, object> param;
 
     /// <summary>
     /// トランザクションが開いているか否か
@@ -81,7 +81,7 @@ namespace Framework.WebAPI.DB
     /// </summary>
     /// <param name="key">キー</param>
     /// <param name="value">値</param>
-    public void AddParam(string key, object value)
+    public virtual void AddParam(string key, object value)
     {
       switch (value)
       {
