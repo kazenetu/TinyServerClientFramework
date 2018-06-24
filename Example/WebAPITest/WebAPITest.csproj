@@ -12,6 +12,7 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
 
     <PackageReference Include="Npgsql" Version="3.2.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
 
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
   </ItemGroup>
@@ -30,4 +31,9 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
