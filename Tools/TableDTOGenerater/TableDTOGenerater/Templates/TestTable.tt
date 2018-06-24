@@ -30,9 +30,8 @@ namespace WebAPITest.TestTables
     /// データ登録
     /// </summary>
     /// <param name="db">テスト用SQLiteDBインスタンス</param>
-<#= GetInsertMethodComments() #>
-    public static void Insert(IDatabase db
-<#= GetInsertMethodParam() #>)
+    /// <param name="targetDTO">対象DTOインスタンス</param>
+    public static void Insert(IDatabase db, <#= Table.TableName #> targetDTO)
     {
       var sql = @"<#= Table.GetInsertSQL().ToUpper() #>";
 

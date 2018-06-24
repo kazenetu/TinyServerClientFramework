@@ -52,29 +52,7 @@ namespace TableDTOGenerater.Templates
         }
         isFirstItem = false;
 
-        sb.Append($"      db.AddParam(\"@{column.ColumnOriginalName.ToUpper()}\",{column.ColumnName});");
-      }
-
-      return sb.ToString();
-    }
-
-    /// <summary>
-    /// 登録メソッドのコメント取得
-    /// </summary>
-    /// <returns>コメント</returns>
-    private string GetInsertMethodComments()
-    {
-      var sb = new StringBuilder();
-
-      var isFirstItem = true;
-      foreach (var column in Table.Columns)
-      {
-        if (!isFirstItem)
-        {
-          sb.AppendLine();
-        }
-        isFirstItem = false;
-        sb.Append($"    /// <param name=\"{column.ColumnName}\">{column.ColumnLogicalName.Replace(Environment.NewLine, " ")}</param>");
+        sb.Append($"      db.AddParam(\"@{column.ColumnOriginalName.ToUpper()}\", targetDTO.{column.ColumnName});");
       }
 
       return sb.ToString();
@@ -98,7 +76,7 @@ namespace TableDTOGenerater.Templates
         isFirstItem = false;
 
         var columType = column.GetColumnTypeName();
-        if(columType != "string")
+        if (columType != "string")
         {
           columType += "?";
         }
