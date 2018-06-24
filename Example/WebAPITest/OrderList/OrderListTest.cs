@@ -4,6 +4,7 @@ using WebAPI.Controllers.OrderList;
 using Framework.WebAPI.Interfaces;
 using WebAPITest.TestBase;
 using WebAPITest.TestTables;
+using DataTransferObjects.Tables;
 
 namespace WebAPITest.OrderList
 {
@@ -18,29 +19,29 @@ namespace WebAPITest.OrderList
     private ILogger<OrderListController> logger = new LoggerFactory().CreateLogger<OrderListController>();
 
     /// <summary>
-    /// SQLite(メモリ)にテーブルとデータを作成、取得
+    /// テスト用テーブルとデータを作成、取得
     /// </summary>
-    /// <returns>SQLiteDBインスタンス</returns>
+    /// <returns>テストDBインスタンス</returns>
     private IDatabase GetDB()
     {
-      // SQLiteインスタンス作成
-      var db = new TestSQLiteDB(@":memory:");
+      // テストDBインスタンス作成
+      var db = TestDB.GetDB();
 
       // テーブル作成
       MtUserTest.CreateTable(db);
       TOrderTest.CreateTable(db);
 
-      // テストデータ登録
-      MtUserTest.Insert(db, "test", "テストユーザー", "Z5SMGm/kEGTiZP8tHwuWSwYWFguMP7/qJOnLNL1u4is=", "0", "", DateTime.Parse("2018/01/21 17:32:00"), "", new DateTime(), 1);
-      MtUserTest.Insert(db, "test2", "テストユーザー２", "Z5SMGm/kEGTiZP8tHwuWSwYWFguMP7/qJOnLNL1u4is=", "0", "", DateTime.Parse("2018/01/21 17:32:00"), "", new DateTime(), 1);
-      MtUserTest.Insert(db, "dummy", "ダミーユーザー", "Z5SMGm/kEGTiZP8tHwuWSwYWFguMP7/qJOnLNL1u4is=", "0", "", DateTime.Parse("2018/01/21 17:32:00"), "", new DateTime(), 1);
+      // テーブル作成(すでにテーブルが存在する場合はdbを使ってtruncateしてください)
+      MtUserTest.Insert(db, new MtUser() { UserId = "test", UserName = "テストユーザー" });
+      MtUserTest.Insert(db, new MtUser() { UserId = "test2", UserName = "テストユーザー２" });
+      MtUserTest.Insert(db, new MtUser() { UserId = "dummy", UserName = "ダミーユーザー" });
 
-      TOrderTest.Insert(db, 1, "test", 1);
-      TOrderTest.Insert(db, 2, "test2", 1);
-      TOrderTest.Insert(db, 3, "dummy", 1);
-      TOrderTest.Insert(db, 4, string.Empty, 1);
+      TOrderTest.Insert(db, new TOrder() { OrderNo = 1, OrderUserId = "test", ModVersion = 1 });
+      TOrderTest.Insert(db, new TOrder() { OrderNo = 2, OrderUserId = "test2", ModVersion = 1 });
+      TOrderTest.Insert(db, new TOrder() { OrderNo = 3, OrderUserId = "dummy", ModVersion = 1 });
+      TOrderTest.Insert(db, new TOrder() { OrderNo = 4, OrderUserId = string.Empty, ModVersion = 1 });
 
-      // SQLiteインスタンスを返す
+      // テストDBインスタンスを返す
       return db;
     }
   }

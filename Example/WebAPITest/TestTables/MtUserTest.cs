@@ -25,39 +25,22 @@ namespace WebAPITest.TestTables
     /// データ登録
     /// </summary>
     /// <param name="db">テスト用SQLiteDBインスタンス</param>
-    /// <param name="UserId">ユーザーID</param>
-    /// <param name="UserName">ユーザー名</param>
-    /// <param name="Password">パスワード</param>
-    /// <param name="DelFlag"> 削除フラグ</param>
-    /// <param name="EntryUser">登録ユーザー</param>
-    /// <param name="EntryDate">登録日時</param>
-    /// <param name="ModUser">更新ユーザー</param>
-    /// <param name="ModDate">更新日時</param>
-    /// <param name="ModVersion">更新バージョン</param>
-    public static void Insert(IDatabase db
-                              , string UserId
-                              , string UserName
-                              , string Password
-                              , string DelFlag
-                              , string EntryUser
-                              , DateTime EntryDate
-                              , string ModUser
-                              , DateTime ModDate
-                              , int ModVersion)
+    /// <param name="targetDTO">対象DTOインスタンス</param>
+    public static void Insert(IDatabase db, MtUser targetDTO)
     {
       var sql = @"INSERT INTO MT_USER(USER_ID,USER_NAME,PASSWORD,DEL_FLAG,ENTRY_USER,ENTRY_DATE,MOD_USER,MOD_DATE,MOD_VERSION) VALUES (@USER_ID,@USER_NAME,@PASSWORD,@DEL_FLAG,@ENTRY_USER,@ENTRY_DATE,@MOD_USER,@MOD_DATE,@MOD_VERSION);";
 
       // Param設定
       db.ClearParam();
-      db.AddParam("@USER_ID",UserId);
-      db.AddParam("@USER_NAME",UserName);
-      db.AddParam("@PASSWORD",Password);
-      db.AddParam("@DEL_FLAG",DelFlag);
-      db.AddParam("@ENTRY_USER",EntryUser);
-      db.AddParam("@ENTRY_DATE",EntryDate);
-      db.AddParam("@MOD_USER",ModUser);
-      db.AddParam("@MOD_DATE",ModDate);
-      db.AddParam("@MOD_VERSION",ModVersion);
+      db.AddParam("@USER_ID", targetDTO.UserId);
+      db.AddParam("@USER_NAME", targetDTO.UserName);
+      db.AddParam("@PASSWORD", targetDTO.Password);
+      db.AddParam("@DEL_FLAG", targetDTO.DelFlag);
+      db.AddParam("@ENTRY_USER", targetDTO.EntryUser);
+      db.AddParam("@ENTRY_DATE", targetDTO.EntryDate);
+      db.AddParam("@MOD_USER", targetDTO.ModUser);
+      db.AddParam("@MOD_DATE", targetDTO.ModDate);
+      db.AddParam("@MOD_VERSION", targetDTO.ModVersion);
 
       // SQL発行
       db.ExecuteNonQuery(sql);

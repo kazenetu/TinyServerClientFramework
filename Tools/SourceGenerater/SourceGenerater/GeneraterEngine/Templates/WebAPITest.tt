@@ -23,23 +23,23 @@ namespace WebAPITest.<#= BaseName #>
     private ILogger<<#= BaseName #>Controller> logger = new LoggerFactory().CreateLogger<<#= BaseName #>Controller>();
 
     /// <summary>
-    /// SQLite(メモリ)にテーブルとデータを作成、取得
+    /// テスト用テーブルとデータを作成、取得
     /// </summary>
-    /// <returns>SQLiteDBインスタンス</returns>
+    /// <returns>テストDBインスタンス</returns>
     private IDatabase GetDB()
     {
-      // SQLiteインスタンス作成
-      var db = new TestSQLiteDB(@":memory:");
+      // テストDBインスタンス作成
+      var db = TestDB.GetDB();
 
-      // テーブル作成
+      // テーブル作成(すでにテーブルが存在する場合はdbを使ってtruncateしてください)
       // TODO TestTablesのクラスを使ってテーブルを作成してください。(本コメントは削除してください)
       //(本コメントは削除してください) 例) MtUserTest.CreateTable(db);
 
       // テストデータ登録
       // TODO TestTablesのクラスを使ってテストデータを登録してください。(本コメントは削除してください)
-      //(本コメントは削除してください) 例) MtUserTest.Insert(db, "test", "テストユーザー", "Z5SMGm/kEGTiZP8tHwuWSwYWFguMP7/qJOnLNL1u4is=", "0", "", DateTime.Parse("2018/01/21 17:32:00"), "", new DateTime(), 1);
+      //(本コメントは削除してください) 例) MtUserTest.Insert(db, new MtUser() { UserId = "test", UserName = "テストユーザー" });
 
-      // SQLiteインスタンスを返す
+      // テストDBインスタンスを返す
       return db;
     }
   }

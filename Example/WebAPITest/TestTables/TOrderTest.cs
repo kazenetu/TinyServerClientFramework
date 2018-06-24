@@ -25,21 +25,16 @@ namespace WebAPITest.TestTables
     /// データ登録
     /// </summary>
     /// <param name="db">テスト用SQLiteDBインスタンス</param>
-    /// <param name="OrderNo">注文No</param>
-    /// <param name="OrderUserId">注文者ID</param>
-    /// <param name="ModVersion">更新バージョン</param>
-    public static void Insert(IDatabase db
-                              , int OrderNo
-                              , string OrderUserId
-                              , int ModVersion)
+    /// <param name="targetDTO">対象DTOインスタンス</param>
+    public static void Insert(IDatabase db, TOrder targetDTO)
     {
       var sql = @"INSERT INTO T_ORDER(ORDER_NO,ORDER_USER_ID,MOD_VERSION) VALUES (@ORDER_NO,@ORDER_USER_ID,@MOD_VERSION);";
 
       // Param設定
       db.ClearParam();
-      db.AddParam("@ORDER_NO",OrderNo);
-      db.AddParam("@ORDER_USER_ID",OrderUserId);
-      db.AddParam("@MOD_VERSION",ModVersion);
+      db.AddParam("@ORDER_NO", targetDTO.OrderNo);
+      db.AddParam("@ORDER_USER_ID", targetDTO.OrderUserId);
+      db.AddParam("@MOD_VERSION", targetDTO.ModVersion);
 
       // SQL発行
       db.ExecuteNonQuery(sql);
