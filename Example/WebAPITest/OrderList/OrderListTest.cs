@@ -18,13 +18,13 @@ namespace WebAPITest.OrderList
     private ILogger<OrderListController> logger = new LoggerFactory().CreateLogger<OrderListController>();
 
     /// <summary>
-    /// SQLite(メモリ)にテーブルとデータを作成、取得
+    /// テスト用テーブルとデータを作成、取得
     /// </summary>
     /// <returns>SQLiteDBインスタンス</returns>
     private IDatabase GetDB()
     {
-      // SQLiteインスタンス作成
-      var db = new TestSQLiteDB(@":memory:");
+      // テストDBインスタンス作成
+      var db = TestDB.GetDB();
 
       // テーブル作成
       MtUserTest.CreateTable(db);
