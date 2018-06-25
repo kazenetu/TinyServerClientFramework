@@ -52,7 +52,7 @@ namespace TableDTOGenerater.Templates
         }
         isFirstItem = false;
 
-        sb.Append($"      db.AddParam(\"@{column.ColumnOriginalName.ToUpper()}\", targetDTO.{column.ColumnName});");
+        sb.Append($"      insertColumns.Add(SetParam(\"{column.ColumnOriginalName.ToUpper()}\", targetDTO.{column.ColumnName}));");
       }
 
       return sb.ToString();

@@ -9,6 +9,7 @@ using System.Text;
 using System.Data;
 using DataTransferObjects.Tables;
 using Framework.WebAPI.Interfaces;
+using System.Linq;
 
 namespace WebAPITest.TestTables
 {
@@ -22,8 +23,17 @@ namespace WebAPITest.TestTables
     {
       var sql =  @"<#= Table.GetCreateTableSQL().ToUpper() #>";
 
-      // SQL発行
-      db.ExecuteNonQuery(sql);
+      try
+      {
+        // SQL発行
+        db.ExecuteNonQuery(sql);
+      }
+      catch (Exception ex)
+      {
+        System.Diagnostics.Debug.WriteLine(ex.Message);
+        db.Rollback();
+        db.BeginTransaction();
+      }
     }
 
     /// <summary>
@@ -33,14 +43,44 @@ namespace WebAPITest.TestTables
     /// <param name="targetDTO">対象DTOインスタンス</param>
     public static void Insert(IDatabase db, <#= Table.TableName #> targetDTO)
     {
-      var sql = @"<#= Table.GetInsertSQL().ToUpper() #>";
-
       // Param設定
       db.ClearParam();
+      var insertColumns = new List<string>();
 <#= GetInsertSQLParams() #>
+
+      // SQL作成
+      var targetColumns = insertColumns.Where(item => item != string.Empty).ToList();
+      var sql = $"INSERT INTO <#= Table.TableOriginalName #>({string.Join(',', targetColumns)}) VALUES ({string.Join(',', targetColumns.Select(item => "@" + item))});";
 
       // SQL発行
       db.ExecuteNonQuery(sql);
+
+      // パラメータの設定
+      string SetParam(string columnName, object columnValue)
+      {
+        if (columnValue == null)
+        {
+          return string.Empty;
+        }
+
+        if (columnValue is DateTime dt)
+        {
+          if (dt == DateTime.MinValue)
+          {
+            return string.Empty;
+          }
+          db.AddParam("@" + columnName, columnValue);
+          return columnName;
+        }
+
+        if (columnName == null)
+        {
+          return string.Empty;
+        }
+
+        db.AddParam("@" + columnName, columnValue);
+        return columnName;
+      }
     }
 
     /// <summary>
