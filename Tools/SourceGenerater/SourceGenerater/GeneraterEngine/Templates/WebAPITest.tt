@@ -3,10 +3,11 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
+using DataTransferObjects.Tables;
+using Framework.WebAPI.Interfaces;
 using Microsoft.Extensions.Logging;
 using System;
-using WebAPI.Controllers.<#= BaseName #>;
-using Framework.WebAPI.Interfaces;
+using WebAPI.Controllers.OrderList;
 using WebAPITest.TestBase;
 using WebAPITest.TestTables;
 
@@ -15,7 +16,7 @@ namespace WebAPITest.<#= BaseName #>
   /// <summary>
   /// WebAPI.Controllers.<#= BaseName #>.<#= BaseName #>Controller用テストクラス
   /// </summary>
-  public partial class <#= BaseName #>Test
+  public partial class <#= BaseName #>Test : IDisposable
   {
     /// <summary>
     /// ログ インスタンス
@@ -23,15 +24,21 @@ namespace WebAPITest.<#= BaseName #>
     private ILogger<<#= BaseName #>Controller> logger = new LoggerFactory().CreateLogger<<#= BaseName #>Controller>();
 
     /// <summary>
-    /// テスト用テーブルとデータを作成、取得
+    /// テスト用DBインスタンス
     /// </summary>
-    /// <returns>テストDBインスタンス</returns>
-    private IDatabase GetDB()
+    private IDatabase db = null;
+
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    /// <remarks>start up</remarks>
+    public <#= BaseName #>Test()
     {
       // テストDBインスタンス作成
-      var db = TestDB.GetDB();
+      db = TestDB.GetDB();
+      db.BeginTransaction();
 
-      // テーブル作成(すでにテーブルが存在する場合はdbを使ってtruncateしてください)
+      // テーブル作成
       // TODO TestTablesのクラスを使ってテーブルを作成してください。(本コメントは削除してください)
       //(本コメントは削除してください) 例) MtUserTest.CreateTable(db);
 
@@ -39,6 +46,24 @@ namespace WebAPITest.<#= BaseName #>
       // TODO TestTablesのクラスを使ってテストデータを登録してください。(本コメントは削除してください)
       //(本コメントは削除してください) 例) MtUserTest.Insert(db, new MtUser() { UserId = "test", UserName = "テストユーザー" });
 
+    }
+
+    /// <summary>
+    /// 破棄
+    /// </summary>
+    /// <remarks>tear down</remarks>
+    public void Dispose()
+    {
+      db.Rollback();
+      db.Dispose();
+    }
+
+    /// <summary>
+    /// テスト用テーブルとデータを作成、取得
+    /// </summary>
+    /// <returns>テストDBインスタンス</returns>
+    private IDatabase GetDB()
+    {
       // テストDBインスタンスを返す
       return db;
     }
