@@ -58,6 +58,7 @@ namespace WebAPITest.TestTables
       // SQL発行
       db.ExecuteNonQuery(sql);
 
+      // パラメータの設定
       string SetParam(string columnName, object columnValue)
       {
         if (columnValue == null)
@@ -83,7 +84,6 @@ namespace WebAPITest.TestTables
         db.AddParam("@" + columnName, columnValue);
         return columnName;
       }
-
     }
 
     /// <summary>
@@ -93,7 +93,7 @@ namespace WebAPITest.TestTables
     /// <param name="UserId">ユーザーID</param>
     /// <param name="UserName">ユーザー名</param>
     /// <param name="Password">パスワード</param>
-    /// <param name="DelFlag"> 削除フラグ</param>
+    /// <param name="DelFlag">削除フラグ</param>
     /// <param name="EntryUser">登録ユーザー</param>
     /// <param name="EntryDate">登録日時</param>
     /// <param name="ModUser">更新ユーザー</param>
@@ -113,7 +113,7 @@ namespace WebAPITest.TestTables
 
     {
       var sql = new StringBuilder();
-      sql.AppendLine("SELECT * FROM mt_user WHERE 1=1");
+      sql.AppendLine("SELECT * FROM MT_USER WHERE 1=1");
 
       var sqlWhere = new StringBuilder();
       if(UserId != null)

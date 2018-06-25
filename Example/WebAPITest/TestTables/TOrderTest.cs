@@ -52,6 +52,7 @@ namespace WebAPITest.TestTables
       // SQL発行
       db.ExecuteNonQuery(sql);
 
+      // パラメータの設定
       string SetParam(string columnName, object columnValue)
       {
         if (columnValue == null)
@@ -77,7 +78,6 @@ namespace WebAPITest.TestTables
         db.AddParam("@" + columnName, columnValue);
         return columnName;
       }
-
     }
 
     /// <summary>
@@ -95,7 +95,7 @@ namespace WebAPITest.TestTables
 
     {
       var sql = new StringBuilder();
-      sql.AppendLine("SELECT * FROM t_order WHERE 1=1");
+      sql.AppendLine("SELECT * FROM T_ORDER WHERE 1=1");
 
       var sqlWhere = new StringBuilder();
       if(OrderNo != null)
