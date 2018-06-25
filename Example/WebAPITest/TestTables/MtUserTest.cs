@@ -4,6 +4,7 @@ using System.Text;
 using System.Data;
 using DataTransferObjects.Tables;
 using Framework.WebAPI.Interfaces;
+using System.Linq;
 
 namespace WebAPITest.TestTables
 {
@@ -17,8 +18,17 @@ namespace WebAPITest.TestTables
     {
       var sql =  @"CREATE TABLE MT_USER(USER_ID TEXT,USER_NAME TEXT,PASSWORD TEXT,DEL_FLAG TEXT,ENTRY_USER TEXT,ENTRY_DATE TEXT,MOD_USER TEXT,MOD_DATE TEXT,MOD_VERSION INTEGER);";
 
-      // SQL発行
-      db.ExecuteNonQuery(sql);
+      try
+      {
+        // SQL発行
+        db.ExecuteNonQuery(sql);
+      }
+      catch (Exception ex)
+      {
+        System.Diagnostics.Debug.WriteLine(ex.Message);
+        db.Rollback();
+        db.BeginTransaction();
+      }
     }
 
     /// <summary>
@@ -28,22 +38,52 @@ namespace WebAPITest.TestTables
     /// <param name="targetDTO">対象DTOインスタンス</param>
     public static void Insert(IDatabase db, MtUser targetDTO)
     {
-      var sql = @"INSERT INTO MT_USER(USER_ID,USER_NAME,PASSWORD,DEL_FLAG,ENTRY_USER,ENTRY_DATE,MOD_USER,MOD_DATE,MOD_VERSION) VALUES (@USER_ID,@USER_NAME,@PASSWORD,@DEL_FLAG,@ENTRY_USER,@ENTRY_DATE,@MOD_USER,@MOD_DATE,@MOD_VERSION);";
-
       // Param設定
       db.ClearParam();
-      db.AddParam("@USER_ID", targetDTO.UserId);
-      db.AddParam("@USER_NAME", targetDTO.UserName);
-      db.AddParam("@PASSWORD", targetDTO.Password);
-      db.AddParam("@DEL_FLAG", targetDTO.DelFlag);
-      db.AddParam("@ENTRY_USER", targetDTO.EntryUser);
-      db.AddParam("@ENTRY_DATE", targetDTO.EntryDate);
-      db.AddParam("@MOD_USER", targetDTO.ModUser);
-      db.AddParam("@MOD_DATE", targetDTO.ModDate);
-      db.AddParam("@MOD_VERSION", targetDTO.ModVersion);
+      var insertColumns = new List<string>();
+      insertColumns.Add(SetParam("USER_ID", targetDTO.UserId));
+      insertColumns.Add(SetParam("USER_NAME", targetDTO.UserName));
+      insertColumns.Add(SetParam("PASSWORD", targetDTO.Password));
+      insertColumns.Add(SetParam("DEL_FLAG", targetDTO.DelFlag));
+      insertColumns.Add(SetParam("ENTRY_USER", targetDTO.EntryUser));
+      insertColumns.Add(SetParam("ENTRY_DATE", targetDTO.EntryDate));
+      insertColumns.Add(SetParam("MOD_USER", targetDTO.ModUser));
+      insertColumns.Add(SetParam("MOD_DATE", targetDTO.ModDate));
+      insertColumns.Add(SetParam("MOD_VERSION", targetDTO.ModVersion));
+
+      // SQL作成
+      var targetColumns = insertColumns.Where(item => item != string.Empty).ToList();
+      var sql = $"INSERT INTO MT_USER({string.Join(',', targetColumns)}) VALUES ({string.Join(',', targetColumns.Select(item => "@" + item))});";
 
       // SQL発行
       db.ExecuteNonQuery(sql);
+
+      string SetParam(string columnName, object columnValue)
+      {
+        if (columnValue == null)
+        {
+          return string.Empty;
+        }
+
+        if (columnValue is DateTime dt)
+        {
+          if (dt == DateTime.MinValue)
+          {
+            return string.Empty;
+          }
+          db.AddParam("@" + columnName, columnValue);
+          return columnName;
+        }
+
+        if (columnName == null)
+        {
+          return string.Empty;
+        }
+
+        db.AddParam("@" + columnName, columnValue);
+        return columnName;
+      }
+
     }
 
     /// <summary>

@@ -4,6 +4,7 @@ using System.Text;
 using System.Data;
 using DataTransferObjects.Tables;
 using Framework.WebAPI.Interfaces;
+using System.Linq;
 
 namespace WebAPITest.TestTables
 {
@@ -17,8 +18,17 @@ namespace WebAPITest.TestTables
     {
       var sql =  @"CREATE TABLE T_ORDER(ORDER_NO INTEGER,ORDER_USER_ID TEXT,MOD_VERSION INTEGER);";
 
-      // SQL発行
-      db.ExecuteNonQuery(sql);
+      try
+      {
+        // SQL発行
+        db.ExecuteNonQuery(sql);
+      }
+      catch (Exception ex)
+      {
+        System.Diagnostics.Debug.WriteLine(ex.Message);
+        db.Rollback();
+        db.BeginTransaction();
+      }
     }
 
     /// <summary>
@@ -28,16 +38,46 @@ namespace WebAPITest.TestTables
     /// <param name="targetDTO">対象DTOインスタンス</param>
     public static void Insert(IDatabase db, TOrder targetDTO)
     {
-      var sql = @"INSERT INTO T_ORDER(ORDER_NO,ORDER_USER_ID,MOD_VERSION) VALUES (@ORDER_NO,@ORDER_USER_ID,@MOD_VERSION);";
-
       // Param設定
       db.ClearParam();
-      db.AddParam("@ORDER_NO", targetDTO.OrderNo);
-      db.AddParam("@ORDER_USER_ID", targetDTO.OrderUserId);
-      db.AddParam("@MOD_VERSION", targetDTO.ModVersion);
+      var insertColumns = new List<string>();
+      insertColumns.Add(SetParam("ORDER_NO", targetDTO.OrderNo));
+      insertColumns.Add(SetParam("ORDER_USER_ID", targetDTO.OrderUserId));
+      insertColumns.Add(SetParam("MOD_VERSION", targetDTO.ModVersion));
+
+      // SQL作成
+      var targetColumns = insertColumns.Where(item => item != string.Empty).ToList();
+      var sql = $"INSERT INTO T_ORDER({string.Join(',', targetColumns)}) VALUES ({string.Join(',', targetColumns.Select(item => "@" + item))});";
 
       // SQL発行
       db.ExecuteNonQuery(sql);
+
+      string SetParam(string columnName, object columnValue)
+      {
+        if (columnValue == null)
+        {
+          return string.Empty;
+        }
+
+        if (columnValue is DateTime dt)
+        {
+          if (dt == DateTime.MinValue)
+          {
+            return string.Empty;
+          }
+          db.AddParam("@" + columnName, columnValue);
+          return columnName;
+        }
+
+        if (columnName == null)
+        {
+          return string.Empty;
+        }
+
+        db.AddParam("@" + columnName, columnValue);
+        return columnName;
+      }
+
     }
 
     /// <summary>
