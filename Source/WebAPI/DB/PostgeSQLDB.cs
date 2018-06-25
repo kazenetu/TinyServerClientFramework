@@ -12,6 +12,11 @@ namespace Framework.WebAPI.DB
   /// </summary>
   public class PostgreSQLDB : IDatabase
   {
+    /// <summary>
+    /// セーブポイント名
+    /// </summary>
+    private const string SavePointName = "SAVE";
+    
     #region プライベートフィールド
 
     /// <summary>
@@ -33,6 +38,11 @@ namespace Framework.WebAPI.DB
     /// トランザクションが開いているか否か
     /// </summary>
     private bool isTran = false;
+
+    /// <summary>
+    /// セーブポイントを設定しているか否か
+    /// </summary>
+    private bool isSetSavePoint = false;
 
     #endregion
 
@@ -181,8 +191,21 @@ namespace Framework.WebAPI.DB
     /// </summary>
     public void BeginTransaction()
     {
-      this.tran = this.conn.BeginTransaction();
-      this.isTran = true;
+      if (isTran && isSetSavePoint)
+      {
+        throw new Exception("トランザクションが設定できませんでした。");
+      }
+
+      if (isTran)
+      {
+        tran.Save(SavePointName);
+        isSetSavePoint= true;
+      }
+      else
+      {
+        this.tran = this.conn.BeginTransaction();
+        this.isTran = true;
+      }
     }
 
     /// <summary>
@@ -195,8 +218,17 @@ namespace Framework.WebAPI.DB
         return;
       }
 
-      this.tran.Commit();
-      this.isTran = false;
+      if (isSetSavePoint)
+      {
+        tran.Release(SavePointName);
+        isSetSavePoint = false;
+      }
+      else
+      {
+        this.tran.Commit();
+        this.isTran = false;
+      }
+
     }
 
     /// <summary>
@@ -209,8 +241,16 @@ namespace Framework.WebAPI.DB
         return;
       }
 
-      this.tran.Rollback();
-      this.isTran = false;
+      if (isSetSavePoint)
+      {
+        tran.Rollback(SavePointName);
+        isSetSavePoint = false;
+      }
+      else
+      {
+        this.tran.Rollback();
+        this.isTran = false;
+      }
     }
 
     /// <summary>
@@ -218,6 +258,11 @@ namespace Framework.WebAPI.DB
     /// </summary>
     public void Dispose()
     {
+      if (isSetSavePoint)
+      {
+        tran.Rollback(SavePointName);
+        isSetSavePoint = false;
+      }
       if (this.isTran)
       {
         this.tran.Rollback();
