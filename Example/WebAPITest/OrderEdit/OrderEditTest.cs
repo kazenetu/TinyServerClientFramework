@@ -18,8 +18,15 @@ namespace WebAPITest.OrderEdit
     /// </summary>
     private ILogger<OrderEditController> logger = new LoggerFactory().CreateLogger<OrderEditController>();
 
+    /// <summary>
+    /// テスト用DBインスタンス
+    /// </summary>
     private IDatabase db = null;
 
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    /// <remarks>start up</remarks>
     public OrderEditTest()
     {
       // テストDBインスタンス作成
@@ -30,7 +37,7 @@ namespace WebAPITest.OrderEdit
       MtUserTest.CreateTable(db);
       TOrderTest.CreateTable(db);
 
-      // テーブル作成(すでにテーブルが存在する場合はdbを使ってtruncateしてください)
+      // テストデータ登録
       MtUserTest.Insert(db, new MtUser() { UserId = "test", UserName = "テストユーザー" });
       MtUserTest.Insert(db, new MtUser() { UserId = "test2", UserName = "テストユーザー２" });
       MtUserTest.Insert(db, new MtUser() { UserId = "dummy", UserName = "ダミーユーザー" });
@@ -41,6 +48,10 @@ namespace WebAPITest.OrderEdit
       TOrderTest.Insert(db, new TOrder() { OrderNo = 4, OrderUserId = string.Empty, ModVersion = 1 });
     }
 
+    /// <summary>
+    /// 破棄
+    /// </summary>
+    /// <remarks>tear down</remarks>
     public void Dispose()
     {
       db.Rollback();
