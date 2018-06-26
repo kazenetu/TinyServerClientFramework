@@ -36,12 +36,12 @@ namespace Framework.Client.ConnectLib
 
       try
       {
-        setCookie(url, req);
+        SetCookie(url, req);
 
         // レスポンスの取得と読み込み
         res = (HttpWebResponse)req.GetResponse();
 
-        updateCookie(url, res.Headers);
+        UpdateCookie(url, res.Headers);
 
         resStream = res.GetResponseStream();
         sr = new StreamReader(resStream, Encoding.UTF8);
@@ -73,7 +73,7 @@ namespace Framework.Client.ConnectLib
       // レスポンスの取得と読み込み
       var res = (HttpWebResponse)req.GetResponse();
 
-      updateCookie(url, res.Headers);
+      UpdateCookie(url, res.Headers);
 #endif
     }
 
@@ -104,7 +104,7 @@ namespace Framework.Client.ConnectLib
         req.ContentType = "application/json";
         req.AllowWriteStreamBuffering = true;
 
-        setCookie(url, req);
+        SetCookie(url, req);
 
         var data = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(param));
         paramStream = req.GetRequestStream();
@@ -115,7 +115,7 @@ namespace Framework.Client.ConnectLib
         // レスポンスの取得と読み込み
         var res = (HttpWebResponse)req.GetResponse();
 
-        updateCookie(url, res.Headers);
+        UpdateCookie(url, res.Headers);
 
         resStream = res.GetResponseStream();
         sr = new StreamReader(resStream, Encoding.UTF8);
@@ -140,7 +140,7 @@ namespace Framework.Client.ConnectLib
     /// </summary>
     /// <param name="url">対象URL</param>
     /// <param name="headers">ヘッダーコレクション</param>
-    private static void updateCookie(string url, WebHeaderCollection headers)
+    private static void UpdateCookie(string url, WebHeaderCollection headers)
     {
       var baseUri = new Uri(url);
 
@@ -170,7 +170,7 @@ namespace Framework.Client.ConnectLib
     /// </summary>
     /// <param name="url">対象URL</param>
     /// <param name="request">Requestインスタンス</param>
-    private static void setCookie(string url, HttpWebRequest request)
+    private static void SetCookie(string url, HttpWebRequest request)
     {
       var baseUri = new Uri(url);
 
