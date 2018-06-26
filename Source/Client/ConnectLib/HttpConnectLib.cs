@@ -47,9 +47,9 @@ namespace Framework.Client.ConnectLib
         sr = new StreamReader(resStream, Encoding.UTF8);
         result = sr.ReadToEnd();
       }
-      catch(Exception e)
+      catch
       {
-        throw e;
+        throw;
       }
       finally
       {
@@ -121,9 +121,9 @@ namespace Framework.Client.ConnectLib
         sr = new StreamReader(resStream, Encoding.UTF8);
         result = sr.ReadToEnd();
       }
-      catch(Exception e)
+      catch
       {
-        throw e;
+        throw;
       }
       finally
       {
