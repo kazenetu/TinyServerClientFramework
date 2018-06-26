@@ -58,7 +58,7 @@ namespace TableDTOGenerater.Templates
     /// <returns></returns>
     private string[] GetSplitStrings(string src)
     {
-      var srcData = src.Replace("\t", Environment.NewLine);
+      var srcData = src.Replace("\t", Environment.NewLine).Replace("\n", Environment.NewLine);
       return srcData.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
     }
   }
