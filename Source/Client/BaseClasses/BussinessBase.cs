@@ -9,6 +9,14 @@ namespace Framework.Client.BaseClasses
   public abstract class BussinessBase
   {
     /// <summary>
+    /// WebAPI通信不可メッセージ
+    /// </summary>
+    private const string DisconnectionWebAPI = @"{
+                                              ""result"":""NG"",
+                                              ""errorMessage"":""通信できませんでした""
+                                              }";
+
+    /// <summary>
     /// トークン取得済みか否か
     /// </summary>
     private static bool existToken = false;
@@ -27,7 +35,14 @@ namespace Framework.Client.BaseClasses
     /// <returns>レスポンス</returns>
     protected Response Get<Response>(string webAPIUrl, StubWebAPIDelegate stubDelegate = null) where Response : new()
     {
-      return HttpConnectLib.Get<Response>($"{getWebApiRootAddress(true)}{webAPIUrl}", stubDelegate);
+      try
+      {
+        return HttpConnectLib.Get<Response>($"{getWebApiRootAddress(true)}{webAPIUrl}", stubDelegate);
+      }
+      catch
+      {
+        return Newtonsoft.Json.JsonConvert.DeserializeObject<Response>(DisconnectionWebAPI);
+      }
     }
 
     /// <summary>
@@ -40,14 +55,21 @@ namespace Framework.Client.BaseClasses
     /// <returns>レスポンス</returns>
     protected Response Post<Response>(string webAPIUrl, object param, StubWebAPIDelegate stubDelegate = null) where Response : new()
     {
-      // 一回もトークンを取得していない場合は取得する
-      if (!existToken && stubDelegate == null)
+      try
       {
-        HttpConnectLib.GetToken(getWebApiRootAddress(false));
-        existToken = true;
+        // 一回もトークンを取得していない場合は取得する
+        if (!existToken && stubDelegate == null)
+        {
+          HttpConnectLib.GetToken(getWebApiRootAddress(false));
+          existToken = true;
+        }
+
+        return HttpConnectLib.Post<Response>($"{getWebApiRootAddress(true)}{webAPIUrl}", param, stubDelegate);
       }
-      
-      return HttpConnectLib.Post<Response>($"{getWebApiRootAddress(true)}{webAPIUrl}", param, stubDelegate);
+      catch
+      {
+        return Newtonsoft.Json.JsonConvert.DeserializeObject<Response>(DisconnectionWebAPI);
+      }
     }
 
     /// <summary>
