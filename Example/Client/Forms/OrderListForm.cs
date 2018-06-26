@@ -3,6 +3,7 @@ using Client.Business.OrderList;
 using DataTransferObjects.CustomTables;
 using DataTransferObjects.Request.OrderList;
 using System;
+using System.Windows.Forms;
 
 namespace Client.Forms
 {
@@ -28,9 +29,17 @@ namespace Client.Forms
       // 検索処理
       var result = new OrderListBusiness().Search(request);
 
-      // 結果をグリッドに反映
-      OrderList.DataSource = result.ResponseData.List;
-      OrderList.Refresh();
+      if(result.Result == Statics.ResultOK)
+      {
+        // 結果をグリッドに反映
+        OrderList.DataSource = result.ResponseData.List;
+        OrderList.Refresh();
+      }
+      else
+      {
+        MessageBox.Show(result.ErrorMessage);
+      }
+
     }
 
     /// <summary>
