@@ -103,7 +103,7 @@ namespace TableDTOGenerater.Templates
           sb.AppendLine();
         }
         isFirstItem = false;
-        sb.Append($"    /// <param name=\"{column.ColumnName}\">{column.ColumnLogicalName.Replace(Environment.NewLine, " ")}</param>");
+        sb.Append($"    /// <param name=\"{column.ColumnName}\">{column.ColumnLogicalName.Replace(Environment.NewLine, " ").Replace("\n", " ")}</param>");
       }
 
       return sb.ToString();
