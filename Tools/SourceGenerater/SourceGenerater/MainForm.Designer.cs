@@ -194,6 +194,7 @@
       this.SelectOnly.TabIndex = 8;
       this.SelectOnly.Text = "Select専用機能";
       this.SelectOnly.UseVisualStyleBackColor = true;
+      this.SelectOnly.CheckedChanged += new System.EventHandler(this.SelectOnly_CheckedChanged);
       // 
       // MainForm
       // 

@@ -272,5 +272,19 @@ namespace SourceGenerater
     }
     #endregion
 
+    #region Select専用
+
+    /// <summary>
+    /// Select専用チェックボックス
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void SelectOnly_CheckedChanged(object sender, EventArgs e)
+    {
+      SetSelectOnly();
+    }
+
+    #endregion
+
   }
 }
