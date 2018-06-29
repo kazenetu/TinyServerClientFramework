@@ -83,8 +83,18 @@ namespace Framework.Client.BaseClasses
 
       if(url == string.Empty)
       {
-        // デバッグ実行時のURL
-        url = "http://localhost:5000/";
+        // コマンドライン取得
+        var args = System.Environment.GetCommandLineArgs();
+        if (args.Length > 1)
+        {
+          // コマンドラインからURL取得
+          url = args[1];
+        }
+        else
+        {
+          // デバッグ実行時のURL
+          url = "http://localhost:5000/";
+        }
       }
 
       // APIパス追加
