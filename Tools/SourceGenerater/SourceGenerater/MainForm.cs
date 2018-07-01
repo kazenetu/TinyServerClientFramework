@@ -203,7 +203,7 @@ namespace SourceGenerater
       var basePath = Path.Combine(RootFolder.Text, "Client");
 
       // 対象ファイル作成
-      Generater.Generate(basePath, screenID);
+      Generater.Generate(basePath, screenID, GetGaneraterMode());
 
       // 生成結果をグリッドに表示
       ResultView.DataSource = null;
@@ -281,7 +281,7 @@ namespace SourceGenerater
       var basePath = Path.Combine(RootFolder.Text, "Client");
 
       // 対象ファイル作成
-      Generater.AddBusinessMethod(basePath, screenID, functionID, selectOnly);
+      Generater.AddBusinessMethod(basePath, screenID, functionID, selectOnly, GetGaneraterMode());
 
       // 生成結果をグリッドに表示
       ResultView.DataSource = null;

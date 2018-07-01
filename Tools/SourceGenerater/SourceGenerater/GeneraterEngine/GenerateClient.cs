@@ -166,14 +166,29 @@ namespace SourceGenerater.GeneraterEngine
     /// </summary>
     /// <param name="clientRootPath">クライアントプロジェクトのルートパス</param>
     /// <param name="baseName">ベース名</param>
+    /// <param name="mode">生成対象</param>
     /// <returns>生成成否</returns>
-    public void Generate(string clientRootPath,string baseName)
+    public void Generate(string clientRootPath,string baseName, GaneraterMode mode)
     {
       // ファイル作成情報をクリア
       FileDatas.Clear();
 
-      var targetT4 = new List<IForm>() { new Form(), new FormDesigner(), new Business(), new WebAPIController(), new WebAPITransaction(), new WebAPIRepository() };
-      targetT4.Add(new WebAPITest());
+      // ファイル生成対象を設定
+      var targetT4 = new List<IForm>();
+
+      if(mode == GaneraterMode.Client || mode == GaneraterMode.ClientWebAPI)
+      {
+        targetT4.Add(new Form());
+        targetT4.Add(new FormDesigner());
+        targetT4.Add(new Business());
+      }
+      if (mode == GaneraterMode.WebAPI || mode == GaneraterMode.ClientWebAPI)
+      {
+        targetT4.Add(new WebAPIController());
+        targetT4.Add(new WebAPITransaction());
+        targetT4.Add(new WebAPIRepository());
+        targetT4.Add(new WebAPITest());
+      }
 
       // プロジェクトファイル追加用List生成
       var itemGroups = new List<string>();
@@ -211,28 +226,41 @@ namespace SourceGenerater.GeneraterEngine
     /// <param name="baseName">ベース名</param>
     /// <param name="methodName">メソッド名</param>
     /// <param name="selectOnly">Select専用機能か否か</param>
-    public void AddBusinessMethod(string clientRootPath, string baseName, string methodName, bool selectOnly)
+    /// <param name="mode">生成対象</param>
+    public void AddBusinessMethod(string clientRootPath, string baseName, string methodName, bool selectOnly, GaneraterMode mode)
     {
       // ファイル作成情報をクリア
       FileDatas.Clear();
 
-      var targetT4 = new List<IMethod>() { new BusinessMethod(), new Request(), new Response()};
+      // ファイル生成対象を設定
+      var targetT4 = new List<IMethod>();
 
-      if (selectOnly)
+      if (mode == GaneraterMode.Client || mode == GaneraterMode.ClientWebAPI)
       {
-        // 選択系メソッドテンプレート
-        targetT4.Add(new WebAPIControllerSelectMethod());
-        targetT4.Add(new WebAPITransactionSelectMethod());
-        targetT4.Add(new WebAPIRepositorySelectMethod());
+        targetT4.Add(new BusinessMethod());
+        targetT4.Add(new Request());
+        targetT4.Add(new Response());
       }
-      else
+      if (mode == GaneraterMode.WebAPI || mode == GaneraterMode.ClientWebAPI)
       {
-        // 更新系メソッドテンプレート
-        targetT4.Add(new WebAPIControllerMethod());
-        targetT4.Add(new WebAPITransactionMethod());
-        targetT4.Add(new WebAPIRepositoryMethod());
+        targetT4.Add(new Request());
+        targetT4.Add(new Response());
+        if (selectOnly)
+        {
+          // 選択系メソッドテンプレート
+          targetT4.Add(new WebAPIControllerSelectMethod());
+          targetT4.Add(new WebAPITransactionSelectMethod());
+          targetT4.Add(new WebAPIRepositorySelectMethod());
+        }
+        else
+        {
+          // 更新系メソッドテンプレート
+          targetT4.Add(new WebAPIControllerMethod());
+          targetT4.Add(new WebAPITransactionMethod());
+          targetT4.Add(new WebAPIRepositoryMethod());
+        }
+        targetT4.Add(new WebAPITestMethod());
       }
-      targetT4.Add(new WebAPITestMethod());
 
       // プロジェクトファイル追加用List生成
       var itemGroups = new List<string>();

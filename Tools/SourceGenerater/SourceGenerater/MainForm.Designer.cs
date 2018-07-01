@@ -177,6 +177,7 @@
       this.AddBusinessMethod.TabIndex = 19;
       this.AddBusinessMethod.Text = "Businessメソッド・DTO追加";
       this.AddBusinessMethod.UseVisualStyleBackColor = true;
+      this.AddBusinessMethod.Click += new System.EventHandler(this.AddBusinessMethod_Click);
       // 
       // FunctionID
       // 
@@ -194,6 +195,7 @@
       this.CreateFormBus.TabIndex = 15;
       this.CreateFormBus.Text = "Form・Business作成";
       this.CreateFormBus.UseVisualStyleBackColor = true;
+      this.CreateFormBus.Click += new System.EventHandler(this.CreateFormBus_Click);
       // 
       // FunctionIDName
       // 
@@ -271,21 +273,21 @@
       this.ModeClientWebAPIIToolStripMenuItem.Checked = true;
       this.ModeClientWebAPIIToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
       this.ModeClientWebAPIIToolStripMenuItem.Name = "ModeClientWebAPIIToolStripMenuItem";
-      this.ModeClientWebAPIIToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.ModeClientWebAPIIToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
       this.ModeClientWebAPIIToolStripMenuItem.Text = "クライアント・WebAPI";
       this.ModeClientWebAPIIToolStripMenuItem.Click += new System.EventHandler(this.ModeMenu_Click);
       // 
       // ModeClientToolStripMenuItem
       // 
       this.ModeClientToolStripMenuItem.Name = "ModeClientToolStripMenuItem";
-      this.ModeClientToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.ModeClientToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
       this.ModeClientToolStripMenuItem.Text = "クライアントのみ";
       this.ModeClientToolStripMenuItem.Click += new System.EventHandler(this.ModeMenu_Click);
       // 
       // ModeWebAPIToolStripMenuItem
       // 
       this.ModeWebAPIToolStripMenuItem.Name = "ModeWebAPIToolStripMenuItem";
-      this.ModeWebAPIToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.ModeWebAPIToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
       this.ModeWebAPIToolStripMenuItem.Text = "WebAPIのみ";
       this.ModeWebAPIToolStripMenuItem.Click += new System.EventHandler(this.ModeMenu_Click);
       // 
