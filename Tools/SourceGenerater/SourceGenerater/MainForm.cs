@@ -3,16 +3,48 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace SourceGenerater
 {
   public partial class MainForm : Form
   {
+    /// <summary>
+    /// 生成対象列挙型
+    /// </summary>
+    private enum GaneraterMode
+    {
+      None,
+      ClientWebAPI,
+      Client,
+      WebAPI
+    };
+
     private GenerateClient generater = GenerateClient.GetInstance();
 
+    /// <summary>
+    /// 生成対象メニューアイテム
+    /// </summary>
+    private List<ToolStripMenuItem> ModeMenuItems = null;
+
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
     public MainForm()
     {
       InitializeComponent();
+
+      // 生成対象メニューアイテム追加
+      ModeMenuItems = new List<ToolStripMenuItem>() {
+                        ModeClientWebAPIIToolStripMenuItem,
+                        ModeClientToolStripMenuItem,
+                        ModeWebAPIToolStripMenuItem };
+      ModeClientWebAPIIToolStripMenuItem.Tag = GaneraterMode.ClientWebAPI;
+      ModeClientToolStripMenuItem.Tag = GaneraterMode.Client;
+      ModeWebAPIToolStripMenuItem.Tag = GaneraterMode.WebAPI;
+
+      // 生成対象の初期設定
+      ModeMenu_Click(ModeClientWebAPIIToolStripMenuItem, new EventArgs());
 
       // ルートパスを設定
       if (File.Exists("RootFolder.txt"))
@@ -36,9 +68,6 @@ namespace SourceGenerater
         // 未設定の場合は相対パスを初期値に設定
         RootFolder.Text = Path.GetFullPath(@"../../");
       }
-
-      // フォームタイトルにバージョン情報を追加
-      Text += $"  ver {Application.ProductVersion}";
 
       // 画面IDの設定
       ScreenID.DataSource = generater.ScreenDatas.ScreenInfo.Keys.ToList();
@@ -282,6 +311,53 @@ namespace SourceGenerater
     private void SelectOnly_CheckedChanged(object sender, EventArgs e)
     {
       SetSelectOnly();
+    }
+
+    #endregion
+
+    #region 生成対象メニュー
+
+    /// <summary>
+    /// 生成対象メニューアイテムクリック
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    /// <remarks>生成対象メニューアイテムのチェック状態の更新とタイトル変更</remarks>
+    private void ModeMenu_Click(object sender, EventArgs e)
+    {
+      var title = "ソースコード生成ツール ";
+      foreach (var item in ModeMenuItems)
+      {
+        item.Checked = (sender == item);
+
+        if (item.Checked)
+        {
+          title += $"生成対象[{item.Text}]";
+          GeneraterStatus.Text = $"生成対象 ： {item.Text}";
+        }
+      }
+
+      // バージョン情報を追加
+      title += $"  ver {Application.ProductVersion}";
+
+      // フォームタイトルを設定
+      Text = title;
+    }
+
+    /// <summary>
+    /// 生成対象取得
+    /// </summary>
+    /// <returns>生成対象</returns>
+    private GaneraterMode GetGaneraterMode()
+    {
+      foreach (var item in ModeMenuItems)
+      {
+        if (item.Checked && item.Tag is GaneraterMode mode)
+        {
+          return mode;
+        }
+      }
+      return GaneraterMode.None;
     }
 
     #endregion
