@@ -20,7 +20,7 @@ namespace SourceGenerater
       WebAPI
     };
 
-    private GenerateClient generater = GenerateClient.GetInstance();
+    private GenerateClient Generater = GenerateClient.GetInstance();
 
     /// <summary>
     /// 生成対象メニューアイテム
@@ -70,18 +70,18 @@ namespace SourceGenerater
       }
 
       // 画面IDの設定
-      ScreenID.DataSource = generater.ScreenDatas.ScreenInfo.Keys.ToList();
-      ScreenID.Text = generater.ScreenDatas.ScreenInfo.Keys.FirstOrDefault();
+      ScreenID.DataSource = Generater.ScreenDatas.ScreenInfo.Keys.ToList();
+      ScreenID.Text = Generater.ScreenDatas.ScreenInfo.Keys.FirstOrDefault();
 
       // 機能IDの設定
-      if (generater.ScreenDatas.ScreenInfo.ContainsKey(ScreenID.Text)) {
+      if (Generater.ScreenDatas.ScreenInfo.ContainsKey(ScreenID.Text)) {
         FunctionID.Items.Clear();
-        FunctionID.Items.AddRange(generater.ScreenDatas.ScreenInfo[ScreenID.Text].ToArray());
-        FunctionID.Text = generater.ScreenDatas.ScreenInfo[ScreenID.Text].FirstOrDefault();
+        FunctionID.Items.AddRange(Generater.ScreenDatas.ScreenInfo[ScreenID.Text].ToArray());
+        FunctionID.Text = Generater.ScreenDatas.ScreenInfo[ScreenID.Text].FirstOrDefault();
       }
 
       // WebAPIバージョンを定数クラスから取得するように修正
-      generater.SetWebAPIVersion(RootFolder.Text);
+      Generater.SetWebAPIVersion(RootFolder.Text);
 
       // Select専用チェックボックスの設定
       SelectOnly.Checked = GetSelectOnly();
@@ -101,12 +101,12 @@ namespace SourceGenerater
       }
 
       var selectOnlyKey = $"{ScreenID.Text}{FunctionID.Text}";
-      if (!generater.ScreenDatas.SelectOnlyMethod.ContainsKey(selectOnlyKey))
+      if (!Generater.ScreenDatas.SelectOnlyMethod.ContainsKey(selectOnlyKey))
       {
-        generater.ScreenDatas.SelectOnlyMethod[selectOnlyKey] = true;
+        Generater.ScreenDatas.SelectOnlyMethod[selectOnlyKey] = true;
         return true;
       }
-      return generater.ScreenDatas.SelectOnlyMethod[selectOnlyKey];
+      return Generater.ScreenDatas.SelectOnlyMethod[selectOnlyKey];
     }
 
     /// <summary>
@@ -120,12 +120,12 @@ namespace SourceGenerater
       }
 
       var selectOnlyKey = $"{ScreenID.Text}{FunctionID.Text}";
-      if (!generater.ScreenDatas.SelectOnlyMethod.ContainsKey(selectOnlyKey))
+      if (!Generater.ScreenDatas.SelectOnlyMethod.ContainsKey(selectOnlyKey))
       {
-        generater.ScreenDatas.SelectOnlyMethod[selectOnlyKey] = true;
+        Generater.ScreenDatas.SelectOnlyMethod[selectOnlyKey] = true;
         return;
       }
-      generater.ScreenDatas.SelectOnlyMethod[selectOnlyKey] = SelectOnly.Checked;
+      Generater.ScreenDatas.SelectOnlyMethod[selectOnlyKey] = SelectOnly.Checked;
     }
 
     #endregion
@@ -169,12 +169,12 @@ namespace SourceGenerater
         return;
       }
 
-      if (!generater.ScreenDatas.ScreenInfo.ContainsKey(ScreenID.Text))
+      if (!Generater.ScreenDatas.ScreenInfo.ContainsKey(ScreenID.Text))
       {
         var screenID = ScreenID.Text;
-        generater.ScreenDatas.ScreenInfo.Add(screenID, new System.Collections.Generic.List<string>());
+        Generater.ScreenDatas.ScreenInfo.Add(screenID, new System.Collections.Generic.List<string>());
 
-        ScreenID.DataSource = generater.ScreenDatas.ScreenInfo.Keys.ToList();
+        ScreenID.DataSource = Generater.ScreenDatas.ScreenInfo.Keys.ToList();
         ScreenID.Text = string.Empty;
 
         ScreenID.SelectedText = screenID;
@@ -182,8 +182,8 @@ namespace SourceGenerater
 
       // 機能IDの設定
       FunctionID.Items.Clear();
-      FunctionID.Items.AddRange(generater.ScreenDatas.ScreenInfo[ScreenID.Text].ToArray());
-      FunctionID.Text = generater.ScreenDatas.ScreenInfo[ScreenID.Text].FirstOrDefault();
+      FunctionID.Items.AddRange(Generater.ScreenDatas.ScreenInfo[ScreenID.Text].ToArray());
+      FunctionID.Text = Generater.ScreenDatas.ScreenInfo[ScreenID.Text].FirstOrDefault();
 
       // Select専用チェックボックスの設定
       SelectOnly.Checked = GetSelectOnly();
@@ -211,11 +211,11 @@ namespace SourceGenerater
       var basePath = Path.Combine(RootFolder.Text, "Client");
 
       // 対象ファイル作成
-      generater.Generate(basePath, screenID);
+      Generater.Generate(basePath, screenID);
 
       // 生成結果をグリッドに表示
       ResultView.DataSource = null;
-      ResultView.DataSource = generater.FileDatas;
+      ResultView.DataSource = Generater.FileDatas;
       ResultView.Refresh();
     }
     #endregion
@@ -235,7 +235,7 @@ namespace SourceGenerater
       }
 
       // 画面IDが設定されていない場合はクリアして終了
-      if (!generater.ScreenDatas.ScreenInfo.ContainsKey(ScreenID.Text))
+      if (!Generater.ScreenDatas.ScreenInfo.ContainsKey(ScreenID.Text))
       {
         FunctionID.DataSource = null;
         FunctionID.Text = string.Empty;
@@ -244,12 +244,12 @@ namespace SourceGenerater
       // 機能IDが存在しない場合は追加
       var screenID = ScreenID.Text;
       var functionID = FunctionID.Text;
-      if (!generater.ScreenDatas.ScreenInfo[screenID].Contains(functionID))
+      if (!Generater.ScreenDatas.ScreenInfo[screenID].Contains(functionID))
       {
-        generater.ScreenDatas.ScreenInfo[screenID].Add(functionID);
+        Generater.ScreenDatas.ScreenInfo[screenID].Add(functionID);
 
         FunctionID.Items.Clear();
-        FunctionID.Items.AddRange(generater.ScreenDatas.ScreenInfo[ScreenID.Text].ToArray());
+        FunctionID.Items.AddRange(Generater.ScreenDatas.ScreenInfo[ScreenID.Text].ToArray());
         FunctionID.Text = string.Empty;
 
         FunctionID.SelectedText = functionID;
@@ -289,11 +289,11 @@ namespace SourceGenerater
       var basePath = Path.Combine(RootFolder.Text, "Client");
 
       // 対象ファイル作成
-      generater.AddBusinessMethod(basePath, screenID, functionID, selectOnly);
+      Generater.AddBusinessMethod(basePath, screenID, functionID, selectOnly);
 
       // 生成結果をグリッドに表示
       ResultView.DataSource = null;
-      ResultView.DataSource = generater.FileDatas;
+      ResultView.DataSource = Generater.FileDatas;
       ResultView.Refresh();
 
       // Select専用チェックボックスの設定
