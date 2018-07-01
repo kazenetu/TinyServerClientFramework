@@ -20,6 +20,9 @@ namespace SourceGenerater
       WebAPI
     };
 
+    /// <summary>
+    /// ジェネレータークラスインスタンス
+    /// </summary>
     private GenerateClient Generater = GenerateClient.GetInstance();
 
     /// <summary>
