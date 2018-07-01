@@ -10,17 +10,6 @@ namespace SourceGenerater
   public partial class MainForm : Form
   {
     /// <summary>
-    /// 生成対象列挙型
-    /// </summary>
-    private enum GaneraterMode
-    {
-      None,
-      ClientWebAPI,
-      Client,
-      WebAPI
-    };
-
-    /// <summary>
     /// ジェネレータークラスインスタンス
     /// </summary>
     private GenerateClient Generater = GenerateClient.GetInstance();

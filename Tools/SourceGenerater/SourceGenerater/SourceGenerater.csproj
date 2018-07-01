@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GeneraterEngine\GaneraterMode.cs" />
     <Compile Include="GeneraterEngine\Templates\WebAPIController.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -279,10 +280,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-
   <PropertyGroup Condition="$(Configuration)=='Release'">
     <PostBuildEvent>XCOPY $(TargetDir)*.exe $(SolutionDir)..\..\StarterKit\Tools\bin /Y
     </PostBuildEvent>
   </PropertyGroup>
-
 </Project>
