@@ -168,6 +168,7 @@
       this.SelectOnly.TabIndex = 18;
       this.SelectOnly.Text = "Select専用機能";
       this.SelectOnly.UseVisualStyleBackColor = true;
+      this.SelectOnly.CheckedChanged += new System.EventHandler(this.SelectOnly_CheckedChanged);
       // 
       // AddBusinessMethod
       // 
@@ -186,6 +187,8 @@
       this.FunctionID.Name = "FunctionID";
       this.FunctionID.Size = new System.Drawing.Size(504, 20);
       this.FunctionID.TabIndex = 17;
+      this.FunctionID.SelectedIndexChanged += new System.EventHandler(this.FunctionID_Leave);
+      this.FunctionID.Leave += new System.EventHandler(this.FunctionID_Leave);
       // 
       // CreateFormBus
       // 
@@ -222,6 +225,8 @@
       this.ScreenID.Name = "ScreenID";
       this.ScreenID.Size = new System.Drawing.Size(504, 20);
       this.ScreenID.TabIndex = 14;
+      this.ScreenID.SelectedIndexChanged += new System.EventHandler(this.ScreenID_Leave);
+      this.ScreenID.Leave += new System.EventHandler(this.ScreenID_Leave);
       // 
       // RefRootFolder
       // 

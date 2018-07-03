@@ -20,6 +20,16 @@ namespace SourceGenerater
     private List<ToolStripMenuItem> ModeMenuItems = null;
 
     /// <summary>
+    /// 前回の画面ID
+    /// </summary>
+    private string ScreenIDOldValue = string.Empty;
+
+    /// <summary>
+    /// 前回の機能ID
+    /// </summary>
+    private string FunctionIDOldValue = string.Empty;
+
+    /// <summary>
     /// コンストラクタ
     /// </summary>
     public MainForm()
@@ -161,6 +171,13 @@ namespace SourceGenerater
         return;
       }
 
+      if(ScreenID.Text == ScreenIDOldValue)
+      {
+        return;
+      }
+
+      ScreenIDOldValue = ScreenID.Text;
+
       if (!Generater.ScreenDatas.ScreenInfo.ContainsKey(ScreenID.Text))
       {
         var screenID = ScreenID.Text;
@@ -226,6 +243,13 @@ namespace SourceGenerater
         return;
       }
 
+      if (FunctionID.Text == FunctionIDOldValue)
+      {
+        return;
+      }
+
+      FunctionIDOldValue = FunctionID.Text;
+
       // 画面IDが設定されていない場合はクリアして終了
       if (!Generater.ScreenDatas.ScreenInfo.ContainsKey(ScreenID.Text))
       {
@@ -289,7 +313,7 @@ namespace SourceGenerater
       ResultView.Refresh();
 
       // Select専用チェックボックスの設定
-      SetSelectOnly();
+      SelectOnly.Checked = GetSelectOnly();
     }
     #endregion
 
@@ -353,6 +377,5 @@ namespace SourceGenerater
     }
 
     #endregion
-
   }
 }
