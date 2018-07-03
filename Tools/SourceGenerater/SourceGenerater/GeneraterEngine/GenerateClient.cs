@@ -243,8 +243,13 @@ namespace SourceGenerater.GeneraterEngine
       }
       if (mode == GaneraterMode.WebAPI || mode == GaneraterMode.ClientWebAPI)
       {
-        targetT4.Add(new Request());
-        targetT4.Add(new Response());
+        // WebAPIのみの場合はDTOを作成する
+        if (mode == GaneraterMode.WebAPI)
+        {
+          targetT4.Add(new Request());
+          targetT4.Add(new Response());
+        }
+
         if (selectOnly)
         {
           // 選択系メソッドテンプレート
