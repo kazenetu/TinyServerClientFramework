@@ -50,16 +50,16 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="..\DataTransferObjects\CustomTables\**\*.cs">
+    <Compile Include="..\DataTransferObjects\CustomTables\**\*.cs" Visible="false">
       <Link>CustomTables\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Compile>
-    <Compile Include="..\DataTransferObjects\Request\**\*.cs">
+    <Compile Include="..\DataTransferObjects\Request\**\*.cs" Visible="false">
       <Link>Request\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Compile>
-    <Compile Include="..\DataTransferObjects\Response\**\*.cs">
+    <Compile Include="..\DataTransferObjects\Response\**\*.cs" Visible="false">
       <Link>Response\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Compile>
-    <Compile Include="..\DataTransferObjects\Tables\**\*.cs">
+    <Compile Include="..\DataTransferObjects\Tables\**\*.cs" Visible="false">
       <Link>Tables\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Compile>
   </ItemGroup>
