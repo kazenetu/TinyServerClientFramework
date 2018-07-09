@@ -140,5 +140,11 @@
     <Folder Include="Business\" />
     <Folder Include="UserControls\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataTransferObjectsClient\DataTransferObjectsClient.csproj">
+      <Project>{754f4b9c-8a5b-460a-9cf1-cff615cae1e5}</Project>
+      <Name>DataTransferObjectsClient</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
