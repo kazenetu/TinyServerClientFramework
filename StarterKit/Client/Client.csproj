@@ -72,11 +72,11 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FrameworkDataTransferObject">
-      <HintPath>..\FrameworkDlls\FrameworkDataTransferObject.dll</HintPath>
-    </Reference>
     <Reference Include="FrameworkClient">
       <HintPath>..\FrameworkDlls\FrameworkClient.dll</HintPath>
+    </Reference>
+    <Reference Include="FrameworkDataTransferObjectClient">
+      <HintPath>..\FrameworkDlls\FrameworkDataTransferObjectClient.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -135,12 +135,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DataTransferObjects\DataTransferObjects.csproj">
-      <Project>{ac6eb4bf-1281-4ba8-89d6-bea41e871bb8}</Project>
-      <Name>DataTransferObjects</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Business\" />
