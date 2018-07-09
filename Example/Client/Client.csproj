@@ -75,8 +75,8 @@
     <Reference Include="FrameworkClient">
       <HintPath>..\FrameworkDlls\FrameworkClient.dll</HintPath>
     </Reference>
-    <Reference Include="FrameworkDataTransferObject">
-      <HintPath>..\FrameworkDlls\FrameworkDataTransferObject.dll</HintPath>
+    <Reference Include="FrameworkDataTransferObjectClient">
+      <HintPath>..\FrameworkDlls\FrameworkDataTransferObjectClient.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -138,12 +138,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataTransferObjects\DataTransferObjects.csproj">
-      <Project>{ac6eb4bf-1281-4ba8-89d6-bea41e871bb8}</Project>
-      <Name>DataTransferObjects</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="UserControls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -179,5 +173,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\OrderEdit\BusModify.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataTransferObjectsClient\DataTransferObjectsClient.csproj">
+      <Project>{754f4b9c-8a5b-460a-9cf1-cff615cae1e5}</Project>
+      <Name>DataTransferObjectsClient</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

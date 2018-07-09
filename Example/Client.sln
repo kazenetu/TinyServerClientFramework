@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataTransferObjects", "DataTransferObjects\DataTransferObjects.csproj", "{AC6EB4BF-1281-4BA8-89D6-BEA41E871BB8}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientTest", "ClientTest\ClientTest.csproj", "{4507ADEE-A7ED-4DC2-B22C-8F6D5007A529}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{13E9F67D-0B95-4A48-890E-A2D981BCBC01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTransferObjectsClient", "DataTransferObjectsClient\DataTransferObjectsClient.csproj", "{754F4B9C-8A5B-460A-9CF1-CFF615CAE1E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,18 +19,6 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AC6EB4BF-1281-4BA8-89D6-BEA41E871BB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC6EB4BF-1281-4BA8-89D6-BEA41E871BB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AC6EB4BF-1281-4BA8-89D6-BEA41E871BB8}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{AC6EB4BF-1281-4BA8-89D6-BEA41E871BB8}.Debug|x64.Build.0 = Debug|Any CPU
-		{AC6EB4BF-1281-4BA8-89D6-BEA41E871BB8}.DebugStub|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC6EB4BF-1281-4BA8-89D6-BEA41E871BB8}.DebugStub|Any CPU.Build.0 = Debug|Any CPU
-		{AC6EB4BF-1281-4BA8-89D6-BEA41E871BB8}.DebugStub|x64.ActiveCfg = DebugStub|Any CPU
-		{AC6EB4BF-1281-4BA8-89D6-BEA41E871BB8}.DebugStub|x64.Build.0 = DebugStub|Any CPU
-		{AC6EB4BF-1281-4BA8-89D6-BEA41E871BB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AC6EB4BF-1281-4BA8-89D6-BEA41E871BB8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AC6EB4BF-1281-4BA8-89D6-BEA41E871BB8}.Release|x64.ActiveCfg = Release|Any CPU
-		{AC6EB4BF-1281-4BA8-89D6-BEA41E871BB8}.Release|x64.Build.0 = Release|Any CPU
 		{4507ADEE-A7ED-4DC2-B22C-8F6D5007A529}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4507ADEE-A7ED-4DC2-B22C-8F6D5007A529}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4507ADEE-A7ED-4DC2-B22C-8F6D5007A529}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -54,6 +42,18 @@ Global
 		{13E9F67D-0B95-4A48-890E-A2D981BCBC01}.Release|Any CPU.Build.0 = Release|Any CPU
 		{13E9F67D-0B95-4A48-890E-A2D981BCBC01}.Release|x64.ActiveCfg = Release|x64
 		{13E9F67D-0B95-4A48-890E-A2D981BCBC01}.Release|x64.Build.0 = Release|x64
+		{754F4B9C-8A5B-460A-9CF1-CFF615CAE1E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{754F4B9C-8A5B-460A-9CF1-CFF615CAE1E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{754F4B9C-8A5B-460A-9CF1-CFF615CAE1E5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{754F4B9C-8A5B-460A-9CF1-CFF615CAE1E5}.Debug|x64.Build.0 = Debug|Any CPU
+		{754F4B9C-8A5B-460A-9CF1-CFF615CAE1E5}.DebugStub|Any CPU.ActiveCfg = Debug|Any CPU
+		{754F4B9C-8A5B-460A-9CF1-CFF615CAE1E5}.DebugStub|Any CPU.Build.0 = Debug|Any CPU
+		{754F4B9C-8A5B-460A-9CF1-CFF615CAE1E5}.DebugStub|x64.ActiveCfg = Debug|Any CPU
+		{754F4B9C-8A5B-460A-9CF1-CFF615CAE1E5}.DebugStub|x64.Build.0 = Debug|Any CPU
+		{754F4B9C-8A5B-460A-9CF1-CFF615CAE1E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{754F4B9C-8A5B-460A-9CF1-CFF615CAE1E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{754F4B9C-8A5B-460A-9CF1-CFF615CAE1E5}.Release|x64.ActiveCfg = Release|Any CPU
+		{754F4B9C-8A5B-460A-9CF1-CFF615CAE1E5}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
