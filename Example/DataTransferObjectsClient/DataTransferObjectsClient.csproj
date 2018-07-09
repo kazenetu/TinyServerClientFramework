@@ -43,21 +43,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.1" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Content Include="..\DataTransferObjects\CustomTables\**\*.cs">
+    <Compile Include="..\DataTransferObjects\CustomTables\**\*.cs">
       <Link>CustomTables\%(RecursiveDir)%(FileName)%(Extension)</Link>
-    </Content>
-    <Content Include="..\DataTransferObjects\Request\**\*.cs">
+    </Compile>
+    <Compile Include="..\DataTransferObjects\Request\**\*.cs">
       <Link>Request\%(RecursiveDir)%(FileName)%(Extension)</Link>
-    </Content>
-    <Content Include="..\DataTransferObjects\Response\**\*.cs">
+    </Compile>
+    <Compile Include="..\DataTransferObjects\Response\**\*.cs">
       <Link>Response\%(RecursiveDir)%(FileName)%(Extension)</Link>
-    </Content>
-    <Content Include="..\DataTransferObjects\Tables\**\*.cs">
+    </Compile>
+    <Compile Include="..\DataTransferObjects\Tables\**\*.cs">
       <Link>Tables\%(RecursiveDir)%(FileName)%(Extension)</Link>
-    </Content>
+    </Compile>
   </ItemGroup>
 </Project>
