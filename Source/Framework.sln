@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrameworkDataTransferObject
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrameworkWebAPI", "WebAPI\FrameworkWebAPI.csproj", "{3758A473-2AF9-4123-8420-76DFC30EFAA8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrameworkDataTransferObjectClient", "FrameworkDataTransferObjectClient\FrameworkDataTransferObjectClient.csproj", "{5F6A9B15-5183-4EF0-B64D-81DCC1A1DD96}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{3758A473-2AF9-4123-8420-76DFC30EFAA8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3758A473-2AF9-4123-8420-76DFC30EFAA8}.Release|x64.ActiveCfg = Release|Any CPU
 		{3758A473-2AF9-4123-8420-76DFC30EFAA8}.Release|x64.Build.0 = Release|Any CPU
+		{5F6A9B15-5183-4EF0-B64D-81DCC1A1DD96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F6A9B15-5183-4EF0-B64D-81DCC1A1DD96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F6A9B15-5183-4EF0-B64D-81DCC1A1DD96}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5F6A9B15-5183-4EF0-B64D-81DCC1A1DD96}.Debug|x64.Build.0 = Debug|Any CPU
+		{5F6A9B15-5183-4EF0-B64D-81DCC1A1DD96}.DebugStub|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F6A9B15-5183-4EF0-B64D-81DCC1A1DD96}.DebugStub|Any CPU.Build.0 = Debug|Any CPU
+		{5F6A9B15-5183-4EF0-B64D-81DCC1A1DD96}.DebugStub|x64.ActiveCfg = Debug|Any CPU
+		{5F6A9B15-5183-4EF0-B64D-81DCC1A1DD96}.DebugStub|x64.Build.0 = Debug|Any CPU
+		{5F6A9B15-5183-4EF0-B64D-81DCC1A1DD96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F6A9B15-5183-4EF0-B64D-81DCC1A1DD96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F6A9B15-5183-4EF0-B64D-81DCC1A1DD96}.Release|x64.ActiveCfg = Release|Any CPU
+		{5F6A9B15-5183-4EF0-B64D-81DCC1A1DD96}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
