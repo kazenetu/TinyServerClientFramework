@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTransferObjectsClient", "DataTransferObjectsClient\DataTransferObjectsClient.csproj", "{754F4B9C-8A5B-460A-9CF1-CFF615CAE1E5}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataTransferObjects", "DataTransferObjects\DataTransferObjects.csproj", "{FDB126FD-1981-4CA8-B414-54272A4B91A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,18 @@ Global
 		{754F4B9C-8A5B-460A-9CF1-CFF615CAE1E5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{754F4B9C-8A5B-460A-9CF1-CFF615CAE1E5}.Release|x64.ActiveCfg = Release|Any CPU
 		{754F4B9C-8A5B-460A-9CF1-CFF615CAE1E5}.Release|x64.Build.0 = Release|Any CPU
+		{FDB126FD-1981-4CA8-B414-54272A4B91A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDB126FD-1981-4CA8-B414-54272A4B91A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDB126FD-1981-4CA8-B414-54272A4B91A1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{FDB126FD-1981-4CA8-B414-54272A4B91A1}.Debug|x64.Build.0 = Debug|Any CPU
+		{FDB126FD-1981-4CA8-B414-54272A4B91A1}.DebugStub|Any CPU.ActiveCfg = DebugStub|Any CPU
+		{FDB126FD-1981-4CA8-B414-54272A4B91A1}.DebugStub|Any CPU.Build.0 = DebugStub|Any CPU
+		{FDB126FD-1981-4CA8-B414-54272A4B91A1}.DebugStub|x64.ActiveCfg = DebugStub|Any CPU
+		{FDB126FD-1981-4CA8-B414-54272A4B91A1}.DebugStub|x64.Build.0 = DebugStub|Any CPU
+		{FDB126FD-1981-4CA8-B414-54272A4B91A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDB126FD-1981-4CA8-B414-54272A4B91A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDB126FD-1981-4CA8-B414-54272A4B91A1}.Release|x64.ActiveCfg = Release|Any CPU
+		{FDB126FD-1981-4CA8-B414-54272A4B91A1}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
