@@ -122,6 +122,8 @@ ROOT
 │  │          RequestBase.cs
 │  │          ResponseBase.cs
 │  │          TableBase.cs
+│  ├─DataTransferObjectClient
+│  │     FrameworkDataTransferObjectClient.csproj
 │  │          
 │  └─WebAPI
 │      │  FrameworkWebAPI.csproj
@@ -169,9 +171,6 @@ ROOT
 │  │  ├─Properties
 │  │  │      
 │  │  └─UserControls
-│  │          
-│  ├─ClientTest
-│  │      ClientTest.csproj
 │  │      
 │  ├─DataTransferObjects
 │  │  │  DataTransferObjects.csproj
@@ -185,9 +184,13 @@ ROOT
 │  │  └─Tables
 │  │          DummyTable.cs
 │  │          
+│  ├─DataTransferObjectsClient
+│  │     DataTransferObjectsClient.csproj
+│  │          
 │  ├─FrameworkDlls
 │  │      FrameworkClient.dll
 │  │      FrameworkDataTransferObject.dll
+│  │      FrameworkDataTransferObjectClient.dll
 │  │      FrameworkWebAPI.dll
 │  │      Newtonsoft.Json.Compact.dll
 │  │      
@@ -302,7 +305,11 @@ ROOT
    * Client  
       Windowsクライアント用フレームワークプロジェクト
    * DataTransferObject  
-      DTO(Windowsクライアント・WebAPIサーバー共有)用フレームワークプロジェクト
+      DTO(Windowsクライアント・WebAPIサーバー共有)用フレームワークプロジェクト  
+      WebAPI用
+   * DataTransferObjectClient  
+      DTO(Windowsクライアント・WebAPIサーバー共有)用フレームワークプロジェクト  
+      Windowsクライアント用(WebAPI用DTOのリンク設定)
    * WebAPI  
       WebAPIサーバー用フレームワークプロジェクト
 
@@ -322,11 +329,7 @@ ROOT
   * UserControlsフォルダ  
     * ユーザーコントロール
 
-### ClientTest(Windowsクライアント用テストプロジェクト)
-  ビジネスロジッククラスのテストを実施するためのテストプロジェクト
-
 ### DataTransferObjects(Windowsクライアント・WebAPIサーバー共有)
-     
  * DataTransferObjectsプロジェクト
    * CustomTablesフォルダ
      * テーブル用DTO拡張クラス  
@@ -338,6 +341,8 @@ ROOT
      * Responset用DTO
    * Tablesフォルダ  
     * テーブル用DTO
+ * DataTransferObjectsClientプロジェクト  
+   ※DataTransferObjectsのファイル参照のみ
 
 ### FrameworkDlls  
   フレームワークのDLLファイル
