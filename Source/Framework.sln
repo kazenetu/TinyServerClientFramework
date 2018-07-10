@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrameworkDataTransferObject
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrameworkWebAPI", "WebAPI\FrameworkWebAPI.csproj", "{3758A473-2AF9-4123-8420-76DFC30EFAA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrameworkDataTransferObjectClient", "FrameworkDataTransferObjectClient\FrameworkDataTransferObjectClient.csproj", "{5F6A9B15-5183-4EF0-B64D-81DCC1A1DD96}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrameworkDataTransferObjectClient", "DataTransferObjectClient\FrameworkDataTransferObjectClient.csproj", "{5F6A9B15-5183-4EF0-B64D-81DCC1A1DD96}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
