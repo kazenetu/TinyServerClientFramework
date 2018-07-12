@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Data;
-using DataTransferObjects.Tables;
+﻿using DataTransferObjects.Tables;
+using Framework.DataTransferObject.BaseClasses;
 using Framework.WebAPI.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Text;
 
 namespace WebAPITest.TestTables
 {
@@ -53,7 +54,7 @@ namespace WebAPITest.TestTables
 
       // SQL作成
       var targetColumns = insertColumns.Where(item => item != string.Empty).ToList();
-      var sql = $"INSERT INTO MT_USER({string.Join(',', targetColumns)}) VALUES ({string.Join(',', targetColumns.Select(item => "@" + item))});";
+      var sql = $"INSERT INTO mt_user({string.Join(',', targetColumns)}) VALUES ({string.Join(',', targetColumns.Select(item => "@" + item))});";
 
       // SQL発行
       db.ExecuteNonQuery(sql);
@@ -93,7 +94,7 @@ namespace WebAPITest.TestTables
     /// <param name="UserId">ユーザーID</param>
     /// <param name="UserName">ユーザー名</param>
     /// <param name="Password">パスワード</param>
-    /// <param name="DelFlag">削除フラグ</param>
+    /// <param name="DelFlag"> 削除フラグ</param>
     /// <param name="EntryUser">登録ユーザー</param>
     /// <param name="EntryDate">登録日時</param>
     /// <param name="ModUser">更新ユーザー</param>
@@ -113,7 +114,7 @@ namespace WebAPITest.TestTables
 
     {
       var sql = new StringBuilder();
-      sql.AppendLine("SELECT * FROM MT_USER WHERE 1=1");
+      sql.AppendLine("SELECT * FROM mt_user WHERE 1=1");
 
       var sqlWhere = new StringBuilder();
       if(UserId != null)
@@ -169,19 +170,34 @@ namespace WebAPITest.TestTables
       {
         var rowData = new MtUser();
 
-        rowData.UserId =  row["USER_ID"].ToString();
-        rowData.UserName =  row["USER_NAME"].ToString();
-        rowData.Password =  row["PASSWORD"].ToString();
-        rowData.DelFlag =  row["DEL_FLAG"].ToString();
-        rowData.EntryUser =  row["ENTRY_USER"].ToString();
-        rowData.EntryDate =  DateTime.Parse(row["ENTRY_DATE"].ToString());
-        rowData.ModUser =  row["MOD_USER"].ToString();
-        rowData.ModDate =  DateTime.Parse(row["MOD_DATE"].ToString());
-        rowData.ModVersion =  int.Parse(row["MOD_VERSION"].ToString());
+        SetData(rowData, "UserId", row, "USER_ID");
+        SetData(rowData, "UserName", row, "USER_NAME");
+        SetData(rowData, "Password", row, "PASSWORD");
+        SetData(rowData, "DelFlag", row, "DEL_FLAG");
+        SetData(rowData, "EntryUser", row, "ENTRY_USER");
+        SetData(rowData, "EntryDate", row, "ENTRY_DATE");
+        SetData(rowData, "ModUser", row, "MOD_USER");
+        SetData(rowData, "ModDate", row, "MOD_DATE");
+        SetData(rowData, "ModVersion", row, "MOD_VERSION");
         result.Add(rowData);
       }
 
       return result;
+
+      // レコードデータ変換・取得
+      void SetData(TableBase tableClass, string propertyName, DataRow row, string columnName)
+      {
+        var propertyInfo = tableClass.GetType().GetProperty(propertyName);
+
+        // レコ―ドデータがDBNull
+        if (row[columnName] is DBNull)
+        {
+          return;
+        }
+
+        // レコードデータが入っている場合は型変換して返す
+        propertyInfo.SetValue(tableClass, row[columnName]);
+      }
     }
   }
 }

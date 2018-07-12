@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Data;
-using DataTransferObjects.Tables;
+﻿using DataTransferObjects.Tables;
+using Framework.DataTransferObject.BaseClasses;
 using Framework.WebAPI.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Text;
 
 namespace WebAPITest.TestTables
 {
@@ -47,7 +48,7 @@ namespace WebAPITest.TestTables
 
       // SQL作成
       var targetColumns = insertColumns.Where(item => item != string.Empty).ToList();
-      var sql = $"INSERT INTO T_ORDER({string.Join(',', targetColumns)}) VALUES ({string.Join(',', targetColumns.Select(item => "@" + item))});";
+      var sql = $"INSERT INTO t_order({string.Join(',', targetColumns)}) VALUES ({string.Join(',', targetColumns.Select(item => "@" + item))});";
 
       // SQL発行
       db.ExecuteNonQuery(sql);
@@ -95,7 +96,7 @@ namespace WebAPITest.TestTables
 
     {
       var sql = new StringBuilder();
-      sql.AppendLine("SELECT * FROM T_ORDER WHERE 1=1");
+      sql.AppendLine("SELECT * FROM t_order WHERE 1=1");
 
       var sqlWhere = new StringBuilder();
       if(OrderNo != null)
@@ -127,13 +128,28 @@ namespace WebAPITest.TestTables
       {
         var rowData = new TOrder();
 
-        rowData.OrderNo =  int.Parse(row["ORDER_NO"].ToString());
-        rowData.OrderUserId =  row["ORDER_USER_ID"].ToString();
-        rowData.ModVersion =  int.Parse(row["MOD_VERSION"].ToString());
+        SetData(rowData, "OrderNo", row, "ORDER_NO");
+        SetData(rowData, "OrderUserId", row, "ORDER_USER_ID");
+        SetData(rowData, "ModVersion", row, "MOD_VERSION");
         result.Add(rowData);
       }
 
       return result;
+
+      // レコードデータ変換・取得
+      void SetData(TableBase tableClass, string propertyName, DataRow row, string columnName)
+      {
+        var propertyInfo = tableClass.GetType().GetProperty(propertyName);
+
+        // レコ―ドデータがDBNull
+        if (row[columnName] is DBNull)
+        {
+          return;
+        }
+
+        // レコードデータが入っている場合は型変換して返す
+        propertyInfo.SetValue(tableClass, row[columnName]);
+      }
     }
   }
 }
