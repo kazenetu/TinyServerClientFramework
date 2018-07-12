@@ -3,13 +3,14 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
+using DataTransferObjects.Tables;
+using Framework.DataTransferObject.BaseClasses;
+using Framework.WebAPI.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Data;
-using DataTransferObjects.Tables;
-using Framework.WebAPI.Interfaces;
 using System.Linq;
+using System.Text;
 
 namespace WebAPITest.TestTables
 {
@@ -130,7 +131,7 @@ foreach(var column in Table.Columns)
 foreach(var column in Table.Columns)
 {
 #>
-        rowData.<#= column.ColumnName #> =  <#= GetDBCoumnCastString(column) #>;
+        <#= GetDBCoumnCastString(column) #>;
 <# 
 }
 #>
@@ -138,6 +139,21 @@ foreach(var column in Table.Columns)
       }
 
       return result;
+
+      // レコードデータ変換・取得
+      void SetData(TableBase tableClass, string propertyName, DataRow row, string columnName)
+      {
+        var propertyInfo = tableClass.GetType().GetProperty(propertyName);
+
+        // レコ―ドデータがDBNull
+        if (row[columnName] is DBNull)
+        {
+          return;
+        }
+
+        // レコードデータが入っている場合は型変換して返す
+        propertyInfo.SetValue(tableClass, row[columnName]);
+      }
     }
   }
 }

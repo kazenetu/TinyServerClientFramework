@@ -135,12 +135,7 @@ namespace TableDTOGenerater.Templates
     /// <returns>キャスト文字列</returns>
     private string GetDBCoumnCastString(TableColumnData columnData)
     {
-      switch (columnData.ColumnType.Name)
-      {
-        case nameof(String):
-          return $"row[\"{columnData.ColumnOriginalName.ToUpper()}\"].ToString()";
-      }
-      return $"{columnData.GetColumnTypeName()}.Parse(row[\"{columnData.ColumnOriginalName.ToUpper()}\"].ToString())";
+      return $"SetData(rowData, \"{columnData.ColumnName}\", row, \"{columnData.ColumnOriginalName.ToUpper()}\")";
     }
   }
 }
