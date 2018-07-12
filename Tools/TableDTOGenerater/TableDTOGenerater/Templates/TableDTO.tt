@@ -77,8 +77,13 @@ foreach(var column in Table.Columns)
     /// </remarks>
 <# 
   }
+
+  var columnType = column.GetColumnTypeName();
+  if(columnType != "string") {
+      columnType += "?";
+  }
 #>
-    public <#= column.GetColumnTypeName() #> <#= column.ColumnName #> { set; get; }
+    public <#= columnType #> <#= column.ColumnName #> { set; get; }
 
 <# 
 }
