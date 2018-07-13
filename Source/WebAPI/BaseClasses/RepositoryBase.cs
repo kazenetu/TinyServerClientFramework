@@ -145,14 +145,21 @@ namespace Framework.WebAPI.BaseClasses
           return null;
         }
 
+        // 対象プロパティのTypeを取得
+        var targetType = pi.PropertyType;
+        if (targetType.IsGenericType && targetType.GetGenericTypeDefinition() == typeof(Nullable<>))
+        {
+          targetType = targetType.GenericTypeArguments[0];
+        }
+
         // プロパティTypeがstringの場合はそのまま返す
-        if (pi.PropertyType == typeof(string))
+        if (targetType == typeof(string))
         {
           return dbValue;
         }
 
         // プロパティTypeがboolの場合
-        if (pi.PropertyType == typeof(bool))
+        if (targetType == typeof(bool))
         {
           // パースを試みる("True"や"False")
           if (bool.TryParse(dbValue.ToString(), out bool boolResult))
@@ -169,7 +176,7 @@ namespace Framework.WebAPI.BaseClasses
         }
 
         // それ以外(日付や日時など)の場合はキャストを試みる
-        return Convert.ChangeType(dbValue, pi.PropertyType);
+        return Convert.ChangeType(dbValue, targetType);
       }
 
       return result;
