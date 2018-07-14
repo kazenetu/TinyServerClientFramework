@@ -90,7 +90,7 @@ namespace Client.Forms
       }
 
       // 更新ウィンドウを表示する
-      var editWindow = new OrderEditForm(targetData.OrderNo);
+      var editWindow = new OrderEditForm(targetData.OrderNo ?? 0);
       if (editWindow.ShowDialog(this) == System.Windows.Forms.DialogResult.Cancel)
       {
         return;

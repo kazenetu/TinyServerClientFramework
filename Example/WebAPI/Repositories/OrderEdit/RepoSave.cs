@@ -53,7 +53,7 @@ namespace WebAPI.Repositories
 
       if (nextOrderNo.Any())
       {
-        return nextOrderNo.First().OrderNo;
+        return nextOrderNo.First().OrderNo ?? 0;
       }
 
       return 0;

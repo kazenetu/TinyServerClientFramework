@@ -35,7 +35,7 @@ namespace WebAPI.Transactions.OrderEdit
         {
           var targetData = ordereditResult.First();
           result.OrderUserID = targetData.OrderUserId;
-          result.ModVersion = targetData.ModVersion;
+          result.ModVersion = targetData.ModVersion ?? Statics.ModVersionInitValue;
         }
 
       }

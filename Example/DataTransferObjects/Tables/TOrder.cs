@@ -28,7 +28,7 @@ namespace DataTransferObjects.Tables
     /// <summary>
     /// 注文No
     /// </summary>
-    public int OrderNo { set; get; }
+    public int? OrderNo { set; get; }
 
     /// <summary>
     /// 注文者ID
@@ -38,7 +38,7 @@ namespace DataTransferObjects.Tables
     /// <summary>
     /// 更新バージョン
     /// </summary>
-    public int ModVersion { set; get; }
+    public int? ModVersion { set; get; }
 
   }
 }

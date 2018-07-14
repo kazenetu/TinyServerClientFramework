@@ -55,7 +55,7 @@ namespace WebAPI.Transactions.OrderEdit
           repository.Commit();
 
           // 戻り値を完了として採番した注文番号を返す
-          result = saveData.OrderNo;
+          result = saveData.OrderNo ?? 0;
         }
         else{
           // ロールバック

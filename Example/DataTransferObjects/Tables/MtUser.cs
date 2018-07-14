@@ -59,7 +59,7 @@ namespace DataTransferObjects.Tables
     /// <summary>
     /// 登録日時
     /// </summary>
-    public DateTime EntryDate { set; get; }
+    public DateTime? EntryDate { set; get; }
 
     /// <summary>
     /// 更新ユーザー
@@ -69,12 +69,12 @@ namespace DataTransferObjects.Tables
     /// <summary>
     /// 更新日時
     /// </summary>
-    public DateTime ModDate { set; get; }
+    public DateTime? ModDate { set; get; }
 
     /// <summary>
     /// 更新バージョン
     /// </summary>
-    public int ModVersion { set; get; }
+    public int? ModVersion { set; get; }
 
   }
 }
