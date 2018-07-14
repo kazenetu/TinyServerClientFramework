@@ -11,6 +11,11 @@
     public const string WebAPIVersion = "v1";
 
     /// <summary>
+    /// バージョン初期値
+    /// </summary>
+    public const int ModVersionInitValue = 1;
+
+    /// <summary>
     /// バージョンアップを促すメッセージ
     /// </summary>
     public const string ErrorMessageUpdate = "アップデートしてください。";
