@@ -34,7 +34,7 @@ namespace Framework.Client.ConnectLib
     /// <summary>
     /// 自己証明書のWebAPIアクセスを許可する
     /// </summary>
-    public void UseSelfSignedCertificate()
+    public static void UseSelfSignedCertificate()
     {
       ServicePointManager.ServerCertificateValidationCallback =
         new RemoteCertificateValidationCallback(
