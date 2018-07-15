@@ -6,12 +6,27 @@ using System.Text;
 
 namespace Framework.Client.ConnectLib
 {
+  /// <summary>
+  /// WebAPI問い合わせ用クラス
+  /// </summary>
   public class HttpConnectLib
   {
+    /// <summary>
+    /// Cookieヘッダー
+    /// </summary>
     private const string HeaderSetCookie = "Set-Cookie";
 
+    /// <summary>
+    /// Cookie情報
+    /// </summary>
     private static CookieContainer cookies = new CookieContainer();
 
+    /// <summary>
+    /// スタブ用デリゲート
+    /// </summary>
+    /// <param name="url">URL</param>
+    /// <param name="request">入力データ</param>
+    /// <returns>スタブデータ</returns>
     public delegate object StubWebAPIDelegate(string url,object request);
 
     /// <summary>
