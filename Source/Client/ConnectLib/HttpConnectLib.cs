@@ -19,7 +19,7 @@ namespace Framework.Client.ConnectLib
     /// <summary>
     /// Cookie情報
     /// </summary>
-    private static CookieContainer cookies = new CookieContainer();
+    private static CookieContainer Cookies = new CookieContainer();
 
     /// <summary>
     /// スタブ用デリゲート
@@ -176,7 +176,7 @@ namespace Framework.Client.ConnectLib
 
       foreach (Cookie cookie in tempCookies.GetCookies(baseUri))
       {
-        cookies.Add(baseUri, cookie);
+        Cookies.Add(baseUri, cookie);
       }
     }
 
@@ -195,7 +195,7 @@ namespace Framework.Client.ConnectLib
         baseUri = new Uri(baseUri.OriginalString.Replace(baseUri.PathAndQuery, string.Empty));
       }
 
-      var targetCookies = cookies.GetCookies(baseUri);
+      var targetCookies = Cookies.GetCookies(baseUri);
       request.CookieContainer = new CookieContainer();
       request.CookieContainer.Add(targetCookies);
 
