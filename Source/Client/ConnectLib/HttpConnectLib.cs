@@ -3,7 +3,6 @@ using System;
 using System.IO;
 using System.Net;
 using System.Net.Security;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace Framework.Client.ConnectLib
@@ -22,6 +21,11 @@ namespace Framework.Client.ConnectLib
     /// Cookie情報
     /// </summary>
     private static CookieContainer Cookies = new CookieContainer();
+
+    /// <summary>
+    /// Basic認証情報
+    /// </summary>
+    private static NetworkCredential BasicCertification = null;
 
     /// <summary>
     /// スタブ用デリゲート
@@ -44,6 +48,16 @@ namespace Framework.Client.ConnectLib
     }
 
     /// <summary>
+    /// Basic認証の設定
+    /// </summary>
+    /// <param name="userName">ユーザー名</param>
+    /// <param name="password">パスワード</param>
+    public static void UseBasicCertification(string userName, string password)
+    {
+      BasicCertification = new NetworkCredential(userName, password);
+    }
+
+    /// <summary>
     /// Getメソッド
     /// </summary>
     /// <param name="url">クエリ付きURL</param>
@@ -58,7 +72,7 @@ namespace Framework.Client.ConnectLib
       }
 
       string result = string.Empty;
-      HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+      HttpWebRequest req = GetHttpWebRequest(url);
       HttpWebResponse res = null;
       Stream resStream = null;
       StreamReader sr = null;
@@ -97,7 +111,7 @@ namespace Framework.Client.ConnectLib
     public static void GetToken(string url)
     {
 #if !STUB
-      var req = (HttpWebRequest)WebRequest.Create(url);
+      var req = GetHttpWebRequest(url);
 
       // レスポンスの取得と読み込み
       var res = (HttpWebResponse)req.GetResponse();
@@ -122,7 +136,7 @@ namespace Framework.Client.ConnectLib
       }
 
       string result = string.Empty;
-      HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+      HttpWebRequest req = GetHttpWebRequest(url);
       Stream paramStream = null;
       Stream resStream = null;
       StreamReader sr = null;
@@ -162,6 +176,25 @@ namespace Framework.Client.ConnectLib
       }
 
       return JsonConvert.DeserializeObject<T>(result);
+    }
+
+    /// <summary>
+    /// HttpWebRequestインスタンス取得
+    /// </summary>
+    /// <param name="url">URL</param>
+    /// <returns>HttpWebRequestインスタンス</returns>
+    /// <remarks>必要に応じてBasic認証を設定</remarks>
+    private static HttpWebRequest GetHttpWebRequest(string url)
+    {
+      var request = (HttpWebRequest)WebRequest.Create(url);
+
+      // Basic認証
+      if(BasicCertification != null)
+      {
+        request.Credentials = BasicCertification;
+      }
+
+      return request;
     }
 
     /// <summary>
