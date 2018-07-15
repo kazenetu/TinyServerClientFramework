@@ -2,6 +2,8 @@
 using System;
 using System.IO;
 using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace Framework.Client.ConnectLib
@@ -28,6 +30,18 @@ namespace Framework.Client.ConnectLib
     /// <param name="request">入力データ</param>
     /// <returns>スタブデータ</returns>
     public delegate object StubWebAPIDelegate(string url,object request);
+
+    /// <summary>
+    /// 自己証明書のWebAPIアクセスを許可する
+    /// </summary>
+    public void UseSelfSignedCertificate()
+    {
+      ServicePointManager.ServerCertificateValidationCallback =
+        new RemoteCertificateValidationCallback(
+          (sender, certificate, chain, sslPolicyErrors) => {
+            return true; 
+          });
+    }
 
     /// <summary>
     /// Getメソッド
