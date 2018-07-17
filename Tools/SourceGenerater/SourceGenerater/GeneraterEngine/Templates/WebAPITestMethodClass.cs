@@ -39,6 +39,21 @@ namespace SourceGenerater.GeneraterEngine.Templates
     /// 機能ID(メソッド名)
     /// </summary>
     public string MethodName { set; get; }
+
+    /// <summary>
+    /// ユニークなメソッド名を付ける
+    /// </summary>
+    /// <remarks>クラス名とメソッド名が同じである場合のみ設定</remarks>
+    public string MethodSymbol {
+      get
+      {
+        if(MethodName == BaseName)
+        {
+          return "Method";
+        }
+        return string.Empty;
+      }
+    }
   }
 }
 

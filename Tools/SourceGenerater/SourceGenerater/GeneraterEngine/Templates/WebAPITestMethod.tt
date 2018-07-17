@@ -38,7 +38,7 @@ namespace WebAPITest.<#= BaseName #>
     [Theory]
     [MemberData(nameof(Make<#= MethodName #>Request))]
     [Trait("Test", "<#= BaseName #>Test")]
-    public void <#= MethodName #>Test(<#= MethodName #>Request request)
+    public void <#= MethodName #><#= MethodSymbol #>Test(<#= MethodName #>Request request)
     {
       // テスト用DBインスタンスを取得
       var testDB = GetDB();
