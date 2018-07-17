@@ -7,7 +7,7 @@ using DataTransferObjects.Tables;
 using Framework.WebAPI.Interfaces;
 using Microsoft.Extensions.Logging;
 using System;
-using WebAPI.Controllers.OrderList;
+using WebAPI.Controllers.<#= BaseName #>;
 using WebAPITest.TestBase;
 using WebAPITest.TestTables;
 
