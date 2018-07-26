@@ -16,7 +16,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="2.4.0" />
     <PackageReference Include="Npgsql" Version="3.2.5" />
-    
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.5.4" />
+
     <ProjectReference Include="..\DataTransferObjects\DataTransferObjects.csproj" />
   </ItemGroup>
 
@@ -43,6 +44,12 @@
     <Reference Include="FrameworkWebAPI">
       <HintPath>..\FrameworkDlls\FrameworkWebAPI.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="nlog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
