@@ -107,6 +107,9 @@ namespace WebAPI
       app.UseMvc();
 
 #if DEBUG
+      var configuration = app.ApplicationServices.GetService<Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration>();
+      configuration.DisableTelemetry = true;
+
       // Swaggerミドルウェアの登録
       app.UseSwagger();
       // SwaggerUIミドルウェアの登録
@@ -129,5 +132,5 @@ namespace WebAPI
 #endif
 
     }
-    }
   }
+}
