@@ -6,20 +6,20 @@ using NLog.Web;
 namespace WebAPI
 {
   public class Program
+  {
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
-        {
-            BuildWebHost(args).Run();
-        }
-
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .ConfigureLogging(logging =>
-                {
-                  logging.ClearProviders();
-                })
-                .UseNLog()
-                .Build();
+      BuildWebHost(args).Run();
     }
+
+    public static IWebHost BuildWebHost(string[] args) =>
+        WebHost.CreateDefaultBuilder(args)
+            .UseStartup<Startup>()
+            .ConfigureLogging(logging =>
+            {
+              logging.ClearProviders();
+            })
+            .UseNLog()
+            .Build();
+  }
 }
