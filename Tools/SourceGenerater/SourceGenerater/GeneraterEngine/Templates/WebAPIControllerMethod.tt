@@ -36,7 +36,7 @@ namespace WebAPI.Controllers.<#= BaseName #>
       // 入力チェック
       if (!request.Validate())
       {
-        logger.LogError("Pram[{0}]が未設定", request.ValidateNGPropertyName);
+        logger.LogError("Param[{0}]が未設定", request.ValidateNGPropertyName);
         return Json(new <#= MethodName #>Response(<#= MethodName #>Response.Results.NG, Statics.ErrorMessageRequired, null));
       }
 
