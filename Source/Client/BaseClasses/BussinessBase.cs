@@ -88,9 +88,13 @@ namespace Framework.Client.BaseClasses
         var appDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().Name);
         var fullPath = Path.Combine(appDir, "WebApiURL.txt");
 
-        using (var reader = new StreamReader(fullPath))
+        // ファイルが存在する場合はファイル参照する
+        if (File.Exists(fullPath))
         {
-          url = reader.ReadLine();
+          using (var reader = new StreamReader(fullPath))
+          {
+            url = reader.ReadLine();
+          }
         }
       }
 
