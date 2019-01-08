@@ -1,4 +1,6 @@
 ﻿using Framework.Client.ConnectLib;
+using System.IO;
+using System.Reflection;
 using static Framework.Client.ConnectLib.HttpConnectLib;
 
 namespace Framework.Client.BaseClasses
@@ -81,7 +83,18 @@ namespace Framework.Client.BaseClasses
     {
       var url = WebAPIBaseUrl;
 
-      if(url == string.Empty)
+      if (url == string.Empty)
+      {
+        var appDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().Name);
+        var fullPath = Path.Combine(appDir, "WebApiURL.txt");
+
+        using (var reader = new StreamReader(fullPath))
+        {
+          url = reader.ReadLine();
+        }
+      }
+
+      if (url == string.Empty)
       {
         // コマンドライン取得
         var args = System.Environment.GetCommandLineArgs();
@@ -101,6 +114,12 @@ namespace Framework.Client.BaseClasses
       if (setApiPath)
       {
         url += "api/";
+      }
+
+      // WebAPIのベースURLが未設定の場合は設定する
+      if(WebAPIBaseUrl == string.Empty)
+      {
+        WebAPIBaseUrl = url;
       }
 
       return url;
