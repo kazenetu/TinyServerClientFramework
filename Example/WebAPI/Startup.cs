@@ -30,7 +30,10 @@ namespace WebAPI
       services.Configure<DatabaseConfigModel>(Configuration.GetSection("DB"));
 
       // トークン設定
-      services.AddAntiforgery(options => options.HeaderName = "X-XSRF-TOKEN");
+      services.AddAntiforgery(options => {
+        options.HeaderName = "X-XSRF-TOKEN";
+        options.Cookie.Path = "/";
+      });
 
       // DIの設定
       services.AddScoped<IRepositoryBase, RepositoryBase>();
