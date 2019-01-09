@@ -1,16 +1,13 @@
-﻿using Microsoft.AspNetCore.Antiforgery;
+﻿using Framework.WebAPI.BaseClasses;
+using Framework.WebAPI.ConfigModel;
+using Framework.WebAPI.Interfaces;
+using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.IO;
-using System.Reflection;
-using System.Text;
-using Framework.WebAPI.BaseClasses;
-using Framework.WebAPI.ConfigModel;
-using Framework.WebAPI.Interfaces;
 
 namespace WebAPI
 {
